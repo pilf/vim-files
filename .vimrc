@@ -40,13 +40,14 @@ if has("win32")
     set shellcmdflag=/c\ powershell.exe\ -NoLogo\ -NoProfile\ -NonInteractive\ -ExecutionPolicy\ RemoteSigned
     set shellpipe=|
     set shellredir=>
+    
+    try
+        "VsVIM will use VS defaults (see: https://github.com/jaredpar/VsVim/wiki/Defaults-for-Settings)
+        set vsvim_useeditordefaults
+    catch
+    endtry
 endif
 
-try
-    "VsVIM will use VS defaults (see: https://github.com/jaredpar/VsVim/wiki/Defaults-for-Settings)
-    set vsvim_useeditordefaults
-catch
-endtry
 
 function! CdToThis()
     exe ":cd %:p:h"
