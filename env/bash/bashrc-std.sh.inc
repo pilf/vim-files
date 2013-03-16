@@ -3,7 +3,7 @@
 #   source <location-of-this-file>
 
 set -o vi
-alias tp="export PS1=': '"
+alias tp="export PS1='> '"
 
 function today {
     TodayLoc=~/tmp/`date '+%Y%m%d'`
