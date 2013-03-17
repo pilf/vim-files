@@ -29,7 +29,16 @@ function! MyDiff()
   silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
 endfunction
 
-colorscheme distinguished
+syntax on
+set t_Co=256
+set background=dark
+
+if $TERM != 'xterm-256color'
+    colorscheme elflord
+else
+    colorscheme distinguished
+endif
+
 if has("gui_running")
     colorscheme evening
     set guifont=Lucida_Console:h10
@@ -56,10 +65,6 @@ endfunction
 com! CdToThis call CdToThis()
 
 set viminfo='100,<500,s10,h,!
-
-syntax on
-set t_Co=256
-set background=dark
 
 " Tabs etc
 set shiftwidth=4
