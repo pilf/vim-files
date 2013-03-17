@@ -29,6 +29,7 @@ function! MyDiff()
   silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
 endfunction
 
+colorscheme distinguished
 if has("gui_running")
     colorscheme evening
     set guifont=Lucida_Console:h10
