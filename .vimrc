@@ -1,4 +1,3 @@
-
 set nocompatible
 "source $VIMRUNTIME/vimrc_example.vim
 "source $VIMRUNTIME/mswin.vim
@@ -41,7 +40,7 @@ endif
 
 if has("gui_running")
     colorscheme evening
-    set guifont=Lucida_Console:h10
+    set guifont=Lucida_Console:h17
     set lines=999 columns=999
 endif
 
@@ -91,6 +90,13 @@ highlight NonText guifg=#4a4a59  guibg=NONE
 highlight SpecialKey guifg=#4a4a59 guibg=NONE
 
 map Y y$
+
+" re-assign "* to p
+nmap <leader>p :let @p=@*<CR>
+
+" alternative for newlining
+nmap <leader>o myo<ESC>`y
+nmap <leader>O myO<ESC>`y
 
 nmap <leader>h :set list!<CR>
 nmap <leader>b :ls<CR>:buffer<Space>
