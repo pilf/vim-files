@@ -6,7 +6,7 @@ set -o vi
 alias tp="export PS1='> '"
 
 function today {
-    TodayLoc=~/tmp/`date '+%Y/%m/%d'`
+    TodayLoc=~/tmp/`date '+%Y/%Y%m/%Y%m%d'`
     
     if [ ! -d "$TodayLoc" ]; then
         mkdir -p "$TodayLoc"
@@ -24,4 +24,9 @@ function for-all {
     else
         while read line; do eval "$1"; done
     fi
+}
+
+function kill-by-pattern {
+    echo "Not yet implemented, but try something along the lines of:"
+    echo "  ps -A | egrep 'pattern' | awk '{print $1}' | sort -n | head -1 | kill"
 }
