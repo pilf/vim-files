@@ -1,3 +1,3 @@
 editMode: Vi
 completionType: MenuCompletion
-maxhistorysize: Just 40
+maxhistorysize: Just 500

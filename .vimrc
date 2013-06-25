@@ -32,6 +32,10 @@ syntax on
 set t_Co=256
 set background=dark
 
+" http://archive09.linux.com/feature/120126
+set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
+set laststatus=2
+
 if $TERM != 'xterm-256color'
     colorscheme elflord
 else
@@ -51,10 +55,13 @@ if has("win32")
     set shellredir=>
     
     try
-        "VsVIM will use VS defaults (see: https://github.com/jaredpar/VsVim/wiki/Defaults-for-Settings)
+        "VsVIM ill use VS defaults (see: https://github.com/jaredpar/VsVim/wiki/Defaults-for-Settings)
         set vsvim_useeditordefaults
     catch
     endtry
+else
+	let mapleader = "`"
+    map § `
 endif
 
 
@@ -72,6 +79,8 @@ set tabstop=4
 set et
 set autoindent
 nnoremap <leader>st :set noet<CR>:retab!<CR>
+
+set lbr
 
 set scrolloff=6
 set wildchar=<Tab> wildmenu wildmode=full
@@ -134,6 +143,11 @@ nmap <D-0> g^
 
 command! Copyfile let @*=substitute(expand("%:p"), '/', '\', 'g')
 :nnoremap <Leader>cf :Copyfile<CR>
+
+:nmap <leader>soc "=strftime("%A %F - %R")<CR>p
+:nmap <leader>scr "=expand("~/tmp/") . strftime("%Y") . "/" . strftime("%Y%m") . "/" . strftime("%Y%m%d") . "/scratch.txt"<CR>p
+:nmap <leader>today "=strftime("%F")<CR>p
+:nmap <leader>later i<CR><ESC>"=". . . " . strftime("%R") . " . . ."<CR>pA<CR><CR><ESC>
 
 command! -complete=shellcmd -nargs=+ Shell call s:RunShellCommand(<q-args>)
 function! s:RunShellCommand(cmdline)
