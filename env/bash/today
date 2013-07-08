@@ -1,0 +1,9 @@
+#/bin/sh
+
+TodayLoc=~/tmp/`date '+%Y/%Y%m/%Y%m%d'`
+
+if [ ! -d "$TodayLoc" ]; then
+    mkdir -p "$TodayLoc"
+fi
+
+echo $TodayLoc

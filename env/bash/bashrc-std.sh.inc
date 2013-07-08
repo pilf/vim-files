@@ -5,16 +5,6 @@
 set -o vi
 alias tp="export PS1='> '"
 
-function today {
-    TodayLoc=~/tmp/`date '+%Y/%Y%m/%Y%m%d'`
-    
-    if [ ! -d "$TodayLoc" ]; then
-        mkdir -p "$TodayLoc"
-    fi
-
-    echo $TodayLoc
-}
-
 function for-all {
     if [ -z "$1" ]; then
         echo "Example usage: "
