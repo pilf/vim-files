@@ -3,31 +3,6 @@ set nocompatible
 "source $VIMRUNTIME/mswin.vim
 "behave mswin
 
-set diffexpr=MyDiff()
-function! MyDiff()
-  let opt = '-a --binary '
-  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-  let arg1 = v:fname_in
-  if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-  let arg2 = v:fname_new
-  if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-  let arg3 = v:fname_out
-  if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-  let eq = ''
-  if $VIMRUNTIME =~ ' '
-    if &sh =~ '\<cmd'
-      let cmd = '""' . $VIMRUNTIME . '\diff"'
-      let eq = '"'
-    else
-      let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
-    endif
-  else
-    let cmd = $VIMRUNTIME . '\diff'
-  endif
-  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
-endfunction
-
 syntax on
 set t_Co=256
 set background=dark
@@ -61,9 +36,11 @@ if has("win32")
     endtry
 else
 	let mapleader = "`"
-    map § `
+" Getting some recursive definition problems.
+" This probably isn't the way to go really
+"    nmap ` §
+"    imap ` §
 endif
-
 
 function! CdToThis()
     exe ":cd %:p:h"
@@ -83,7 +60,10 @@ nnoremap <leader>st :set noet<CR>:retab!<CR>
 set lbr
 
 set scrolloff=6
-set wildchar=<Tab> wildmenu wildmode=full
+set wildmode=longest,list,full
+set wildmenu
+"set wildchar=<Tab>
+set completeopt=menu,longest
 
 " http://vim.wikia.com/wiki/Backspace_and_delete_problems
 " set backspace=2
@@ -112,11 +92,18 @@ nmap <leader>b :ls<CR>:buffer<Space>
 nmap <leader>ln :set nu!<CR>
 nmap <leader>sb :set showbreak=…<CR>
 "(note) To insert the elipsis, press ctrl-vu followed by the numeric code for elipsis: 2026
-nmap <leader>%p :put =expand('%:p')
+nmap <leader>%p :put =expand('%:p')<CR>
+" another way to do the same thing, copies into register 
+nmap <leader>cp "=expand("%:p")<CR>
 nnoremap <leader>r q:?s\/<CR><CR>
 nmap <leader>mg :w<CR>:Shell gc % \| mongo<CR>:set syntax=javascript<CR>
 "autocmd VimEnter * SessionOpenLast
 nnoremap <leader>a :%y+<CR>
+
+" insert (crude snippets)
+"inoremap <leader>pi <ESC>"='\|> '<CR>pyiw==a
+inoremap <leader>pi \|><Space>
+"inoremap <leader><leader> <leader>
 
 " Toneq stuff
 nnoremap <leader>tsx :set syntax=toneq<CR>
@@ -172,6 +159,31 @@ function! s:RunShellCommand(cmdline)
   call append(line('$'), substitute(getline(2), '.', '=', 'g'))
   silent execute '$read !'.expanded_cmdline 
   1
+endfunction
+
+set diffexpr=MyDiff()
+function! MyDiff()
+  let opt = '-a --binary '
+  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+  let arg1 = v:fname_in
+  if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
+  let arg2 = v:fname_new
+  if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
+  let arg3 = v:fname_out
+  if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
+  let eq = ''
+  if $VIMRUNTIME =~ ' '
+    if &sh =~ '\<cmd'
+      let cmd = '""' . $VIMRUNTIME . '\diff"'
+      let eq = '"'
+    else
+      let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
+    endif
+  else
+    let cmd = $VIMRUNTIME . '\diff'
+  endif
+  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
 endfunction
 
 
