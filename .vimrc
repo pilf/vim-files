@@ -35,7 +35,8 @@ if has("win32")
     catch
     endtry
 else
-	let mapleader = "`"
+	"let mapleader = "§"
+    let mapleader = "`"
 " Getting some recursive definition problems.
 " This probably isn't the way to go really
 "    nmap ` §
@@ -90,11 +91,16 @@ nmap <leader>O myO<ESC>`y
 nmap <leader>h :set list!<CR>
 nmap <leader>b :ls<CR>:buffer<Space>
 nmap <leader>ln :set nu!<CR>
-nmap <leader>sb :set showbreak=…<CR>
 "(note) To insert the elipsis, press ctrl-vu followed by the numeric code for elipsis: 2026
-nmap <leader>%p :put =expand('%:p')<CR>
-" another way to do the same thing, copies into register 
-nmap <leader>cp "=expand("%:p")<CR>
+nmap <leader>sb :set showbreak=…<CR>
+
+" copying my path seems to be something I do quite a bit so here's
+" two handy commands, the first echo the current file whilst in insert mode
+" old way (inserts new line) inoremap <leader>cp <ESC>:put =expand('%:p')<CR>
+inoremap <leader>cp <C-r>=expand('%:p')<CR>
+" in normal mode this copies it into the "p register
+nnoremap <leader>cp "=expand("%:p")<CR>:let @p=@%<CR>
+
 nnoremap <leader>r q:?s\/<CR><CR>
 nmap <leader>mg :w<CR>:Shell gc % \| mongo<CR>:set syntax=javascript<CR>
 "autocmd VimEnter * SessionOpenLast
@@ -105,6 +111,8 @@ nnoremap <leader>a :%y+<CR>
 inoremap <leader>pi \|><Space>
 "inoremap <leader><leader> <leader>
 
+"resizing stuff 
+
 " Toneq stuff
 nnoremap <leader>tsx :set syntax=toneq<CR>
 nnoremap <leader>tin A<Space>(<BAR><Space><Space><BAR>)<esc>2hi
@@ -114,6 +122,9 @@ nnoremap <leader>ton o(<BAR><CR><CR><BAR>)<esc>ki
 :nmap gf :e <cfile><CR>
 
 set clipboard=unnamed
+
+" Fuzzy finding short cuts
+nmap <leader>ff :FufFile<CR>
 
 " From vimcasts (use :Wrap and Cmd+j,k etc. for moving within wrapped lines)
 command! -nargs=* Wrap set wrap linebreak nolist
@@ -159,6 +170,41 @@ function! s:RunShellCommand(cmdline)
   call append(line('$'), substitute(getline(2), '.', '=', 'g'))
   silent execute '$read !'.expanded_cmdline 
   1
+endfunction
+
+nmap <C-W>2 :call Wipeout()<CR>
+" from: http://stackoverflow.com/questions/1534835/how-do-i-close-all-buffers-that-arent-shown-in-a-window-in-vim
+function! Wipeout()
+  " list of *all* buffer numbers
+  let l:buffers = range(1, bufnr('$'))
+
+  " what tab page are we in?
+  let l:currentTab = tabpagenr()
+  try
+    " go through all tab pages
+    let l:tab = 0
+    while l:tab < tabpagenr('$')
+      let l:tab += 1
+
+      " go through all windows
+      let l:win = 0
+      while l:win < winnr('$')
+        let l:win += 1
+        " whatever buffer is in this window in this tab, remove it from
+        " l:buffers list
+        let l:thisbuf = winbufnr(l:win)
+        call remove(l:buffers, index(l:buffers, l:thisbuf))
+      endwhile
+    endwhile
+
+    " if there are any buffers left, delete them
+    if len(l:buffers)
+      execute 'bwipeout' join(l:buffers)
+    endif
+  finally
+    " go back to our original tab page
+    execute 'tabnext' l:currentTab
+  endtry
 endfunction
 
 set diffexpr=MyDiff()
