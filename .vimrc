@@ -21,6 +21,7 @@ if has("gui_running")
     colorscheme evening
     set guifont=Lucida_Console:h17
     set lines=999 columns=999
+    set guioptions-=T "remove toolbar
 endif
 
 if has("win32")
