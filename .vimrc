@@ -43,8 +43,15 @@ else
 endif
 
 if has("gui_running")
+    " Note: if you want to test environment variables make sure they're either
+    " exported in your .bashrc, or .bash_profile; see:
+    " http://stackoverflow.com/questions/882658/how-to-get-environment-variables-from-within-gvim
+    if $living_room!=""
+        set guifont=DejaVu\ Sans\ Mono\ 18  
+    else
+        set guifont=Lucida_Console:h17
+    endif
     colorscheme evening
-    set guifont=Lucida_Console:h17
     set lines=999 columns=999
 endif
 
@@ -60,10 +67,13 @@ if has("win32")
     catch
     endtry
 else
-	let mapleader = "`"
-    map § `
+    if $living_room!=""
+        let mapleader = "<"
+    else
+        let mapleader = "`"
+        map § `
+    endif
 endif
-
 
 function! CdToThis()
     exe ":cd %:p:h"
