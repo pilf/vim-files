@@ -18,8 +18,15 @@ else
 endif
 
 if has("gui_running")
+    " Note: if you want to test environment variables make sure they're either
+    " exported in your .bashrc, or .bash_profile; see:
+    " http://stackoverflow.com/questions/882658/how-to-get-environment-variables-from-within-gvim
+    if $living_room!=""
+        set guifont=DejaVu\ Sans\ Mono\ 18  
+    else
+        set guifont=Lucida_Console:h17
+    endif
     colorscheme evening
-    set guifont=Lucida_Console:h17
     set lines=999 columns=999
     set guioptions-=T "remove toolbar
 endif
@@ -36,12 +43,16 @@ if has("win32")
     catch
     endtry
 else
-	"let mapleader = "§"
-    let mapleader = "`"
-" Getting some recursive definition problems.
-" This probably isn't the way to go really
-"    nmap ` §
-"    imap ` §
+    if $living_room!=""
+        let mapleader = "<"
+    else
+        let mapleader = "`"
+        map § `
+        " Getting some recursive definition problems.
+        " This probably isn't the way to go really
+        "    nmap ` §
+        "    imap ` §
+    endif
 endif
 
 function! CdToThis()
