@@ -35,8 +35,8 @@ if has("win32")
     catch
     endtry
 else
-	"let mapleader = "§"
-    let mapleader = "`"
+	let mapleader = "§"
+    "let mapleader = "`"
 " Getting some recursive definition problems.
 " This probably isn't the way to go really
 "    nmap ` §
@@ -89,6 +89,7 @@ nmap <leader>o myo<ESC>`y
 nmap <leader>O myO<ESC>`y
 
 nmap <leader>h :set list!<CR>
+nmap <leader>wrap :set wrap!<CR>
 nmap <leader>b :ls<CR>:buffer<Space>
 nmap <leader>ln :set nu!<CR>
 "(note) To insert the elipsis, press ctrl-vu followed by the numeric code for elipsis: 2026
@@ -100,6 +101,10 @@ nmap <leader>sb :set showbreak=…<CR>
 inoremap <leader>cp <C-r>=expand('%:p')<CR>
 " in normal mode this copies it into the "p register
 nnoremap <leader>cp "=expand("%:p")<CR>:let @p=@%<CR>
+
+" escape to normal + save
+inoremap <leader>; <ESC>:w<CR>a
+nnoremap <leader>; :w<CR>
 
 nnoremap <leader>r q:?s\/<CR><CR>
 nmap <leader>mg :w<CR>:Shell gc % \| mongo<CR>:set syntax=javascript<CR>
@@ -124,7 +129,9 @@ nnoremap <leader>ton o(<BAR><CR><CR><BAR>)<esc>ki
 set clipboard=unnamed
 
 " Fuzzy finding short cuts
-nmap <leader>ff :FufFile<CR>
+nmap <leader>f. :FufFile %:p:h/<CR>
+nmap <leader>ff :FufFile **/<CR>
+nmap <leader>fb :FufBuffer<CR>
 
 " From vimcasts (use :Wrap and Cmd+j,k etc. for moving within wrapped lines)
 command! -nargs=* Wrap set wrap linebreak nolist
@@ -139,13 +146,19 @@ nmap <D-4> g$
 nmap <D-6> g^
 nmap <D-0> g^
 
+" resize frames
+nmap <leader>h :vert res -3<CR>
+nmap <leader>j :res -3<CR>
+nmap <leader>k :res +3<CR>
+nmap <leader>l :vert res +3<CR>
+
 command! Copyfile let @*=substitute(expand("%:p"), '/', '\', 'g')
 :nnoremap <Leader>cf :Copyfile<CR>
 
-:nmap <leader>soc "=strftime("%A %F - %R")<CR>p
-:nmap <leader>scr "=expand("~/tmp/") . strftime("%Y") . "/" . strftime("%Y%m") . "/" . strftime("%Y%m%d") . "/scratch.txt"<CR>p
-:nmap <leader>today "=strftime("%F")<CR>p
-:nmap <leader>later i<CR><ESC>"=". . . " . strftime("%R") . " . . ."<CR>pA<CR><CR><ESC>
+:inoremap <leader>soc <ESC>"=strftime("%A %F - %R")<CR>p
+:inoremap <leader>scr <ESC>"=expand("~/tmp/") . strftime("%Y") . "/" . strftime("%Y%m") . "/" . strftime("%Y%m%d") . "/scratch.txt"<CR>p
+:inoremap <leader>today <ESC>"=strftime("%F")<CR>p
+:inoremap <leader>later <CR><ESC>"=". . . " . strftime("%R") . " . . ."<CR>pA<CR><CR><ESC>
 
 command! -complete=shellcmd -nargs=+ Shell call s:RunShellCommand(<q-args>)
 function! s:RunShellCommand(cmdline)
