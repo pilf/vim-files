@@ -41,7 +41,7 @@ endif
 
 if has("gui_running")
     colorscheme evening
-    set guifont=Lucida_Console:h10
+    set guifont=Lucida_Console:h14
     set lines=999 columns=999
 endif
 
@@ -94,14 +94,15 @@ map Y y$
 
 nmap <leader>h :set list!<CR>
 nmap <leader>b :ls<CR>:buffer<Space>
+"(note) To insert the elipsis, press ctrl-vu followed by the numeric code for elipsis: 2026
 nmap <leader>ln :set nu!<CR>
 nmap <leader>sb :set showbreak=…<CR>
-"(note) To insert the elipsis, press ctrl-vu followed by the numeric code for elipsis: 2026
-nmap <leader>%p :put =expand('%:p')
+nmap <leader>p "=expand('%:p')<CR>p
 nnoremap <leader>r q:?s\/<CR><CR>
 nmap <leader>mg :w<CR>:Shell gc % \| mongo<CR>:set syntax=javascript<CR>
 "autocmd VimEnter * SessionOpenLast
-nnoremap <leader>a :%y+<CR>
+nnoremap <leader>a ggVG<CR>
+nnoremap <leader>A :%y+<CR>
 
 " Toneq stuff
 nnoremap <leader>tsx :set syntax=toneq<CR>
