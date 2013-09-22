@@ -1,0 +1,3 @@
+editMode: Vi
+completionType: MenuCompletion
+maxhistorysize: Just 500
