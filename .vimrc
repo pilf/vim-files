@@ -18,8 +18,15 @@ else
 endif
 
 if has("gui_running")
+    " Note: if you want to test environment variables make sure they're either
+    " exported in your .bashrc, or .bash_profile; see:
+    " http://stackoverflow.com/questions/882658/how-to-get-environment-variables-from-within-gvim
+    if $living_room!=""
+        set guifont=DejaVu\ Sans\ Mono\ 18  
+    else
+        set guifont=Lucida_Console:h17
+    endif
     colorscheme evening
-    set guifont=Lucida_Console:h17
     set lines=999 columns=999
 endif
 
@@ -35,12 +42,16 @@ if has("win32")
     catch
     endtry
 else
-	let mapleader = "§"
-    "let mapleader = "`"
-" Getting some recursive definition problems.
-" This probably isn't the way to go really
-"    nmap ` §
-"    imap ` §
+    if $living_room!=""
+        let mapleader = "<"
+    else
+        "let mapleader = "`"
+        let mapleader = "§"
+        " Getting some recursive definition problems.
+        " This probably isn't the way to go really
+        "    nmap ` §
+        "    imap ` §
+    endif
 endif
 
 function! CdToThis()
@@ -125,6 +136,7 @@ nnoremap <leader>ton o(<BAR><CR><CR><BAR>)<esc>ki
 
 " gf (goto file) such that it will create a new file if it doesn't exist... (http://stackoverflow.com/questions/1050745/unable-to-create-a-file-from-a-path-in-vim)
 :nmap gf :e <cfile><CR>
+:nmap gn :e %:p:h/<cfile>.js<CR>
 
 set clipboard=unnamed
 
@@ -158,7 +170,7 @@ command! Copyfile let @*=substitute(expand("%:p"), '/', '\', 'g')
 :inoremap <leader>soc <ESC>"=strftime("%A %F - %R")<CR>p
 :inoremap <leader>scr <ESC>"=expand("~/tmp/") . strftime("%Y") . "/" . strftime("%Y%m") . "/" . strftime("%Y%m%d") . "/scratch.txt"<CR>p
 :inoremap <leader>today <ESC>"=strftime("%F")<CR>p
-:inoremap <leader>later <CR><ESC>"=". . . " . strftime("%R") . " . . ."<CR>pA<CR><CR><ESC>
+:inoremap <leader>later <ESC>"=". . . " . strftime("%R") . " . . ."<CR>pA<CR><CR><ESC>
 
 command! -complete=shellcmd -nargs=+ Shell call s:RunShellCommand(<q-args>)
 function! s:RunShellCommand(cmdline)
