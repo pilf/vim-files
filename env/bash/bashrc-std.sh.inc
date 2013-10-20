@@ -31,3 +31,11 @@ function kill-by-pattern {
     echo "Not yet implemented, but try something along the lines of:"
     echo "  ps -A | egrep 'pattern' | awk '{print $1}' | sort -n | head -1 | kill"
 }
+
+function pathadd() {
+    if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+	PATH="${PATH:+"$PATH:"}$1"
+    fi
+}
+
+pathadd $HOME/bin
