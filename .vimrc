@@ -45,12 +45,7 @@ else
     if $living_room!=""
         let mapleader = "<"
     else
-        "let mapleader = "`"
         let mapleader = "§"
-        " Getting some recursive definition problems.
-        " This probably isn't the way to go really
-        "    nmap ` §
-        "    imap ` §
     endif
 endif
 
@@ -70,6 +65,9 @@ set autoindent
 nnoremap <leader>st :set noet<CR>:retab!<CR>
 
 set lbr
+
+" will automatically update file if changed externally (supressing W11 error)
+set autoread
 
 set scrolloff=6
 set wildmode=longest,list,full
