@@ -18,15 +18,8 @@ else
 endif
 
 if has("gui_running")
-    " Note: if you want to test environment variables make sure they're either
-    " exported in your .bashrc, or .bash_profile; see:
-    " http://stackoverflow.com/questions/882658/how-to-get-environment-variables-from-within-gvim
-    if $living_room!=""
-        set guifont=DejaVu\ Sans\ Mono\ 18  
-    else
-        set guifont=Lucida_Console:h17
-    endif
     colorscheme evening
+    set guifont=Lucida_Console:h14
     set lines=999 columns=999
     set guioptions-=T "remove toolbar
 endif
@@ -40,19 +33,16 @@ if has("win32")
     try
         "VsVIM ill use VS defaults (see: https://github.com/jaredpar/VsVim/wiki/Defaults-for-Settings)
         set vsvim_useeditordefaults
+        let mapleader="\\"
     catch
     endtry
 else
-    if $living_room!=""
-        let mapleader = "<"
-    else
-        "let mapleader = "`"
-        let mapleader = "§"
-        " Getting some recursive definition problems.
-        " This probably isn't the way to go really
-        "    nmap ` §
-        "    imap ` §
-    endif
+	"let mapleader = "§"
+    let mapleader = "`"
+" Getting some recursive definition problems.
+" This probably isn't the way to go really
+"    nmap ` §
+"    imap ` §
 endif
 
 function! CdToThis()
@@ -68,7 +58,12 @@ set sts=4
 set tabstop=4
 set et
 set autoindent
-nnoremap <leader>st :set noet<CR>:retab!<CR>
+nnoremap <leader>tt :set noet<CR>:retab!<CR>
+
+nnoremap <leader>tnx :set noet
+nnoremap <leader>tx :set et
+nnoremap <leader>t2 :set shiftwidth=2<CR>:set tabstop=2<CR>:set sts=2<CR>
+nnoremap <leader>t4 :set shiftwidth=4<CR>:set tabstop=4<CR>:set sts=4<CR>
 
 set lbr
 
@@ -101,7 +96,6 @@ nmap <leader>o myo<ESC>`y
 nmap <leader>O myO<ESC>`y
 
 nmap <leader>h :set list!<CR>
-nmap <leader>wrap :set wrap!<CR>
 nmap <leader>b :ls<CR>:buffer<Space>
 nmap <leader>ln :set nu!<CR>
 "(note) To insert the elipsis, press ctrl-vu followed by the numeric code for elipsis: 2026
@@ -114,12 +108,9 @@ inoremap <leader>cp <C-r>=expand('%:p')<CR>
 " in normal mode this copies it into the "p register
 nnoremap <leader>cp "=expand("%:p")<CR>:let @p=@%<CR>
 
-" escape to normal + save
-inoremap <leader>; <ESC>:w<CR>a
-nnoremap <leader>; :w<CR>
-
 nnoremap <leader>r q:?s\/<CR><CR>
 nmap <leader>mg :w<CR>:Shell gc % \| mongo<CR>:set syntax=javascript<CR>
+nmap <leader>mt :w<CR>:Shell gc % \| mongo 192.168.10.71:27017<CR>:set syntax=javascript<CR>
 "autocmd VimEnter * SessionOpenLast
 nnoremap <leader>a :%y+<CR>
 
@@ -137,12 +128,13 @@ nnoremap <leader>ton o(<BAR><CR><CR><BAR>)<esc>ki
 
 " gf (goto file) such that it will create a new file if it doesn't exist... (http://stackoverflow.com/questions/1050745/unable-to-create-a-file-from-a-path-in-vim)
 :nmap gf :e <cfile><CR>
-:nmap gn :e %:p:h/<cfile>.js<CR>
+:nmap gff :e! <cfile><CR>
+:nmap g% :e %:p:h/<cfile><CR>
 
 set clipboard=unnamed
 
 " Fuzzy finding short cuts
-nmap <leader>f. :FufFile %:p:h/<CR>
+nmap <leader>f. :FufFileWithCurrentBufferDir<CR>
 nmap <leader>ff :FufFile **/<CR>
 nmap <leader>fb :FufBuffer<CR>
 
@@ -159,19 +151,13 @@ nmap <D-4> g$
 nmap <D-6> g^
 nmap <D-0> g^
 
-" resize frames
-nmap <leader>h :vert res -3<CR>
-nmap <leader>j :res -3<CR>
-nmap <leader>k :res +3<CR>
-nmap <leader>l :vert res +3<CR>
-
 command! Copyfile let @*=substitute(expand("%:p"), '/', '\', 'g')
 :nnoremap <Leader>cf :Copyfile<CR>
 
-:inoremap <leader>soc <ESC>"=strftime("%A %F - %R")<CR>p
-:inoremap <leader>scr <ESC>"=expand("~/tmp/") . strftime("%Y") . "/" . strftime("%Y%m") . "/" . strftime("%Y%m%d") . "/scratch.txt"<CR>p
-:inoremap <leader>today <ESC>"=strftime("%F")<CR>p
-:inoremap <leader>later <ESC>"=". . . " . strftime("%R") . " . . ."<CR>pA<CR><CR><ESC>
+:nmap <leader>soc "=strftime("%A %F - %R")<CR>p
+:nmap <leader>scr "=expand("~/tmp/") . strftime("%Y") . "/" . strftime("%Y%m") . "/" . strftime("%Y%m%d") . "/scratch.txt"<CR>p
+:nmap <leader>today "=strftime("%F")<CR>p
+:nmap <leader>later i<CR><ESC>"=". . . " . strftime("%R") . " . . ."<CR>pA<CR><CR><ESC>
 
 command! -complete=shellcmd -nargs=+ Shell call s:RunShellCommand(<q-args>)
 function! s:RunShellCommand(cmdline)
