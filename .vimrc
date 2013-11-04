@@ -33,9 +33,9 @@ if has("win32")
     try
         "VsVIM ill use VS defaults (see: https://github.com/jaredpar/VsVim/wiki/Defaults-for-Settings)
         set vsvim_useeditordefaults
-        let mapleader="\\"
     catch
     endtry
+    let mapleader="\\"
 else
     if $living_room!=""
         let mapleader = "<"
@@ -97,7 +97,7 @@ nmap <leader>p :let @p=@*<CR>
 nmap <leader>o myo<ESC>`y
 nmap <leader>O myO<ESC>`y
 
-nmap <leader>h :set list!<CR>
+nmap <leader>hs :set list!<CR>
 nmap <leader>b :ls<CR>:buffer<Space>
 nmap <leader>ln :set nu!<CR>
 "(note) To insert the elipsis, press ctrl-vu followed by the numeric code for elipsis: 2026
@@ -157,7 +157,7 @@ command! Copyfile let @*=substitute(expand("%:p"), '/', '\', 'g')
 :nnoremap <Leader>cf :Copyfile<CR>
 
 :nmap <leader>soc "=strftime("%A %F - %R")<CR>p
-:nmap <leader>scr "=expand("~/tmp/") . strftime("%Y") . "/" . strftime("%Y%m") . "/" . strftime("%Y%m%d") . "/scratch.txt"<CR>p
+:nmap <leader>scr :!today<CR><CR>"=expand("~/tmp/") . strftime("%Y") . "/" . strftime("%Y%m") . "/" . strftime("%Y%m%d") . "/scratch.txt"<CR>p
 :nmap <leader>today "=strftime("%F")<CR>p
 :nmap <leader>later i<CR><ESC>"=". . . " . strftime("%R") . " . . ."<CR>pA<CR><CR><ESC>
 
