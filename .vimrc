@@ -91,17 +91,17 @@ highlight SpecialKey guifg=#4a4a59 guibg=NONE
 map Y y$
 
 " re-assign "* to p
-nmap <leader>p :let @p=@*<CR>
+noremap <leader>p :let @p=@*<CR>
 
 " alternative for newlining
-nmap <leader>o myo<ESC>`y
-nmap <leader>O myO<ESC>`y
+noremap <leader>o myo<ESC>`y
+noremap <leader>O myO<ESC>`y
 
-nmap <leader>hs :set list!<CR>
-nmap <leader>b :ls<CR>:buffer<Space>
-nmap <leader>ln :set nu!<CR>
+noremap <leader>hs :set list!<CR>
+noremap <leader>b :ls<CR>:buffer<Space>
+noremap <leader>ln :set nu!<CR>
 "(note) To insert the elipsis, press ctrl-vu followed by the numeric code for elipsis: 2026
-nmap <leader>sb :set showbreak=…<CR>
+noremap <leader>sb :set showbreak=…<CR>
 
 " copying my path seems to be something I do quite a bit so here's
 " two handy commands, the first echo the current file whilst in insert mode
@@ -124,13 +124,14 @@ inoremap <leader>pi \|><Space>
 "resizing stuff 
 
 " Toneq stuff
-nnoremap <leader>tsx :set syntax=toneq<CR>
-nnoremap <leader>tin A<Space>(<BAR><Space><Space><BAR>)<esc>2hi
-nnoremap <leader>ton o(<BAR><CR><CR><BAR>)<esc>ki
+noremap <leader>tsx :set syntax=toneq<CR>
+noremap <leader>tin <ESC>A<Space>(<BAR><Space><Space><BAR>)<esc>2hi
+noremap <leader>ton <ESC>o(<BAR><CR><CR><BAR>)<esc>ki
 
 " gf (goto file) such that it will create a new file if it doesn't exist... (http://stackoverflow.com/questions/1050745/unable-to-create-a-file-from-a-path-in-vim)
 :nmap gf :e <cfile><CR>
 :nmap gff :e! <cfile><CR>
+:nmap gfw :w<CR>:e <cfile><CR>
 :nmap g% :e %:p:h/<cfile><CR>
 
 set clipboard=unnamed
@@ -153,13 +154,17 @@ nmap <D-4> g$
 nmap <D-6> g^
 nmap <D-0> g^
 
-command! Copyfile let @*=substitute(expand("%:p"), '/', '\', 'g')
-:nnoremap <Leader>cf :Copyfile<CR>
+set spell spelllang=en_gb
+nnoremap <leader>sp :set spell!<CR>
+inoremap <leader>sp <ESC>:set spell!<CR>
 
-:nmap <leader>soc "=strftime("%A %F - %R")<CR>p
-:nmap <leader>scr :!today<CR><CR>"=expand("~/tmp/") . strftime("%Y") . "/" . strftime("%Y%m") . "/" . strftime("%Y%m%d") . "/scratch.txt"<CR>p
-:nmap <leader>today "=strftime("%F")<CR>p
-:nmap <leader>later i<CR><ESC>"=". . . " . strftime("%R") . " . . ."<CR>pA<CR><CR><ESC>
+command! Copyfile let @*=substitute(expand("%:p"), '/', '\', 'g')
+nnoremap <Leader>cf :Copyfile<CR>
+
+noremap <leader>soc <ESC>"=strftime("%A %F - %R")<CR>p
+noremap <leader>scr <ESC>o<ESC>:!today<CR><CR>"=expand("~/tmp/") . strftime("%Y") . "/" . strftime("%Y%m") . "/" . strftime("%Y%m%d") . "/scratch.txt"<CR>p
+noremap <leader>today <ESC>"=strftime("%F")<CR>p
+noremap <leader>later <ESC>i<CR><ESC>"=". . . " . strftime("%R") . " . . ."<CR>pA<CR><CR><ESC>
 
 command! -complete=shellcmd -nargs=+ Shell call s:RunShellCommand(<q-args>)
 function! s:RunShellCommand(cmdline)
