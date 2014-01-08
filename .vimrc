@@ -157,6 +157,7 @@ nmap <D-0> g^
 set spell spelllang=en_gb
 nnoremap <leader>sp :set spell!<CR>
 inoremap <leader>sp <ESC>:set spell!<CR>
+set nospell
 
 command! Copyfile let @*=substitute(expand("%:p"), '/', '\', 'g')
 nnoremap <Leader>cf :Copyfile<CR>
