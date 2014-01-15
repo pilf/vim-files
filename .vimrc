@@ -134,11 +134,15 @@ noremap <leader>ton <ESC>o(<BAR><CR><CR><BAR>)<esc>ki
 :nmap gfw :w<CR>:e <cfile><CR>
 :nmap g% :e %:p:h/<cfile><CR>
 
+" new files
+:nmap <leader>n. :new %:p:h/
+
 set clipboard=unnamed
 
 " Fuzzy finding short cuts
 nmap <leader>f. :FufFileWithCurrentBufferDir<CR>
 nmap <leader>ff :FufFile **/<CR>
+nmap <leader>f/ :FufFile<CR>
 nmap <leader>fb :FufBuffer<CR>
 
 " From vimcasts (use :Wrap and Cmd+j,k etc. for moving within wrapped lines)
