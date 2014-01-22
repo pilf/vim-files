@@ -39,6 +39,9 @@ if has("win32")
 else
     if $living_room!=""
         let mapleader = "<"
+    elseif $debianbox!=""
+        set guifont=Courier\ 10\ Pitch\ 11
+        let mapleader = "\\"
     else
         let mapleader = "§"
     endif
@@ -91,17 +94,17 @@ highlight SpecialKey guifg=#4a4a59 guibg=NONE
 map Y y$
 
 " re-assign "* to p
-nmap <leader>p :let @p=@*<CR>
+noremap <leader>p :let @p=@*<CR>
 
 " alternative for newlining
-nmap <leader>o myo<ESC>`y
-nmap <leader>O myO<ESC>`y
+noremap <leader>o myo<ESC>`y
+noremap <leader>O myO<ESC>`y
 
-nmap <leader>hs :set list!<CR>
-nmap <leader>b :ls<CR>:buffer<Space>
-nmap <leader>ln :set nu!<CR>
+noremap <leader>hs :set list!<CR>
+noremap <leader>b :ls<CR>:buffer<Space>
+noremap <leader>ln :set nu!<CR>
 "(note) To insert the elipsis, press ctrl-vu followed by the numeric code for elipsis: 2026
-nmap <leader>sb :set showbreak=…<CR>
+noremap <leader>sb :set showbreak=…<CR>
 
 " copying my path seems to be something I do quite a bit so here's
 " two handy commands, the first echo the current file whilst in insert mode
@@ -110,9 +113,15 @@ inoremap <leader>cp <C-r>=expand('%:p')<CR>
 " in normal mode this copies it into the "p register
 nnoremap <leader>cp "=expand("%:p")<CR>:let @p=@%<CR>
 
+nnoremap <leader>vso :w \| so %<CR>
+
 nnoremap <leader>r q:?s\/<CR><CR>
 nmap <leader>mg :w<CR>:Shell gc % \| mongo<CR>:set syntax=javascript<CR>
 nmap <leader>mt :w<CR>:Shell gc % \| mongo 192.168.10.71:27017<CR>:set syntax=javascript<CR>
+
+" rust
+nmap <leader>rt :w<CR>:Shell rustc --test % & ./`echo % \| sed s/\\.[^\\.]*$//`<CR>
+
 "autocmd VimEnter * SessionOpenLast
 nnoremap <leader>a :%y+<CR>
 
@@ -124,20 +133,25 @@ inoremap <leader>pi \|><Space>
 "resizing stuff 
 
 " Toneq stuff
-nnoremap <leader>tsx :set syntax=toneq<CR>
-nnoremap <leader>tin A<Space>(<BAR><Space><Space><BAR>)<esc>2hi
-nnoremap <leader>ton o(<BAR><CR><CR><BAR>)<esc>ki
+noremap <leader>tsx :set syntax=toneq<CR>
+noremap <leader>tin <ESC>A<Space>(<BAR><Space><Space><BAR>)<esc>2hi
+noremap <leader>ton <ESC>o(<BAR><CR><CR><BAR>)<esc>ki
 
 " gf (goto file) such that it will create a new file if it doesn't exist... (http://stackoverflow.com/questions/1050745/unable-to-create-a-file-from-a-path-in-vim)
 :nmap gf :e <cfile><CR>
 :nmap gff :e! <cfile><CR>
+:nmap gfw :w<CR>:e <cfile><CR>
 :nmap g% :e %:p:h/<cfile><CR>
+
+" new files
+:nmap <leader>n. :new %:p:h/
 
 set clipboard=unnamed
 
 " Fuzzy finding short cuts
 nmap <leader>f. :FufFileWithCurrentBufferDir<CR>
-nmap <leader>ff :FufFile **/<CR>
+nmap <leader>ff :FufFile **/
+nmap <leader>f/ :FufFile<CR>
 nmap <leader>fb :FufBuffer<CR>
 
 " From vimcasts (use :Wrap and Cmd+j,k etc. for moving within wrapped lines)
@@ -153,13 +167,18 @@ nmap <D-4> g$
 nmap <D-6> g^
 nmap <D-0> g^
 
-command! Copyfile let @*=substitute(expand("%:p"), '/', '\', 'g')
-:nnoremap <Leader>cf :Copyfile<CR>
+set spell spelllang=en_gb
+nnoremap <leader>sp :set spell!<CR>
+inoremap <leader>sp <ESC>:set spell!<CR>
+set nospell
 
-:nmap <leader>soc "=strftime("%A %F - %R")<CR>p
-:nmap <leader>scr :!today<CR><CR>"=expand("~/tmp/") . strftime("%Y") . "/" . strftime("%Y%m") . "/" . strftime("%Y%m%d") . "/scratch.txt"<CR>p
-:nmap <leader>today "=strftime("%F")<CR>p
-:nmap <leader>later i<CR><ESC>"=". . . " . strftime("%R") . " . . ."<CR>pA<CR><CR><ESC>
+command! Copyfile let @*=substitute(expand("%:p"), '/', '\', 'g')
+nnoremap <Leader>cf :Copyfile<CR>
+
+noremap <leader>soc <ESC>"=strftime("%A %F - %R")<CR>p
+noremap <leader>scr <ESC>o<ESC>:!today<CR><CR>"=expand("~/tmp/") . strftime("%Y") . "/" . strftime("%Y%m") . "/" . strftime("%Y%m%d") . "/scratch.txt"<CR>p
+noremap <leader>today <ESC>"=strftime("%F")<CR>p
+noremap <leader>later <ESC>i<CR><ESC>"=". . . " . strftime("%R") . " . . ."<CR>pA<CR><CR><ESC>
 
 command! -complete=shellcmd -nargs=+ Shell call s:RunShellCommand(<q-args>)
 function! s:RunShellCommand(cmdline)
@@ -220,40 +239,40 @@ function! Wipeout()
     execute 'tabnext' l:currentTab
   endtry
 endfunction
-
-set diffexpr=MyDiff()
-function! MyDiff()
-  let opt = '-a --binary '
-  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-  let arg1 = v:fname_in
-  if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-  let arg2 = v:fname_new
-  if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-  let arg3 = v:fname_out
-  if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-  let eq = ''
-  if $VIMRUNTIME =~ ' '
-    if &sh =~ '\<cmd'
-      let cmd = '""' . $VIMRUNTIME . '\diff"'
-      let eq = '"'
-    else
-      let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
-    endif
-  else
-    let cmd = $VIMRUNTIME . '\diff'
-  endif
-  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
-endfunction
-
-
-" this doesn't really seem to work so well, but interesting -- perhaps could
-" launch Araxis maybe.
-function! s:DiffWithSaved()
-  let filetype=&ft
-  diffthis
-  vnew | r # | normal! 1Gdd
-  diffthis
-  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
-endfunction
-com! DiffSaved call s:DiffWithSaved()
+"
+"set diffexpr=MyDiff()
+"function! MyDiff()
+"  let opt = '-a --binary '
+"  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+"  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+"  let arg1 = v:fname_in
+"  if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
+"  let arg2 = v:fname_new
+"  if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
+"  let arg3 = v:fname_out
+"  if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
+"  let eq = ''
+"  if $VIMRUNTIME =~ ' '
+"    if &sh =~ '\<cmd'
+"      let cmd = '""' . $VIMRUNTIME . '\diff"'
+"      let eq = '"'
+"    else
+"      let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
+"    endif
+"  else
+"    let cmd = $VIMRUNTIME . '\diff'
+"  endif
+"  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
+"endfunction
+"
+"
+"" this doesn't really seem to work so well, but interesting -- perhaps could
+"" launch Araxis maybe.
+"function! s:DiffWithSaved()
+"  let filetype=&ft
+"  diffthis
+"  vnew | r # | normal! 1Gdd
+"  diffthis
+"  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+"endfunction
+"com! DiffSaved call s:DiffWithSaved()
