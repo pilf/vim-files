@@ -38,4 +38,8 @@ function pathadd() {
     fi
 }
 
+function start-ssh-agent {
+    ssh-agent sh -c 'ssh-add < /dev/null && bash'
+}
+
 pathadd $HOME/bin
