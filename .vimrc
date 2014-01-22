@@ -39,6 +39,9 @@ if has("win32")
 else
     if $living_room!=""
         let mapleader = "<"
+    elseif $debianbox!=""
+        set guifont=Courier\ 10\ Pitch\ 11
+        let mapleader = "\\"
     else
         let mapleader = "§"
     endif
@@ -110,9 +113,15 @@ inoremap <leader>cp <C-r>=expand('%:p')<CR>
 " in normal mode this copies it into the "p register
 nnoremap <leader>cp "=expand("%:p")<CR>:let @p=@%<CR>
 
+nnoremap <leader>vso :w \| so %<CR>
+
 nnoremap <leader>r q:?s\/<CR><CR>
 nmap <leader>mg :w<CR>:Shell gc % \| mongo<CR>:set syntax=javascript<CR>
 nmap <leader>mt :w<CR>:Shell gc % \| mongo 192.168.10.71:27017<CR>:set syntax=javascript<CR>
+
+" rust
+nmap <leader>rt :w<CR>:Shell rustc --test % & ./`echo % \| sed s/\\.[^\\.]*$//`<CR>
+
 "autocmd VimEnter * SessionOpenLast
 nnoremap <leader>a :%y+<CR>
 
@@ -230,40 +239,40 @@ function! Wipeout()
     execute 'tabnext' l:currentTab
   endtry
 endfunction
-
-set diffexpr=MyDiff()
-function! MyDiff()
-  let opt = '-a --binary '
-  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-  let arg1 = v:fname_in
-  if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-  let arg2 = v:fname_new
-  if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-  let arg3 = v:fname_out
-  if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-  let eq = ''
-  if $VIMRUNTIME =~ ' '
-    if &sh =~ '\<cmd'
-      let cmd = '""' . $VIMRUNTIME . '\diff"'
-      let eq = '"'
-    else
-      let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
-    endif
-  else
-    let cmd = $VIMRUNTIME . '\diff'
-  endif
-  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
-endfunction
-
-
-" this doesn't really seem to work so well, but interesting -- perhaps could
-" launch Araxis maybe.
-function! s:DiffWithSaved()
-  let filetype=&ft
-  diffthis
-  vnew | r # | normal! 1Gdd
-  diffthis
-  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
-endfunction
-com! DiffSaved call s:DiffWithSaved()
+"
+"set diffexpr=MyDiff()
+"function! MyDiff()
+"  let opt = '-a --binary '
+"  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+"  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+"  let arg1 = v:fname_in
+"  if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
+"  let arg2 = v:fname_new
+"  if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
+"  let arg3 = v:fname_out
+"  if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
+"  let eq = ''
+"  if $VIMRUNTIME =~ ' '
+"    if &sh =~ '\<cmd'
+"      let cmd = '""' . $VIMRUNTIME . '\diff"'
+"      let eq = '"'
+"    else
+"      let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
+"    endif
+"  else
+"    let cmd = $VIMRUNTIME . '\diff'
+"  endif
+"  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
+"endfunction
+"
+"
+"" this doesn't really seem to work so well, but interesting -- perhaps could
+"" launch Araxis maybe.
+"function! s:DiffWithSaved()
+"  let filetype=&ft
+"  diffthis
+"  vnew | r # | normal! 1Gdd
+"  diffthis
+"  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+"endfunction
+"com! DiffSaved call s:DiffWithSaved()
