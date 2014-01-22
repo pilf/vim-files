@@ -141,7 +141,7 @@ set clipboard=unnamed
 
 " Fuzzy finding short cuts
 nmap <leader>f. :FufFileWithCurrentBufferDir<CR>
-nmap <leader>ff :FufFile **/<CR>
+nmap <leader>ff :FufFile **/
 nmap <leader>f/ :FufFile<CR>
 nmap <leader>fb :FufBuffer<CR>
 
