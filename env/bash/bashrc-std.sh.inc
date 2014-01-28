@@ -5,6 +5,14 @@
 set -o vi
 alias tp="export PS1='> '"
 
+# It's a triffle confusing.  But HISTFILESIZE is the amount stored in the history file 
+# (as specified by $HISTFILE, usually ~/.bash_history).  HISTSIZE is the amount of history stored in
+# in memory (on shell exit this history is dumped to HISTFILE).  Not a very large HISTSIZE will mean
+# bash has to load loads of lines into memory on start-up, so it's a toss up really.
+# This is the best explanation I could find: http://mywiki.wooledge.org/BashFAQ/088
+HISTFILESIZE=10000
+HISTSIZE=1500
+
 # For readline access in eix; requires rlwrap (obviously, can brew and I presume apt–get)
 # .iex_history, which holds a history between sessions (quite cool), might need to
 # be 'touch'ed.
