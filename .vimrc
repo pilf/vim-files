@@ -101,10 +101,14 @@ noremap <leader>o myo<ESC>`y
 noremap <leader>O myO<ESC>`y
 
 noremap <leader>hs :set list!<CR>
+noremap <leader>s :w<CR>
+"visually select last match
+noremap <leader>v v//e<CR> 
 noremap <leader>b :ls<CR>:buffer<Space>
 noremap <leader>ln :set nu!<CR>
 "(note) To insert the elipsis, press ctrl-vu followed by the numeric code for elipsis: 2026
 noremap <leader>sb :set showbreak=…<CR>
+nnoremap <leader>wso :w \| so %<CR>
 
 " copying my path seems to be something I do quite a bit so here's
 " two handy commands, the first echo the current file whilst in insert mode
@@ -112,8 +116,7 @@ noremap <leader>sb :set showbreak=…<CR>
 inoremap <leader>cp <C-r>=expand('%:p')<CR>
 " in normal mode this copies it into the "p register
 nnoremap <leader>cp "=expand("%:p")<CR>:let @p=@%<CR>
-
-nnoremap <leader>vso :w \| so %<CR>
+nnoremap <leader>ep :echo @%<CR>
 
 nnoremap <leader>r q:?s\/<CR><CR>
 nmap <leader>mg :w<CR>:Shell gc % \| mongo<CR>:set syntax=javascript<CR>
@@ -136,6 +139,13 @@ inoremap <leader>pi \|><Space>
 noremap <leader>tsx :set syntax=toneq<CR>
 noremap <leader>tin <ESC>A<Space>(<BAR><Space><Space><BAR>)<esc>2hi
 noremap <leader>ton <ESC>o(<BAR><CR><CR><BAR>)<esc>ki
+nnoremap <leader>ta oT<SPACE>
+nnoremap <leader>ta1 oT<SPACE><ESC>1a.<SPACE><ESC>A
+nnoremap <leader>ta2 oT<SPACE><ESC>2a.<SPACE><ESC>A
+nnoremap <leader>ta3 oT<SPACE><ESC>3a.<SPACE><ESC>A
+nnoremap <leader>ta4 oT<SPACE><ESC>4a.<SPACE><ESC>A
+nnoremap <leader>ta5 oT<SPACE><ESC>5a.<SPACE><ESC>A
+nnoremap <leader>ta6 oT<SPACE><ESC>6a.<SPACE><ESC>A
 
 " gf (goto file) such that it will create a new file if it doesn't exist... (http://stackoverflow.com/questions/1050745/unable-to-create-a-file-from-a-path-in-vim)
 :nmap gf :e <cfile><CR>
@@ -147,12 +157,26 @@ noremap <leader>ton <ESC>o(<BAR><CR><CR><BAR>)<esc>ki
 :nmap <leader>n. :new %:p:h/
 
 set clipboard=unnamed
+" uisng pbcopy, from: http://stackoverflow.com/questions/677986/vim-copy-selection-to-os-x-clipboard
+vmap <D-x> :!pbcopy<CR>  
+vmap <D-c> :w !pbcopy<CR><CR>
+"vnoremap : y:exec("! clear && echo " . shellescape(@", 1) . " \| tr -d '\\n' \| pbcopy")<CR><CR>gv
+"vnoremap : y:exec("! clear && echo " . shellescape(@", 1) . " \| sed -e '/$/N; s/\\n$/r/g; ' ")
+"vnoremap : y:exec("! clear && echo " . shellescape(@", 1) . "\| awk 'NR>1{ print l } {l=$0}'  \| pbcopy")
+"vnoremap : y:exec("! clear && echo " . shellescape(@", 1) . "> $TMPDIR/vim_pbcopy")
+" wow, it took a long time to find the -n option, all the above didn't work for me :(
+vnoremap : y:exec("! clear && echo -n " . shellescape(@", 1) . " \| pbcopy")<CR><CR>gv
 
 " Fuzzy finding short cuts
 nmap <leader>f. :FufFileWithCurrentBufferDir<CR>
 nmap <leader>ff :FufFile **/
 nmap <leader>f/ :FufFile<CR>
 nmap <leader>fb :FufBuffer<CR>
+
+" Spelling and such
+nnoremap <leader>zz :set spell!
+nnoremap <leader>zs z=
+
 
 " From vimcasts (use :Wrap and Cmd+j,k etc. for moving within wrapped lines)
 command! -nargs=* Wrap set wrap linebreak nolist
@@ -167,6 +191,13 @@ nmap <D-4> g$
 nmap <D-6> g^
 nmap <D-0> g^
 
+" moving about splits... doesn't work, don't know why :(
+nmap <leader>test <C-w><C-l>
+nmap <C-D-h> <C-w><C-h>
+nmap <C-D-j> <C-w><C-j>
+nmap <C-D-k> <C-w><C-k>
+nmap <C-D-l> <C-w><C-l>
+
 set spell spelllang=en_gb
 nnoremap <leader>sp :set spell!<CR>
 inoremap <leader>sp <ESC>:set spell!<CR>
@@ -176,8 +207,10 @@ command! Copyfile let @*=substitute(expand("%:p"), '/', '\', 'g')
 nnoremap <Leader>cf :Copyfile<CR>
 
 noremap <leader>soc <ESC>"=strftime("%A %F - %R")<CR>p
-noremap <leader>scr <ESC>o<ESC>:!today<CR><CR>"=expand("~/tmp/") . strftime("%Y") . "/" . strftime("%Y%m") . "/" . strftime("%Y%m%d") . "/scratch.txt"<CR>p
-noremap <leader>today <ESC>"=strftime("%F")<CR>p
+nnoremap <leader>scr <ESC>o<ESC>:!today<CR><CR>"=expand("~/tmp/") . strftime("%Y") . "/" . strftime("%Y%m") . "/" . strftime("%Y%m%d") . "/scratch.txt"<CR>p<leader>gfw
+nnoremap <leader>today o<CR><ESC>"=strftime("%F")<CR>po<ESC>
+inoremap <leader>today <ESC>"=strftime("%F")<CR>pa
+
 noremap <leader>later <ESC>i<CR><ESC>"=". . . " . strftime("%R") . " . . ."<CR>pA<CR><CR><ESC>
 
 command! -complete=shellcmd -nargs=+ Shell call s:RunShellCommand(<q-args>)
@@ -276,3 +309,35 @@ endfunction
 "  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
 "endfunction
 "com! DiffSaved call s:DiffWithSaved()
+
+"http://stackoverflow.com/questions/15283410/how-do-i-change-the-background-color-of-current-buffer-or-pane-in-vim" Dim inactive windows using 'colorcolumn' setting
+" This tends to slow down redrawing, but is very useful.
+" Based on https://groups.google.com/d/msg/vim_use/IJU-Vk-QLJE/xz4hjPjCRBUJ
+" XXX: this will only work with lines containing text (i.e. not '~')
+" from 
+"if exists('+colorcolumn')
+"  function! s:DimInactiveWindows()
+"    for i in range(1, tabpagewinnr(tabpagenr(), '$'))
+"      let l:range = ""
+"      if i != winnr()
+"        if &wrap
+"         " HACK: when wrapping lines is enabled, we use the maximum number
+"         " of columns getting highlighted. This might get calculated by
+"         " looking for the longest visible line and using a multiple of
+"         " winwidth().
+"         let l:width=256 " max
+"        else
+"         let l:width=winwidth(i)
+"        endif
+"        let l:range = join(range(1, l:width), ',')
+"      endif
+"      call setwinvar(i, '&colorcolumn', l:range)
+"    endfor
+"  endfunction
+"  augroup DimInactiveWindows
+"    au!
+"    au WinEnter * call s:DimInactiveWindows()
+"    au WinEnter * set cursorline
+"    au WinLeave * set nocursorline
+"  augroup END
+"endif
