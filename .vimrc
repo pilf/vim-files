@@ -109,6 +109,8 @@ noremap <leader>ln :set nu!<CR>
 "(note) To insert the elipsis, press ctrl-vu followed by the numeric code for elipsis: 2026
 noremap <leader>sb :set showbreak=…<CR>
 nnoremap <leader>wso :w \| so %<CR>
+"http://stackoverflow.com/questions/2600783/how-does-the-vim-write-with-sudo-trick-work
+nnoremap <leader>wsudo :w !sudo %<CR>
 
 " copying my path seems to be something I do quite a bit so here's
 " two handy commands, the first echo the current file whilst in insert mode
