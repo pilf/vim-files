@@ -18,6 +18,7 @@ else
 endif
 
 if has("gui_running")
+<<<<<<< HEAD
     " Note: if you want to test environment variables make sure they're either
     " exported in your .bashrc, or .bash_profile; see:
     " http://stackoverflow.com/questions/882658/how-to-get-environment-variables-from-within-gvim
@@ -28,6 +29,8 @@ if has("gui_running")
     else
         set guifont=Lucida_Console:h14
     endif
+=======
+>>>>>>> remotes/origin/master
     colorscheme evening
     set guifont=Lucida_Console:h14
     set lines=999 columns=999
@@ -53,7 +56,15 @@ else
         set guifont=Courier\ 10\ Pitch\ 11
         let mapleader = "\\"
     else
+<<<<<<< HEAD
+        let mapleader = "`"
+        " Getting some recursive definition problems.
+        " This probably isn't the way to go really
+        "    nmap ` §
+        "    imap ` §
+=======
         let mapleader = "§"
+>>>>>>> remotes/origin/master
     endif
 endif
 
@@ -110,12 +121,19 @@ noremap <leader>p :let @p=@*<CR>
 noremap <leader>o myo<ESC>`y
 noremap <leader>O myO<ESC>`y
 
+<<<<<<< HEAD
+nmap <leader>h :set list!<CR>
+nmap <leader>ln :set nu!<CR>
+nmap <leader>b :ls<CR>:buffer<Space>
+nmap <leader>sb :set showbreak=…<CR>
+=======
 noremap <leader>hs :set list!<CR>
 noremap <leader>s :w<CR>
 "visually select last match
 noremap <leader>v v//e<CR> 
 noremap <leader>b :ls<CR>:buffer<Space>
 noremap <leader>ln :set nu!<CR>
+>>>>>>> remotes/origin/master
 "(note) To insert the elipsis, press ctrl-vu followed by the numeric code for elipsis: 2026
 noremap <leader>sb :set showbreak=…<CR>
 nnoremap <leader>wso :w \| so %<CR>

@@ -5,6 +5,14 @@
 set -o vi
 alias tp="export PS1='> '"
 
+# It's a triffle confusing.  But HISTFILESIZE is the amount stored in the history file 
+# (as specified by $HISTFILE, usually ~/.bash_history).  HISTSIZE is the amount of history stored in
+# in memory (on shell exit this history is dumped to HISTFILE).  Not a very large HISTSIZE will mean
+# bash has to load loads of lines into memory on start-up, so it's a toss up really.
+# This is the best explanation I could find: http://mywiki.wooledge.org/BashFAQ/088
+HISTFILESIZE=10000
+HISTSIZE=1500
+
 # For readline access in eix; requires rlwrap (obviously, can brew and I presume apt–get)
 # .iex_history, which holds a history between sessions (quite cool), might need to
 # be 'touch'ed.
@@ -31,3 +39,15 @@ function kill-by-pattern {
     echo "Not yet implemented, but try something along the lines of:"
     echo "  ps -A | egrep 'pattern' | awk '{print $1}' | sort -n | head -1 | kill"
 }
+
+function pathadd() {
+    if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+	PATH="${PATH:+"$PATH:"}$1"
+    fi
+}
+
+function start-ssh-agent {
+    ssh-agent sh -c 'ssh-add < /dev/null && bash'
+}
+
+pathadd $HOME/bin

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<root>
+    <appdef>
+        <appname>MACVIM</appname>
+        <equal>org.vim.MacVim</equal>
+    </appdef>
+    <appdef>
+        <appname>ITERM2</appname>
+        <equal>com.googlecode.iterm2</equal>
+    </appdef>
+    <item>
+        <name>Swap backquote (`) and danish dollar (§) - in MacVim and iTerm2 only</name>
+        <identifier>private.swap_back_tick_and_danish_dollar</identifier>
+        <autogen>__KeyToKey__ KeyCode::DANISH_DOLLAR, KeyCode::BACKQUOTE</autogen>
+        <autogen>__KeyToKey__ KeyCode::BACKQUOTE, KeyCode::DANISH_DOLLAR</autogen>
+        <only>MACVIM, ITERM2</only>
+    </item>
+</root>
