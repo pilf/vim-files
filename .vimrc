@@ -23,6 +23,8 @@ if has("gui_running")
     " http://stackoverflow.com/questions/882658/how-to-get-environment-variables-from-within-gvim
     if $living_room!=""
         set guifont=DejaVu\ Sans\ Mono\ 18  
+    elseif $macbook!=""
+        set guifont=Menlo\ Regular:h11
     else
         set guifont=Lucida_Console:h14
     endif
@@ -46,7 +48,6 @@ else
         let mapleader = "<"
     else
         let mapleader = "`"
-        map § `
         " Getting some recursive definition problems.
         " This probably isn't the way to go really
         "    nmap ` §
@@ -100,6 +101,7 @@ nmap <leader>o myo<ESC>`y
 nmap <leader>O myO<ESC>`y
 
 nmap <leader>h :set list!<CR>
+nmap <leader>ln :set nu!<CR>
 nmap <leader>b :ls<CR>:buffer<Space>
 nmap <leader>sb :set showbreak=…<CR>
 "(note) To insert the elipsis, press ctrl-vu followed by the numeric code for elipsis: 2026
