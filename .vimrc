@@ -110,7 +110,7 @@ noremap <leader>ln :set nu!<CR>
 noremap <leader>sb :set showbreak=…<CR>
 nnoremap <leader>wso :w \| so %<CR>
 "http://stackoverflow.com/questions/2600783/how-does-the-vim-write-with-sudo-trick-work
-nnoremap <leader>wsudo :w !sudo %<CR>
+nnoremap <leader>wsudo :w !sudo tee %<CR>
 
 " copying my path seems to be something I do quite a bit so here's
 " two handy commands, the first echo the current file whilst in insert mode
