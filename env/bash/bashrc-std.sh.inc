@@ -51,3 +51,4 @@ function start-ssh-agent {
 }
 
 pathadd $HOME/bin
+pathadd $HOME/bin/scripts

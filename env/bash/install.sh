@@ -10,4 +10,6 @@ echo "source \"$basedir/env/bash/bashrc-std.sh.inc\"" >> $HOME/.bashrc
 if [[ ! -d $HOME/bin ]]; then
     mkdir $HOME/bin
 fi
-cp "$basedir/env/bash/today" "$HOME/bin"
+ln -s "$basedir/env/bash/scripts" $HOME/bin
+#cp "$basedir/env/bash/today" "$HOME/bin"
+

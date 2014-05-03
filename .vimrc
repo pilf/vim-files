@@ -1,7 +1,11 @@
 set nocompatible
 "source $VIMRUNTIME/vimrc_example.vim
 "source $VIMRUNTIME/mswin.vim
-"behave mswin
+if $vim_local_settings!=""
+    " For instance when there are sensitive commands that shouldn't be included
+    " in a public repo.  Or, commands that only apply to a particular computer.
+    source $vim_local_settings
+endif
 
 syntax on
 set t_Co=256
@@ -187,7 +191,7 @@ nmap <leader>f/ :FufFile<CR>
 nmap <leader>fb :FufBuffer<CR>
 
 " Spelling and such
-nnoremap <leader>zz :set spell!
+nnoremap <leader>zz :set spell!<CR>
 nnoremap <leader>zs z=
 
 
@@ -354,3 +358,9 @@ endfunction
 "    au WinLeave * set nocursorline
 "  augroup END
 "endif
+noremap <leader>mw8 :w<CR>:Shell cat % \| mongo localwin8:27017/Tms<CR>:set syntax=javascript<CR>
+noremap <leader>mci :w<CR>:Shell cat % \| mongo -u TmsArchiveUser -p 'archiveU$ser1' ci-tms-mongo-01.qasql.opentable.com:27017/TmsArchive<CR>:set syntax=javascript<CR>
+noremap <leader>mpp :w<CR>:Shell cat % \| mongo -u TmsArchiveUser -p 'archiveU$ser1' pp-tms-mongo-01.qasql.opentable.com:27017/TmsArchive<CR>:set syntax=javascript<CR>
+noremap <leader>mln :w<CR>:Shell cat % \| mongo -u TmsArchiveUser -p 'Kr80eC7C2qv5Cq0' ln-tms-mongo-01.otsql.opentable.com:27017/TmsArchive<CR>:set syntax=javascript<CR>
+noremap <leader>msc :w<CR>:Shell cat % \| mongo -u TmsArchiveUser -p 'Kr80eC7C2qv5Cq0' sc-tms-mongo-01.otsql.opentable.com:27017/TmsArchive<CR>:set syntax=javascript<CR>
+"behave mswin

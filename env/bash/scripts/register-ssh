@@ -1,0 +1,8 @@
+#!/bin/sh
+# Usage: $ register-ssh username@server
+# Assumes a ~/.ssh/id_rsa.pub
+# If you don't have one see here: https://www.digitalocean.com/community/articles/how-to-set-up-ssh-keys--2
+# In short:
+# $ ssh-keygen -t rsa
+# You'll be asked for a password, it's extra security if you lose your private key.  But of course you'll be asked for your password.
+cat ~/.ssh/id_dsa.pub | ssh $1 "cat >> ~/.ssh/authorized_keys"
