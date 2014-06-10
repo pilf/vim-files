@@ -1,0 +1,3 @@
+[submodule "env/bash/scripts/Battery"]
+	path = env/bash/scripts/Battery
+	url = https://github.com/Goles/Battery
