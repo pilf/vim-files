@@ -193,7 +193,7 @@ nmap <leader>fb :FufBuffer<CR>
 " Spelling and such
 nnoremap <leader>zz :set spell!<CR>
 nnoremap <leader>zs z=
-
+nnoremap <leader>zi l[seas
 
 " From vimcasts (use :Wrap and Cmd+j,k etc. for moving within wrapped lines)
 command! -nargs=* Wrap set wrap linebreak nolist
