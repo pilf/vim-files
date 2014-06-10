@@ -5,4 +5,4 @@
 # In short:
 # $ ssh-keygen -t rsa
 # You'll be asked for a password, it's extra security if you lose your private key.  But of course you'll be asked for your password.
-cat ~/.ssh/id_dsa.pub | ssh $1 "cat >> ~/.ssh/authorized_keys"
+cat ~/.ssh/id_dsa.pub | ssh $1 "mkdir ~/.ssh;cat >> ~/.ssh/authorized_keys"

@@ -1,0 +1,16 @@
+Info from: http://www.randomhacks.co.uk/how-to-mount-a-qcow2-disk-image-on-ubuntu/
+
+(Note this following is n.B.D. -- not db as my fingers apparently always want to type.)
+
+    $ sudo modprobe nbd max_part=8
+    $ sudo qemu-nbd --connect=/dev/nbd0 /path/to/image/file.qcow2
+    $ sudo fdisk /dev/nbd0 -l
+select wanted partion
+    $ sudo mount /dev/nbd0p1 /mnt/somewhere
+
+afterwards:
+    $ umount /mnt/somewhere
+    $ sudo qemu-nbd --disconnect /dev/nbd0
+
+
+
