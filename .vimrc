@@ -105,6 +105,9 @@ set listchars=tab:›\ ,eol:¬,trail:·
 highlight NonText guifg=#4a4a59  guibg=NONE
 highlight SpecialKey guifg=#4a4a59 guibg=NONE
 
+nnoremap <CTRL-q> :q<CR>
+inoremap <CTRL-q> <ESC>:q<CR> 
+
 map Y y$
 
 " re-assign "* to p
@@ -135,8 +138,9 @@ nnoremap <leader>cp "=expand("%:p")<CR>:let @p=@%<CR>
 nnoremap <leader>ep :echo @%<CR>
 
 nnoremap <leader>r q:?s\/<CR><CR>
-nmap <leader>mg :w<CR>:Shell gc % \| mongo<CR>:set syntax=javascript<CR>
-nmap <leader>mt :w<CR>:Shell gc % \| mongo 192.168.10.71:27017<CR>:set syntax=javascript<CR>
+nnoremap <leader>rcs :w<CR>:Shell cat % \| coffee -s<CR>
+nnoremap <leader>rsh :w<CR>:Shell cat % \| /bin/sh -s<CR>
+nmap <leader>mg :w<CR>:Shell cat % \| mongo<CR>:set syntax=javascript<CR>
 
 " rust
 nmap <leader>rt :w<CR>:Shell rustc --test % & ./`echo % \| sed s/\\.[^\\.]*$//`<CR>
@@ -173,6 +177,8 @@ nnoremap <leader>ta6 oT<SPACE><ESC>6a.<SPACE><ESC>A
 " new files
 :nmap <leader>n. :new %:p:h/
 
+:nmap <leader>hl :set hlsearch!<CR>
+
 set clipboard=unnamed
 " uisng pbcopy, from: http://stackoverflow.com/questions/677986/vim-copy-selection-to-os-x-clipboard
 vmap <D-x> :!pbcopy<CR>  
@@ -182,7 +188,7 @@ vmap <D-c> :w !pbcopy<CR><CR>
 "vnoremap : y:exec("! clear && echo " . shellescape(@", 1) . "\| awk 'NR>1{ print l } {l=$0}'  \| pbcopy")
 "vnoremap : y:exec("! clear && echo " . shellescape(@", 1) . "> $TMPDIR/vim_pbcopy")
 " wow, it took a long time to find the -n option, all the above didn't work for me :(
-vnoremap : y:exec("! clear && echo -n " . shellescape(@", 1) . " \| pbcopy")<CR><CR>gv
+vnoremap <leader>: y:exec("! clear && echo -n " . shellescape(@", 1) . " \| pbcopy")<CR><CR>gv
 
 " Fuzzy finding short cuts
 nmap <leader>f. :FufFileWithCurrentBufferDir<CR>
@@ -214,6 +220,13 @@ nmap <C-D-h> <C-w><C-h>
 nmap <C-D-j> <C-w><C-j>
 nmap <C-D-k> <C-w><C-k>
 nmap <C-D-l> <C-w><C-l>
+
+" Based on following, kinda works
+" http://stackoverflow.com/questions/1269603/to-switch-from-vertical-split-to-horizontal-split-fast-in-vim
+nmap <leader>wl <C-W>t<C-W>L
+nmap <leader>wh <C-W>t<C-W>H
+nmap <leader>wj <C-W>t<C-W>J
+nmap <leader>wk <C-W>t<C-W>K
 
 set spell spelllang=en_gb
 nnoremap <leader>sp :set spell!<CR>
@@ -358,9 +371,4 @@ endfunction
 "    au WinLeave * set nocursorline
 "  augroup END
 "endif
-noremap <leader>mw8 :w<CR>:Shell cat % \| mongo localwin8:27017/Tms<CR>:set syntax=javascript<CR>
-noremap <leader>mci :w<CR>:Shell cat % \| mongo -u TmsArchiveUser -p 'archiveU$ser1' ci-tms-mongo-01.qasql.opentable.com:27017/TmsArchive<CR>:set syntax=javascript<CR>
-noremap <leader>mpp :w<CR>:Shell cat % \| mongo -u TmsArchiveUser -p 'archiveU$ser1' pp-tms-mongo-01.qasql.opentable.com:27017/TmsArchive<CR>:set syntax=javascript<CR>
-noremap <leader>mln :w<CR>:Shell cat % \| mongo -u TmsArchiveUser -p 'Kr80eC7C2qv5Cq0' ln-tms-mongo-01.otsql.opentable.com:27017/TmsArchive<CR>:set syntax=javascript<CR>
-noremap <leader>msc :w<CR>:Shell cat % \| mongo -u TmsArchiveUser -p 'Kr80eC7C2qv5Cq0' sc-tms-mongo-01.otsql.opentable.com:27017/TmsArchive<CR>:set syntax=javascript<CR>
 "behave mswin
