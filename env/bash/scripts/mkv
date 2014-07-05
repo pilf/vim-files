@@ -1,0 +1,5 @@
+#!/bin/sh
+# mkv = Mac Keyboard Vim -- for when SSHing into grasslands and wish for § as your leader key
+leaderkey=§
+living_room_external_override=$leaderkey
+vim $*
