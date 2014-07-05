@@ -139,6 +139,7 @@ nnoremap <leader>ep :echo @%<CR>
 
 nnoremap <leader>r q:?s\/<CR><CR>
 nnoremap <leader>rcs :w<CR>:Shell cat % \| coffee -s<CR>
+nnoremap <leader>rrb :w<CR>:Shell ruby %<CR>
 nnoremap <leader>rsh :w<CR>:Shell cat % \| /bin/sh -s<CR>
 nmap <leader>mg :w<CR>:Shell cat % \| mongo<CR>:set syntax=javascript<CR>
 

@@ -1,0 +1,11 @@
+#!/bin/sh
+# Override or append new host entry
+# usage: $0 devmachine 192.168.1.122
+pattern="\b$1\b"
+if [ $(cat /etc/hosts | egrep -c $pattern) -eq 0 ]; then
+    sudo bash -c "echo \"$2 $1\" >> /etc/hosts"
+else
+    dotaddr='\w+([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)'
+    match="(.*$pattern.*$)"
+    sudo bash -c "sed -i -r -e \"s/${dotaddr}${match}/$2\\2/\" /etc/hosts"
+fi
