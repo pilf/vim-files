@@ -169,15 +169,16 @@ nnoremap <leader>ta5 oT<SPACE><ESC>5a.<SPACE><ESC>A
 nnoremap <leader>ta6 oT<SPACE><ESC>6a.<SPACE><ESC>A
 
 " gf (goto file) such that it will create a new file if it doesn't exist... (http://stackoverflow.com/questions/1050745/unable-to-create-a-file-from-a-path-in-vim)
-:nmap gf :e <cfile><CR>
-:nmap gff :e! <cfile><CR>
-:nmap gfw :w<CR>:e <cfile><CR>
-:nmap g% :e %:p:h/<cfile><CR>
+nmap gf :e <cfile><CR>
+nmap gff :e! <cfile><CR>
+nmap gfw :w<CR>:e <cfile><CR>
+nmap g% :e %:p:h/<cfile><CR>
 
 " new files
-:nmap <leader>n. :new %:p:h/
+nmap <leader>n. :new %:p:h/
 
-:nmap <leader>hl :set hlsearch!<CR>
+nmap <leader>hl :set hlsearch!<CR>
+nmap <leader>cl :set cursorline!<CR>
 
 set clipboard=unnamed
 " uisng pbcopy, from: http://stackoverflow.com/questions/677986/vim-copy-selection-to-os-x-clipboard
@@ -215,11 +216,11 @@ nmap <D-6> g^
 nmap <D-0> g^
 
 " moving about splits... doesn't work, don't know why :(
-nmap <leader>test <C-w><C-l>
-nmap <C-D-h> <C-w><C-h>
-nmap <C-D-j> <C-w><C-j>
-nmap <C-D-k> <C-w><C-k>
-nmap <C-D-l> <C-w><C-l>
+" nmap <leader>test <C-w><C-l>
+"nnoremap <C-H> <C-W><C-H>
+"nnoremap <C-J> <C-W><C-J>
+"nnoremap <C-K> <C-W><C-K>
+"nnoremap <C-L> <C-W><C-L>
 
 " Based on following, kinda works
 " http://stackoverflow.com/questions/1269603/to-switch-from-vertical-split-to-horizontal-split-fast-in-vim
@@ -302,73 +303,3 @@ function! Wipeout()
     execute 'tabnext' l:currentTab
   endtry
 endfunction
-"
-"set diffexpr=MyDiff()
-"function! MyDiff()
-"  let opt = '-a --binary '
-"  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-"  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-"  let arg1 = v:fname_in
-"  if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-"  let arg2 = v:fname_new
-"  if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-"  let arg3 = v:fname_out
-"  if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-"  let eq = ''
-"  if $VIMRUNTIME =~ ' '
-"    if &sh =~ '\<cmd'
-"      let cmd = '""' . $VIMRUNTIME . '\diff"'
-"      let eq = '"'
-"    else
-"      let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
-"    endif
-"  else
-"    let cmd = $VIMRUNTIME . '\diff'
-"  endif
-"  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
-"endfunction
-"
-"
-"" this doesn't really seem to work so well, but interesting -- perhaps could
-"" launch Araxis maybe.
-"function! s:DiffWithSaved()
-"  let filetype=&ft
-"  diffthis
-"  vnew | r # | normal! 1Gdd
-"  diffthis
-"  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
-"endfunction
-"com! DiffSaved call s:DiffWithSaved()
-
-"http://stackoverflow.com/questions/15283410/how-do-i-change-the-background-color-of-current-buffer-or-pane-in-vim" Dim inactive windows using 'colorcolumn' setting
-" This tends to slow down redrawing, but is very useful.
-" Based on https://groups.google.com/d/msg/vim_use/IJU-Vk-QLJE/xz4hjPjCRBUJ
-" XXX: this will only work with lines containing text (i.e. not '~')
-" from 
-"if exists('+colorcolumn')
-"  function! s:DimInactiveWindows()
-"    for i in range(1, tabpagewinnr(tabpagenr(), '$'))
-"      let l:range = ""
-"      if i != winnr()
-"        if &wrap
-"         " HACK: when wrapping lines is enabled, we use the maximum number
-"         " of columns getting highlighted. This might get calculated by
-"         " looking for the longest visible line and using a multiple of
-"         " winwidth().
-"         let l:width=256 " max
-"        else
-"         let l:width=winwidth(i)
-"        endif
-"        let l:range = join(range(1, l:width), ',')
-"      endif
-"      call setwinvar(i, '&colorcolumn', l:range)
-"    endfor
-"  endfunction
-"  augroup DimInactiveWindows
-"    au!
-"    au WinEnter * call s:DimInactiveWindows()
-"    au WinEnter * set cursorline
-"    au WinLeave * set nocursorline
-"  augroup END
-"endif
-"behave mswin
