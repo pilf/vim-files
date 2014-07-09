@@ -92,6 +92,8 @@ set wildmenu
 "set wildchar=<Tab>
 set completeopt=menu,longest
 
+set cursorline
+
 " http://vim.wikia.com/wiki/Backspace_and_delete_problems
 " set backspace=2
 
@@ -145,6 +147,11 @@ nmap <leader>mg :w<CR>:Shell cat % \| mongo<CR>:set syntax=javascript<CR>
 
 " rust
 nmap <leader>rt :w<CR>:Shell rustc --test % & ./`echo % \| sed s/\\.[^\\.]*$//`<CR>
+
+" syntax association
+" (Note if, when opening -- vimgrep etc. -- and syntax not applied reload with :e
+autocmd BufNewFile,BufRead *.pp set syntax=ruby
+autocmd BufNewFile,BufRead *.json set syntax=javascript
 
 "autocmd VimEnter * SessionOpenLast
 nnoremap <leader>a ggVG<CR>
