@@ -13,5 +13,3 @@ if [[ ! -d $HOME/bin ]]; then
     mkdir $HOME/bin
 fi
 ln -s "$basedir/env/bash/scripts" $HOME/bin
-
-source $HOME/.bashrc

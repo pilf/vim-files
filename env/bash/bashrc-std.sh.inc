@@ -4,6 +4,7 @@
 
 set -o vi
 alias tp="export PS1='> '"
+export EDITOR='vim'
 
 # It's a triffle confusing.  But HISTFILESIZE is the amount stored in the history file 
 # (as specified by $HISTFILE, usually ~/.bash_history).  HISTSIZE is the amount of history stored in
