@@ -53,3 +53,17 @@ function start-ssh-agent {
 
 pathadd $HOME/bin
 pathadd $HOME/bin/scripts
+
+if [ "$bash4_path" != "" ]; then 
+    export tmux_shell=$bash4_path
+else
+    export tmux_shell=/bin/sh
+fi
+if [[ "${BASH_VERSION::1}" -eq 4 ]]; then
+    echo "running git prompt"
+    #[[ $- == *i* ]] && git-prompt.sh
+    git-prompt.sh
+    PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
+else
+    echo "${BASH_VERSION::1}"
+fi
