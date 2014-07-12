@@ -1,0 +1,55 @@
+#!/bin/sh
+if [ -z "$1" ]; then
+    echo "usage: ellipsisify(input, [max-size=10, [ellipsis-string='..', [position='middle']]])"
+    echo "  input       - the string to ellipsisify"
+    echo "  max-size    - largest size output is permitted to be"
+    echo "  position    - where ellipse string is used to shorten, possible values:"
+    echo "                  middle (default),   e.g. '/some/longish/path' -> "/som..path""
+    echo "                  left,               e.g. '/some/longish/path' -> "/some/lo..""
+    echo "                  right,              e.g. '/some/longish/path' -> "..ish/path""
+    echo 
+else
+    input=$1
+    max_size=${2:-10}
+    ellipsis_string=${3:-..} 
+    ellipsis_size=${#ellipsis_string}
+    if [ $ellipsis_size -gt $max_size ]; then
+        echo "error: max-size ($max_size) < ellipsis-size ($ellipsis_string)"
+        exit 1
+    fi
+    position=${4:-middle} 
+    input_size=${#input}
+    aval_size=$(expr $max_size - $ellipsis_size)
+    if [ ${#input} -gt $max_size ]; then
+        case "$position" in
+            middle)
+                # left bias, examples where isOdd(size+len('..')): 
+                #   (size 3): 'abcd' -> 'a..'
+                #   (size 5): 'abcdef' -> 'ab..f'
+                # where ellipsis is '...'
+                #   (size 3): 'abcd' -> '...'
+                #   (size 5): 'abcdef' -> 'a...f' 
+                min_sides_size=$(expr $aval_size / 2)
+                bias=$(expr $aval_size % 2)
+                left_size=$(expr $min_sides_size + $bias)
+                right_size=$min_sides_size
+                # echo "vars: left_size=$left_size, right_size=$right_size aval_size=$aval_size, max_size=$max_size, input_size=$input_size"
+                [[ $right_size -gt 0 ]] && right_text=${input: -$right_size} || right_text=""
+                printf "${input:0:$left_size}$ellipsis_string$right_text"
+                ;;
+            left)
+                printf "${input:0:$aval_size}$ellipsis_string"
+                ;;
+            right)
+                [[ $aval_size -gt 0 ]] && right_text=${input: -$aval_size} || right_text=""
+                printf "$ellipsis_string$right_text"
+                ;;
+            *)
+                echo "Error: Unknown position '$position', valid options ('left'|'middle'|'right')" 
+                exit 1
+        esac
+    else
+        printf $input
+    fi
+fi
+

@@ -65,5 +65,7 @@ if [[ "${BASH_VERSION::1}" -eq 4 ]]; then
     echo "running git prompt"
     #[[ $- == *i* ]] && git-promptn.sh
     source git-prompt.sh
-    PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
+    export GIT_PS1_SHOWCOLORHINTS=1
+    export GIT_PS1_SHOWDIRTYSTATE=1
+    export PROMPT_COMMAND='__git_ps1 "\u@\h:\w" "\\\$ "'
 fi
