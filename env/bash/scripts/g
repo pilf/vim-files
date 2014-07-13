@@ -35,15 +35,15 @@ if [ -z "$1" ] ; then
 fi
 
 if [ -n "$create_mode" ] && [ "$create_mode" == "$shortname" ]; then
-    echo "Path not given assuming '.': $(readlink -f $create_mode)"
+    echo "Path not given assuming '.': $(abspath $create_mode)"
     create_mode='.' 
 fi
 
 touch $places
 if [ -n "$create_mode" ]; then
     # remove any pre-existing entry
-    sed -i "/^$shortname:.*/d" $places
-    echo "$shortname:$(readlink -f $create_mode)" >>$places
+    sed -i .sedbk_ "/^$shortname:.*/d" $places
+    echo "$shortname:$(abspath $create_mode)" >>$places
     echo "Successfully added $shortname, known locations now:"
     display_known_locations
     exit 0
