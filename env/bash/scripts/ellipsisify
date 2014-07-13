@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 if [ -z "$1" ]; then
     echo "usage: ellipsisify(input, [max-size=10, [,position='middle' [, ellipsis-string='…']]])"
     echo "  input       - the string to ellipsisify"
