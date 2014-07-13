@@ -1,0 +1,59 @@
+#!/bin/bash
+
+places="$HOME/.g.places"
+
+function display_known_locations {
+    cat $places
+}
+
+function usage {
+    echo "usage: g [-c [path]] shortname" >&2
+}
+
+while getopts ":c:" opt; do
+    case $opt in
+        c)
+            create_mode=$OPTARG
+            ;;
+        \?)
+            echo "Invalid option: -$OPTARG" >&2
+            ;;
+        :)
+            echo "Option -$OPTARG requires an argument." >&2
+            usage
+            exit 1
+            ;;
+    esac
+done
+
+shortname=${@: -1}
+if [ -z "$1" ] ; then
+    echo "No short name given (required)" >&2
+    usage
+    display_known_locations
+    exit 1
+fi
+
+if [ -n "$create_mode" ] && [ "$create_mode" == "$shortname" ]; then
+    echo "Path not given assuming '.': $(readlink -f $create_mode)"
+    create_mode='.' 
+fi
+
+touch $places
+if [ -n "$create_mode" ]; then
+    # remove any pre-existing entry
+    sed -i "/^$shortname:.*/d" $places
+    echo "$shortname:$(readlink -f $create_mode)" >>$places
+    echo "Successfully added $shortname, known locations now:"
+    display_known_locations
+    exit 0
+fi
+
+place=$(sed -n -e "s/^$shortname:\(.*\)$/\1/p" $places)
+if [ -z "$place" ]; then
+    echo "Place '$shortname' not found, known locations:"
+    display_known_locations
+else
+    printf $place
+fi
+
