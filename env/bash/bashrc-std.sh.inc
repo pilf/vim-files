@@ -59,14 +59,11 @@ pathadd $HOME/bin
 pathadd $HOME/bin/scripts
 
 if [ "$bash4_path" != "" ]; then 
-    echo "found bash4 path $bash4_path" 
     export tmux_shell=$bash4_path
 else
-    echo "no bash4 path specified" 
     export tmux_shell=/bin/bash
 fi
 if [[ "${BASH_VERSION::1}" -eq 4 ]]; then
-    echo "running git prompt"
     #[[ $- == *i* ]] && git-promptn.sh
     source git-prompt.sh
     export GIT_PS1_SHOWCOLORHINTS=1
