@@ -42,7 +42,7 @@ fi
 touch $places
 if [ -n "$create_mode" ]; then
     # remove any pre-existing entry
-    sed -i .sedbk_ "/^$shortname:.*/d" $places
+    sed -i '' "/^$shortname:.*/d" $places
     echo "$shortname:$(abspath $create_mode)" >>$places
     echo "Successfully added $shortname, known locations now:"
     display_known_locations
