@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+#http://blog.engledew.com/post/344116035/absolute-paths-from-relative-paths-in-bash
 import os, sys
 if len(sys.argv) < 2:
     print 'usage: %s <PATHS>' % sys.argv[0]
