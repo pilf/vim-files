@@ -1,23 +1,24 @@
 #!/bin/sh
 if [ -z "$1" ]; then
-    echo "usage: ellipsisify(input, [max-size=10, [ellipsis-string='..', [position='middle']]])"
+    echo "usage: ellipsisify(input, [max-size=10, [,position='middle' [, ellipsis-string='…']]])"
     echo "  input       - the string to ellipsisify"
     echo "  max-size    - largest size output is permitted to be"
     echo "  position    - where ellipse string is used to shorten, possible values:"
     echo "                  middle (default),   e.g. '/some/longish/path' -> "/som..path""
     echo "                  left,               e.g. '/some/longish/path' -> "/some/lo..""
     echo "                  right,              e.g. '/some/longish/path' -> "..ish/path""
+    echo "  ellipsis-string - any string (len > 0), default '…'"
     echo 
 else
     input=$1
     max_size=${2:-10}
-    ellipsis_string=${3:-..} 
+    position=${3:-middle} 
+    ellipsis_string=${4:-…} 
     ellipsis_size=${#ellipsis_string}
     if [ $ellipsis_size -gt $max_size ]; then
         echo "error: max-size ($max_size) < ellipsis-size ($ellipsis_string)"
         exit 1
     fi
-    position=${4:-middle} 
     input_size=${#input}
     aval_size=$(expr $max_size - $ellipsis_size)
     if [ ${#input} -gt $max_size ]; then

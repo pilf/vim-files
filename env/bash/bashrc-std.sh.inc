@@ -51,6 +51,10 @@ function start-ssh-agent {
     ssh-agent sh -c 'ssh-add < /dev/null && bash'
 }
 
+function short_pwd {
+    printf $(ellipsisify $(pwd | sed "s|^$HOME|~|") $1)
+}
+
 pathadd $HOME/bin
 pathadd $HOME/bin/scripts
 
@@ -67,5 +71,7 @@ if [[ "${BASH_VERSION::1}" -eq 4 ]]; then
     source git-prompt.sh
     export GIT_PS1_SHOWCOLORHINTS=1
     export GIT_PS1_SHOWDIRTYSTATE=1
-    export PROMPT_COMMAND='__git_ps1 "\u@\h:\w" "\\\$ "'
+    short_user=$(ellipsisify $USER 7 left)
+    short_host=$(ellipsisify $HOSTNAME 5 left)
+    export PROMPT_COMMAND='__git_ps1 "$short_user@$short_host:$(short_pwd 30)" "\\\$ "'
 fi
