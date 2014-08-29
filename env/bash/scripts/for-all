@@ -1,0 +1,9 @@
+#!/bin/bash
+if [ -z "$1" ]; then
+    echo "Example usage: "
+    echo "  # cat to stdout all files matching 'example' but that don't end in 'bin'"
+    echo "  ls | grep example | grep -v bin$ | for-all 'cat \$line'"
+    echo
+else
+    while read line; do eval "$1"; done
+fi

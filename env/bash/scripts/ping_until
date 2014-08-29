@@ -1,0 +1,22 @@
+#!/bin/bash
+if [ -z "$1" ]; then
+    echo "Usage: $0 <ipaddress>" 1>&2 
+    exit 1
+fi
+ipaddr=$1
+((count = 100))                            # Maximum number to try.
+while [[ $count -ne 0 ]] ; do
+    ping -c 1 $ipaddr                      # Try once.
+    rc=$?
+    if [[ $rc -eq 0 ]] ; then
+        ((count = 1))                      # If okay, flag to exit loop.
+    fi
+    ((count = count - 1))                  # So we don't go forever.
+done
+
+if [[ $rc -eq 0 ]] ; then                  # Make final determination.
+    echo "Up"
+else
+    echo "Timeout (tried 100 times)"
+    exit 1
+fi

@@ -1,0 +1,11 @@
+#!/bin/sh
+# http://stackoverflow.com/questions/11065077/eval-command-in-bash-and-its-typical-uses
+# "eval takes a string as its argument, and evaluates it as if you'd typed that string on a command line. (If you pass several arguments, they are first joined with spaces between them.)"
+
+if [ $( ps -A | grep ssh-agent | wc -l) -gt 0 ]; then
+  echo "Found ssh agent: "
+  ps -A | grep ssh-agent
+else
+  eval `ssh-agent -s`
+fi
+
