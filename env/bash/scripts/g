@@ -3,7 +3,8 @@
 places="$HOME/.g.places"
 
 function display_known_locations {
-    cat $places
+    echo --
+    cat $places | sort
 }
 
 function usage {
