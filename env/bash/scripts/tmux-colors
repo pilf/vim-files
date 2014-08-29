@@ -1,0 +1,9 @@
+#!/bin/bash
+
+for i in {0..31} ; do
+    for n in {0..7} ; do
+        col=$(($i * 8 + $n))
+        printf "\x1b[38;5;${col}mcolour%-4s" $col
+    done
+    printf "\n"
+done
