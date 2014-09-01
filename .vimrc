@@ -152,6 +152,7 @@ nmap <leader>rt :w<CR>:Shell rustc --test % & ./`echo % \| sed s/\\.[^\\.]*$//`<
 " (Note if, when opening -- vimgrep etc. -- and syntax not applied reload with :e
 autocmd BufNewFile,BufRead *.pp set syntax=ruby
 autocmd BufNewFile,BufRead *.json set syntax=javascript
+autocmd BufNewFile,BufRead *.eex set syntax=html
 
 "autocmd VimEnter * SessionOpenLast
 nnoremap <leader>a ggVG<CR>
