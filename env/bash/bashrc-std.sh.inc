@@ -23,7 +23,14 @@ HISTSIZE=1500
 # further if only one char is used all becomes astrix.  Hence '-a __'.
 # And another thing... It complains if you Node.connect :"a@b" has some weirdnesses,
 # complaining about unsafe_to_atom; if if you assign identifier to variable that works.
-alias viex='rlwrap -a __ -c -H "~/.iex_history" -r iex'
+# Actually, on Linux the __ seems like an error, so two versions
+#if [ -e ~/.exrc.exs ]; then
+#    #alias mviex='rlwrap -a __ -c -H "~/.iex_history" -S ~/.iexrc.exs -r iex'
+#    #alias viex='rlwrap -a -c -H "~/.iex_history" -S ~/.iexrc.exs -r iex' 
+#else
+#fi
+alias mviex='rlwrap -a __ -c -H "~/.iex_history" -r iex'
+alias viex='rlwrap -a -c -H "~/.iex_history" -r iex' 
 
 function kill-by-pattern {
     echo "Not yet implemented, but try something along the lines of:"
