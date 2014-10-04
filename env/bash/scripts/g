@@ -4,7 +4,7 @@ places="$HOME/.g.places"
 
 function display_known_locations {
     echo --
-    cat $places | sort
+    cat $places | sort | sed -e "s|$HOME|~|"
 }
 
 function usage {
