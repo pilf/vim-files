@@ -1,0 +1,14 @@
+#!/bin/sh
+
+if [ -z "$@" ]; then
+    echo "Usage: [curl options] 'http://somewhere.com/which/returns/the/json'"
+    exit 1
+fi 
+
+length=$(($# -1))
+mkdir -p `today`/_curled_json/
+JsonPath=`today`/_curled_json/`now`.json
+Options=${@:1:$length}
+RemotePath=${@: -1}
+set -x # like @echo on in .BAT files... I think
+curl -H "content-type: application/json" $Options -so $JsonPath "$RemotePath" && open -a Firefox $JsonPath
