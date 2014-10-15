@@ -154,6 +154,9 @@ autocmd BufNewFile,BufRead *.pp set syntax=ruby
 autocmd BufNewFile,BufRead *.json set syntax=javascript
 autocmd BufNewFile,BufRead *.eex set syntax=html
 
+" export feature files to HTML
+nnoremap <leader>rfhtml :TO<CR>:w<CR>:!open -a Safari %<CR><CR>
+
 "autocmd VimEnter * SessionOpenLast
 nnoremap <leader>a ggVG<CR>
 nnoremap <leader>A :%y+<CR>
@@ -201,7 +204,7 @@ vmap <D-c> :w !pbcopy<CR><CR>
 "vnoremap : y:exec("! clear && echo " . shellescape(@", 1) . "\| awk 'NR>1{ print l } {l=$0}'  \| pbcopy")
 "vnoremap : y:exec("! clear && echo " . shellescape(@", 1) . "> $TMPDIR/vim_pbcopy")
 " wow, it took a long time to find the -n option, all the above didn't work for me :(
-vnoremap <leader>: y:exec("! clear && echo -n " . shellescape(fnameescape(@0)) . " \| pbcopy")
+vnoremap <leader>: y:exec("! clear && echo -n " . shellescape(@0) . " \| pbcopy")<CR><CR>
 
 " Fuzzy finding short cuts
 nmap <leader>f. :FufFileWithCurrentBufferDir<CR>
