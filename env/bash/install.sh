@@ -9,6 +9,8 @@ ln -s "$basedir/.tmux-linux.conf" $HOME
 ln -s "$basedir/.editrc" $HOME
 ln -s "$basedir/.inputrc" $HOME
 ln -s "$basedir/.iex.exs" $HOME
+ln -s "$basedir/.gitconfig" $HOME
+mv $HOME/vimfiles $HOME/.vim
 
 if ! grep "bashrc-std.sh.inc" ~/.bashrc; then 
     cp $HOME/.bashrc $HOME/.bashrc~
