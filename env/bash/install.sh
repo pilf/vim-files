@@ -7,6 +7,7 @@ ln -s "$basedir/.tmux.conf" $HOME
 ln -s "$basedir/.editrc" $HOME
 ln -s "$basedir/.inputrc" $HOME
 ln -s "$basedir/.iex.exs" $HOME
+ln -s "$basedir/.gitconfig" $HOME
 mv $HOME/vimfiles $HOME/.vim
 cp $HOME/.bashrc $HOME/.bashrc~
 echo "source \"$basedir/env/bash/bashrc-std.sh.inc\"" >> $HOME/.bashrc
