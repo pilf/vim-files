@@ -5,10 +5,15 @@ if [ -z "$@" ]; then
     exit 1
 fi 
 
+echo "Input: $@"
+
 length=$(($# -1))
 mkdir -p `today`/_curled_json/
 JsonPath=`today`/_curled_json/`now`.json
+echo "Storing json here: $JsonPath"
 Options=${@:1:$length}
+echo "Using options \"$Options\""
 RemotePath=${@: -1}
+echo "For remote path: $RemotePath"
 set -x # like @echo on in .BAT files... I think
 curl -H "content-type: application/json" $Options -so $JsonPath "$RemotePath" && open -a Firefox $JsonPath
