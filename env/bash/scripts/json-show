@@ -1,7 +1,24 @@
 #!/bin/sh
 
-if [ -z "$@" ]; then
-    echo "Usage: [curl options] 'http://somewhere.com/which/returns/the/json'"
+if [ -z "$@" ] && [ -t 0 ]; then
+    # -t refers to pipe input, see: http://stackoverflow.com/questions/911168/how-to-detect-if-my-shell-script-is-running-through-a-pipe
+    cat <<EOF 
+Usage: 
+    Used to quickly save and show a JSON file either via curl + URI or piped
+
+    (In curl mode)
+    [curl options] 'http://somewhere.com/which/returns/the/json'"
+    e.g.
+        $ $0 http://example.com
+        $ $0 '-H "language: en-GB"' http://example.com
+    Notes:
+        * Automatically adds '-H "content-type: application/json"'
+        * Enclosing the curl options in single quotes is recommended.
+
+    (In pipe mode)
+    e.g.
+        $ <some-process> | $0
+EOF
     exit 1
 fi 
 
@@ -12,8 +29,12 @@ mkdir -p `today`/_curled_json/
 JsonPath=`today`/_curled_json/`now`.json
 echo "Storing json here: $JsonPath"
 Options=${@:1:$length}
-echo "Using options \"$Options\""
-RemotePath=${@: -1}
-echo "For remote path: $RemotePath"
-set -x # like @echo on in .BAT files... I think
-curl -H "content-type: application/json" $Options -so $JsonPath "$RemotePath" && open -a Firefox $JsonPath
+echo "Using options $Options"
+if (($#)); then
+    RemotePath=${@: -1}
+    echo "For remote path: $RemotePath"
+    set -x # like @echo on in .BAT files... I think
+    curl -H "Accept: application/json" -H "Content-Type: application/json" $Options -so $JsonPath "$RemotePath" && open -a Firefox $JsonPath
+else
+    cat > $JsonPath && open -a Firefox $JsonPath
+fi
