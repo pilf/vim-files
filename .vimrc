@@ -136,7 +136,8 @@ nnoremap <leader>wsudo :w !sudo tee %<CR>
 " old way (inserts new line) inoremap <leader>cp <ESC>:put =expand('%:p')<CR>
 inoremap <leader>cp <C-r>=expand('%:p')<CR>
 " in normal mode this copies it into the "p register
-nnoremap <leader>cp "=expand("%:p")<CR>:let @p=@%<CR>
+nnoremap <leader>cpp "=expand("%:p")<CR>:let @p=@%<CR>
+nnoremap <leader>cp: "=expand("%:p")<CR>:exec("! clear && echo -n " . shellescape(expand("%:p")) . " \| pbcopy")<CR><CR>
 nnoremap <leader>ep :echo @%<CR>
 
 nnoremap <leader>r q:?s\/<CR><CR>
