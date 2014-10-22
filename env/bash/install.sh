@@ -9,6 +9,13 @@ ln -s "$basedir/.tmux-linux.conf" $HOME
 ln -s "$basedir/.editrc" $HOME
 ln -s "$basedir/.inputrc" $HOME
 ln -s "$basedir/.iex.exs" $HOME
+mv $HOME/vimfiles $HOME/.vim
+
+if [[ -f $HOME/.gitconfig ]]; then
+    echo "Moving pre-exisitng ~/.gitconfig to ~/.gitconfig.old"
+    mv $HOME/.gitconfig $HOME/.gitconfig.old
+    ln -s "$basedir/.gitconfig" $HOME
+fi
 
 if ! grep "bashrc-std.sh.inc" ~/.bashrc; then 
     cp $HOME/.bashrc $HOME/.bashrc~
