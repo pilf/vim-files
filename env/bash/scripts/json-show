@@ -34,9 +34,9 @@ if (($#)); then
     RemotePath=${@: -1}
     echo "For remote path: $RemotePath"
     set -x # like @echo on in .BAT files... I think
-    accept_type=`[[ $Options =~ [aA]ccept: ]] || echo "Accept: application/json"`
-
-    curl "$Options $accept_type" $JsonPath "$RemotePath" && open -a Firefox $JsonPath
+    accept_type=`[[ $Options =~ [aA]ccept: ]] || echo --header \"Accept: application/json\"`
+    cmd="curl $Options $accept_type -so \"$JsonPath\" \"$RemotePath\""
+    eval $cmd && open -a Firefox $JsonPath 
 else
     cat > $JsonPath && open -a Firefox $JsonPath
 fi
