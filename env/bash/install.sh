@@ -2,14 +2,14 @@
 basedir=$(cd "$(dirname "$0")/../.."; pwd)
 echo "Using base dir: $basedir"
 ln -s "$basedir/.vimrc" $HOME
-ln -s "$basedir/vimfiles" $HOME && mv $HOME/vimfiles $HOME/.vim 
+ln -s "$basedir/.vim" $HOME
 ln -s "$basedir/.tmux.conf" $HOME
 ln -s "$basedir/.tmux-osx.conf" $HOME
 ln -s "$basedir/.tmux-linux.conf" $HOME
 ln -s "$basedir/.editrc" $HOME
 ln -s "$basedir/.inputrc" $HOME
 ln -s "$basedir/.iex.exs" $HOME
-mv $HOME/vimfiles $HOME/.vim
+ln -s "$basedir/.irssi" $HOME
 
 if [[ -f $HOME/.gitconfig ]]; then
     echo "Moving pre-exisitng ~/.gitconfig to ~/.gitconfig.old"
