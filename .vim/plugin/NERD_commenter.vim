@@ -145,6 +145,7 @@ let s:delimiterMap = {
     \ 'eclass': { 'left': '#' },
     \ 'eiffel': { 'left': '--' },
     \ 'elf': { 'left': "'" },
+    \ 'elixir': { 'left': "#" },
     \ 'elmfilt': { 'left': '#' },
     \ 'erlang': { 'left': '%', 'leftAlt': '%%' },
     \ 'eruby': { 'left': '<%#', 'right': '%>', 'leftAlt': '<!--', 'rightAlt': '-->' },
@@ -1498,7 +1499,7 @@ function s:UncommentLinesNormal(topline, bottomline)
 endfunction
 
 
-" Section: Other helper functions {{{1
+" Section: Other helper functions {{{1/*{{{*/
 " ============================================================================
 
 " Function: s:AddLeftDelim(delim, theLine) {{{2
@@ -2766,4 +2767,4 @@ inoremap <silent> <plug>NERDCommenterInsert <SPACE><BS><ESC>:call NERDComment('i
 
 " switch to/from alternative delimiters (does not use wrapper function)
 nnoremap <plug>NERDCommenterAltDelims :call <SID>SwitchToAlternativeDelimiters(1)<cr>
-" vim: set foldmethod=marker :
+" vim: set foldmethod=marker :/*}}}*/
