@@ -62,7 +62,7 @@ else
 endif
 
 " cd to this
-nmap <leader>cd :exe ":cd %:p:h"
+nmap <leader>cd :exe ":cd %:p:h"<CR>
 function! CdToThis()
     exe ":cd %:p:h"
 endfunction
