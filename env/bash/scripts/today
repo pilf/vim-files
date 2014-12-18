@@ -1,5 +1,10 @@
 #/bin/sh
 
+# Todo: today --from -30d --matching *
+#   Which would display any "today" files that were made in the last 30 days matching files (so it excludes empty [today]s)
+#   This displays a list of files each on their own line
+#   Without the 'matching' clause a simple list of in existance folders are shown (maybe also showing the number of child inodes)
+
 TodayLoc=~/tmp/`date '+%Y/%Y%m/%Y%m%d'`
 
 if [ ! -d "$TodayLoc" ]; then
