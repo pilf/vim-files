@@ -70,4 +70,6 @@ if [[ "${BASH_VERSION::1}" -eq 4 ]]; then
 fi
 
 alias c='function __gcd() { cd $(g $1); unset -f __gcd; }; __gcd'
+alias ct='cd `today`'
+alias gc'=g -c $@'
 alias ts=tmux-simple
