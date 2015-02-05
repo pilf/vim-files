@@ -190,6 +190,7 @@ nnoremap <leader>ta6 oT<SPACE><ESC>6a.<SPACE><ESC>A
 nmap gf :e <cfile><CR>
 nmap gff :e! <cfile><CR>
 nmap gfw :w<CR>:e <cfile><CR>
+nmap gfm :w<CR>:e <cfile><CR>mF<C-o>0v$h"fygv§:
 nmap g% :e %:p:h/<cfile><CR>
 
 " new files
@@ -197,6 +198,7 @@ nmap <leader>n. :new %:p:h/
 
 nmap <leader>hl :set hlsearch!<CR>
 nmap <leader>scl :set cursorline!<CR>
+nmap <leader>scc :set cursorcolumn!<CR>
 
 set clipboard=unnamed
 " uisng pbcopy, from: http://stackoverflow.com/questions/677986/vim-copy-selection-to-os-x-clipboard
@@ -207,7 +209,7 @@ vmap <D-c> :w !pbcopy<CR><CR>
 "vnoremap : y:exec("! clear && echo " . shellescape(@", 1) . "\| awk 'NR>1{ print l } {l=$0}'  \| pbcopy")
 "vnoremap : y:exec("! clear && echo " . shellescape(@", 1) . "> $TMPDIR/vim_pbcopy")
 " wow, it took a long time to find the -n option, all the above didn't work for me :(
-vnoremap <leader>: y:exec("! clear && echo -n " . shellescape(@0) . " \| pbcopy")<CR><CR>
+vmap <leader>: y:exec("! clear && echo -n " . shellescape(@0) . " \| pbcopy")<CR><CR>
 
 " Fuzzy finding short cuts
 nmap <leader>f. :FufFileWithCurrentBufferDir<CR>

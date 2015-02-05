@@ -1,3 +1,5 @@
 editMode: Vi
 completionType: MenuCompletion
 maxhistorysize: Just 500
+#bind: ctrl-k up
+#bind: ctrl-j down
