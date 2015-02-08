@@ -27,8 +27,8 @@ if has("gui_running")
     " http://stackoverflow.com/questions/882658/how-to-get-environment-variables-from-within-gvim
     if $living_room!=""
         set guifont=DejaVu\ Sans\ Mono\ 18  
-    elseif $macbook!=""
-        set guifont=Menlo\ Regular:h11
+    elseif $macbook=="true"
+        set guifont=Menlo\ Regular:h12
     else
         set guifont=Lucida_Console:h14
     endif
@@ -218,6 +218,9 @@ nmap <leader>fb :FufBuffer<CR>
 " Spelling and such
 nnoremap <leader>zz :set spell!<CR>
 nnoremap <leader>zs z=
+nnoremap <leader>z1 1z=
+nnoremap <leader>z2 2z=
+nnoremap <leader>z3 3z=
 nnoremap <leader>zi l[seas
 
 " From vimcasts (use :Wrap and Cmd+j,k etc. for moving within wrapped lines)
