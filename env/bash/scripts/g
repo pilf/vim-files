@@ -4,11 +4,11 @@ places="$HOME/.g.places"
 
 function display_known_locations {
     echo --
-    cat $places | sort | sed -e "s|$HOME|~|"
+    cat $places | sort | sed -e "s|$HOME|~|" | awk 'BEGIN{FS=":"}{printf "%-15s %s\n", $1, $2}' 
 }
 
 function usage {
-    echo "usage: g [-c [path]] shortname" >&2
+    echo "usage: g [-c [path]] shortname"
 }
 
 while getopts ":c:" opt; do
@@ -24,6 +24,8 @@ while getopts ":c:" opt; do
             usage
             exit 1
             ;;
+        # Possible future argument to search the known locations.  Here's an awk fragment that may come in handy:
+        # g 2> /dev/null | awk 'BEGIN{FIELDWIDTHS="15 *"}$2 ~ /^~\/tmp/{printf "%-10s %s\n", $1, $2}'
     esac
 done
 
