@@ -58,6 +58,6 @@ if [ -z "$place" ]; then
     echo "Place '$shortname' not found, known locations:"
     display_known_locations
 else
-    printf $place
+    printf "$place"
 fi
 
