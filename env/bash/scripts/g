@@ -2,19 +2,42 @@
 
 places="$HOME/.g.places"
 
+function home_shorten {
+    sed -e "s|$HOME|~|"
+}
+
 function display_known_locations {
     echo --
-    cat $places | sort | sed -e "s|$HOME|~|" | awk 'BEGIN{FS=":"}{printf "%-15s %s\n", $1, $2}' 
+    cat $places | sort | home_shorten | awk 'BEGIN{FS=":"}{printf "%-15s %s\n", $1, $2}' 
+}
+
+function display_known_locations_path {
+    cat $places \
+        | awk 'BEGIN{FS=":"}{printf "%s:%s\n", $2, $1}' \
+        | sort \
+        | home_shorten \
+        | awk 'BEGIN{FS=":"}{printf "%-15s %s\n", $2, $1}' 
 }
 
 function usage {
     echo "usage: g [-c [path]] shortname"
 }
 
-while getopts ":c:" opt; do
+while getopts ":cs:" opt; do
     case $opt in
         c)
             create_mode=$OPTARG
+            ;;
+        s)
+            sort_mode=$OPTARG
+            case $sort_mode in
+                path)
+                    sort_mode=path
+                    ;;
+                name|*)
+                    sort_mode=name
+                    ;;
+            esac
             ;;
         \?)
             echo "Invalid option: -$OPTARG" >&2
@@ -28,6 +51,11 @@ while getopts ":c:" opt; do
         # g 2> /dev/null | awk 'BEGIN{FIELDWIDTHS="15 *"}$2 ~ /^~\/tmp/{printf "%-10s %s\n", $1, $2}'
     esac
 done
+
+if [ -n "$sort_mode" ] ; then
+    display_known_locations_path
+    exit 0
+fi
 
 shortname=${@: -1}
 if [ -z "$1" ] ; then
