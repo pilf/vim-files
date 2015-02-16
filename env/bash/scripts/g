@@ -14,19 +14,40 @@ function display_known_locations {
 function display_known_locations_path {
     cat $places \
         | awk 'BEGIN{FS=":"}{printf "%s:%s\n", $2, $1}' \
-        | sort \
+        | sort -f \
         | home_shorten \
         | awk 'BEGIN{FS=":"}{printf "%-15s %s\n", $2, $1}' 
 }
 
 function usage {
-    echo "usage: g [-c [path]] shortname"
+    cat <<EOF
+output location
+    $ g shortname
+
+create new location (ommiting path assumes .)
+    $ g -c [path] shortname
+
+display known locations (sorted by shortname)
+    $ g
+
+display known locations (sorted by path)
+    $ g -p
+
+alternative sort syntax
+    $ g -s (name|path) 
+
+help
+    $ g -?
+EOF
 }
 
-while getopts ":cs:" opt; do
+while getopts ":cs:p?" opt; do
     case $opt in
         c)
             create_mode=$OPTARG
+            ;;
+        p)
+            sort_mode=path
             ;;
         s)
             sort_mode=$OPTARG
@@ -39,11 +60,16 @@ while getopts ":cs:" opt; do
                     ;;
             esac
             ;;
+        ?)
+            usage
+            exit 0
+            ;;
         \?)
             echo "Invalid option: -$OPTARG" >&2
             ;;
         :)
             echo "Option -$OPTARG requires an argument." >&2
+            echo --
             usage
             exit 1
             ;;
@@ -60,7 +86,7 @@ fi
 shortname=${@: -1}
 if [ -z "$1" ] ; then
     echo "No short name given (required)" >&2
-    usage
+    echo --
     display_known_locations
     exit 1
 fi
