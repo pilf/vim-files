@@ -41,7 +41,7 @@ help
 EOF
 }
 
-while getopts ":cs:p?" opt; do
+while getopts ":c:s:p?" opt; do
     case $opt in
         c)
             create_mode=$OPTARG

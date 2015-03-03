@@ -142,6 +142,9 @@ nnoremap <leader>cpp "=expand("%:p")<CR>:let @p=@%<CR>
 nnoremap <leader>cp: "=expand("%:p")<CR>:exec("! clear && echo -n " . shellescape(expand("%:p")) . " \| pbcopy")<CR><CR>
 nnoremap <leader>ep :echo @%<CR>
 
+" nopaste / paste toggle (and then display new toggle value: "paste" or "nopaste")
+nnoremap <leader>np :set paste!<CR>:set paste?<CR>
+
 nnoremap <leader>r q:?s\/<CR><CR>
 nnoremap <leader>rcs :w<CR>:Shell cat % \| coffee -s<CR>
 nnoremap <leader>rrb :w<CR>:Shell ruby %<CR>
