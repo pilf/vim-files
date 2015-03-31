@@ -1,2 +1,51 @@
-#!/bin/sh
-echo `date '+%Y%m%d%H%M%S'`
+#!/bin/bash
+
+function usage {
+    cat <<EOF 
+Usage: now [-dDtTIu]
+    -d      YYYYMMDD, e.g. "20150101"
+    -D      YYYY-MM-DD, e.g. "2015-01-01"
+    -t      hhmmss, e.g. "144602"
+    -T      hh:mm:ss, e.g. "14:46:02"
+    -I      YYYY-MM-DDThh:mm:ss, e.g. "2015-01-01T14:46:02"
+    -u      Unix seconds, e.g. "1426949506"
+EOF
+
+}
+
+if [ -z "$@" ]; then 
+    echo `date '+%Y%m%d%H%M%S'`
+else
+   while getopts ":dDtTIu" opt; do
+        case $opt in
+            d)
+                echo `date '+%Y%m%d'`
+                ;;
+            D)
+                echo `date '+%Y-%m-%d'`
+                ;;
+            t)
+                echo `date '+%H%M%S'`
+                ;;
+            T)
+                echo `date '+%H:%M:%S'`
+                ;;
+            I)
+                echo `date '+%Y-%m-%dT%H:%M:%S'`
+                ;;
+            u)
+                echo `date '+%s'`
+                ;;
+            \?)
+                echo "Invalid option: -$OPTARG" >&2
+                ;;
+            :)
+                echo "Option -$OPTARG requires an argument." >&2
+                usage
+                exit 1
+                ;;
+        esac
+    done
+fi
+
+

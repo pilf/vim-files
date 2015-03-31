@@ -2,35 +2,91 @@
 
 places="$HOME/.g.places"
 
+function home_shorten {
+    sed -e "s|$HOME|~|"
+}
+
 function display_known_locations {
     echo --
-    cat $places | sort | sed -e "s|$HOME|~|"
+    cat $places | sort | home_shorten | awk 'BEGIN{FS=":"}{printf "%-15s %s\n", $1, $2}' 
+}
+
+function display_known_locations_path {
+    cat $places \
+        | awk 'BEGIN{FS=":"}{printf "%s:%s\n", $2, $1}' \
+        | sort -f \
+        | home_shorten \
+        | awk 'BEGIN{FS=":"}{printf "%-15s %s\n", $2, $1}' 
 }
 
 function usage {
-    echo "usage: g [-c [path]] shortname" >&2
+    cat <<EOF
+output location
+    $ g shortname
+
+create new location (ommiting path assumes .)
+    $ g -c [path] shortname
+
+display known locations (sorted by shortname)
+    $ g
+
+display known locations (sorted by path)
+    $ g -p
+
+alternative sort syntax
+    $ g -s (name|path) 
+
+help
+    $ g -?
+EOF
 }
 
-while getopts ":c:" opt; do
+while getopts ":c:s:p?" opt; do
     case $opt in
         c)
             create_mode=$OPTARG
+            ;;
+        p)
+            sort_mode=path
+            ;;
+        s)
+            sort_mode=$OPTARG
+            case $sort_mode in
+                path)
+                    sort_mode=path
+                    ;;
+                name|*)
+                    sort_mode=name
+                    ;;
+            esac
+            ;;
+        ?)
+            usage
+            exit 0
             ;;
         \?)
             echo "Invalid option: -$OPTARG" >&2
             ;;
         :)
             echo "Option -$OPTARG requires an argument." >&2
+            echo --
             usage
             exit 1
             ;;
+        # Possible future argument to search the known locations.  Here's an awk fragment that may come in handy:
+        # g 2> /dev/null | awk 'BEGIN{FIELDWIDTHS="15 *"}$2 ~ /^~\/tmp/{printf "%-10s %s\n", $1, $2}'
     esac
 done
+
+if [ -n "$sort_mode" ] ; then
+    display_known_locations_path
+    exit 0
+fi
 
 shortname=${@: -1}
 if [ -z "$1" ] ; then
     echo "No short name given (required)" >&2
-    usage
+    echo --
     display_known_locations
     exit 1
 fi
@@ -56,6 +112,6 @@ if [ -z "$place" ]; then
     echo "Place '$shortname' not found, known locations:"
     display_known_locations
 else
-    printf $place
+    printf "$place"
 fi
 

@@ -27,8 +27,8 @@ if has("gui_running")
     " http://stackoverflow.com/questions/882658/how-to-get-environment-variables-from-within-gvim
     if $living_room!=""
         set guifont=DejaVu\ Sans\ Mono\ 18  
-    elseif $macbook!=""
-        set guifont=Menlo\ Regular:h11
+    elseif $macbook=="true"
+        set guifont=Menlo\ Regular:h12
     else
         set guifont=Lucida_Console:h14
     endif
@@ -146,6 +146,9 @@ nnoremap <leader>cpp "=expand("%:p")<CR>:let @p=@%<CR>
 nnoremap <leader>cp: "=expand("%:p")<CR>:exec("! clear && echo -n " . shellescape(expand("%:p")) . " \| pbcopy")<CR><CR>
 nnoremap <leader>ep :echo @%<CR>
 
+" nopaste / paste toggle (and then display new toggle value: "paste" or "nopaste")
+nnoremap <leader>np :set paste!<CR>:set paste?<CR>
+
 nnoremap <leader>r q:?s\/<CR><CR>
 nnoremap <leader>rcs :w<CR>:Shell cat % \| coffee -s<CR>
 nnoremap <leader>rrb :w<CR>:Shell ruby %<CR>
@@ -194,6 +197,7 @@ nnoremap <leader>ta6 oT<SPACE><ESC>6a.<SPACE><ESC>A
 nmap gf :e <cfile><CR>
 nmap gff :e! <cfile><CR>
 nmap gfw :w<CR>:e <cfile><CR>
+nmap gfm :w<CR>:e <cfile><CR>mF<C-o>0v$h"fygv§:
 nmap g% :e %:p:h/<cfile><CR>
 
 " new files
@@ -201,6 +205,7 @@ nmap <leader>n. :new %:p:h/
 
 nmap <leader>hl :set hlsearch!<CR>
 nmap <leader>scl :set cursorline!<CR>
+nmap <leader>scc :set cursorcolumn!<CR>
 
 set clipboard=unnamed
 " uisng pbcopy, from: http://stackoverflow.com/questions/677986/vim-copy-selection-to-os-x-clipboard
@@ -211,7 +216,7 @@ vmap <D-c> :w !pbcopy<CR><CR>
 "vnoremap : y:exec("! clear && echo " . shellescape(@", 1) . "\| awk 'NR>1{ print l } {l=$0}'  \| pbcopy")
 "vnoremap : y:exec("! clear && echo " . shellescape(@", 1) . "> $TMPDIR/vim_pbcopy")
 " wow, it took a long time to find the -n option, all the above didn't work for me :(
-vnoremap <leader>: y:exec("! clear && echo -n " . shellescape(@0) . " \| pbcopy")<CR><CR>
+vmap <leader>: y:exec("! clear && echo -n " . shellescape(@0) . " \| pbcopy")<CR><CR>
 
 " Fuzzy finding short cuts
 nmap <leader>f. :FufFileWithCurrentBufferDir<CR>
@@ -222,6 +227,9 @@ nmap <leader>fb :FufBuffer<CR>
 " Spelling and such
 nnoremap <leader>zz :set spell!<CR>
 nnoremap <leader>zs z=
+nnoremap <leader>z1 1z=
+nnoremap <leader>z2 2z=
+nnoremap <leader>z3 3z=
 nnoremap <leader>zi l[seas
 
 " From vimcasts (use :Wrap and Cmd+j,k etc. for moving within wrapped lines)
