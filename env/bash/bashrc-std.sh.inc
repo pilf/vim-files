@@ -64,7 +64,8 @@ if [[ "${BASH_VERSION::1}" -eq 4 ]]; then
     source git-prompt.sh
     export GIT_PS1_SHOWCOLORHINTS=1
     export GIT_PS1_SHOWDIRTYSTATE=1
-    short_user=$(ellipsisify $USER 7 left)
+    user=$(whoami)
+    short_user=$(ellipsisify $user 7 left)
     short_host=$(ellipsisify $HOSTNAME 5 left)
     export PROMPT_COMMAND='__git_ps1 "\[\033[1;30m\]$short_user@$short_host\[\033[0m\]:\[\033[0;33m\]$(short_pwd 25)\[\033[0m\]" "\\\$ "'
 fi
