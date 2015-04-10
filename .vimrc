@@ -51,8 +51,12 @@ if has("win32")
     endtry
     let mapleader="\\"
 else
-    if $living_room!="" && $living_room_mac_override!=""
-        let mapleader = "<"
+    if $living_room
+        if $living_room_mac_override!=""
+            let mapleader = $living_room_mac_override
+        else
+            let mapleader = "<"
+        endif
     elseif $debianbox!=""
         set guifont=Courier\ 10\ Pitch\ 11
         let mapleader = "\\"
