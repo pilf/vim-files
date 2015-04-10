@@ -15,15 +15,15 @@ else
     position=${3:-middle} 
     ellipsis_string=${4:-…} 
     ellipsis_size=${#ellipsis_string}
-    #printf "%d" $ellipsis_size
-    #printf "%d" $max_size
-    if [ $ellipsis_size -gt $max_size ]; then
+    printf "%d" $ellipsis_size
+    printf "%d" $max_size
+    if [[ $ellipsis_size+0 -gt $max_size ]]; then
         echo "error: max-size ($max_size) < ellipsis-size ($ellipsis_string)"
         exit 1
     fi
     input_size=${#input}
     aval_size=$(expr $max_size - $ellipsis_size)
-    if [ ${#input} -gt $max_size ]; then
+    if [[ ${#input} -gt $max_size ]]; then
         case "$position" in
             middle)
                 # left bias, examples where isOdd(size+len('..')): 
