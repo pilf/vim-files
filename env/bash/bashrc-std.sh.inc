@@ -72,4 +72,11 @@ fi
 alias c='function __gcd() { cd "$(g $1)"; unset -f __gcd; }; __gcd'
 alias gc='g -c $@'
 alias ct='cd $(today)'
-alias ts=tmux-simple
+alias ts=tmux-simple 
+alias hog="tree --du -h | egrep -v '[0-9]K?\]'"
+alias boot2docker-start='$(/usr/local/bin/boot2docker shellinit) && $(/usr/local/bin/boot2docker up)'
+
+alias gllex="ssh-tmux philip@elixir-erl17"
+alias glrex="ssh philip@grasslands.no-ip.org -t bash -c \"'bin/scripts/ssh-tmux philip@elixir-erl17'\""
+alias gll="ssh-tmux philip@grasslands"
+alias glr="ssh-tmux philip@grasslands.no-ip.org"

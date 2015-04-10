@@ -329,3 +329,22 @@ function! Wipeout()
     execute 'tabnext' l:currentTab
   endtry
 endfunction
+
+" From: http://www.kevssite.com/2009/04/21/using-vi-as-a-hex-editor/ 
+" The following maps the F8 key to toggle between hex and binary (while also setting the
+" noeol and binary flags, so if you :write your file, vim doesn't perform unwanted conversions.  
+nnoremap <leader>hex :call HexMe()<CR>
+let $in_hex=0
+function HexMe()
+    set binary
+    set noeol
+    if $in_hex>0
+        :%!xxd -r
+        let $in_hex=0
+    else
+        :%!xxd
+        let $in_hex=1
+    endif
+endfunction
+
+
