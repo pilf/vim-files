@@ -64,7 +64,8 @@ if [[ "${BASH_VERSION::1}" -eq 4 ]]; then
     source git-prompt.sh
     export GIT_PS1_SHOWCOLORHINTS=1
     export GIT_PS1_SHOWDIRTYSTATE=1
-    short_user=$(ellipsisify $USER 7 left)
+    user=$(whoami)
+    short_user=$(ellipsisify $user 7 left)
     short_host=$(ellipsisify $HOSTNAME 5 left)
     export PROMPT_COMMAND='__git_ps1 "\[\033[1;30m\]$short_user@$short_host\[\033[0m\]:\[\033[0;33m\]$(short_pwd 25)\[\033[0m\]" "\\\$ "'
 fi
@@ -72,4 +73,11 @@ fi
 alias c='function __gcd() { cd "$(g $1)"; unset -f __gcd; }; __gcd'
 alias gc='g -c $@'
 alias ct='cd $(today)'
-alias ts=tmux-simple
+alias ts=tmux-simple 
+alias hog="tree --du -h | egrep -v '[0-9]K?\]'"
+alias boot2docker-start='$(/usr/local/bin/boot2docker shellinit) && $(/usr/local/bin/boot2docker up)'
+
+alias gllex="ssh-tmux philip@elixir-erl17"
+alias glrex="ssh philip@grasslands.no-ip.org -t bash -c \"'bin/scripts/ssh-tmux philip@elixir-erl17'\""
+alias gll="ssh-tmux philip@grasslands"
+alias glr="ssh-tmux philip@grasslands.no-ip.org"
