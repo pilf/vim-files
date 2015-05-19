@@ -16,7 +16,7 @@ EOF
 if [ -z "$@" ]; then 
     echo `date '+%Y%m%d%H%M%S'`
 else
-   while getopts ":dDtTIu" opt; do
+   while getopts ":dDtTIuh" opt; do
         case $opt in
             d)
                 echo `date '+%Y%m%d'`
@@ -36,8 +36,13 @@ else
             u)
                 echo `date '+%s'`
                 ;;
+            h)
+                usage
+                ;;
             \?)
                 echo "Invalid option: -$OPTARG" >&2
+                usage
+                exit 1
                 ;;
             :)
                 echo "Option -$OPTARG requires an argument." >&2
