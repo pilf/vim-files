@@ -268,8 +268,8 @@ command! Copyfile let @*=substitute(expand("%:p"), '/', '\', 'g')
 nnoremap <Leader>cf :Copyfile<CR>
 
 noremap <leader>soc <ESC>"=strftime("%A %F - %R")<CR>p
-nnoremap <leader>scr <ESC>o<ESC>:!today<CR><CR>"=expand("~/tmp/") . strftime("%Y") . "/" . strftime("%Y%m") . "/" . strftime("%Y%m%d") . "/scratch.txt"<CR>p<leader>gfw
-nnoremap <leader>today o<CR><ESC>"=strftime("%F")<CR>po<ESC>
+nnoremap <leader>scr :r !today<CR><ESC>A/scratch.txt<ESC>
+nnoremap <leader>today o<ESC>"=strftime("%F")<CR>p
 inoremap <leader>today <ESC>"=strftime("%F")<CR>pa
 
 noremap <leader>later <ESC>i<CR><ESC>"=". . . " . strftime("%R") . " . . ."<CR>pA<CR><CR><ESC>
@@ -339,7 +339,7 @@ endfunction
 " noeol and binary flags, so if you :write your file, vim doesn't perform unwanted conversions.  
 nnoremap <leader>hex :call HexMe()<CR>
 let $in_hex=0
-function HexMe()
+function! HexMe()
     set binary
     set noeol
     if $in_hex>0
@@ -350,5 +350,4 @@ function HexMe()
         let $in_hex=1
     endif
 endfunction
-
 
