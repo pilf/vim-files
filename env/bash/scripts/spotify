@@ -1,0 +1,5 @@
+#!/bin/sh
+
+cmd="$@"
+osascript -e "tell application \"Spotify\" to $cmd"
+

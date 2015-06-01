@@ -2,7 +2,8 @@
 basedir=$(cd "$(dirname "$0")/../.."; pwd)
 echo "Using base dir: $basedir"
 ln -s "$basedir/.vimrc" $HOME
-rm $HOME/.vim && ln -s "$basedir/.vim" $HOME
+rm $HOME/.vim 
+ln -s "$basedir/.vim" $HOME
 ln -s "$basedir/.tmux.conf" $HOME
 ln -s "$basedir/.tmux-osx.conf" $HOME
 ln -s "$basedir/.tmux-linux.conf" $HOME
