@@ -1,6 +1,6 @@
 [user]
 	name = Philip Cox
-	email = pcox@opentable.com
+	email = philip@sphere37.com
 [core]
     editor = vim
 	excludesfile = /Users/philipcox/.gitignore_global

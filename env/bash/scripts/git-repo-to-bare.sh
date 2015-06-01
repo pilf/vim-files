@@ -19,7 +19,7 @@ cd ./$mysource.git && git config --bool core.bare true
 # If cloned from original you'll want to add this as the remote
 echo "Use the following command to add this remote to original repo:"
 echo "$ git remote add origin git@grasslands.no-ip.org:/src/$mysource"
-
+echo "$ git branch --set-upstream master origin/master"
 
 #
 # 2007  tar -czvf impetus.tar.gz impetus
