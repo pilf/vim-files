@@ -185,6 +185,8 @@ inoremap <leader>pi \|><Space>
 noremap <leader>tsx :set syntax=toneq<CR>
 noremap <leader>tin <ESC>A<Space>(<BAR><Space><Space><BAR>)<esc>2hi
 noremap <leader>ton <ESC>o(<BAR><CR><CR><BAR>)<esc>ki
+" test as in t-est as in task estimation
+inoremap <leader>test -\|\|-<SPACE><ESC>F\|i
 nnoremap <leader>ta oT<SPACE>
 nnoremap <leader>ta1 oT<SPACE><ESC>1a.<SPACE><ESC>A
 nnoremap <leader>ta2 oT<SPACE><ESC>2a.<SPACE><ESC>A
@@ -271,6 +273,7 @@ noremap <leader>soc <ESC>"=strftime("%A %F - %R")<CR>p
 nnoremap <leader>scr :r !today<CR><ESC>A/scratch.txt<ESC>
 nnoremap <leader>today o<ESC>"=strftime("%F")<CR>p
 inoremap <leader>today <ESC>"=strftime("%F")<CR>pa
+imap <leader>now <ESC>"=strftime("%H%M")<CR>pa
 
 noremap <leader>later <ESC>i<CR><ESC>"=". . . " . strftime("%R") . " . . ."<CR>pA<CR><CR><ESC>
 
