@@ -3,3 +3,13 @@
 cmd="$@"
 osascript -e "tell application \"Spotify\" to $cmd"
 
+# Examples: 
+#   spotify play track \"spotify:user:sphere37:playlist:2zb8Cl1owklGYsyTN6k5rM\"
+#   spotify pause
+#   spotify set output to name of current track
+#   spotify set output to id of current track > /tmp/great-song
+#           ... later ...
+#   spotify play track \"$(cat /tmp/great-song)\"
+
+
+

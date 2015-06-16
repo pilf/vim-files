@@ -53,6 +53,9 @@ function short_pwd {
 
 pathadd $HOME/bin
 pathadd $HOME/bin/scripts
+# Should be conditinally included of course
+pathadd $HOME/bin/scripts/osx
+
 
 if [ "$bash4_path" != "" ]; then 
     export tmux_shell=$bash4_path
