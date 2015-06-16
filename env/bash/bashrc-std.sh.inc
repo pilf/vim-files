@@ -78,9 +78,16 @@ alias gc='g -c $@'
 alias ct='cd $(today)'
 alias ts=tmux-simple 
 alias hog="tree --du -h | egrep -v '[0-9]K?\]'"
-alias boot2docker-start='$(/usr/local/bin/boot2docker shellinit) && $(/usr/local/bin/boot2docker up)'
 
+# Grasslands specific
 alias gllex="ssh-tmux philip@elixir-erl17"
 alias glrex="ssh philip@grasslands.no-ip.org -t bash -c \"'bin/scripts/ssh-tmux philip@elixir-erl17'\""
 alias gll="ssh-tmux philip@grasslands"
-alias glr="ssh-tmux philip@grasslands.no-ip.org"
+alias glr="ssh-tmux philip@grasslands.no-ip.org" 
+
+# OS X specific
+alias boot2docker-start='$(/usr/local/bin/boot2docker shellinit) && $(/usr/local/bin/boot2docker up)'
+
+# Docker specific
+alias dcn=container-named.sh
+alias din=container-named.sh

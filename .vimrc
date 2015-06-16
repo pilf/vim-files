@@ -163,6 +163,8 @@ nmap <leader>rt :w<CR>:Shell rustc --test % & ./`echo % \| sed s/\\.[^\\.]*$//`<
 autocmd BufNewFile,BufRead *.pp set syntax=ruby
 autocmd BufNewFile,BufRead *.json set syntax=javascript
 autocmd BufNewFile,BufRead *.eex set syntax=html
+autocmd BufNewFile,BufRead *.md set syntax=markdown
+autocmd BufNewFile,BufRead *.sh.inc set syntax=sh
 
 " export feature files to HTML
 nnoremap <leader>rfhtml :TO<CR>:w<CR>:!open -a Safari %<CR><CR>
