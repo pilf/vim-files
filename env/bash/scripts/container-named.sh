@@ -22,12 +22,14 @@ if [ "$linecount" -gt 1 ]; then
     fieldwidths=$(get_docker_column_positions "$raw") 
     echo "$dataonly" | awk "
         BEGIN { FIELDWIDTHS=\"$fieldwidths\" } 
-        function rtrim(s) { sub(/[ \t\r\n]+$/, \"\", s); return s }
-        { printf \"%s: %s\n\", rtrim(\$1), rtrim(\$7) }" 1>&2
+        function ltrim(s) { sub(/^[ \\t\\r\\n]+/, \"\", s); return s }
+        function rtrim(s) { sub(/[ \\t\\r\\n]+$/, \"\", s); return s }
+        function trim(s)  { return rtrim(ltrim(s)); }
+        { printf \"%s: %s (%s)\n\", rtrim(\$1), rtrim(\$7), trim(\$5) }" 1>&2
     echo "<<undecidable>>"
 else
     # only one option, print just the ID
-    docker ps -q -a --filter="name=$1"
+    docker ps -q --filter="name=$1"
     printf '%s' "$output" 
 fi
 
