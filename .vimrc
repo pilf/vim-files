@@ -165,6 +165,7 @@ autocmd BufNewFile,BufRead *.json set syntax=javascript
 autocmd BufNewFile,BufRead *.eex set syntax=html
 autocmd BufNewFile,BufRead *.md set syntax=markdown
 autocmd BufNewFile,BufRead *.sh.inc set syntax=sh
+autocmd BufNewFile,BufRead *.toneq set syntax=toneq
 
 " export feature files to HTML
 nnoremap <leader>rfhtml :TO<CR>:w<CR>:!open -a Safari %<CR><CR>
@@ -210,6 +211,7 @@ nmap <leader>n. :new %:p:h/
 nmap <leader>hl :set hlsearch!<CR>
 nmap <leader>scl :set cursorline!<CR>
 nmap <leader>scc :set cursorcolumn!<CR>
+nmap <leader>sww :set wrap!<CR>
 
 set clipboard=unnamed
 " uisng pbcopy, from: http://stackoverflow.com/questions/677986/vim-copy-selection-to-os-x-clipboard
@@ -277,7 +279,7 @@ nnoremap <leader>today o<ESC>"=strftime("%F")<CR>p
 inoremap <leader>today <ESC>"=strftime("%F")<CR>pa
 imap <leader>now <ESC>"=strftime("%H%M")<CR>pa
 
-noremap <leader>later <ESC>i<CR><ESC>"=". . . " . strftime("%R") . " . . ."<CR>pA<CR><CR><ESC>
+noremap <leader>later o<ESC>i<CR><ESC>"=". . . " . strftime("%R") . " . . ."<CR>pA<CR><CR><ESC>
 
 command! -complete=shellcmd -nargs=+ Shell call s:RunShellCommand(<q-args>)
 function! s:RunShellCommand(cmdline)
