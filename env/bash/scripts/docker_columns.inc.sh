@@ -19,7 +19,7 @@ function get_docker_column_positions {
 function run_cmd_if_different {
     cmd=$1
     if [ -z "$__last_command" ] || [ "$__last_command" != "$cmd" ]; then
-        __raw=$(docker images)
+        __raw=$($cmd)
         __dataonly=$(echo "$__raw" | tail -n+2)
         __linecount=$(echo "$__dataonly" | wc -l)
         __last_command=$cmd
@@ -44,7 +44,7 @@ function docker_match_count {
     cmd="$1"
     pattern="$2"
 
-    run_cmd_if_different "$pattern"
+    run_cmd_if_different "$cmd"
     echo "$__dataonly" | grep "$pattern" | wc -l
 }
 function printf_docker_columns {
