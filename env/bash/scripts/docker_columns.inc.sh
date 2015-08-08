@@ -41,8 +41,11 @@ function __awk_format {
 
 function docker_match_count {
     # usage: docker_match_count "docker images"
-    run_cmd_if_different "$1"
-    echo $__linecount
+    cmd="$1"
+    pattern="$2"
+
+    run_cmd_if_different "$pattern"
+    echo "$__dataonly" | grep "$pattern" | wc -l
 }
 function printf_docker_columns {
     # usage: printf_docker_columns 'docker images' '%s - %s' 1 2
