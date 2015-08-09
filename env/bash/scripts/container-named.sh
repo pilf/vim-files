@@ -1,36 +1,17 @@
 #!/bin/bash
+DIR="${BASH_SOURCE%/*}"
+if [[ ! -d "$DIR" ]]; then DIR="$PWD"; fi
+. "$DIR/docker_columns.inc.sh"
 
-function get_docker_column_positions {
-    headers=$(echo "$1" | head -n1)
-    linewidth=$(echo "$1" | wc -L)
+pattern="$*"
+cmd="docker ps --all"
 
-    echo "$1" \
-            | head -n1 \
-            | sed -e 's/CONTAINER ID/CONTAINER_ID/' \
-            | grep -ob ' [^ ]' \
-            | sed -e 's/:.*$//' \
-            | awk -v lw="$linewidth" 'BEGIN { l=0 } { print $0-l; l=$0 } END { print lw-l }' \
-            | tr "\\n" " " | sed -e "s/\(^.*\)\(.$\)/\1/"
-}
-
-raw=$(docker ps --filter="name=$1")
-dataonly=$(echo "$raw" | tail -n+2)
-linecount=$(echo "$dataonly" | wc -l)
-
-if [ "$linecount" -gt 1 ]; then
-    echo "More than one line, here are the options: " 1>&2
-    fieldwidths=$(get_docker_column_positions "$raw") 
-    echo "$dataonly" | awk "
-        BEGIN { FIELDWIDTHS=\"$fieldwidths\" } 
-        function ltrim(s) { sub(/^[ \\t\\r\\n]+/, \"\", s); return s }
-        function rtrim(s) { sub(/[ \\t\\r\\n]+$/, \"\", s); return s }
-        function trim(s)  { return rtrim(ltrim(s)); }
-        { printf \"%s: %s (%s)\n\", rtrim(\$1), rtrim(\$7), trim(\$5) }" 1>&2
-    echo "<<undecidable>>"
+count=$(docker_match_count "$cmd" "$pattern")
+if [ "$count" -gt 1 ]; then
+    echo "More than one possible container, found: " 1>&2
+    match_printf_docker_columns "$cmd" "$pattern" '%s (%s) %s\n' 2 1 4 1>&2
+    echo "<<undecidable>>" 
 else
-    # only one option, print just the ID
-    docker ps -q --filter="name=$1"
-    printf '%s' "$output" 
+    match_printf_docker_columns "$cmd" "$pattern" '%s\n' 1 1>&2 
 fi
-
 
