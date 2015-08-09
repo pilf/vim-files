@@ -91,3 +91,4 @@ alias boot2docker-start='$(/usr/local/bin/boot2docker shellinit) && $(/usr/local
 # Docker specific
 alias dcn=container-named.sh
 alias din=docker-image-one.sh
+alias de=docker-exec.sh
