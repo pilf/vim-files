@@ -1,0 +1,2 @@
+#!/bin/sh
+markdown README.md | lynx -vikeys -stdin
