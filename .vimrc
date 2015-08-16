@@ -211,7 +211,7 @@ nmap <leader>n. :new %:p:h/
 nmap <leader>hl :set hlsearch!<CR>
 nmap <leader>scl :set cursorline!<CR>
 nmap <leader>scc :set cursorcolumn!<CR>
-nmap <leader>sww :set wrap!<CR>
+nmap <leader>sw :set wrap!<CR>
 
 set clipboard=unnamed
 " uisng pbcopy, from: http://stackoverflow.com/questions/677986/vim-copy-selection-to-os-x-clipboard
