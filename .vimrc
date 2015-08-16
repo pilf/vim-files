@@ -273,11 +273,15 @@ set nospell
 command! Copyfile let @*=substitute(expand("%:p"), '/', '\', 'g')
 nnoremap <Leader>cf :Copyfile<CR>
 
-noremap <leader>soc <ESC>"=strftime("%A %F - %R")<CR>p
+" Markdown helpers
+nmap <leader>md= yypv$hr=
+
+nmap <leader>soc <ESC>"=strftime("%A %F - %R")<CR>p
 nnoremap <leader>scr :r !today<CR><ESC>A/scratch.txt<ESC>
 nnoremap <leader>today o<ESC>"=strftime("%F")<CR>p
 inoremap <leader>today <ESC>"=strftime("%F")<CR>pa
 imap <leader>now <ESC>"=strftime("%H%M")<CR>pa
+nmap <leader>dnew /EOF<CR>(()o<CR><ESC><leader>soc<leader>md=o<CR>
 
 noremap <leader>later o<ESC>i<CR><ESC>"=". . . " . strftime("%R") . " . . ."<CR>pA<CR><CR><ESC>
 
