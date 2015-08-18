@@ -86,9 +86,10 @@ alias gll="ssh-tmux philip@grasslands"
 alias glr="ssh-tmux philip@grasslands.no-ip.org" 
 
 # OS X specific
-alias boot2docker-start='$(/usr/local/bin/boot2docker shellinit) && $(/usr/local/bin/boot2docker up)'
+alias boot2docker-start='eval $(/usr/local/bin/boot2docker shellinit) && $(/usr/local/bin/boot2docker up)'
 
 # Docker specific
 alias dcn=container-named.sh
 alias din=docker-image-one.sh
 alias de=docker-exec.sh
+alias devbox='docker-exec.sh devbox bash;echo'
