@@ -78,6 +78,7 @@ alias gc='g -c $@'
 alias ct='cd $(today)'
 alias ts=tmux-simple 
 alias hog="tree --du -h | egrep -v '[0-9]K?\]'"
+alias vims="vim -c \"let g:session_directory = '$(g vim-sessions 2>/dev/null || printf $HOME)'|let g:session_autoload = 'yes'|let g:session_autosave = 'yes'|let g:session_autosave_periodic = 1\""
 
 # Grasslands specific
 alias gllex="ssh-tmux philip@elixir-erl17"

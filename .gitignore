@@ -3,3 +3,4 @@
 .netrwhist
 .DS_Store
 .tmux.conf.*
+.vim/sessions/

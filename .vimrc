@@ -285,6 +285,9 @@ imap <leader>now <ESC>"=strftime("%H%M")<CR>pa
 nmap <leader>dnew /EOF<CR>(()o<CR><ESC><leader>soc<leader>md=o<CR>
 nmap <leader>dl /EOF<CR>(()k<leader>latera
 
+let g:session_autoload = 'no'
+let g:session_autosave = 'no' 
+let g:session_autosave_periodic = 0
 
 command! -complete=shellcmd -nargs=+ Shell call s:RunShellCommand(<q-args>)
 function! s:RunShellCommand(cmdline)

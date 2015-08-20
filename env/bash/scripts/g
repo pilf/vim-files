@@ -109,8 +109,9 @@ fi
 
 place=$(sed -n -e "s/^$shortname:\(.*\)$/\1/p" $places)
 if [ -z "$place" ]; then
-    echo "Place '$shortname' not found, known locations:"
-    display_known_locations
+    echo "Place '$shortname' not found, known locations:" >&2
+    display_known_locations >&2
+    exit 2
 else
     printf "$place"
 fi
