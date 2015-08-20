@@ -1,4 +1,4 @@
 #!/bin/sh
-prefix=$1
+prefix=${1-"scratch"}
 
-echo $(today)/$1-$(now)
+echo $(today)/$prefix-$(now)
