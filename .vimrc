@@ -97,6 +97,7 @@ set wildmode=longest,list,full
 set wildmenu
 "set wildchar=<Tab>
 set completeopt=menu,longest
+set complete=.,w,b,u,t,i,kspell
 
 set cursorline
 
