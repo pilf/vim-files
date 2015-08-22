@@ -97,9 +97,22 @@ set wildmode=longest,list,full
 set wildmenu
 "set wildchar=<Tab>
 set completeopt=menu,longest
-" because of my tmux setup need to re-map C-k,l
-inoremap <Nul>l <C-x><C-l>
 
+set complete=.,w,b,u,t,i,kspell
+" because of my tmux setup need to re-map C-k,l 
+inoremap <Nul>] <C-x><C-]>
+inoremap <Nul>d <C-x><C-D>
+inoremap <Nul>e <C-x><C-E>
+inoremap <Nul>f <C-x><C-F>
+inoremap <Nul>i <C-x><C-I>
+inoremap <Nul>k <C-x><C-K>
+inoremap <Nul>l <C-x><C-L>
+inoremap <Nul>n <C-x><C-N>
+inoremap <Nul>o <C-x><C-O>
+inoremap <Nul>ps <C-x><C-P>
+inoremap <Nul>u <C-x><C-U>
+inoremap <Nul>v <C-x><C-V>
+inoremap <Nul>y <C-x><C-Y>
 
 set cursorline
 
