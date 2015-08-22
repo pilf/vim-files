@@ -72,7 +72,7 @@ function! CdToThis()
 endfunction
 com! CdToThis call CdToThis()
 
-set viminfo='100,<500,s10,h,!
+set viminfo='1000,f1,<500,s10,h,!
 
 " Tabs etc
 set shiftwidth=4
