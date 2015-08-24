@@ -109,7 +109,7 @@ inoremap <Nul>k <C-x><C-K>
 inoremap <Nul>l <C-x><C-L>
 inoremap <Nul>n <C-x><C-N>
 inoremap <Nul>o <C-x><C-O>
-inoremap <Nul>ps <C-x><C-P>
+inoremap <Nul>p <C-x><C-P>
 inoremap <Nul>u <C-x><C-U>
 inoremap <Nul>v <C-x><C-V>
 inoremap <Nul>y <C-x><C-Y>
