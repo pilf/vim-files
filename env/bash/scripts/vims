@@ -1,7 +1,25 @@
-#!/bin/sh
+#!/bin/bash
 
-session=${1:-default}
-vim -c "let g:session_directory = '$(g vim-sessions 2>/dev/null || printf $HOME)'|
-        let g:session_autosave = 'yes'|
-        let g:session_autosave_periodic = 1|
-        OpenSession $session"
+session=$1
+
+if [ -z "$session" ]; then
+    ls $(g vim-sessions) | sed -e 's/\(.*\).vim$/\1/'
+    exit 0
+fi
+
+if ls $(g vim-sessions) | grep -q "$session"; then
+    echo "Opening $session"
+
+    vim -c "let g:session_directory = '$(g vim-sessions 2>/dev/null || printf $HOME)'|
+            let g:session_autosave = 'yes'|
+            let g:session_autosave_periodic = 1|
+            OpenSession $session" 
+else
+    echo "session doesn't exist. Creating..."
+    #vim -c "let g:session_directory = '$(g vim-sessions 2>/dev/null || printf $HOME)'|
+    #        let g:session_autosave = 'yes'|
+    #        let g:session_autoload = 'no'|
+    #        let g:session_autosave_periodic = 1|
+    #        SaveSession $session"
+fi
+
