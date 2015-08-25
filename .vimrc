@@ -114,6 +114,9 @@ inoremap <Nul>u <C-x><C-U>
 inoremap <Nul>v <C-x><C-V>
 inoremap <Nul>y <C-x><C-Y>
 
+" Other casualties of the tmux setup:
+imap <leader>k <C-K>
+
 set cursorline
 
 " http://vim.wikia.com/wiki/Backspace_and_delete_problems
@@ -187,8 +190,12 @@ autocmd BufNewFile,BufRead *.toneq set syntax=toneq
 nnoremap <leader>rfhtml :TO<CR>:w<CR>:!open -a Safari %<CR><CR>
 
 "autocmd VimEnter * SessionOpenLast
-nnoremap <leader>a ggVG<CR>
-nnoremap <leader>A :%y+<CR>
+
+"disabling this in favor of other things; don't use it really
+"nnoremap <leader>a ggVG<CR> 
+
+" Yanks to end of file... left it in because + is interesting; as I understand it % tranlsate to <1,%> that a '+' after the is added to the line number ($+1?)... I think this is pointless in this case but don't know for sure.
+nnoremap <leader>Y :%y+<CR>
 
 "vimdiff, force line wrapping (http://stackoverflow.com/questions/16840433/forcing-vimdiff-to-wrap-lines)
 autocmd FilterWritePre * if &diff | setlocal wrap< | endif
