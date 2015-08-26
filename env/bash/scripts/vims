@@ -1,6 +1,12 @@
 #!/bin/bash
 
 session=$1
+sessiondir=$(g vim-sessions 2> /dev/null || printf "")
+
+if [ -z "$sessiondir" ]; then
+    echo "Error: no 'vim-sessions' place defined.  (Required)" >&2
+    exit 1
+fi
 
 if [ -z "$session" ]; then
     ls $(g vim-sessions) | sed -e 's/\(.*\).vim$/\1/'
@@ -10,16 +16,16 @@ fi
 if ls $(g vim-sessions) | grep -q "$session"; then
     echo "Opening $session"
 
-    vim -c "let g:session_directory = '$(g vim-sessions 2>/dev/null || printf $HOME)'|
+    vim -c "let g:session_directory = '$sessiondir'|
             let g:session_autosave = 'yes'|
             let g:session_autosave_periodic = 1|
             OpenSession $session" 
 else
     echo "session doesn't exist. Creating..."
-    #vim -c "let g:session_directory = '$(g vim-sessions 2>/dev/null || printf $HOME)'|
-    #        let g:session_autosave = 'yes'|
-    #        let g:session_autoload = 'no'|
-    #        let g:session_autosave_periodic = 1|
-    #        SaveSession $session"
+    vim -c "let g:session_directory = '$(g vim-sessions 2>/dev/null || printf $HOME)'|
+            let g:session_autosave = 'yes'|
+            let g:session_autoload = 'no'|
+            let g:session_autosave_periodic = 1|
+            SaveSession $session"
 fi
 
