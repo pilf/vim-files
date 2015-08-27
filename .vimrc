@@ -211,6 +211,7 @@ inoremap <leader>pi \|><Space>
 noremap <leader>tsx :set syntax=toneq<CR>
 noremap <leader>tin <ESC>A<Space>(<BAR><Space><Space><BAR>)<esc>2hi
 noremap <leader>ton <ESC>o(<BAR><CR><CR><BAR>)<esc>ki
+nmap <leader>tnew G?>>TODOs?201.-..-..$V/^$k"aygvo:.!now -D"apdd
 " test as in t-est as in task estimation
 inoremap <leader>test -\|\|-<SPACE><ESC>F\|i
 nnoremap <leader>ta oT<SPACE>
@@ -298,6 +299,7 @@ nnoremap <Leader>cf :Copyfile<CR>
 
 " Markdown helpers
 nmap <leader>md= yypv$hr=
+nmap <leader>md- yypv$hr-
 
 nmap <leader>soc <ESC>"=strftime("%A %F - %R")<CR>p
 nnoremap <leader>scr :r !today<CR><ESC>A/scratch.txt<ESC>
@@ -307,7 +309,6 @@ nmap <leader>later o<ESC>i<CR><ESC>"=". . . " . strftime("%R") . " . . ."<CR>pA<
 imap <leader>now <ESC>"=strftime("%H%M")<CR>pa
 nmap <leader>dnew /EOF<CR>(()o<CR><ESC><leader>soc<leader>md=o<CR>
 nmap <leader>dl /EOF<CR>(()k<leader>latera
-nmap <leader>tnew G?>>TODOs?201.-..-..$V/^$k"aygvo:.!now -D"apdd
 
 let g:session_autoload = 'no'
 let g:session_autosave = 'no' 

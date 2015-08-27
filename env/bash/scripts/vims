@@ -13,16 +13,18 @@ if [ -z "$session" ]; then
     exit 0
 fi
 
+
 if ls $(g vim-sessions) | grep -q "$session"; then
     echo "Opening $session"
-
-    vim -c "let g:session_directory = '$sessiondir'|
+    # note the exec is to make sure tmux see vim as the BASH_COMMAND
+    # see: http://askubuntu.com/questions/247807/run-program-from-a-shell-script-but-behave-as-one-process-only
+    exec vim -c "let g:session_directory = '$sessiondir'|
             let g:session_autosave = 'yes'|
             let g:session_autosave_periodic = 1|
             OpenSession $session" 
 else
     echo "session doesn't exist. Creating..."
-    vim -c "let g:session_directory = '$(g vim-sessions 2>/dev/null || printf $HOME)'|
+    exec vim -c "let g:session_directory = '$(g vim-sessions 2>/dev/null || printf $HOME)'|
             let g:session_autosave = 'yes'|
             let g:session_autoload = 'no'|
             let g:session_autosave_periodic = 1|
