@@ -91,7 +91,7 @@ alias glld="ssh-tmux-docker philip@grasslands"
 alias glrd="ssh-tmux-docker philip@grasslands.no-ip.org" 
 
 # EC2 specific
-alias ec2="ssh-pem-tmux ec2-user@ec2-52-19-100-128.eu-west-1.compute.amazonaws.com keys/motheralianpair.pem"
+alias ec2="ssh-pem-tmux ubuntu@ec2-52-19-100-128.eu-west-1.compute.amazonaws.com keys/motheralianpair.pem"
 
 # OS X specific
 alias boot2docker-start='eval $(/usr/local/bin/boot2docker shellinit) && $(/usr/local/bin/boot2docker up)'
