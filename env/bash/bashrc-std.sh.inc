@@ -87,6 +87,8 @@ alias gllex="ssh-tmux philip@elixir-erl17"
 alias glrex="ssh philip@grasslands.no-ip.org -t bash -c \"'bin/scripts/ssh-tmux philip@elixir-erl17'\""
 alias gll="ssh-tmux philip@grasslands"
 alias glr="ssh-tmux philip@grasslands.no-ip.org" 
+alias glld="ssh-tmux-docker philip@grasslands"
+alias glrd="ssh-tmux-docker philip@grasslands.no-ip.org" 
 
 # OS X specific
 alias boot2docker-start='eval $(/usr/local/bin/boot2docker shellinit) && $(/usr/local/bin/boot2docker up)'
