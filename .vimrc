@@ -315,6 +315,7 @@ nmap <leader>later o<ESC>i<CR><ESC>"=". . . " . strftime("%R") . " . . ."<CR>pA<
 imap <leader>now <ESC>"=strftime("%H%M")<CR>pa
 nmap <leader>dnew /EOF<CR>(()o<CR><ESC><leader>soc<leader>md=o<CR>
 nmap <leader>dl /EOF<CR>(()k<leader>latera
+nmap <leader>dday :new `now -d`.md<CR><leader>soc<leader>md=o<CR>
 
 let g:session_autoload = 'no'
 let g:session_autosave = 'no' 
