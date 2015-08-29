@@ -117,6 +117,12 @@ inoremap <Nul>y <C-x><C-Y>
 " Other casualties of the tmux setup:
 imap <leader>k <C-K>
 
+augroup CursorLineOnlyInActiveWindow
+  autocmd!
+  autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  autocmd WinLeave * setlocal nocursorline
+augroup END
+
 set cursorline
 
 " http://vim.wikia.com/wiki/Backspace_and_delete_problems
