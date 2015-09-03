@@ -15,7 +15,7 @@ set background=dark
 set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
 set laststatus=2
 
-if $TERM != 'xterm-256color'
+if $TERM != 'xterm-256color' || $TERM != 'screen-256color'
     colorscheme elflord
 else
     colorscheme distinguished
