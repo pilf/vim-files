@@ -1,0 +1,10 @@
+#!/bin/sh
+
+program=$1
+
+if [ -z "$1" ]; then
+    echo "Usage: cat-which program_name" >&2
+    exit 1
+fi
+
+cat $(which "$program")
