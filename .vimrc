@@ -295,6 +295,15 @@ nmap <leader>wh <C-W>t<C-W>H
 nmap <leader>wj <C-W>t<C-W>J
 nmap <leader>wk <C-W>t<C-W>K
 
+nmap <leader>brsp :botright sp<CR>
+nmap <leader>brvsp :botright vsp<CR>
+nmap <leader>brnew :botright new<CR>
+nmap <leader>brvnew :botright vnew<CR>
+nmap <leader>tlsp :topleft sp<CR>
+nmap <leader>tlvsp :topleft vsp<CR>
+nmap <leader>tlnew :topleft new<CR>
+nmap <leader>tlvnew :topleft vnew<CR>
+
 set spell spelllang=en_gb
 nnoremap <leader>sp :set spell!<CR>
 inoremap <leader>sp <ESC>:set spell!<CR>
