@@ -3,5 +3,5 @@ if [ -z "$1" ]; then
     tmux ls
 else
     session_name=$1
-    tmux new-session -s $session_name 2> /dev/null || tmux attach -t $session_name
+    tmux -2 new-session -s $session_name 2> /dev/null || tmux -2 attach -t $session_name
 fi
