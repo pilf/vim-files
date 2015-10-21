@@ -227,6 +227,7 @@ nnoremap <leader>ta3 oT<SPACE><ESC>3a.<SPACE><ESC>A
 nnoremap <leader>ta4 oT<SPACE><ESC>4a.<SPACE><ESC>A
 nnoremap <leader>ta5 oT<SPACE><ESC>5a.<SPACE><ESC>A
 nnoremap <leader>ta6 oT<SPACE><ESC>6a.<SPACE><ESC>A
+nmap <leader>tcn A - c:<ESC>"=strftime("%H%M")<CR>p
 
 " gf (goto file) such that it will create a new file if it doesn't exist... (http://stackoverflow.com/questions/1050745/unable-to-create-a-file-from-a-path-in-vim)
 nmap gf :e <cfile><CR>
