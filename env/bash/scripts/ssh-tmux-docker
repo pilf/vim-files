@@ -1,15 +1,15 @@
 #!/bin/sh
 
-if [ $# -lt 2 ]; then
+if [ "$#" -lt 2 ]; then
     echo "Usage $0 <host> <container> [session]"
     echo "  e.g. $ ssh-tmux-docker devapi dev-machine"
     echo "       $ ssh-tmux-docker devapi philip@dev-machine my-tmux-session-name"
     exit 1
 fi
 
-target=$1
-$container=$2
-session=${3:-general}
+target="$1"
+container="$2"
+session="${3:-general}"
 
 echo "Attempt to log into $target"
 ssh $target -t "docker exec -ti \$(\$HOME/bin/scripts/container-named.sh $container) script /dev/null -c 'export TERM=screen-256color && /home/dev/bin/scripts/tmux-simple $session'"
