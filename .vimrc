@@ -15,7 +15,7 @@ set background=dark
 set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
 set laststatus=2
 
-if $TERM != 'xterm-256color'
+if $TERM != 'xterm-256color' || $TERM != 'screen-256color'
     colorscheme elflord
 else
     colorscheme distinguished
@@ -227,6 +227,7 @@ nnoremap <leader>ta3 oT<SPACE><ESC>3a.<SPACE><ESC>A
 nnoremap <leader>ta4 oT<SPACE><ESC>4a.<SPACE><ESC>A
 nnoremap <leader>ta5 oT<SPACE><ESC>5a.<SPACE><ESC>A
 nnoremap <leader>ta6 oT<SPACE><ESC>6a.<SPACE><ESC>A
+nmap <leader>tcn A - c:<ESC>"=strftime("%H%M")<CR>p
 
 " gf (goto file) such that it will create a new file if it doesn't exist... (http://stackoverflow.com/questions/1050745/unable-to-create-a-file-from-a-path-in-vim)
 nmap gf :e <cfile><CR>
@@ -295,6 +296,15 @@ nmap <leader>wh <C-W>t<C-W>H
 nmap <leader>wj <C-W>t<C-W>J
 nmap <leader>wk <C-W>t<C-W>K
 
+nmap <leader>brsp :botright sp<CR>
+nmap <leader>brvsp :botright vsp<CR>
+nmap <leader>brnew :botright new<CR>
+nmap <leader>brvnew :botright vnew<CR>
+nmap <leader>tlsp :topleft sp<CR>
+nmap <leader>tlvsp :topleft vsp<CR>
+nmap <leader>tlnew :topleft new<CR>
+nmap <leader>tlvnew :topleft vnew<CR>
+
 set spell spelllang=en_gb
 nnoremap <leader>sp :set spell!<CR>
 inoremap <leader>sp <ESC>:set spell!<CR>
@@ -315,10 +325,16 @@ nmap <leader>later o<ESC>i<CR><ESC>"=". . . " . strftime("%R") . " . . ."<CR>pA<
 imap <leader>now <ESC>"=strftime("%H%M")<CR>pa
 nmap <leader>dnew /EOF<CR>(()o<CR><ESC><leader>soc<leader>md=o<CR>
 nmap <leader>dl /EOF<CR>(()k<leader>latera
+nmap <leader>dday :new `now -d`.md<CR>10i<CR><ESC>oEOF.<ESC>gg<leader>soc<leader>md=o<CR>
 
 let g:session_autoload = 'no'
 let g:session_autosave = 'no' 
 let g:session_autosave_periodic = 0
+
+"source: http://vim.wikia.com/wiki/Identify_the_syntax_highlighting_group_used_at_the_cursor
+map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 command! -complete=shellcmd -nargs=+ Shell call s:RunShellCommand(<q-args>)
 function! s:RunShellCommand(cmdline)

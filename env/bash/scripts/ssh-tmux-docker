@@ -1,15 +1,15 @@
 #!/bin/sh
 
-if [ -z "$1" ]; then
-    echo "Usage $0 <host> [session]"
-    echo "  e.g. $ ssh-tmux dev-machine"
-    echo "       $ ssh-tmux philip@dev-machine my-tmux-session-name"
+if [ "$#" -lt 2 ]; then
+    echo "Usage $0 <host> <container> [session]"
+    echo "  e.g. $ ssh-tmux-docker devapi dev-machine"
+    echo "       $ ssh-tmux-docker devapi philip@dev-machine my-tmux-session-name"
     exit 1
 fi
 
-target=$1
-session=${2:-general}
+target="$1"
+container="$2"
+session="${3:-general}"
 
 echo "Attempt to log into $target"
-#ssh $target -t "bash -c \"docker exec -ti $($HOME/bin/scripts/container-named.sh devbox) script /dev/null -c '/home/dev/bin/scripts/tmux-simple $session'\"
-ssh $target -t "docker exec -ti \$(\$HOME/bin/scripts/container-named.sh devbox) script /dev/null -c '/home/dev/bin/scripts/tmux-simple $session'"
+ssh $target -t "docker exec -ti \$(\$HOME/bin/scripts/container-named.sh $container) script /dev/null -c 'export TERM=screen-256color && /home/dev/bin/scripts/tmux-simple $session'"
