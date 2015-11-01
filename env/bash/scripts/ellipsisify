@@ -58,7 +58,7 @@ else
                 exit 1
         esac
     else
-        printf $input
+        printf "$input"
     fi
 fi
 
