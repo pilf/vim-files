@@ -1,1 +1,11 @@
 defaults write com.apple.dock expose-animation-duration -float 9.17 && killall Dock
+
+# jq
+cat output.json | jq '.[] | select(.payment_status != "public")'
+
+# ssh socks re-routing
+ssh -D 12345 philip@grasslands.no-ip.org
+# first check the current IP, go to: https://www.whatismyip.com/
+# then go into firefox and pref -> advanced -> settings
+# set SOCKS host to 127.0.0.1 with port used above (12345 in this example.)
+# for further paranoia, go to about:config and set network.proxy.socks_remote_dns to true
