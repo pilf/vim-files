@@ -9,5 +9,9 @@ if [ ! -f "$workbench_file" ]; then
     exit 2
 fi
 
-task=$(cat $workbench_file | sed -e '/^>>TODOs/,$d' | sed -n "/^$(now -D)/,\$p" | sed -n '/^[TE].*-\s*$/p' | tail -n 1)
-echo $task | sed -e 's/^.[ \.]*//' -e 's/\s*-\s*$//'
+task=$(cat $workbench_file | \
+    sed -e '/^>>TODOs/,$d' | \
+    sed -n "/^$(now -D)/,\$p" | \
+    sed -n '/^[TE].*- *$/p' | \
+    tail -n 1)
+echo $task | sed -e 's/^.[ \.]*//' -e 's/-\s*$//'
