@@ -1,19 +1,25 @@
 #!/bin/bash
 if [ -z "$1" ]; then
-    echo "usage: ellipsisify(input, [max-size=10, [,position='middle' [, ellipsis-string='…']]])"
-    echo "  input       - the string to ellipsisify"
-    echo "  max-size    - largest size output is permitted to be"
-    echo "  position    - where ellipse string is used to shorten, possible values:"
-    echo "                  middle (default),   e.g. '/some/longish/path' -> "/som..path""
-    echo "                  left,               e.g. '/some/longish/path' -> "/some/lo..""
-    echo "                  right,              e.g. '/some/longish/path' -> "..ish/path""
-    echo "  ellipsis-string - any string (len > 0), default '…'"
-    echo 
+cat <<EOF
+usage: ellipsisify(input, [max-size=10, [,position='middle' [, ellipsis-string='…']]])
+  input       - the string to ellipsisify
+  max-size    - largest size output is permitted to be
+  position    - where ellipse string is used to shorten, possible values:
+                  middle (default),   e.g. '/some/longish/path' -> "/som..path"
+                  left,               e.g. '/some/longish/path' -> "/some/lo.."
+                  right,              e.g. '/some/longish/path' -> "..ish/path"
+  ellipsis-string - any string (len > 0), default '…'
+
+Examples: 
+    $ ellipsisify "a string of some kind or rather" 25 middle "[ ... ]"
+    outputs: "a string [ ... ]or rather"
+EOF
 else
-    input=$1
+
+    input="$1"
     max_size=${2:-10}
     position=${3:-middle} 
-    ellipsis_string=${4:-…} 
+    ellipsis_string="${4:-…}"
     ellipsis_size=${#ellipsis_string}
     #printf "%d" $ellipsis_size
     #printf "%d" $max_size
@@ -36,7 +42,7 @@ else
                 bias=$(expr $aval_size % 2)
                 left_size=$(expr $min_sides_size + $bias)
                 right_size=$min_sides_size
-                # echo "vars: left_size=$left_size, right_size=$right_size aval_size=$aval_size, max_size=$max_size, input_size=$input_size"
+                echo "vars: left_size=$left_size, right_size=$right_size aval_size=$aval_size, max_size=$max_size, input_size=$input_size" >&2
                 [[ $right_size -gt 0 ]] && right_text=${input: -$right_size} || right_text=""
                 printf "${input:0:$left_size}$ellipsis_string$right_text"
                 ;;
@@ -52,7 +58,7 @@ else
                 exit 1
         esac
     else
-        printf $input
+        printf "$input"
     fi
 fi
 

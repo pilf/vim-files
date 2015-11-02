@@ -217,10 +217,11 @@ inoremap <leader>pi \|><Space>
 noremap <leader>tsx :set syntax=toneq<CR>
 noremap <leader>tin <ESC>A<Space>(<BAR><Space><Space><BAR>)<esc>2hi
 noremap <leader>ton <ESC>o(<BAR><CR><CR><BAR>)<esc>ki
-nmap <leader>tnew G?>>TODOs?201.-..-..$V/^$k"aygvo:.!now -D"apdd
+"nmap <leader>tnew G?>>TODOs?201.-..-..$V/^$k"aygvo:.!now -Di (:r!date "+%A""apdd
+nmap <leader>tnew G?>>TODOs(()mm?^201.-..-..V'mk"aygvo:.!now -DA (:r!date "+\%A"kJxA)"apdd
 " test as in t-est as in task estimation
-inoremap <leader>test -\|\|-<SPACE><ESC>F\|i
-nnoremap <leader>ta oT<SPACE>
+inoremap <leader>test [] - <ESC>F]"=strftime("%H%M")<CR>Pa·
+nnoremap <leader>ta oT<SPACE> 
 nnoremap <leader>ta1 oT<SPACE><ESC>1a.<SPACE><ESC>A
 nnoremap <leader>ta2 oT<SPACE><ESC>2a.<SPACE><ESC>A
 nnoremap <leader>ta3 oT<SPACE><ESC>3a.<SPACE><ESC>A
