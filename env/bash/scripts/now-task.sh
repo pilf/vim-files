@@ -12,8 +12,9 @@ fi
 task=$(cat $workbench_file | \
     sed -e '/^>>TODOs/,$d' | \
     sed -n "/^$(now -D)/,\$p" | \
-    sed -n '/^[TEG].*- *$/p' | \
+    sed -n '/^[TEGQ].*- *$/p' | \
     tail -n 1)
+
 task=$(echo $task | sed -e 's/^.[ \.]*//' -e 's/-\s*$//')
 if [ -z "$task" ]; then
     echo "*** idle ***"
