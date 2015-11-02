@@ -1,7 +1,7 @@
 syn match tqDaySep /^\d\d\d\d-\d\d-\d\d/
 syn match tqTask /^[TQG][ .]*/
-syn match tqEvent /^E[ .]*\[.*\]/
-syn match tqSet /^S[ .]*\[.*\]/
+syn match tqEvent /^E[ .]*\[[0-9:]*\]/
+syn match tqSet /^S[ .]*\[[0-9:]*\]/
 syn region tqNote start=/(|/ end=/|)/
 
 hi def link tqDaySep Statement
