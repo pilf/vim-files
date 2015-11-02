@@ -14,4 +14,9 @@ task=$(cat $workbench_file | \
     sed -n "/^$(now -D)/,\$p" | \
     sed -n '/^[TE].*- *$/p' | \
     tail -n 1)
-echo $task | sed -e 's/^.[ \.]*//' -e 's/-\s*$//'
+task=$($task | sed -e 's/^.[ \.]*//' -e 's/-\s*$//')
+if [ -z "$task" ]; then
+    echo "*** idle ***"
+else
+    echo $task
+fi
