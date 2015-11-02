@@ -42,7 +42,7 @@ else
                 bias=$(expr $aval_size % 2)
                 left_size=$(expr $min_sides_size + $bias)
                 right_size=$min_sides_size
-                echo "vars: left_size=$left_size, right_size=$right_size aval_size=$aval_size, max_size=$max_size, input_size=$input_size" >&2
+                #echo "vars: left_size=$left_size, right_size=$right_size aval_size=$aval_size, max_size=$max_size, input_size=$input_size" >&2
                 [[ $right_size -gt 0 ]] && right_text=${input: -$right_size} || right_text=""
                 printf "${input:0:$left_size}$ellipsis_string$right_text"
                 ;;
