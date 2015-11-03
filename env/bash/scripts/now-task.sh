@@ -34,6 +34,7 @@ task=$(echo $task | sed -e 's/^.[ \.]*//' -e 's/-\s*$//')
 if [ -z "$task" ]; then
     echo "*** idle ***"
 else
-    remaining=$(mins_left $(echo "$task" | sed -E 's/^.*(\[[0-9]{4}·[0-9]{2}\])[ -]*$/\1/'))
-    echo $task | sed -E "s/\\[([0-9]{4}·[0-9]{2})\\][ -]*$/[\1:$remaining]/"
+    stripped_task=$(echo "$task" | sed -E 's/ \[.*\] - [sca]:[0-9]{1,}//g')
+    remaining=$(mins_left $(echo "$stripped_task" | sed -E 's/^.*(\[[0-9]{4}·[0-9]{2}\])[ -]*$/\1/'))
+    echo $stripped_task | sed -E "s/\\[([0-9]{4}·[0-9]{2})\\][ -]*$/[\1:$remaining]/"
 fi
