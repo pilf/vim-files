@@ -230,12 +230,12 @@ nnoremap <leader>ta5 oT<SPACE><ESC>5a.<SPACE><ESC>A
 nnoremap <leader>ta6 oT<SPACE><ESC>6a.<SPACE><ESC>A
 nmap <leader>tcn A - c:<ESC>"=strftime("%H%M")<CR>p
 nmap <leader>tnow G?-\s$A
-nmap <leader>tnt G?>>TODO((oT 
-nmap <leader>tng G?>>TODO((oG 
-nmap <leader>tnq G?>>TODO((oQ 
-nmap <leader>tne G?>>TODO((oE [] F[a
-" variant; quicker since doesn't have to see if <leader>tnew
-nmap <leader>tnE G?>>TODO((oE [] F[a
+nmap <leader>tnt G?>>TODO(()OT 
+nmap <leader>tng G?>>TODO(()OG 
+nmap <leader>tnq G?>>TODO(()OQ 
+nmap <leader>tne G?>>TODO(()OE [] F[a
+" variant; quicker since doesin't have to see if <leader>tnew
+nmap <leader>tnE G?>>TODO(()OE [] F[a
 
 " gf (goto file) such that it will create a new file if it doesn't exist... (http://stackoverflow.com/questions/1050745/unable-to-create-a-file-from-a-path-in-vim)
 nmap gf :e <cfile><CR>
