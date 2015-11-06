@@ -229,7 +229,13 @@ nnoremap <leader>ta4 oT<SPACE><ESC>4a.<SPACE><ESC>A
 nnoremap <leader>ta5 oT<SPACE><ESC>5a.<SPACE><ESC>A
 nnoremap <leader>ta6 oT<SPACE><ESC>6a.<SPACE><ESC>A
 nmap <leader>tcn A - c:<ESC>"=strftime("%H%M")<CR>p
-nmap <leader>tsee vi(k$oj0"ayda(kmm?\V=substitute(@a, "\n", '\\n', "g")?^20[0-9][0-9]-[0-9][0-9]-[0-9][0-9]veeeee"by'mA (\| see "bpa \|)
+nmap <leader>tnow G?-\s$A
+nmap <leader>tnt G?>>TODO((oT 
+nmap <leader>tng G?>>TODO((oG 
+nmap <leader>tnq G?>>TODO((oQ 
+nmap <leader>tne G?>>TODO((oE [] F[a
+" variant; quicker since doesn't have to see if <leader>tnew
+nmap <leader>tnE G?>>TODO((oE [] F[a
 
 " gf (goto file) such that it will create a new file if it doesn't exist... (http://stackoverflow.com/questions/1050745/unable-to-create-a-file-from-a-path-in-vim)
 nmap gf :e <cfile><CR>
@@ -337,8 +343,6 @@ let g:session_autosave_periodic = 0
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
-
-:com! -nargs=1 Search :let @/='\V'.escape(<q-args>, '\/')| normal! n
 
 command! -complete=shellcmd -nargs=+ Shell call s:RunShellCommand(<q-args>)
 function! s:RunShellCommand(cmdline)
