@@ -230,12 +230,24 @@ nnoremap <leader>ta5 oT<SPACE><ESC>5a.<SPACE><ESC>A
 nnoremap <leader>ta6 oT<SPACE><ESC>6a.<SPACE><ESC>A
 nmap <leader>tcn A - c:<ESC>"=strftime("%H%M")<CR>p
 nmap <leader>tnow G?-\s$A
+nmap <leader>t< 0:s/^\([TGEQ]\)\( \.\)/\1
+nmap <leader>t> 0:s/^\([TGEQ]\)/\1 .
+" a million and one ways to make tasks/goals/questions/events
+" tn? = Toneq new, ts? = Toneq (new) sibling, tc? = Toneq (new) child
 nmap <leader>tnt G?>>TODO(()OT 
 nmap <leader>tng G?>>TODO(()OG 
 nmap <leader>tnq G?>>TODO(()OQ 
 nmap <leader>tne G?>>TODO(()OE [] F[a
 " variant; quicker since doesin't have to see if <leader>tnew
 nmap <leader>tnE G?>>TODO(()OE [] F[a
+nmap <leader>tst yyp:s/^\([TGEQ]\)\([ \.]*\).*$/T\2A
+nmap <leader>tsg yyp:s/^\([TGEQ]\)\([ \.]*\).*$/G\2A
+nmap <leader>tsq yyp:s/^\([TGEQ]\)\([ \.]*\).*$/Q\2A
+nmap <leader>tse yyp:s/^\([TGEQ]\)\([ \.]*\).*$/E\2[] f[a
+nmap <leader>tct yyp:s/^\([TGEQ]\)\([ \.]*\).*$/T .\2A
+nmap <leader>tcg yyp:s/^\([TGEQ]\)\([ \.]*\).*$/G .\2A
+nmap <leader>tcq yyp:s/^\([TGEQ]\)\([ \.]*\).*$/Q .\2A
+nmap <leader>tce yyp:s/^\([TGEQ]\)\([ \.]*\).*$/E .\2[] f[a
 
 " gf (goto file) such that it will create a new file if it doesn't exist... (http://stackoverflow.com/questions/1050745/unable-to-create-a-file-from-a-path-in-vim)
 nmap gf :e <cfile><CR>
