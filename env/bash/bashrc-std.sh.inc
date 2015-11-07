@@ -103,3 +103,7 @@ alias de=docker-exec.sh
 
 # Git specific
 alias gitdiff="GIT_PAGER='vim -R -' git diff --no-color"
+
+# Tmux specific
+alias ppid='ps -o ppid= -p'
+alias tmux-tree="pstree $(ppid $$)"
