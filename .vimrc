@@ -214,9 +214,9 @@ inoremap <leader>pi \|><Space>
 "resizing stuff 
 
 " Toneq stuff
-noremap <leader>tsx :set syntax=toneq<CR>
-noremap <leader>tin <ESC>A<Space>(<BAR><Space><Space><BAR>)<esc>2hi
-noremap <leader>ton <ESC>o(<BAR><CR><CR><BAR>)<esc>ki
+nmap <leader>tsx :set syntax=toneq<CR>
+imap <leader>tin <ESC>A<Space>(<BAR><Space><Space><BAR>)<esc>2hi
+nmap <leader>ton <ESC>o(<BAR><CR><CR><BAR>)<esc>ki
 "nmap <leader>tnew G?>>TODOs?201.-..-..$V/^$k"aygvo:.!now -Di (:r!date "+%A""apdd
 nmap <leader>tnew G?>>TODOs(()mm?^201.-..-..V'mk"aygvo:.!now -DA (:r!date "+\%A"kJxA)"apdd
 " test as in t-est as in task estimation
@@ -229,7 +229,7 @@ nnoremap <leader>ta4 oT<SPACE><ESC>4a.<SPACE><ESC>A
 nnoremap <leader>ta5 oT<SPACE><ESC>5a.<SPACE><ESC>A
 nnoremap <leader>ta6 oT<SPACE><ESC>6a.<SPACE><ESC>A
 nmap <leader>tcn A - c:<ESC>"=strftime("%H%M")<CR>p
-nmap <leader>tnow G?-\s$A
+nmap <leader>tnow G?-\s*$A
 nmap <leader>t< 0:s/^\([TGEQ]\)\( \.\)/\1
 nmap <leader>t> 0:s/^\([TGEQ]\)/\1 .
 " a million and one ways to make tasks/goals/questions/events
