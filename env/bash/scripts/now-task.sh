@@ -2,7 +2,7 @@
 
 function mins_left
 {
-    parsed=$(echo "$1" | sed -E 's/\[([0-9]{2})([0-9]{2})·([0-9]{1,})\]/\1:\2 \3/')
+    parsed=$(echo "$1" | sed -E 's/\[([0-9]{2})([0-9]{2})·([0-9]+)\]/\1:\2 \3/')
     if [ "$parsed" != "$1" ]; then
         # parse successful 
         start=$(echo "$parsed" | sed -E 's/ .*$//')
@@ -34,7 +34,7 @@ task=$(echo $task | sed -e 's/^.[ \.]*//' -e 's/-\s*$//')
 if [ -z "$task" ]; then
     echo "*** idle ***"
 else
-    stripped_task=$(echo "$task" | sed -E 's/ \[.*\] - [sca]:[0-9]{1,}//g')
-    remaining=$(mins_left $(echo "$stripped_task" | sed -E 's/^.*(\[[0-9]{4}·[0-9]{2}\])[ -]*$/\1/'))
-    echo $stripped_task | sed -E "s/\\[([0-9]{4}·[0-9]{2})\\][ -]*$/[\1:$remaining]/"
+    stripped_task=$(echo "$task" | sed -E 's/ \[.*\] - [sca]:[0-9]+//g')
+    remaining=$(mins_left $(echo "$stripped_task" | sed -E 's/^.*(\[[0-9]{4}·[0-9]+\])[ -]*$/\1/'))
+    echo $stripped_task | sed -E "s/\\[([0-9]{4}·[0-9]+)\\][ -]*$/[\1:$remaining]/"
 fi

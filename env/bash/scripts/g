@@ -7,8 +7,10 @@ function home_shorten {
 }
 
 function display_known_locations {
-    echo --
-    cat $places | sort | home_shorten | awk 'BEGIN{FS=":"}{printf "%-15s %s\n", $1, $2}' 
+    # place=$(sed -n -e "s/^.*$shortname.*:\(.*\)$/\1/p" $places)
+
+    matching="$1"
+    cat $places | sort | home_shorten | awk 'BEGIN{FS=":"}{printf "%-15s %s\n", $1, $2}' | grep "${matching}.* "
 }
 
 function display_known_locations_path {
@@ -98,21 +100,33 @@ fi
 
 touch $places
 if [ -n "$create_mode" ]; then
-    # remove any pre-existing entry
+    # remove any pre-existing entry (see -i option)
     sed -i.sedbk "/^$shortname:.*/d" $places
     rm $places.sedbk
+
     echo "$shortname:$(abspath $create_mode)" >>$places
     echo "Successfully added $shortname, known locations now:"
     display_known_locations
     exit 0
 fi
 
-place=$(sed -n -e "s/^$shortname:\(.*\)$/\1/p" $places)
+place=$(sed -n -e "s/^.*$shortname.*:\(.*\)$/\1/p" $places)
 if [ -z "$place" ]; then
     echo "Place '$shortname' not found, known locations:" >&2
     display_known_locations >&2
     exit 2
 else
+    count="$(printf "$place\n" | wc -l)"
+    if [ "$count" -gt 1 ]; then
+        # try exact match
+        place=$(sed -n -e "s/^$shortname:\(.*\)$/\1/p" $places) 
+        if [ -z "$place" ]; then
+            echo "Error, more than one possibility found:" >&2
+            echo "--" >&2
+            display_known_locations "$shortname" >&2
+            exit 3
+        fi
+    fi
     printf "$place"
 fi
 
