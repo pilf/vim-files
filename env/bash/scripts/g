@@ -120,13 +120,15 @@ else
     if [ "$count" -gt 1 ]; then
         # try exact match
 
-        exact_candidate=$(printf "$candidates" | sed -n -e "/^$shortname:.*$/p")
+        exact_candidate="$(printf "$candidates" | sed -n -e "/^$shortname:.*$/p")"
 
         if [ -z "$exact_candidate" ] || [ $(printf "$exact_candidate" | wc -l) -gt 1 ]; then
             echo "Error, more than one possibility found:" >&2
             echo "--" >&2
             display_known_locations "$candidates" >&2
             exit 3
+        else
+            candidates="$exact_candidate"
         fi
     fi
     printf "$candidates" | sed "s/.*:\(.*\)$/\1/"
