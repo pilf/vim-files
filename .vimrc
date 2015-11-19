@@ -87,6 +87,10 @@ nnoremap <leader>tx :set et
 nnoremap <leader>t2 :set shiftwidth=2<CR>:set tabstop=2<CR>:set sts=2<CR>
 nnoremap <leader>t4 :set shiftwidth=4<CR>:set tabstop=4<CR>:set sts=4<CR>
 
+" <ESC> alternative
+imap jk <ESC>
+vmap jk <ESC>
+
 set lbr
 
 " will automatically update file if changed externally (supressing W11 error)
