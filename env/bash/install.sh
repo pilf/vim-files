@@ -15,7 +15,8 @@ ln -s "$basedir/.irssi" $HOME
 if [[ -f $HOME/.gitconfig ]]; then
     echo "Moving pre-exisitng ~/.gitconfig to ~/.gitconfig.old"
     mv $HOME/.gitconfig $HOME/.gitconfig.old
-    ln -s "$basedir/.gitconfig" $HOME
+    # copy rather than link (not every machine will have same credientails but useful start for 10)
+    cp "$basedir/.gitconfig" $HOME
 fi
 
 if ! grep "bashrc-std.sh.inc" ~/.bashrc; then 

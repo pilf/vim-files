@@ -10,7 +10,9 @@ fi
 target=$1
 shift
 session=${1:-general}
-shift
+if [ $# -gt 0 ]; then
+    shift
+fi
 
 echo "Attempt to log into $target"
 
