@@ -2,7 +2,7 @@
 # Usage: clone-all.sh [target_dir]
 # Note: Will use $(g $DEFAULT_SRC_SHORT_NAME) if available and no target_dir provided
 
-DEFAULT_SRC_SHORT_NAME=xacsrc
+DEFAULT_SRC_SHORT_NAME=pacsrc
 
 function default_dir {
     if dir="$(g $DEFAULT_SRC_SHORT_NAME 2> /dev/null)"; then
@@ -44,5 +44,4 @@ fi
 cd $dir
 echo "Cloning into $(pwd)"
 export -f clone_or_pull
-ssh git@grasslands.no-ip.org 'ls /src' | grep '\.git$'
-#| for-all 'clone_or_pull $line'
+ssh git@grasslands.no-ip.org 'ls /src' | grep '\.git$' | for-all 'clone_or_pull $line'
