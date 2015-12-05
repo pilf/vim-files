@@ -51,27 +51,37 @@ function short_pwd {
     printf $(ellipsisify "$(pwd | sed "s|^$HOME|~|")" "$1")
 }
 
+function prompt_setup {
+    short_user="$1"
+    short_host=$(ellipsisify $HOSTNAME 5 left)
+    export PROMPT_COMMAND='__git_ps1 "\[\033[1;30m\]$short_user@$short_host\[\033[0m\]:\[\033[0;33m\]$(short_pwd 25)\[\033[0m\]" "\\\$ "'
+}
+
 pathadd $HOME/bin
 pathadd $HOME/bin/scripts
 # Should be conditinally included of course
 pathadd $HOME/bin/scripts/osx
 
 
-if [ "$bash4_path" != "" ]; then 
-    export tmux_shell=$bash4_path
+if [ "$shell_override" != "" ]; then 
+    export tmux_shell=$shell_override
 else
     export tmux_shell=/bin/bash
 fi
-if [[ "${BASH_VERSION::1}" -eq 4 ]]; then
+
+# zsh seems to need explict start (0)
+bashversion="${BASH_VERSION:0:1}"
+zshversion="${ZSH_VERSION:0:1}"
+
+if [ "$bashversion" -eq "4" ] || [ -n "$zshversion" ]; then
     #[[ $- == *i* ]] && git-promptn.sh
     source git-prompt.sh
     export GIT_PS1_SHOWCOLORHINTS=1
     export GIT_PS1_SHOWDIRTYSTATE=1
     user=$(whoami)
     short_user=$(ellipsisify $user 7 left)
-    short_host=$(ellipsisify $HOSTNAME 5 left)
-    export PROMPT_COMMAND='__git_ps1 "\[\033[1;30m\]$short_user@$short_host\[\033[0m\]:\[\033[0;33m\]$(short_pwd 25)\[\033[0m\]" "\\\$ "'
-fi
+    prompt_setup "$short_user"
+fi 
 
 alias c='function __gcd() { cd "$(g $1)"; unset -f __gcd; }; __gcd'
 alias gc='g -c $@'
