@@ -83,7 +83,7 @@ if [ "$bashversion" -eq "4" ] || [ -n "$zshversion" ]; then
     prompt_setup "$short_user"
 fi 
 
-unalias g
+unalias g 2> /dev/null
 alias c='function __gcd() { cd "$(g $1)"; unset -f __gcd; }; __gcd'
 alias gc='g -c $@'
 alias ct='cd $(today)'
