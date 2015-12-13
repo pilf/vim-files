@@ -11,8 +11,9 @@ ln -s "$basedir/.editrc" $HOME
 ln -s "$basedir/.inputrc" $HOME
 ln -s "$basedir/.iex.exs" $HOME
 ln -s "$basedir/.irssi" $HOME
+ln -s "$basedir/env/zsh/.zshrc" $HOME
 
-if [[ -f $HOME/.gitconfig ]]; then
+if [ -f $HOME/.gitconfig ]; then
     echo "Moving pre-exisitng ~/.gitconfig to ~/.gitconfig.old"
     mv $HOME/.gitconfig $HOME/.gitconfig.old
     # copy rather than link (not every machine will have same credientails but useful start for 10)
@@ -24,7 +25,7 @@ if ! grep "bashrc-std.sh.inc" ~/.bashrc; then
     echo "source \"$basedir/env/bash/bashrc-std.sh.inc\"" >> $HOME/.bashrc
 fi
 
-if [[ ! -d $HOME/bin ]]; then
+if [ ! -d $HOME/bin ]; then
     mkdir $HOME/bin
 fi
 ln -s "$basedir/env/bash/scripts" $HOME/bin

@@ -89,6 +89,7 @@ nnoremap <leader>t4 :set shiftwidth=4<CR>:set tabstop=4<CR>:set sts=4<CR>
 
 " <ESC> alternative
 imap jk <ESC>
+"vmap jk <ESC>
 
 set lbr
 
@@ -172,7 +173,7 @@ inoremap <leader>cp <C-r>=expand('%:p')<CR>
 " in normal mode this copies it into the "p register
 nnoremap <leader>cpp "=expand("%:p")<CR>:let @p=@%<CR>
 nnoremap <leader>cp: "=expand("%:p")<CR>:exec("! clear && echo -n " . shellescape(expand("%:p")) . " \| pbcopy")<CR><CR>
-nnoremap <leader>ep :echo @%<CR>
+nnoremap <leader>ep :echo expand("%:p")<CR>
 
 " nopaste / paste toggle (and then display new toggle value: "paste" or "nopaste")
 nnoremap <leader>np :set paste!<CR>:set paste?<CR>
@@ -215,6 +216,11 @@ inoremap <leader>pi \|><Space>
 "inoremap <leader><leader> <leader>
 
 "resizing stuff 
+
+" elixir stuf
+nmap <leader>eln Go###::SECTION###::FILE :r!echo $(now).exskJo###::OUTPUT###::END?SEea 
+nmap <leader>el_save ?###::SECTION/###::FILEfEwv$h"ayV/###::k:w! %:p_run/a
+nmap <leader>elr mm?###::SECTION/###::OUTPUTmn<leader>el_save'nyypO###::RUN :r!datekJj:.!/usr/bin/time -f'\%E real, \%U user, \%s sys' elixir %:p_run/amo`m 
 
 " Toneq stuff
 nmap <leader>tsx :set syntax=toneq<CR>

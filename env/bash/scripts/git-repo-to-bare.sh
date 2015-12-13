@@ -26,14 +26,10 @@ echo "$ git branch --set-upstream-to=origin/master"
 
 #
 # 2007  tar -czvf impetus.tar.gz impetus
-# 2008  mv impetus.tar.gz `today`
-# 2009  ls
-# 2010  sudo impetus.tar.gz `today`
-# 2011  sudo ./impetus.tar.gz `today`
 # 2012  sudo mv ./impetus.tar.gz `today`
-# 2013  ls
 # 2014  cd impetus
-# 2015  ls
 # 2016  mv .git ../impetus.git
 # 2017  cd ../impetus.git/
 # 2018  git config --bool core.bare true
+
+# *** SEE: init-new-repo.sh 
