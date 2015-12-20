@@ -221,10 +221,13 @@ inoremap <leader>pi \|><Space>
 
 " elixir stuf
 nmap <leader>eln Go###::SECTION###::FILE :r!echo $(now).exskJo###::SCRIPT###::OUTPUT###::END?SEea 
-" note: el_save puts file name "a (also the prefix 'j' (down) is a hack to make sure run works on SECTION line.
+" note: el_save puts file name @a (also the prefix 'j' (down) is a hack to make sure run works on SECTION line.
 nmap <leader>el_savefile j$?###::FILEfEwv$h"ayV/###::k:w! %:p_run/a
 nmap <leader>el_savescript $?###::SECTION/###::SCRIPTV/###::k:w! %:p_run/script.exs:r!sed -i -e 's/^\$\(.*\)/IO.inspect (\1)/g' %:p_run/script.exs
-nmap <leader>elr mm?###::SECTION/###::OUTPUTmo:r!mkdir -p %:p_run<leader>el_savefile<leader>el_savescript'oyypO###::RUN :r!datekJj:.!/usr/bin/time -f'\%E real, \%U user, \%s sys' elixir -r "%:p_run/a" "%:p_run/script.exs"mo`m 
+" assumes @a is filename and assigns cmd to @s
+nmap <leader>el_scriptcmd :let @s='elixir -r "%:p_run/a" "%:p_run/script.exs"'
+nmap <leader>elr mm?###::SECTION/###::OUTPUTmo:r!mkdir -p %:p_run<leader>el_savefile<leader>el_savescript<leader>el_scriptcmd'oyypO###::RUN :r!datekJj:.!time -p smoj3J`m 
+"nmap <leader>elr mm?###::SECTION/###::OUTPUTmo:r!mkdir -p %:p_run<leader>el_savefile<leader>el_savescript<leader>el_scriptcmd'oyypO###::RUN :r!datekJj:.!time -f'\%E real, \%U user, \%s sys' s \|\| time smo`m 
 " elixir clear
 nmap <leader>elc mm?###::SECTION/###::OUTPUTjV/###::ENDkd'm
 
