@@ -218,9 +218,13 @@ inoremap <leader>pi \|><Space>
 "resizing stuff 
 
 " elixir stuf
-nmap <leader>eln Go###::SECTION###::FILE :r!echo $(now).exskJo###::OUTPUT###::END?SEea 
-nmap <leader>el_save ?###::SECTION/###::FILEfEwv$h"ayV/###::k:w! %:p_run/a
-nmap <leader>elr mm?###::SECTION/###::OUTPUTmn<leader>el_save'nyypO###::RUN :r!datekJj:.!/usr/bin/time -f'\%E real, \%U user, \%s sys' elixir %:p_run/amo`m 
+nmap <leader>eln Go###::SECTION###::FILE :r!echo $(now).exskJo###::SCRIPT###::OUTPUT###::END?SEea 
+" note: el_save puts file name "a (also the prefix 'j' (down) is a hack to make sure run works on SECTION line.
+nmap <leader>el_savefile j$?###::FILEfEwv$h"ayV/###::k:w! %:p_run/a
+nmap <leader>el_savescript $?###::SECTION/###::SCRIPTV/###::k:w! %:p_run/script.exs:r!sed -i -e 's/^\$\(.*\)/IO.inspect (\1)/g' %:p_run/script.exs
+nmap <leader>elr mm?###::SECTION/###::OUTPUTmo<leader>el_savefile<leader>el_savescript'oyypO###::RUN :r!mkdir -p %:p_run:r!datekJj:.!/usr/bin/time -f'\%E real, \%U user, \%s sys' elixir -r "%:p_run/a" "%:p_run/script.exs"mo`m 
+" elixir clear
+nmap <leader>elc mm?###::SECTION/###::OUTPUTjV/###::ENDkd'm
 
 " Toneq stuff
 nmap <leader>tsx :set syntax=toneq<CR>
