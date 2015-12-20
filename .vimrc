@@ -351,7 +351,7 @@ nmap <leader>md= yypv$hr=
 nmap <leader>md- yypv$hr-
 
 nmap <leader>soc <ESC>"=strftime("%A %F - %R")<CR>p
-nnoremap <leader>scr :r !today<CR><ESC>A/scratch.txt<ESC>
+nnoremap <leader>scr :r !today<CR><ESC>A/scratch.md<ESC>
 nnoremap <leader>today o<ESC>"=strftime("%F")<CR>p
 inoremap <leader>today <ESC>"=strftime("%F")<CR>pa
 nmap <leader>later o<ESC>i<CR><ESC>"=". . . " . strftime("%R") . " . . ."<CR>pA<CR><CR><ESC>
