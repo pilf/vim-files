@@ -226,7 +226,7 @@ nmap <leader>el_savefile j$?###::FILEfEwv$h"ayV/###::k:w! %:p_run/a
 nmap <leader>el_savescript $?###::SECTION/###::SCRIPTV/###::k:w! %:p_run/script.exs:r!sed -i -e 's/^\$\(.*\)/IO.inspect (\1)/g' %:p_run/script.exs
 " assumes @a is filename and assigns cmd to @s
 nmap <leader>el_scriptcmd :let @s='elixir -r "%:p_run/a" "%:p_run/script.exs"'
-nmap <leader>elr mm?###::SECTION/###::OUTPUTmo:r!mkdir -p %:p_run<leader>el_savefile<leader>el_savescript<leader>el_scriptcmd'oyypO###::RUN :r!datekJj:.!time -p smoj3J`m 
+nmap <leader>elr mm?###::SECTION/###::OUTPUTmo:r!mkdir -p %:p_run<leader>el_savefile<leader>el_savescript<leader>el_scriptcmd'oyypO###::RUN :r!datekJj:.!time -p smo/###::3k3J`m 
 "nmap <leader>elr mm?###::SECTION/###::OUTPUTmo:r!mkdir -p %:p_run<leader>el_savefile<leader>el_savescript<leader>el_scriptcmd'oyypO###::RUN :r!datekJj:.!time -f'\%E real, \%U user, \%s sys' s \|\| time smo`m 
 " elixir clear
 nmap <leader>elc mm?###::SECTION/###::OUTPUTjV/###::ENDkd'm
