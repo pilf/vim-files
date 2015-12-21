@@ -262,7 +262,8 @@ nmap <leader>tce yyp:s/^\([TGEQ]\)\([ \.]*\).*$/E .\2[] f[a
 nmap gf :e <cfile><CR>
 nmap gff :e! <cfile><CR>
 nmap gfw :w<CR>:e <cfile><CR>
-nmap gfm :w<CR>:e <cfile><CR>mF<C-o>0v$h"fygv§:
+"nmap gfm :w<CR>:e <cfile><CR>mF<C-o>0v$h"fygv§:
+nmap gfm mMyyp:s/^\s*\([^\s].*\)$/\1/e<CR>:s/ /\\ /ge<CR>0"aDdd:w<CR>:e <C-r>a<CR>mF`M
 nmap g% :e %:p:h/<cfile><CR>
 
 " new files
