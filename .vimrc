@@ -160,6 +160,7 @@ noremap <leader>s :w<CR>
 noremap <leader>v v//e<CR> 
 noremap <leader>b :ls<CR>:buffer<Space>
 noremap <leader>ln :set nu!<CR>
+noremap <leader>lr :set relativenumber!<CR>
 "(note) To insert the elipsis, press ctrl-vu followed by the numeric code for elipsis: 2026
 noremap <leader>sb :set showbreak=…<CR>
 nnoremap <leader>wso :w \| so %<CR>
@@ -177,6 +178,7 @@ nnoremap <leader>ep :echo expand("%:p")<CR>
 
 " nopaste / paste toggle (and then display new toggle value: "paste" or "nopaste")
 nnoremap <leader>np :set paste!<CR>:set paste?<CR>
+inoremap <leader>np <C-o>:set paste!<CR><C-o>:set paste?<CR>
 
 nnoremap <leader>r q:?s\/<CR><CR>
 nnoremap <leader>rcs :w<CR>:Shell cat % \| coffee -s<CR>
@@ -218,9 +220,16 @@ inoremap <leader>pi \|><Space>
 "resizing stuff 
 
 " elixir stuf
-nmap <leader>eln Go###::SECTION###::FILE :r!echo $(now).exskJo###::OUTPUT###::END?SEea 
-nmap <leader>el_save ?###::SECTION/###::FILEfEwv$h"ayV/###::k:w! %:p_run/a
-nmap <leader>elr mm?###::SECTION/###::OUTPUTmn<leader>el_save'nyypO###::RUN :r!datekJj:.!/usr/bin/time -f'\%E real, \%U user, \%s sys' elixir %:p_run/amo`m 
+nmap <leader>eln Go###::SECTION###::FILE :r!echo $(now).exskJo###::SCRIPT###::OUTPUT###::END?SEea 
+" note: el_save puts file name @a (also the prefix 'j' (down) is a hack to make sure run works on SECTION line.
+nmap <leader>el_savefile j$?###::FILEfEwv$h"ayV/###::k:w! %:p_run/a
+nmap <leader>el_savescript $?###::SECTION/###::SCRIPTV/###::k:w! %:p_run/script.exs:r!sed -i -e 's/^\$\(.*\)/IO.inspect (\1)/g' %:p_run/script.exs
+" assumes @a is filename and assigns cmd to @s
+nmap <leader>el_scriptcmd :let @s='elixir -r "%:p_run/a" "%:p_run/script.exs"'
+nmap <leader>elr mm?###::SECTION/###::OUTPUTmo:r!mkdir -p %:p_run<leader>el_savefile<leader>el_savescript<leader>el_scriptcmd'oyypO###::RUN :r!datekJj:.!time -p smo/###::3k3J`m 
+"nmap <leader>elr mm?###::SECTION/###::OUTPUTmo:r!mkdir -p %:p_run<leader>el_savefile<leader>el_savescript<leader>el_scriptcmd'oyypO###::RUN :r!datekJj:.!time -f'\%E real, \%U user, \%s sys' s \|\| time smo`m 
+" elixir clear
+nmap <leader>elc mm?###::SECTION/###::OUTPUTjV/###::ENDkd'm
 
 " Toneq stuff
 nmap <leader>tsx :set syntax=toneq<CR>
