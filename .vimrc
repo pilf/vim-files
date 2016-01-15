@@ -12,8 +12,8 @@ set t_Co=256
 set background=dark
 
 " http://archive09.linux.com/feature/120126
-set statusline=%F%m%r%h%w\ %=[FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
-set laststatus=2
+" set statusline=%F%m%r%h%w\ %=[FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
+set statusline=%F\ %m%r%h%w\ %=F:%{&ff}\ T:%Y\ [\%03.3b\ 0x\%02.2B]\ x=%04v\ y=%04l/%L\ (%p%%)
 
 if $TERM != 'xterm-256color' || $TERM != 'screen-256color'
     colorscheme elflord
@@ -72,6 +72,9 @@ function! CdToThis()
 endfunction
 com! CdToThis call CdToThis()
 
+" tab rename (taboo plugin)
+nmap <leader>trn :TabooRename 
+
 set viminfo='1000,f1,<500,s10,h,!
 
 " Tabs etc
@@ -102,7 +105,7 @@ set wildmenu
 "set wildchar=<Tab>
 set completeopt=menu,longest
 
-set complete=.,w,b,u,t,i,kspell
+set complete=.,w,b,u,t,i
 " because of my tmux setup need to re-map C-k,l 
 inoremap <Nul>] <C-x><C-]>
 inoremap <Nul>d <C-x><C-D>

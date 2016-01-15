@@ -19,7 +19,7 @@ done
 pattern="$*"
 cmd="docker ps $docker_opts" 
 
-count=$(docker_match_count "$cmd" "$pattern")
+count=$(docker_match_count "$cmd" "$pattern" )
 case "$count" in
     "0") 
         echo "** ERROR ** No matching container" 1>&2
@@ -29,8 +29,8 @@ case "$count" in
         match_printf_docker_columns "$cmd" "$pattern" '%s\n' 1
         ;;
     *)
-        echo "** ERROR ** More than one possible container, found: " 1>&2
-        match_printf_docker_columns "$cmd" "$pattern" '%s (%s) %s\n' 2 1 5 1>&2
+        echo "** ERROR ** More than one possible container, found ($count): " 1>&2
+        match_printf_docker_columns "$cmd" "$pattern" '%s (img:%s) %s\n' 1 2 5 1>&2
         echo "<<undecidable>>"  1>&2
         exit 1
         ;;
