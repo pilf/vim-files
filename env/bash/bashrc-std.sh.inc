@@ -62,6 +62,9 @@ pathadd $HOME/bin/scripts
 # Should be conditinally included of course
 pathadd $HOME/bin/scripts/osx
 
+if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+    . /etc/bash_completion
+fi
 
 if [ "$shell_override" != "" ]; then 
     export tmux_shell=$shell_override

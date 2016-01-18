@@ -97,12 +97,12 @@ set lbr
 set autoread
 
 set scrolloff=6
-set wildmode=longest,list,full
+set wildmode=longest,list 
 set wildmenu
 "set wildchar=<Tab>
-set completeopt=menu,longest
+set completeopt=longest,menu
 
-set complete=.,w,b,u,t,i,kspell
+set complete=.,w,b,u,t,i
 " because of my tmux setup need to re-map C-k,l 
 inoremap <Nul>] <C-x><C-]>
 inoremap <Nul>d <C-x><C-D>
