@@ -12,8 +12,8 @@ set t_Co=256
 set background=dark
 
 " http://archive09.linux.com/feature/120126
-set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
-set laststatus=2
+" set statusline=%F%m%r%h%w\ %=[FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
+set statusline=%F\ %m%r%h%w\ %=F:%{&ff}\ T:%Y\ [\%03.3b\ 0x\%02.2B]\ x=%04v\ y=%04l/%L\ (%p%%)
 
 if $TERM != 'xterm-256color' || $TERM != 'screen-256color'
     colorscheme elflord
@@ -71,6 +71,9 @@ function! CdToThis()
     exe ":cd %:p:h"
 endfunction
 com! CdToThis call CdToThis()
+
+" tab rename (taboo plugin)
+nmap <leader>trn :TabooRename 
 
 set viminfo='1000,f1,<500,s10,h,!
 
@@ -271,7 +274,8 @@ nmap <leader>tce yyp:s/^\([TGEQ]\)\([ \.]*\).*$/E .\2[] f[a
 nmap gf :e <cfile><CR>
 nmap gff :e! <cfile><CR>
 nmap gfw :w<CR>:e <cfile><CR>
-nmap gfm :w<CR>:e <cfile><CR>mF<C-o>0v$h"fygv§:
+"nmap gfm :w<CR>:e <cfile><CR>mF<C-o>0v$h"fygv§:
+nmap gfm mMyyp:s/^\s*\([^\s].*\)$/\1/e<CR>:s/ /\\ /ge<CR>0"aDdd:w<CR>:e <C-r>a<CR>mF`M
 nmap g% :e %:p:h/<cfile><CR>
 
 " new files

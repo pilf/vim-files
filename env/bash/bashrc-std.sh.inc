@@ -114,6 +114,7 @@ alias boot2docker-start='eval $(/usr/local/bin/boot2docker shellinit) && $(/usr/
 alias dcn=container-named.sh
 alias din=docker-image-one.sh
 alias de=docker-exec.sh
+alias docker-go="'/Applications/Docker/Docker Quickstart Terminal.app/Contents/Resources/Scripts/start.sh'"
 
 # Git specific
 alias gitdiff="GIT_PAGER='vim -R -' git diff --no-color"
