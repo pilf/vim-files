@@ -9,8 +9,8 @@ get_docker_column_positions() {
 
     echo "$1" \
             | head -n1 \
-            | sed -e 's/\([A-Z]\) \([A-Z]\)/\1_\2/g' \
-            | awk 'BEGIN{FS=" [^ ]"} END { for(i=1;i<=NF;i++) printf("%d\n", length($i), $i) }' \
+            | sed -e 's/\([A-Z]\) \([A-Z]\)/\1_\2/g' -e 's/ \([^ ]\)/±\1/g' \
+            | awk 'BEGIN{FS="±"} END { for(i=1;i<=NF;i++) {printf("%d\n", length($i)+1, $i) }}' \
             | tr '\n' ' ' \
             | tee `today`/s7
 }
@@ -30,6 +30,7 @@ __awk_format() {
     fields="$3"
 
     fieldwidths=$(get_docker_column_positions "$__raw") 
+echo "[__awk_format] -> positions: $fieldwidths" 1>&2
     echo "$data" | tee `today`/s8 | awk "
         BEGIN { FIELDWIDTHS=\"$fieldwidths\" } 
         function ltrim(s) { sub(/^[ \\t\\r\\n]+/, \"\", s); return s }
