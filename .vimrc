@@ -359,6 +359,7 @@ nnoremap <Leader>cf :Copyfile<CR>
 " Markdown helpers
 nmap <leader>md= yypv$hr=
 nmap <leader>md- yypv$hr-
+nmap <leader>mdshow :silent exe "!md-chrome.sh %"<CR>:redraw!<CR>
 
 nmap <leader>soc <ESC>"=strftime("%A %F - %R")<CR>p
 nnoremap <leader>scr :r !today<CR><ESC>A/scratch.md<ESC>

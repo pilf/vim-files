@@ -1,17 +1,36 @@
 #!/bin/bash
 
 input="$1"
-prefix="${2:-tmpmdfile}"
+theme="${2:-mixu-gray}" 
+prefix="${3:-tmpmdfile}"
 
 if [ -z "$input" ] || [ ! -f "$input" ]; then
     cat <<EOF 1>&2
 *** Error: Must provide a MD file
-Usage: $0 <md file>
+Usage: $0 <md file> [theme]
 EOF
     exit 1
 fi
 
-tmpfile=$(mktemp -t "$prefix") 
-mv $tmpfile $tmpfile.html
+if ! command -v generate-md 2>&1 >/dev/null ;  then
+    cat <<EOF 1>&2
+*** Error: generate-md is not installed.
+    Can be installed via npm -- so node is required too:
+    $ sudo npm install -g markdown-styles
+Usage: $0 <md file> [theme]
+EOF
+    exit 2
+fi
 
-cat "$input" | marked > $tmpfile.html && open -b com.google.chrome $tmpfile.html || exit 1
+tmpname="$(mktemp -dt "$prefix")"
+mv "$tmpname" "$tmpname.html"
+
+generate-md --input "$input" --layout "$theme" --output "$tmpname/" 
+htmlfile="$tmpname/$(basename "$input" | cut -f1 -d'.').html"
+
+if [ "$(uname -s)" == "Darwin" ]; then
+    open -b com.google.chrome "$htmlfile" || exit 1
+else
+    printf "Not on a MAC, here's the file you're looking for: \n\t%s" $htmlfile
+fi
+
