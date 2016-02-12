@@ -16,11 +16,7 @@ set background=dark
 set statusline=%F\ %m%r%h%w\ %=F:%{&ff}\ T:%Y\ [\%03.3b\ 0x\%02.2B]\ x=%04v\ y=%04l/%L\ (%p%%)
 set laststatus=2
 
-if $TERM != 'xterm-256color' || $TERM != 'screen-256color'
-    colorscheme elflord
-else
-    colorscheme distinguished
-endif
+colorscheme jellybeans
 
 if has("gui_running")
     " Note: if you want to test environment variables make sure they're either
@@ -277,6 +273,7 @@ nmap gff :e! <cfile><CR>
 nmap gfw :w<CR>:e <cfile><CR>
 "nmap gfm :w<CR>:e <cfile><CR>mF<C-o>0v$h"fygv§:
 nmap gfm mMyyp:s/^\s*\([^\s].*\)$/\1/e<CR>:s/ /\\ /ge<CR>0"aDdd:w<CR>:e <C-r>a<CR>mF`M
+nmap gft mMyyp:s/^\s*\([^\s].*\)$/\1/e<CR>:s/ /\\ /ge<CR>0"aDdd:w<CR>:e <C-r>a<CR>mF`M:tabnew<CR>'F
 nmap g% :e %:p:h/<cfile><CR>
 
 " new files
