@@ -84,6 +84,8 @@ if [ "$bashversion" -eq "4" ] || [ -n "$zshversion" ]; then
     user=$(whoami)
     short_user=$(ellipsisify $user 7 left)
     prompt_setup "$short_user"
+else
+    echo "Info: Bashversion != 4 ($bashversion) || -n zshversion ($zshversion)" 1>&2
 fi 
 
 unalias g 2> /dev/null

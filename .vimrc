@@ -91,6 +91,9 @@ nnoremap <leader>t4 :set shiftwidth=4<CR>:set tabstop=4<CR>:set sts=4<CR>
 imap jk <ESC>
 "vmap jk <ESC>
 
+" Quit vim
+nmap QQ :qa<CR>
+
 set lbr
 
 " will automatically update file if changed externally (supressing W11 error)

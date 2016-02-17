@@ -1,7 +1,10 @@
 #!/bin/bash
 
-session=$1
-sessiondir=$(g vim-sessions 2> /dev/null || printf "")
+session="$1"
+sessiondir="$(g vim-sessions 2> /dev/null || printf "")"
+force="${2:-}"
+
+#usage: $0 [session [!]]
 
 if [ -z "$sessiondir" ]; then
     echo "Error: no 'vim-sessions' place defined.  (Required)" >&2
