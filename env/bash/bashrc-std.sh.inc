@@ -66,8 +66,8 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-if [ "$shell_override" != "" ]; then 
-    export tmux_shell=$shell_override
+if [ -n "$shell_override" ]; then 
+    export tmux_shell="$shell_override"
 else
     export tmux_shell=/bin/bash
 fi
@@ -85,6 +85,7 @@ if [ "$bashversion" -eq "4" ] || [ -n "$zshversion" ]; then
     short_user=$(ellipsisify $user 7 left)
     prompt_setup "$short_user"
 else
+    echo "Using bash binary at $tmux_shell"
     echo "Info: Bashversion != 4 ($bashversion) || -n zshversion ($zshversion)" 1>&2
 fi 
 
