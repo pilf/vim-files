@@ -1,11 +1,29 @@
-#!/bin/sh
+#!/bin/bash
 
 root=~/.encrypted
 mountpoint=~/crypt
 
-fusermount -u $mountpoint
-encfs $root $mountpoint
-cd $mountpoint
-vims diary
-cd
-fusermount -u $mountpoint
+cleanup() {
+    cd $root
+    git add -A
+    git commit -am "secret changes were made"
+    git pull
+    git push
+    cd
+    fusermount -u $mountpoint
+    echo
+    echo "All done, you can press ENTER now."
+    echo "(The clever exec hack is a hack)"
+}
+
+fusermount -u $mountpoint 2>/dev/null
+if encfs $root $mountpoint; then
+    cd $mountpoint
+    # note the exec is to make sure tmux see vim as the BASH_COMMAND
+    # see: http://askubuntu.com/questions/247807/run-program-from-a-shell-script-but-behave-as-one-process-only
+    { while kill -0 $$ 2>/dev/null; do sleep 1; done; cleanup; } & 
+    exec vims diary
+fi
+
+trap SIGTERM
+echo terminating...
