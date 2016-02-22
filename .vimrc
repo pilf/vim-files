@@ -93,6 +93,7 @@ imap jk <ESC>
 
 " Quit vim
 nmap QQ :qa<CR>
+nmap QW :wqa<CR>
 
 set lbr
 
