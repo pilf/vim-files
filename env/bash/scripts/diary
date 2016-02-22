@@ -1,0 +1,11 @@
+#!/bin/sh
+
+root=~/.encrypted
+mountpoint=~/crypt
+
+fusermount -u $mountpoint
+encfs $root $mountpoint
+cd $mountpoint
+vims diary
+cd
+fusermount -u $mountpoint
