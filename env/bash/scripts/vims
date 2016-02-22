@@ -1,7 +1,10 @@
 #!/bin/bash
 
-session=$1
-sessiondir=$(g vim-sessions 2> /dev/null || printf "")
+session=${@%!}
+sessiondir="$(g vim-sessions 2> /dev/null || printf "")"
+force=false
+
+#usage: $0 [session [!]]
 
 if [ -z "$sessiondir" ]; then
     echo "Error: no 'vim-sessions' place defined.  (Required)" >&2
@@ -13,6 +16,11 @@ if [ -z "$session" ]; then
     exit 0
 fi
 
+force_pattern='.*!$'
+if [[ $@ =~ $force_pattern ]]; then
+    echo "INFO: Forcing session" >&2
+    force=true
+fi
 
 if ls $(g vim-sessions) | grep -q "$session"; then
     echo "Opening $session"
@@ -21,7 +29,7 @@ if ls $(g vim-sessions) | grep -q "$session"; then
     exec vim -c "let g:session_directory = '$sessiondir'|
             let g:session_autosave = 'yes'|
             let g:session_autosave_periodic = 1|
-            OpenSession $session" 
+            OpenSession$(if $force; then echo '!'; fi) $session" 
 else
     echo "session doesn't exist. Creating..."
     exec vim -c "let g:session_directory = '$(g vim-sessions 2>/dev/null || printf $HOME)'|
