@@ -44,4 +44,4 @@ fi
 cd $dir
 echo "Cloning into $(pwd)"
 export -f clone_or_pull
-ssh git@grasslands.no-ip.org 'ls /src' | grep '\.git$' | for-all 'clone_or_pull $line'
+ssh git@grasslands.no-ip.org 'ls -a /src' | grep '\.git$' | for-all 'clone_or_pull $line'
