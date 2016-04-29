@@ -1,9 +1,12 @@
 defaults write com.apple.dock expose-animation-duration -float 9.17 && killall Dock
 
 # jq
-cat output.json | jq '.[] | select(.payment_status != "public")'
+    cat output.json | jq '.[] | select(.payment_status != "public")'
     #templates (invite)
     sed 's/ /%20/g' | curl --header "Accept-Language:en-US" http://tms-pp.otenv.com/v2/admin/templates/INVITE%20-%20HTML%20Invitation%20-%20JP | jq .versions | jq 'max_by(.version)| .version'
+    # reformat example (and for Jira parsing)
+    cat SearchRequest.xml | xml2json | jq '.rss.channel.item[] | { title: .title."$t", status: .status."$t", assignee: .assignee."$t", description: .description."$t", created: .created."$t", updated: .updated."$t", resolved: .resolved."$t" } '
+
 
 # ssh socks re-routing
 ssh -D 12345 philip@grasslands.no-ip.org

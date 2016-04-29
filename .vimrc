@@ -276,8 +276,8 @@ nmap gf :e <cfile><CR>
 nmap gff :e! <cfile><CR>
 nmap gfw :w<CR>:e <cfile><CR>
 "nmap gfm :w<CR>:e <cfile><CR>mF<C-o>0v$h"fygv§:
-nmap gfm mMyyp:s/^\s*\([^\s].*\)$/\1/e<CR>:s/ /\\ /ge<CR>0"aDdd:w<CR>:e <C-r>a<CR>mF`M
-nmap gft mMyyp:s/^\s*\([^\s].*\)$/\1/e<CR>:s/ /\\ /ge<CR>0"aDdd:w<CR>:e <C-r>a<CR>mF`M:tabnew<CR>'F
+nmap gfm mMyyp:s/^\s*\([^\s].*\)$/\1/e<CR>:s/ /\\ /ge<CR>0"aDdd:w<CR>:e <C-r>a<CR>mF`M:let @f=@a<CR>
+nmap gft mMyyp:s/^\s*\([^\s].*\)$/\1/e<CR>:s/ /\\ /ge<CR>0"aDdd:w<CR>:e <C-r>a<CR>mF`M:tabnew<CR>'F:let @f=@a<CR>
 nmap g% :e %:p:h/<cfile><CR>
 
 " new files
@@ -369,6 +369,7 @@ inoremap <leader>today <ESC>"=strftime("%F")<CR>pa
 nmap <leader>later o<ESC>i<CR><ESC>"=". . . " . strftime("%R") . " . . ."<CR>pA<CR><CR><ESC>
 imap <leader>now <ESC>"=strftime("%H%M")<CR>pa
 nmap <leader>dnew /EOF<CR>(()o<CR><ESC><leader>soc<leader>md=o<CR>
+nmap <leader>dnow /EOF<CR>(()o
 nmap <leader>dl /EOF<CR>(()k<leader>latera
 nmap <leader>dday :new `now -d`.md<CR>10i<CR><ESC>oEOF.<ESC>gg<leader>soc<leader>md=o<CR>
 
