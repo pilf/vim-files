@@ -1,0 +1,2 @@
+#!/bin/sh
+ssh -i /Users/philipcox/keys/mailspacemuffincom.pem ubuntu@ec2-54-84-108-193.compute-1.amazonaws.com $*
