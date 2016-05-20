@@ -11,3 +11,7 @@ ssh -D 12345 philip@grasslands.no-ip.org
 # then go into firefox and pref -> advanced -> settings
 # set SOCKS host to 127.0.0.1 with port used above (12345 in this example.)
 # for further paranoia, go to about:config and set network.proxy.socks_remote_dns to true
+
+# osx
+# mount dmg: 
+hdiutil attach <path to dmg>

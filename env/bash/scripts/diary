@@ -27,3 +27,7 @@ fi
 
 trap SIGTERM
 echo terminating...
+
+# installation notes on mac:
+# first need to in stall osxfuse: http://sourceforge.net/projects/osxfuse/files/osxfuse-2.8.3/osxfuse-2.8.3.dmg/download
+# then brew (might take a while): brew install homebrew/fuse/encfs
