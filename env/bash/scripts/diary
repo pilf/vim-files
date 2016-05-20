@@ -10,11 +10,18 @@ cleanup() {
     git pull
     git push
     cd
-    fusermount -u $mountpoint
+    fusermount -u $mountpoint || umount $mountpoint
     echo
     echo "All done, you can press ENTER now."
     echo "(The clever exec hack is a hack)"
 }
+
+cd "$root"
+printf "Syncing... "
+if ! git pull; then
+    echo "Pull failed" 1>&2
+    exit 1
+fi
 
 fusermount -u $mountpoint 2>/dev/null
 if encfs $root $mountpoint; then

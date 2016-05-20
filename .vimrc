@@ -224,14 +224,19 @@ inoremap <leader>pi \|><Space>
 "resizing stuff 
 
 " elixir stuf
-nmap <leader>eln Go###::SECTION###::FILE :r!echo $(now).exskJo###::SCRIPT###::OUTPUT###::END?SEea 
+nmap <leader>eln Go###::SECTION###::FILE :r!echo $(now).exkJo###::SCRIPT###::OUTPUT###::END?SEea 
 " note: el_save puts file name @a (also the prefix 'j' (down) is a hack to make sure run works on SECTION line.
 nmap <leader>el_savefile j$?###::FILEfEwv$h"ayV/###::k:w! %:p_run/a
 nmap <leader>el_savescript $?###::SECTION/###::SCRIPTV/###::k:w! %:p_run/script.exs:r!sed -i -e 's/^\$\(.*\)/IO.inspect (\1)/g' %:p_run/script.exs
 " assumes @a is filename and assigns cmd to @s
 nmap <leader>el_scriptcmd :let @s='elixir -r "%:p_run/a" "%:p_run/script.exs"'
-nmap <leader>elr mm?###::SECTION/###::OUTPUTmo:r!mkdir -p %:p_run<leader>el_savefile<leader>el_savescript<leader>el_scriptcmd'oyypO###::RUN :r!datekJj:.!time -p smo/###::3k3J`m 
-"nmap <leader>elr mm?###::SECTION/###::OUTPUTmo:r!mkdir -p %:p_run<leader>el_savefile<leader>el_savescript<leader>el_scriptcmd'oyypO###::RUN :r!datekJj:.!time -f'\%E real, \%U user, \%s sys' s \|\| time smo`m 
+nmap <leader>el_getready mm?###::SECTION/###::OUTPUTmo:r!mkdir -p %:p_run<leader>el_savefile<leader>el_savescript
+nmap <leader>el_render 'oyypO###::RUN :r!datekJj:.!time -p smo/###::3k3J`m 
+" elixir simple run, loads file + runs script
+nmap <leader>elr <leader>el_getready<leader>el_scriptcmd<leader>el_render
+" elixir as with simple but in mix enivornment
+nmap <leader>el_mixscriptcmd :let @s='mix-run.sh "%:p_run/script.exs"'
+nmap <leader>elm <leader>el_getready<leader>el_mixscriptcmd<leader>el_render 
 " elixir clear
 nmap <leader>elc mm?###::SECTION/###::OUTPUTjV/###::ENDkd'm
 
@@ -276,8 +281,8 @@ nmap gf :e <cfile><CR>
 nmap gff :e! <cfile><CR>
 nmap gfw :w<CR>:e <cfile><CR>
 "nmap gfm :w<CR>:e <cfile><CR>mF<C-o>0v$h"fygv§:
-nmap gfm mMyyp:s/^\s*\([^\s].*\)$/\1/e<CR>:s/ /\\ /ge<CR>0"aDdd:w<CR>:e <C-r>a<CR>mF`M
-nmap gft mMyyp:s/^\s*\([^\s].*\)$/\1/e<CR>:s/ /\\ /ge<CR>0"aDdd:w<CR>:e <C-r>a<CR>mF`M:tabnew<CR>'F
+nmap gfm mMyyp:s/^\s*\([^\s].*\)$/\1/e<CR>:s/ /\\ /ge<CR>0"aDdd:w<CR>:e <C-r>a<CR>mF`M:let @f=@a<CR>
+nmap gft mMyyp:s/^\s*\([^\s].*\)$/\1/e<CR>:s/ /\\ /ge<CR>0"aDdd:w<CR>:e <C-r>a<CR>mF`M:tabnew<CR>'F:let @f=@a<CR>
 nmap g% :e %:p:h/<cfile><CR>
 
 " new files
@@ -369,6 +374,7 @@ inoremap <leader>today <ESC>"=strftime("%F")<CR>pa
 nmap <leader>later o<ESC>i<CR><ESC>"=". . . " . strftime("%R") . " . . ."<CR>pA<CR><CR><ESC>
 imap <leader>now <ESC>"=strftime("%H%M")<CR>pa
 nmap <leader>dnew /EOF<CR>(()o<CR><ESC><leader>soc<leader>md=o<CR>
+nmap <leader>dnow /EOF<CR>(()o
 nmap <leader>dl /EOF<CR>(()k<leader>latera
 nmap <leader>dday :new `now -d`.md<CR>10i<CR><ESC>oEOF.<ESC>gg<leader>soc<leader>md=o<CR>
 
