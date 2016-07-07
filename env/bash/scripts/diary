@@ -10,7 +10,7 @@ cleanup() {
     git pull
     git push
     cd
-    fusermount -u $mountpoint
+    fusermount -u $mountpoint || umount $mountpoint
     echo
     echo "All done, you can press ENTER now."
     echo "(The clever exec hack is a hack)"
