@@ -15,4 +15,10 @@
         <autogen>__KeyToKey__ KeyCode::BACKQUOTE, KeyCode::DANISH_DOLLAR</autogen>
         <only>MACVIM, ITERM2</only>
     </item>
+    <item>
+        <name>Swap WinKey and Alt when using windows keyboard</name>
+        <identifier>private.swap_winkey_and_altkey</identifier>
+        <autogen>__KeyToKey__ KeyCode::COMMAND_L, KeyCode::OPTION_L</autogen>
+        <autogen>__KeyToKey__ KeyCode::OPTION_L, KeyCode::COMMAND_L</autogen>
+    </item>
 </root>
