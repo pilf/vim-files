@@ -1,0 +1,9 @@
+#!/bin/sh
+
+cmd="$@"
+osascript -e "tell application \"VLC\" to $cmd"
+
+# Examples: 
+# osascript -e "tell application \"Spotify\" to $cmd"
+# vlc play
+# also: step backward, step back
