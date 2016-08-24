@@ -38,7 +38,7 @@ fi
 ###RPROMPT='${vcs_info_msg_1_}'
 ## PROMPT END
 
-source "/home/philip/src/vim-files/env/bash/bashrc-std.sh.inc"
-source "/home/philip/src/vim-files/env/bash/x.sh.inc"
 #source "prompt.zsh"
 
+source "/Users/philipcox/code/vim-files/env/bash/bashrc-std.sh.inc"
+source "/Users/philipcox/code/vim-files/env/bash/x.sh.inc"
