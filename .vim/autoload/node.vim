@@ -1,14 +1,10 @@
-let node#suffixesadd = [".js", ".json"]
-let node#filetypes = ["javascript", "json"]
+" Vim by default sets the filetype to JavaScript for the following suffices.
+" And, yes, it has .jsx there.
+let node#suffixesadd = [".js", ".json", ".es", ".jsx"]
 
 function! node#initialize(root)
 	let b:node_root = a:root
-	call s:initializeCommands()
-	if index(g:node#filetypes, &ft) > -1 | call s:initializeJavaScript() | en
-	silent doautocmd User Node
-endfunction
 
-function! s:initializeCommands()
 	command! -bar -bang -nargs=1 -buffer -complete=customlist,s:complete Nedit
 		\ exe s:nedit(<q-args>, bufname("%"), "edit<bang>")
 	command! -bar -bang -nargs=1 -buffer -complete=customlist,s:complete Nopen
@@ -22,13 +18,23 @@ function! s:initializeCommands()
 		\ :call <SID>edit(expand("<cfile>"), bufname("%"), "vsplit")<CR>
 	nnoremap <buffer><silent> <Plug>NodeTabGotoFile
 		\ :call <SID>edit(expand("<cfile>"), bufname("%"), "tab split")<CR>
+
+	silent doautocmd User Node
 endfunction
 
-function! s:initializeJavaScript()
-	setl path-=/usr/include
+function! node#javascript()
+	" This might be called multiple times if multiple filetypes match.
+	if exists("b:node_javascript") && b:node_javascript | return | endif
+	let b:node_javascript = 1
+
+	setlocal path-=/usr/include
 	let &l:suffixesadd .= "," . join(g:node#suffixesadd, ",")
 	let &l:include = '\<require(\(["'']\)\zs[^\1]\+\ze\1'
 	let &l:includeexpr = "node#lib#find(v:fname, bufname('%'))"
+
+	" @ is used for scopes, but isn't a default filename character on
+	" non-Windows sytems.
+	setlocal isfname+=@-@
 
 	if !hasmapto("<Plug>NodeGotoFile")
 		" Split gotofiles don't take a count for the new window's width, but for

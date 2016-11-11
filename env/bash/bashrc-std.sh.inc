@@ -129,3 +129,13 @@ alias gitdiff="GIT_PAGER='vim -R -' git diff --no-color"
 # Tmux specific
 alias ppid='ps -o ppid= -p'
 alias tmux-tree="pstree $(ppid $$)"
+
+# http://askubuntu.com/questions/339546/how-do-i-see-the-history-of-the-commands-i-have-run-in-tmux
+# avoid duplicates..
+export HISTCONTROL=ignoredups:erasedups
+# append history entries..
+shopt -s histappend
+# After each command, save and reload history
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+
+

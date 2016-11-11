@@ -7,6 +7,10 @@ if $vim_local_settings!=""
     source $vim_local_settings
 endif
 
+" make sure encoding correctly
+" not if you get a CONVERSION ERROR on :w try :w ++enc=utf-8
+scriptencoding utf-8
+
 syntax on
 set t_Co=256
 set background=dark
