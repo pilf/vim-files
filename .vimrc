@@ -375,6 +375,9 @@ nnoremap <leader>today o<ESC>"=strftime("%F")<CR>p
 inoremap <leader>today <ESC>"=strftime("%F")<CR>pa
 nmap <leader>later o<ESC>i<CR><ESC>"=". . . " . strftime("%R") . " . . ."<CR>pA<CR><CR><ESC>
 imap <leader>now <ESC>"=strftime("%H%M")<CR>pa
+imap <leader>Now <ESC>"=strftime("%R")<CR>pa
+imap <leader>NOw <ESC>"=strftime("%F - %R")<CR>pa
+imap <leader>NOW <ESC>"=strftime("%A %F - %R")<CR>pa
 nmap <leader>dnew /EOF<CR>(()o<CR><ESC><leader>soc<leader>md=o<CR>
 nmap <leader>dnow /EOF<CR>(()o
 nmap <leader>dl /EOF<CR>(()k<leader>latera
