@@ -252,7 +252,7 @@ imap <leader>tin <ESC>A<Space>(<BAR><Space><Space><BAR>)<esc>2hi
 nmap <leader>ton <ESC>o(<BAR><CR><CR><BAR>)<esc>ki
 "nmap <leader>tnew G?>>TODOs?201.-..-..$V/^$k"aygvo:.!now -Di (:r!date "+%A""apdd
 nmap <leader>tnew G?>>TODOs(()mm?^201.-..-..V'mk"aygvo:.!now -DA (:r!date "+\%A"kJxA)"apdd
-" test as in t-est as in task estimation
+" test as in t-est as in task estimation (note the dot is a 'middle dot' diagraph .M)
 inoremap <leader>test [] - <ESC>F]"=strftime("%H%M")<CR>Pa·
 nnoremap <leader>ta oT<SPACE> 
 nnoremap <leader>ta1 oT<SPACE><ESC>1a.<SPACE><ESC>A
@@ -270,17 +270,17 @@ nmap <leader>t> 0:s/^\([TGEQ]\)/\1 .
 nmap <leader>tnt G?>>TODO(()OT 
 nmap <leader>tng G?>>TODO(()OG 
 nmap <leader>tnq G?>>TODO(()OQ 
-nmap <leader>tne G?>>TODO(()OE [] F[a
+nmap <leader>tne G?>>TODO(()OE [·30] F[a
 " variant; quicker since doesin't have to see if <leader>tnew
-nmap <leader>tnE G?>>TODO(()OE [] F[a
+nmap <leader>tnE G?>>TODO(()OE [·30] F[a
 nmap <leader>tst yyp:s/^\([TGEQ]\)\([ \.]*\).*$/T\2A
 nmap <leader>tsg yyp:s/^\([TGEQ]\)\([ \.]*\).*$/G\2A
 nmap <leader>tsq yyp:s/^\([TGEQ]\)\([ \.]*\).*$/Q\2A
-nmap <leader>tse yyp:s/^\([TGEQ]\)\([ \.]*\).*$/E\2[] f[a
+nmap <leader>tse yyp:s/^\([TGEQ]\)\([ \.]*\).*$/E\2[·30] f[a
 nmap <leader>tct yyp:s/^\([TGEQ]\)\([ \.]*\).*$/T .\2A
 nmap <leader>tcg yyp:s/^\([TGEQ]\)\([ \.]*\).*$/G .\2A
 nmap <leader>tcq yyp:s/^\([TGEQ]\)\([ \.]*\).*$/Q .\2A
-nmap <leader>tce yyp:s/^\([TGEQ]\)\([ \.]*\).*$/E .\2[] f[a
+nmap <leader>tce yyp:s/^\([TGEQ]\)\([ \.]*\).*$/E .\2[·30] f[a
 
 " gf (goto file) such that it will create a new file if it doesn't exist... (http://stackoverflow.com/questions/1050745/unable-to-create-a-file-from-a-path-in-vim)
 nmap gf :e <cfile><CR>
