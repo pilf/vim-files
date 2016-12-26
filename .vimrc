@@ -12,6 +12,7 @@ endif
 scriptencoding utf-8
 
 syntax on
+filetype plugin indent on
 set t_Co=256
 set background=dark
 
@@ -150,8 +151,9 @@ set listchars=tab:›\ ,eol:¬,trail:·
 highlight NonText guifg=#4a4a59  guibg=NONE
 highlight SpecialKey guifg=#4a4a59 guibg=NONE
 
-nnoremap <CTRL-q> :q<CR>
-inoremap <CTRL-q> <ESC>:q<CR> 
+nmap <C-q> :q<CR>
+imap <C-q> <ESC>:q<CR> 
+nmap <C-s> <ESC>:w<CR>
 
 map Y y$
 
