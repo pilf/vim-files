@@ -53,7 +53,7 @@ function short_pwd {
 
 function prompt_setup {
     short_user="$1"
-    short_host=$(ellipsisify $HOSTNAME 5 left)
+    short_host=$(ellipsisify $HOSTNAME 12 left)
     export PROMPT_COMMAND='__git_ps1 "\[\033[1;30m\]$short_user@$short_host\[\033[0m\]:\[\033[0;33m\]$(short_pwd 25)\[\033[0m\]" "\\\$ "'
 }
 
@@ -129,3 +129,13 @@ alias gitdiff="GIT_PAGER='vim -R -' git diff --no-color"
 # Tmux specific
 alias ppid='ps -o ppid= -p'
 alias tmux-tree="pstree $(ppid $$)"
+
+# http://askubuntu.com/questions/339546/how-do-i-see-the-history-of-the-commands-i-have-run-in-tmux
+# avoid duplicates..
+export HISTCONTROL=ignoredups:erasedups
+# append history entries..
+shopt -s histappend
+# After each command, save and reload history
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+
+
