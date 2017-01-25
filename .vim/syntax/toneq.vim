@@ -3,7 +3,7 @@ syn match tqTask /^[TQG][ .]*/
 syn match tqEvent /^E[ .]*\[[0-9·:]*\]/
 syn match tqSet /^S[ .]*\[[0-9:]*\]/
 syn region tqNote start=/(|/ end=/|)/
-syn match tqComplete /^[TQGE].*-\s*[ca]:\(?\|\~\?[0-9]\{1,4}\)\s*$/ 
+syn match tqComplete /^[TQGE].*-\s*[ca]:\(?\|\~\?[0-9]\{1,4}\)\s*\((|.*|)\)\?\s*$/ 
 syn match tqImportant /\[!\].*$/
 
 hi def link tqDaySep Statement
