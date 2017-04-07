@@ -25,6 +25,9 @@ defaults write com.apple.dock expose-animation-duration -float 9.17 && killall D
         ]
     }
     jq -r ' .root | [foreach .[] as $r([]; [foreach $r.outerGroup[] as $d ([];$d.outerId;{oId: $r.name, domain: $d.code, languages: $d.languages[].code})])] | flatten | .[] | "\(.name),\(if .domain == "GLOBAL" then "" else .domain end),\(.languages)"' |
+    # extract all AU metros:
+    jq 'map(select(.DomainId==71)) | .[].id' | tr '\n' ','
+
 
 
 # ssh socks re-routing
