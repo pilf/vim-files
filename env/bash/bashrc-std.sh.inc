@@ -130,6 +130,10 @@ alias gitdiff="GIT_PAGER='vim -R -' git diff --no-color"
 alias ppid='ps -o ppid= -p'
 alias tmux-tree="pstree $(ppid $$)"
 
+# Node
+alias vnode='rlwrap -a -c -H "~/.node_history" -r node' 
+
+
 # http://askubuntu.com/questions/339546/how-do-i-see-the-history-of-the-commands-i-have-run-in-tmux
 # avoid duplicates..
 export HISTCONTROL=ignoredups:erasedups
