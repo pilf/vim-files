@@ -1,0 +1,8 @@
+Scrollbar=None
+Window=full
+Title=Grasslands
+Icon=/Cygwin-Terminal.ico
+Term=xterm-256color
+BackgroundColour=#292E37
+ForegroundColour=#B1D8CA
+CursorColour=#F7FDFA
