@@ -1,6 +1,6 @@
 Scrollbar=None
 Window=full
-Title=Grasslands
+Title=WinTmux
 Icon=/Cygwin-Terminal.ico
 Term=xterm-256color
 BackgroundColour=#170535
