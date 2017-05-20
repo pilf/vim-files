@@ -1,7 +1,7 @@
 #!/bin/bash
 
 input="$1"
-theme="${2:-mixu-gray}" 
+theme="${2:-plain}" 
 prefix="${3:-tmpmdfile}"
 
 if [ -z "$input" ] || [ ! -f "$input" ]; then
