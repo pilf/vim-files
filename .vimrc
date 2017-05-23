@@ -74,6 +74,9 @@ function! CdToThis()
 endfunction
 com! CdToThis call CdToThis()
 
+
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+
 " tab rename (taboo plugin)
 nmap <leader>trn :TabooRename 
 
@@ -322,10 +325,10 @@ vmap <D-c> :w !pbcopy<CR><CR>
 vmap <leader>: y:exec("! clear && echo -n " . shellescape(@0) . " \| pbcopy")<CR><CR>
 
 " Fuzzy finding short cuts
-nmap <leader>f. :FufFileWithCurrentBufferDir<CR>
-nmap <leader>ff :FufFile **/
-nmap <leader>f/ :FufFile<CR>
-nmap <leader>fb :FufBuffer<CR>
+nmap <leader>f. :CtrlPCurFile<CR>
+nmap <leader>ff :CtrlPFile
+nmap <leader>f/ :CtrlPCurWD<CR>
+nmap <leader>fb :CtrlPBuffer<CR>
 
 " Spelling and such
 nnoremap <leader>zz :set spell!<CR>
