@@ -71,7 +71,7 @@ while getopts ":c:s:p?" opt; do
             ;;
         :)
             echo "Option -$OPTARG requires an argument." >&2
-            echo --
+            echo -- >&2
             usage
             exit 1
             ;;
@@ -88,7 +88,7 @@ fi
 shortname=${@: -1}
 if [ -z "$1" ] ; then
     echo "No short name given (required)" >&2
-    echo --
+    echo -- >&2
     display_known_locations
     exit 1
 fi
@@ -105,8 +105,7 @@ if [ -n "$create_mode" ]; then
     rm $places.sedbk
 
     echo "$shortname:$(abspath $create_mode)" >>$places
-    echo "Successfully added $shortname, known locations now:"
-    display_known_locations
+    echo "Successfully added $shortname"
     exit 0
 fi
 
