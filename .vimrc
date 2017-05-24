@@ -74,6 +74,9 @@ function! CdToThis()
 endfunction
 com! CdToThis call CdToThis()
 
+
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+
 " tab rename (taboo plugin)
 nmap <leader>trn :TabooRename 
 
@@ -270,9 +273,9 @@ nnoremap <leader>ta3 oT<SPACE><ESC>3a.<SPACE><ESC>A
 nnoremap <leader>ta4 oT<SPACE><ESC>4a.<SPACE><ESC>A
 nnoremap <leader>ta5 oT<SPACE><ESC>5a.<SPACE><ESC>A
 nnoremap <leader>ta6 oT<SPACE><ESC>6a.<SPACE><ESC>A
-nmap <leader>tcn G?-\s*$Ac:<ESC>"=strftime("%H%M")<CR>p
-nmap <leader>tan G?-\s*$Aa:<ESC>"=strftime("%H%M")<CR>pF-a<SPACE>(<BAR><SPACE><BAR>)<ESC>2F<BAR>a<SPACE>
-nmap <leader>tsn G?-\s*$As:<ESC>"=strftime("%H%M")<CR>pF-a<SPACE>(<BAR><SPACE><BAR>)<ESC>2F<BAR>a<SPACE>
+nmap <leader>tcn G?-\s*$Ac:<ESC>"=strftime("%H%M")<CR>p:w<CR>
+nmap <leader>tan G?-\s*$Aa:<ESC>"=strftime("%H%M")<CR>p:w<CR>F-a<SPACE>(<BAR><SPACE><BAR>)<ESC>2F<BAR>a<SPACE>
+nmap <leader>tsn G?-\s*$As:<ESC>"=strftime("%H%M")<CR>p:w<CR>F-a<SPACE>(<BAR><SPACE><BAR>)<ESC>2F<BAR>a<SPACE>
 nmap <leader>tnow G?-\s*$A
 nmap <leader>t< 0:s/^\([TGEQ]\)\( \.\)/\1
 nmap <leader>t> 0:s/^\([TGEQ]\)/\1 .
@@ -322,10 +325,10 @@ vmap <D-c> :w !pbcopy<CR><CR>
 vmap <leader>: y:exec("! clear && echo -n " . shellescape(@0) . " \| pbcopy")<CR><CR>
 
 " Fuzzy finding short cuts
-nmap <leader>f. :FufFileWithCurrentBufferDir<CR>
-nmap <leader>ff :FufFile **/
-nmap <leader>f/ :FufFile<CR>
-nmap <leader>fb :FufBuffer<CR>
+nmap <leader>f. :CtrlPCurFile<CR>
+nmap <leader>ff :CtrlPFile
+nmap <leader>f/ :CtrlPCurWD<CR>
+nmap <leader>fb :CtrlPBuffer<CR>
 
 " Spelling and such
 nnoremap <leader>zz :set spell!<CR>

@@ -1,8 +1,10 @@
-Scrollbar=None
+Scrollbar=none
 Window=full
 Title=Grasslands
 Icon=/Cygwin-Terminal.ico
 Term=xterm-256color
-BackgroundColour=#292E37
-ForegroundColour=#B1D8CA
-CursorColour=#F7FDFA
+BackgroundColour=41,46,55
+ForegroundColour=177,216,202
+CursorColour=247,253,250
+BoldAsFont=-1
+Transparency=off
