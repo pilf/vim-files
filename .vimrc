@@ -251,6 +251,7 @@ nmap <leader>elm <leader>el_getready<leader>el_mixscriptcmd<leader>el_render
 " elixir clear
 nmap <leader>elc mm?###::SECTION/###::OUTPUTjV/###::ENDkd'm
 
+"""
 " Toneq stuff
 nmap <leader>tsx :set syntax=toneq<CR>
 imap <leader>tin <ESC>A<Space>(<BAR><Space><Space><BAR>)<esc>2hi
@@ -273,20 +274,31 @@ nnoremap <leader>ta3 oT<SPACE><ESC>3a.<SPACE><ESC>A
 nnoremap <leader>ta4 oT<SPACE><ESC>4a.<SPACE><ESC>A
 nnoremap <leader>ta5 oT<SPACE><ESC>5a.<SPACE><ESC>A
 nnoremap <leader>ta6 oT<SPACE><ESC>6a.<SPACE><ESC>A
+" c=complete, a=abandoned, s=suspended.  
+" n=now (as in finish the currently in progress line)
+" l=line (if not start information known)
 nmap <leader>tcn G?-\s*$Ac:<ESC>"=strftime("%H%M")<CR>p:w<CR>
-nmap <leader>tan G?-\s*$Aa:<ESC>"=strftime("%H%M")<CR>p:w<CR>F-a<SPACE>(<BAR><SPACE><BAR>)<ESC>2F<BAR>a<SPACE>
-nmap <leader>tsn G?-\s*$As:<ESC>"=strftime("%H%M")<CR>p:w<CR>F-a<SPACE>(<BAR><SPACE><BAR>)<ESC>2F<BAR>a<SPACE>
+nmap <leader>tan G?-\s*$Aa:<ESC>"=strftime("%H%M")<CR>p:w<CR>F-a<SPACE>(<BAR><SPACE><BAR>)<SPACE><ESC>2F<BAR>a<SPACE>
+nmap <leader>tsn G?-\s*$As:<ESC>"=strftime("%H%M")<CR>p:w<CR>F-a<SPACE>(<BAR><SPACE><BAR>)<SPACE><ESC>2F<BAR>a<SPACE>
+" go currently executing line
 nmap <leader>tnow G?-\s*$A
+" indent
 nmap <leader>t< 0:s/^\([TGEQ]\)\( \.\)/\1
 nmap <leader>t> 0:s/^\([TGEQ]\)/\1 .
 " a million and one ways to make tasks/goals/questions/events
-" tn? = Toneq new, ts? = Toneq (new) sibling, tc? = Toneq (new) child
+" n=new, top-level
+" s=sibling
+" c=child
+" Note events have a special form: 
+"   E [<expected start time>·<expected duration>] Name of event
+" 'e'=put ? mark for start time, ends ready for user to enter name
+" 'E'=user ends being asked for start time (before name)
+" user to immediately start 
 nmap <leader>tnt G?>>TODO(()OT 
 nmap <leader>tng G?>>TODO(()OG 
 nmap <leader>tnq G?>>TODO(()OQ 
 nmap <leader>tne G?>>TODO(()OE [·30] F[a
-" variant; quicker since doesin't have to see if <leader>tnew
-nmap <leader>tnE G?>>TODO(()OE [·30] F[a
+nmap <leader>tnE G?>>TODO(()OE [·30] F[a?<ESC>A
 nmap <leader>tst yyp:s/^\([TGEQ]\)\([ \.]*\).*$/T\2A
 nmap <leader>tsg yyp:s/^\([TGEQ]\)\([ \.]*\).*$/G\2A
 nmap <leader>tsq yyp:s/^\([TGEQ]\)\([ \.]*\).*$/Q\2A
@@ -295,6 +307,7 @@ nmap <leader>tct yyp:s/^\([TGEQ]\)\([ \.]*\).*$/T .\2A
 nmap <leader>tcg yyp:s/^\([TGEQ]\)\([ \.]*\).*$/G .\2A
 nmap <leader>tcq yyp:s/^\([TGEQ]\)\([ \.]*\).*$/Q .\2A
 nmap <leader>tce yyp:s/^\([TGEQ]\)\([ \.]*\).*$/E .\2[·30] f[a
+""" Toneq END
 
 " gf (goto file) such that it will create a new file if it doesn't exist... (http://stackoverflow.com/questions/1050745/unable-to-create-a-file-from-a-path-in-vim)
 nmap gf :e <cfile><CR>
@@ -384,7 +397,7 @@ nnoremap <Leader>cf :Copyfile<CR>
 
 " Markdown helpers
 nmap <leader>md= yypv$hr=
-nmap <leader>md- yypv$hr-
+nmap <leader>md- yypv$hr-c:1610
 nmap <leader>mdshow :silent exe "!md-chrome.sh %"<CR>:redraw!<CR>
 
 nmap <leader>soc <ESC>"=strftime("%A %F - %R")<CR>p
