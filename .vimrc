@@ -213,6 +213,9 @@ autocmd BufNewFile,BufRead *.toneq set syntax=toneq
 autocmd BufNewFile,BufRead *.tl set syntax=timeline
 autocmd BufNewFile,BufRead *.js set tabstop=2 | set sts=2 | set shiftwidth=2
 
+syntax region toneqMdSnip matchgroup=TMdSnip start="(|" end="|)" 
+hi link TMdSnip Markdown
+
 " export feature files to HTML
 nnoremap <leader>rfhtml :TO<CR>:w<CR>:!open -a Safari %<CR><CR>
 
@@ -278,8 +281,13 @@ nnoremap <leader>ta6 oT<SPACE><ESC>6a.<SPACE><ESC>A
 " n=now (as in finish the currently in progress line)
 " l=line (if not start information known)
 nmap <leader>tcn G?-\s*$Ac:<ESC>"=strftime("%H%M")<CR>p:w<CR>
+nmap <leader>tc? $DA - c:?<ESC>:w<CR>
 nmap <leader>tan G?-\s*$Aa:<ESC>"=strftime("%H%M")<CR>p:w<CR>F-a<SPACE>(<BAR><SPACE><BAR>)<SPACE><ESC>2F<BAR>a<SPACE>
 nmap <leader>tsn G?-\s*$As:<ESC>"=strftime("%H%M")<CR>p:w<CR>F-a<SPACE>(<BAR><SPACE><BAR>)<SPACE><ESC>2F<BAR>a<SPACE>
+" qc = successfully answered
+" qs = insufficient data
+" qa = failed to answer
+" TODO^^^
 " go currently executing line
 nmap <leader>tnow G?-\s*$A
 " indent
@@ -397,7 +405,7 @@ nnoremap <Leader>cf :Copyfile<CR>
 
 " Markdown helpers
 nmap <leader>md= yypv$hr=
-nmap <leader>md- yypv$hr-c:1610
+nmap <leader>md- yypv$hr-
 nmap <leader>mdshow :silent exe "!md-chrome.sh %"<CR>:redraw!<CR>
 
 nmap <leader>soc <ESC>"=strftime("%A %F - %R")<CR>p
