@@ -315,6 +315,8 @@ nmap <leader>tct yyp:s/^\([TGEQ]\)\([ \.]*\).*$/T .\2A
 nmap <leader>tcg yyp:s/^\([TGEQ]\)\([ \.]*\).*$/G .\2A
 nmap <leader>tcq yyp:s/^\([TGEQ]\)\([ \.]*\).*$/Q .\2A
 nmap <leader>tce yyp:s/^\([TGEQ]\)\([ \.]*\).*$/E .\2[·30] f[a
+" fold
+nmap <leader>tzf mz$?^(\|<CR>v/^\|)<CR>$zf
 """ Toneq END
 
 " gf (goto file) such that it will create a new file if it doesn't exist... (http://stackoverflow.com/questions/1050745/unable-to-create-a-file-from-a-path-in-vim)
@@ -412,11 +414,12 @@ nmap <leader>soc <ESC>"=strftime("%A %F - %R")<CR>p
 nnoremap <leader>scr :r !today<CR><ESC>A/scratch.md<ESC>
 nnoremap <leader>today o<ESC>"=strftime("%F")<CR>p
 inoremap <leader>today <ESC>"=strftime("%F")<CR>pa
-nmap <leader>later o<ESC>i<CR><ESC>"=". . . " . strftime("%R") . " . . ."<CR>pA<CR><CR><ESC>
 imap <leader>now <ESC>"=strftime("%H%M")<CR>pa
 imap <leader>Now <ESC>"=strftime("%R")<CR>pa
 imap <leader>NOw <ESC>"=strftime("%F - %R")<CR>pa
 imap <leader>NOW <ESC>"=strftime("%A %F - %R")<CR>pa
+" recommend <leader>dl (this is more internal)
+nmap <leader>later o<ESC>i<CR><ESC>"=". . . " . strftime("%R") . " . . ."<CR>pA<CR><CR><ESC>
 nmap <leader>dnew /EOF<CR>(()o<CR><ESC><leader>soc<leader>md=o<CR>
 nmap <leader>dnow /EOF<CR>(()o
 nmap <leader>dl /EOF<CR>(()k<leader>latera

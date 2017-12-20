@@ -19,7 +19,7 @@ syn region tqNoteRs matchgroup=TRustSnip start=/(|rs\s*$/ end=/|)/ contains=@RUS
 
 syn region tqNote start=/(|\s*$/ end=/|)/ 
 
-syn match tqComplete /^[TQGE].*-\s*[ca]:\(?\|\~\?[0-9]\{1,4}\)\s*\((|.*|)\)\?\s*$/ 
+syn match tqComplete /^[TQGE].*-\s*\((|.*|)\)\?\s*[ca]:\(?\|\~\?[0-9]\{1,4}\)s*$/ 
 syn match tqImportant /\[!\].*$/
 
 hi def link tqDaySep Statement
