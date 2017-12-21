@@ -51,7 +51,7 @@ function short_pwd {
     printf $(ellipsisify "$(pwd | sed "s|^$HOME|~|")" "$1")
 }
 
-function prompt_setup {
+function git_prompt_setup {
     short_user="$1"
     short_host=$(ellipsisify $HOSTNAME 12 left)
     export PROMPT_COMMAND='__git_ps1 "\[\033[1;30m\]$short_user@$short_host\[\033[0m\]:\[\033[0;33m\]$(short_pwd 25)\[\033[0m\]" "\\\$ "'
@@ -77,13 +77,13 @@ bashversion="${BASH_VERSION:0:1}"
 zshversion="${ZSH_VERSION:0:1}"
 
 if [ "$bashversion" -eq "4" ] || [ -n "$zshversion" ]; then
-    #[[ $- == *i* ]] && git-promptn.sh
-    source git-prompt.sh
     export GIT_PS1_SHOWCOLORHINTS=1
     export GIT_PS1_SHOWDIRTYSTATE=1
     user=$(whoami)
     short_user=$(ellipsisify $user 7 left)
-    prompt_setup "$short_user"
+
+    source git-prompt.sh 
+    git_prompt_setup "$short_user"
 else
     echo "Using bash binary at $tmux_shell"
     echo "Info: Bashversion != 4 ($bashversion) || -n zshversion ($zshversion)" 1>&2

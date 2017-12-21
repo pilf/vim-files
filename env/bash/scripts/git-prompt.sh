@@ -344,7 +344,7 @@ __git_ps1 ()
 	[ -z "$BASH_VERSION" ] || shopt -q promptvars || ps1_expanded=no
 
 	local repo_info rev_parse_exit_code
-	repo_info="$(git rev-parse --git-dir --is-inside-git-dir \
+	repo_info="$(timeout 0.5 git rev-parse --git-dir --is-inside-git-dir \
 		--is-bare-repository --is-inside-work-tree \
 		--short HEAD 2>/dev/null)"
 	rev_parse_exit_code="$?"
