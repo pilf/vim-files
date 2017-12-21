@@ -1,3 +1,4 @@
+#set -x
 # Standard functions designed to be used in .bashrc (or .bash_profile)
 # To use put the line:
 #   source <location-of-this-file>
@@ -127,7 +128,7 @@ alias docker-go="'/Applications/Docker/Docker Quickstart Terminal.app/Contents/R
 alias gitdiff="GIT_PAGER='vim -R -' git diff --no-color"
 
 # Tmux specific
-alias ppid='ps -o ppid= -p'
+alias ppid='ps ppid= -p'
 alias tmux-tree="pstree $(ppid $$)"
 
 # Node
@@ -145,3 +146,5 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 # mintty
 alias mintty-grasslands="bash -lc '. \$HOME/.bashrc && sh \$(g vf)/env/win/mintty/grasslands-theme.sh && ssh-tmux philip@grasslands'"
+
+set +x
