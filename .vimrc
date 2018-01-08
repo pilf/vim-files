@@ -259,7 +259,7 @@ nmap <leader>ton <ESC>o(<BAR><CR><CR><BAR>)<esc>ki
 "nmap <leader>tnew G?>>TODOs?201.-..-..$V/^$k"aygvo:.!now -Di (:r!date "+%A""apdd
 nmap <leader>tnew G?>>TODOs(()mm?^201.-..-..V'mk"aygvo:.!now -DA (:r!date "+\%A"kJxA)"apdd
 " test as in t-est as in task estimation (note the dot is a 'middle dot' diagraph .M)
-inoremap <leader>test []<ESC>F[a·
+inoremap <leader>test []<ESC>:wF[a·
 nnoremap <leader>test A<SPACE>[]<ESC>F[a·
 " start right now (with estimate)
 inoremap <leader>tgo [] - <ESC>F]"=strftime("%H%M")<CR>P:w<CR>a·
@@ -293,12 +293,12 @@ nmap <leader>t> 0:s/^\([TGEQ]\)/\1 .
 "   E [<expected start time>·<expected duration>] Name of event
 " 'e'=put ? mark for start time, ends ready for user to enter name
 " 'E'=user ends being asked for start time (before name)
-" user to immediately start 
 nmap <leader>tnt G?>>TODO(()OT 
 nmap <leader>tng G?>>TODO(()OG 
 nmap <leader>tnq G?>>TODO(()OQ 
-nmap <leader>tne G?>>TODO(()OE [·30] F[a
-nmap <leader>tnE G?>>TODO(()OE [·30] F[a?<ESC>A
+nmap <leader>tnE G?>>TODO(()OE [·30] <ESC>F[a
+nmap <leader>tne G?>>TODO(()OE [·30] <ESC>F[a?<ESC>A
+nmap <leader>tSt $?[TGEQ]
 nmap <leader>tst yyp:s/^\([TGEQ]\)\([ \.]*\).*$/T\2A
 nmap <leader>tsg yyp:s/^\([TGEQ]\)\([ \.]*\).*$/G\2A
 nmap <leader>tsq yyp:s/^\([TGEQ]\)\([ \.]*\).*$/Q\2A
