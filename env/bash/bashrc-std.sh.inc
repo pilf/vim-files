@@ -1,3 +1,4 @@
+#set -x
 # Standard functions designed to be used in .bashrc (or .bash_profile)
 # To use put the line:
 #   source <location-of-this-file>
@@ -51,7 +52,7 @@ function short_pwd {
     printf $(ellipsisify "$(pwd | sed "s|^$HOME|~|")" "$1")
 }
 
-function prompt_setup {
+function git_prompt_setup {
     short_user="$1"
     short_host=$(ellipsisify $HOSTNAME 12 left)
     export PROMPT_COMMAND='__git_ps1 "\[\033[1;30m\]$short_user@$short_host\[\033[0m\]:\[\033[0;33m\]$(short_pwd 25)\[\033[0m\]" "\\\$ "'
@@ -77,13 +78,13 @@ bashversion="${BASH_VERSION:0:1}"
 zshversion="${ZSH_VERSION:0:1}"
 
 if [ "$bashversion" -eq "4" ] || [ -n "$zshversion" ]; then
-    #[[ $- == *i* ]] && git-promptn.sh
-    source git-prompt.sh
     export GIT_PS1_SHOWCOLORHINTS=1
     export GIT_PS1_SHOWDIRTYSTATE=1
     user=$(whoami)
     short_user=$(ellipsisify $user 7 left)
-    prompt_setup "$short_user"
+
+    source git-prompt.sh 
+    git_prompt_setup "$short_user"
 else
     echo "Using bash binary at $tmux_shell"
     echo "Info: Bashversion != 4 ($bashversion) || -n zshversion ($zshversion)" 1>&2
@@ -127,7 +128,7 @@ alias docker-go="'/Applications/Docker/Docker Quickstart Terminal.app/Contents/R
 alias gitdiff="GIT_PAGER='vim -R -' git diff --no-color"
 
 # Tmux specific
-alias ppid='ps -o ppid= -p'
+alias ppid='ps ppid= -p'
 alias tmux-tree="pstree $(ppid $$)"
 
 # Node
@@ -145,3 +146,5 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 # mintty
 alias mintty-grasslands="bash -lc '. \$HOME/.bashrc && sh \$(g vf)/env/win/mintty/grasslands-theme.sh && ssh-tmux philip@grasslands'"
+
+set +x

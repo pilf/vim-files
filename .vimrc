@@ -213,6 +213,9 @@ autocmd BufNewFile,BufRead *.toneq set syntax=toneq
 autocmd BufNewFile,BufRead *.tl set syntax=timeline
 autocmd BufNewFile,BufRead *.js set tabstop=2 | set sts=2 | set shiftwidth=2
 
+syntax region toneqMdSnip matchgroup=TMdSnip start="(|" end="|)" 
+hi link TMdSnip Markdown
+
 " export feature files to HTML
 nnoremap <leader>rfhtml :TO<CR>:w<CR>:!open -a Safari %<CR><CR>
 
@@ -278,8 +281,13 @@ nnoremap <leader>ta6 oT<SPACE><ESC>6a.<SPACE><ESC>A
 " n=now (as in finish the currently in progress line)
 " l=line (if not start information known)
 nmap <leader>tcn G?-\s*$Ac:<ESC>"=strftime("%H%M")<CR>p:w<CR>
+nmap <leader>tc? $DA - c:?<ESC>:w<CR>
 nmap <leader>tan G?-\s*$Aa:<ESC>"=strftime("%H%M")<CR>p:w<CR>F-a<SPACE>(<BAR><SPACE><BAR>)<SPACE><ESC>2F<BAR>a<SPACE>
 nmap <leader>tsn G?-\s*$As:<ESC>"=strftime("%H%M")<CR>p:w<CR>F-a<SPACE>(<BAR><SPACE><BAR>)<SPACE><ESC>2F<BAR>a<SPACE>
+" qc = successfully answered
+" qs = insufficient data
+" qa = failed to answer
+" TODO^^^
 " go currently executing line
 nmap <leader>tnow G?-\s*$A
 " indent
@@ -307,6 +315,8 @@ nmap <leader>tct yyp:s/^\([TGEQ]\)\([ \.]*\).*$/T .\2A
 nmap <leader>tcg yyp:s/^\([TGEQ]\)\([ \.]*\).*$/G .\2A
 nmap <leader>tcq yyp:s/^\([TGEQ]\)\([ \.]*\).*$/Q .\2A
 nmap <leader>tce yyp:s/^\([TGEQ]\)\([ \.]*\).*$/E .\2[·30] f[a
+" fold
+nmap <leader>tzf mz$?^(\|<CR>v/^\|)<CR>$zf
 """ Toneq END
 
 " gf (goto file) such that it will create a new file if it doesn't exist... (http://stackoverflow.com/questions/1050745/unable-to-create-a-file-from-a-path-in-vim)
@@ -397,18 +407,19 @@ nnoremap <Leader>cf :Copyfile<CR>
 
 " Markdown helpers
 nmap <leader>md= yypv$hr=
-nmap <leader>md- yypv$hr-c:1610
+nmap <leader>md- yypv$hr-
 nmap <leader>mdshow :silent exe "!md-chrome.sh %"<CR>:redraw!<CR>
 
 nmap <leader>soc <ESC>"=strftime("%A %F - %R")<CR>p
 nnoremap <leader>scr :r !today<CR><ESC>A/scratch.md<ESC>
 nnoremap <leader>today o<ESC>"=strftime("%F")<CR>p
 inoremap <leader>today <ESC>"=strftime("%F")<CR>pa
-nmap <leader>later o<ESC>i<CR><ESC>"=". . . " . strftime("%R") . " . . ."<CR>pA<CR><CR><ESC>
 imap <leader>now <ESC>"=strftime("%H%M")<CR>pa
 imap <leader>Now <ESC>"=strftime("%R")<CR>pa
 imap <leader>NOw <ESC>"=strftime("%F - %R")<CR>pa
 imap <leader>NOW <ESC>"=strftime("%A %F - %R")<CR>pa
+" recommend <leader>dl (this is more internal)
+nmap <leader>later o<ESC>i<CR><ESC>"=". . . " . strftime("%R") . " . . ."<CR>pA<CR><CR><ESC>
 nmap <leader>dnew /EOF<CR>(()o<CR><ESC><leader>soc<leader>md=o<CR>
 nmap <leader>dnow /EOF<CR>(()o
 nmap <leader>dl /EOF<CR>(()k<leader>latera
