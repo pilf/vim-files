@@ -254,15 +254,16 @@ nmap <leader>elm <leader>el_getready<leader>el_mixscriptcmd<leader>el_render
 " elixir clear
 nmap <leader>elc mm?###::SECTION/###::OUTPUTjV/###::ENDkd'm
 
-"""
-" Toneq stuff
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Toneq START
+
+"" IRREGULAR
 nmap <leader>tsx :set syntax=toneq<CR>
 imap <leader>tin <ESC>A<Space>(<BAR><Space><Space><BAR>)<esc>2hi
 nmap <leader>ton <ESC>o(<BAR><CR><CR><BAR>)<esc>ki
-"nmap <leader>tnew G?>>TODOs?201.-..-..$V/^$k"aygvo:.!now -Di (:r!date "+%A""apdd
-nmap <leader>tnew G?>>TODOs(()mm?^201.-..-..V'mk"aygvo:.!now -DA (:r!date "+\%A"kJxA)"apdd
+nmap <leader>tnew G?>>TODOs(()mm?^201.-..-..V'mk"aygvo:.!now -DA (:r!date "+\%A"kJA - <ESC>"=strftime("%H%M")<CR>pA aim=6hrs, break=1.5hrs - break=0; - )"apdd
 " test as in t-est as in task estimation (note the dot is a 'middle dot' diagraph .M)
-inoremap <leader>test []<ESC>:wF[a·
+inoremap <leader>test []<ESC>F[a·
 nnoremap <leader>test A<SPACE>[]<ESC>F[a·
 " start right now (with estimate)
 inoremap <leader>tgo [] - <ESC>F]"=strftime("%H%M")<CR>P:w<CR>a·
@@ -270,6 +271,13 @@ nnoremap <leader>tgo A<SPACE>[] - <ESC>F]"=strftime("%H%M")<CR>P:w<CR>a·
 " start a task (will overwrite if already present)
 nnoremap <leader>tex $T["=strftime("%H%M")<CR>PA - <ESC>:w<CR>
 nnoremap <leader>tstop $F-C- c:<ESC>"=strftime("%H%M")<CR>p<ESC>:w<CR>
+" go currently executing line
+nmap <leader>tnow G?-\s*$A
+" indent
+nmap <leader>t< 0:s/^\([TGEQ]\)\( \.\)/\1<CR>
+nmap <leader>t> 0:s/^\([TGEQ]\)/\1 .<CR>
+
+"" a(ppend?) -- why is this used?
 nnoremap <leader>ta oT<SPACE> 
 nnoremap <leader>ta1 oT<SPACE><ESC>1a.<SPACE><ESC>A
 nnoremap <leader>ta2 oT<SPACE><ESC>2a.<SPACE><ESC>A
@@ -277,46 +285,49 @@ nnoremap <leader>ta3 oT<SPACE><ESC>3a.<SPACE><ESC>A
 nnoremap <leader>ta4 oT<SPACE><ESC>4a.<SPACE><ESC>A
 nnoremap <leader>ta5 oT<SPACE><ESC>5a.<SPACE><ESC>A
 nnoremap <leader>ta6 oT<SPACE><ESC>6a.<SPACE><ESC>A
-" c=complete, a=abandoned, s=suspended.  
-" n=now (as in finish the currently in progress line)
-" l=line (if not start information known)
-nmap <leader>tcn G?-\s*$Ac:<ESC>"=strftime("%H%M")<CR>p:w<CR>
-nmap <leader>tc? $DA - c:?<ESC>:w<CR>
-nmap <leader>tan G?-\s*$Aa:<ESC>"=strftime("%H%M")<CR>p:w<CR>F-a<SPACE>(<BAR><SPACE><BAR>)<SPACE><ESC>2F<BAR>a<SPACE>
-nmap <leader>tsn G?-\s*$As:<ESC>"=strftime("%H%M")<CR>p:w<CR>F-a<SPACE>(<BAR><SPACE><BAR>)<SPACE><ESC>2F<BAR>a<SPACE>
-" qc = successfully answered
-" qs = insufficient data
-" qa = failed to answer
-" TODO^^^
-" go currently executing line
-nmap <leader>tnow G?-\s*$A
-" indent
-nmap <leader>t< 0:s/^\([TGEQ]\)\( \.\)/\1
-nmap <leader>t> 0:s/^\([TGEQ]\)/\1 .
-" a million and one ways to make tasks/goals/questions/events
-" n=new, top-level
-" s=sibling
-" c=child
-" Note events have a special form: 
-"   E [<expected start time>·<expected duration>] Name of event
-" 'e'=put ? mark for start time, ends ready for user to enter name
-" 'E'=user ends being asked for start time (before name)
+
+" b(break) s=start, f=finish
+nmap <leader>tbs mmG?-\s*$<CR>As:<ESC>"=strftime("%H%M")<CR>p:w<CR>F-a<SPACE>(<BAR><SPACE><BAR>)<SPACE><ESC>2F<BAR>a<SPACE>break<ESC>?^201.-..-.. (.*)<CR>0/break=0;\w*<CR>f i[<ESC>"=strftime("%H%M")<CR>pa-];<ESC>ms`m:w<CR>
+nmap <leader>tbf `s<ESC>F-"=strftime("%H%M")<CR>p`mA<SPACE>[] - <ESC>F]"=strftime("%H%M")<CR>P:w<CR>a·
+
+" c(child) t=task, g=goal, q=question, e=event
+nmap <leader>tct yyp:s/^\([TGEQ]\)\([ \.]*\).*$/T .\2A
+nmap <leader>tcg yyp:s/^\([TGEQ]\)\([ \.]*\).*$/G .\2A
+nmap <leader>tcq yyp:s/^\([TGEQ]\)\([ \.]*\).*$/Q .\2A
+nmap <leader>tce yyp:s/^\([TGEQ]\)\([ \.]*\).*$/E .\2[·30] f[a
+
+" s(ibling) t=task, g=goal, q=question, e=event
+nmap <leader>tst yyp:s/^\([TGEQ]\)\([ \.]*\).*$/T\2A
+nmap <leader>tsg yyp:s/^\([TGEQ]\)\([ \.]*\).*$/G\2A
+nmap <leader>tsq yyp:s/^\([TGEQ]\)\([ \.]*\).*$/Q\2A
+nmap <leader>tse yyp:s/^\([TGEQ]\)\([ \.]*\).*$/E\2[·30] f[a
+
+" n(ew) t=task, g=goal, q=question, E=event(known start time), e=event(unknown start time)
 nmap <leader>tnt G?>>TODO(()OT 
 nmap <leader>tng G?>>TODO(()OG 
 nmap <leader>tnq G?>>TODO(()OQ 
 nmap <leader>tnE G?>>TODO(()OE [·30] <ESC>F[a
 nmap <leader>tne G?>>TODO(()OE [·30] <ESC>F[a?<ESC>A
-nmap <leader>tSt $?[TGEQ]
-nmap <leader>tst yyp:s/^\([TGEQ]\)\([ \.]*\).*$/T\2A
-nmap <leader>tsg yyp:s/^\([TGEQ]\)\([ \.]*\).*$/G\2A
-nmap <leader>tsq yyp:s/^\([TGEQ]\)\([ \.]*\).*$/Q\2A
-nmap <leader>tse yyp:s/^\([TGEQ]\)\([ \.]*\).*$/E\2[·30] f[a
-nmap <leader>tct yyp:s/^\([TGEQ]\)\([ \.]*\).*$/T .\2A
-nmap <leader>tcg yyp:s/^\([TGEQ]\)\([ \.]*\).*$/G .\2A
-nmap <leader>tcq yyp:s/^\([TGEQ]\)\([ \.]*\).*$/Q .\2A
-nmap <leader>tce yyp:s/^\([TGEQ]\)\([ \.]*\).*$/E .\2[·30] f[a
-" fold
+
+" f(inish) c=complete, a=abandoned, s=suspended.  
+nmap <leader>tfc G?-\s*$Ac:<ESC>"=strftime("%H%M")<CR>p:w<CR>
+nmap <leader>tfa G?-\s*$Aa:<ESC>"=strftime("%H%M")<CR>p:w<CR>F-a<SPACE>(<BAR><SPACE><BAR>)<SPACE><ESC>2F<BAR>a<SPACE>
+nmap <leader>tfs G?-\s*$As:<ESC>"=strftime("%H%M")<CR>p:w<CR>F-a<SPACE>(<BAR><SPACE><BAR>)<SPACE><ESC>2F<BAR>a<SPACE>
+" ?(unknown time) c=complete
+nmap <leader>t?c $DA - c:?<ESC>:w<CR>
+" t?a TBC
+
+" s(uspend) t=task, g=goal, q=question, e=event
+"nmap <leader>tst yyp:s/^\([TGEQ]\)\([ \.]*\).*$/T\2A
+"nmap <leader>tsg yyp:s/^\([TGEQ]\)\([ \.]*\).*$/G\2A
+"nmap <leader>tsq yyp:s/^\([TGEQ]\)\([ \.]*\).*$/Q\2A
+"nmap <leader>tse yyp:s/^\([TGEQ]\)\([ \.]*\).*$/E\2[·30] f[a
+
+" z(fold)
 nmap <leader>tzf mz$?^(\|<CR>v/^\|)<CR>$zf
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Toneq END
 
 " gf (goto file) such that it will create a new file if it doesn't exist... (http://stackoverflow.com/questions/1050745/unable-to-create-a-file-from-a-path-in-vim)
