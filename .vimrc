@@ -318,9 +318,9 @@ nmap <leader>tnE G?>>TODO(()OE [·30] <ESC>F[a
 nmap <leader>tne G?>>TODO(()OE [·30] <ESC>F[a?<ESC>A
 
 " (f)inish c=complete, a=abandoned, s=suspended
-nmap <leader>tfc G?-\s*$Ac:<ESC>"=strftime("%H%M")<CR>p:w<CR>
-nmap <leader>tfa G?-\s*$Aa:<ESC>"=strftime("%H%M")<CR>p:w<CR>F-a<SPACE>(<BAR><SPACE><BAR>)<SPACE><ESC>2F<BAR>a<SPACE>
-nmap <leader>tfs G?-\s*$As:<ESC>"=strftime("%H%M")<CR>p:w<CR>F-a<SPACE>(<BAR><SPACE><BAR>)<SPACE><ESC>2F<BAR>a<SPACE>
+nmap <leader>tfc G?-\(\s*(\|.*\|)\)*\s*$<CR>:s/\s*$//<CR>A c:<ESC>"=strftime("%H%M")<CR>p:w<CR>
+nmap <leader>tfa G?-\(\s*(\|.*\|)\)*\s*$<CR>:s/\s*$//<CR>A (\| reason? \|) a:<ESC>"=strftime("%H%M")<CR>p:w<CR>?reason<CR>f<SPACE>i<SPACE>
+nmap <leader>tfs G?-\(\s*(\|.*\|)\)*\s*$<CR>:s/\s*$//<CR>A (\| because? \|) s:<ESC>"=strftime("%H%M")<CR>p:w<CR>?because<CR>f<SPACE>i<SPACE>
 " (?)unknown time c=complete
 nmap <leader>t?c $DA - c:?<ESC>:w<CR>
 " t?a TBC
