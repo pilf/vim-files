@@ -286,51 +286,52 @@ nnoremap <leader>ta4 oT<SPACE><ESC>4a.<SPACE><ESC>A
 nnoremap <leader>ta5 oT<SPACE><ESC>5a.<SPACE><ESC>A
 nnoremap <leader>ta6 oT<SPACE><ESC>6a.<SPACE><ESC>A
 
-" b(break) s=start, f=finish
+" (b)reak s=start, f=finish
 nmap <leader>tbs mmG?-\s*$<CR>As:<ESC>"=strftime("%H%M")<CR>p:w<CR>F-a<SPACE>(<BAR><SPACE><BAR>)<SPACE><ESC>2F<BAR>a<SPACE>break<ESC>?^201.-..-.. (.*)<CR>0/break=0;\w*<CR>f i[<ESC>"=strftime("%H%M")<CR>pa-];<ESC>ms`m:w<CR>
 nmap <leader>tbf `s<ESC>F-"=strftime("%H%M")<CR>p`mA<SPACE>[] - <ESC>F]"=strftime("%H%M")<CR>P:w<CR>a·
 
-" c(child) t=task, g=goal, q=question, e=event
+" (c)hild t=task, g=goal, q=question, e=event
 nmap <leader>tct yyp:s/^\([TGEQ]\)\([ \.]*\).*$/T .\2A
 nmap <leader>tcg yyp:s/^\([TGEQ]\)\([ \.]*\).*$/G .\2A
 nmap <leader>tcq yyp:s/^\([TGEQ]\)\([ \.]*\).*$/Q .\2A
 nmap <leader>tce yyp:s/^\([TGEQ]\)\([ \.]*\).*$/E .\2[·30] f[a
 
-" e(x)ecuting line
+" (g)o to now line (defined as - with 0+ notes and white space after it)
 " t=go, r=reset, n=note
-" executing line is defined as - with 0+ notes and white space after it
 nmap <leader>tgt G?-\(\s*(\|.*\|)\)*\s*$<CR>$
-nmap <leader>tgr G?-\(\s*(\|.*\|)\)*\s*$<CR>0s/\s*[D
 nmap <leader>tgn G?-\(\s*(\|.*\|)\)*\s*$<CR>:s/\s*$//<CR>A (\|<ESC>"=strftime("%H%M")<CR>pA:<Space><Space><BAR>)<esc>2hi
 
-" s(ibling) t=task, g=goal, q=question, e=event
+" (l)ine r=reset
+nmap <leader>tlr A[]<ESC>0/\s*[<CR>D
+
+" (s)ibling t=task, g=goal, q=question, e=event
 nmap <leader>tst yyp:s/^\([TGEQ]\)\([ \.]*\).*$/T\2A
 nmap <leader>tsg yyp:s/^\([TGEQ]\)\([ \.]*\).*$/G\2A
 nmap <leader>tsq yyp:s/^\([TGEQ]\)\([ \.]*\).*$/Q\2A
 nmap <leader>tse yyp:s/^\([TGEQ]\)\([ \.]*\).*$/E\2[·30] f[a
 
-" n(ew) t=task, g=goal, q=question, E=event(known start time), e=event(unknown start time)
+" (n)ew t=task, g=goal, q=question, E=event(known start time), e=event(unknown start time)
 nmap <leader>tnt G?>>TODO(()OT 
 nmap <leader>tng G?>>TODO(()OG 
 nmap <leader>tnq G?>>TODO(()OQ 
 nmap <leader>tnE G?>>TODO(()OE [·30] <ESC>F[a
 nmap <leader>tne G?>>TODO(()OE [·30] <ESC>F[a?<ESC>A
 
-" f(inish) c=complete, a=abandoned, s=suspended
+" (f)inish c=complete, a=abandoned, s=suspended
 nmap <leader>tfc G?-\s*$Ac:<ESC>"=strftime("%H%M")<CR>p:w<CR>
 nmap <leader>tfa G?-\s*$Aa:<ESC>"=strftime("%H%M")<CR>p:w<CR>F-a<SPACE>(<BAR><SPACE><BAR>)<SPACE><ESC>2F<BAR>a<SPACE>
 nmap <leader>tfs G?-\s*$As:<ESC>"=strftime("%H%M")<CR>p:w<CR>F-a<SPACE>(<BAR><SPACE><BAR>)<SPACE><ESC>2F<BAR>a<SPACE>
-" ?(unknown time) c=complete
+" (?)unknown time c=complete
 nmap <leader>t?c $DA - c:?<ESC>:w<CR>
 " t?a TBC
 
-" s(uspend) t=task, g=goal, q=question, e=event
+" (s)uspend t=task, g=goal, q=question, e=event
 "nmap <leader>tst yyp:s/^\([TGEQ]\)\([ \.]*\).*$/T\2A
 "nmap <leader>tsg yyp:s/^\([TGEQ]\)\([ \.]*\).*$/G\2A
 "nmap <leader>tsq yyp:s/^\([TGEQ]\)\([ \.]*\).*$/Q\2A
 "nmap <leader>tse yyp:s/^\([TGEQ]\)\([ \.]*\).*$/E\2[·30] f[a
 
-" z(fold)
+" (z) f=fold
 nmap <leader>tzf mz$?^(\|<CR>v/^\|)<CR>$zf
 
 
