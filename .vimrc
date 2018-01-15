@@ -177,6 +177,7 @@ noremap <leader>lr :set relativenumber!<CR>
 "(note) To insert the elipsis, press ctrl-vu followed by the numeric code for elipsis: 2026
 noremap <leader>sb :set showbreak=…<CR>
 nnoremap <leader>wso :w \| so %<CR>
+nnoremap <leader>ws. :w \| so $HOME/.vimrc<CR>\| e
 "http://stackoverflow.com/questions/2600783/how-does-the-vim-write-with-sudo-trick-work
 nnoremap <leader>wsudo mm:w !sudo tee %<CR><CR>L`m
 
@@ -259,7 +260,8 @@ nmap <leader>elc mm?###::SECTION/###::OUTPUTjV/###::ENDkd'm
 
 "" IRREGULAR
 nmap <leader>tsx :set syntax=toneq<CR>
-imap <leader>tin <ESC>A<Space>(<BAR><Space><Space><BAR>)<esc>2hi
+imap <leader>tin <ESC>:s/\s*$/ /<CR>A(<BAR><Space><Space><BAR>)<esc>2hi
+nmap <leader>tin :s/\s*$/ /<CR>A(<BAR><Space><Space><BAR>)<esc>2hi
 nmap <leader>ton <ESC>o(<BAR><CR><CR><BAR>)<esc>ki
 nmap <leader>tnew G?>>TODOs(()mm?^201.-..-..V'mk"aygvo:.!now -DA (:r!date "+\%A"kJA - <ESC>"=strftime("%H%M")<CR>pA aim=6hrs, break=1.5hrs - break=0; - )"apdd
 " test as in t-est as in task estimation (note the dot is a 'middle dot' diagraph .M)
@@ -271,8 +273,6 @@ nnoremap <leader>tgo A<SPACE>[] - <ESC>F]"=strftime("%H%M")<CR>P:w<CR>a·
 " start a task (will overwrite if already present)
 nnoremap <leader>tex $T["=strftime("%H%M")<CR>PA - <ESC>:w<CR>
 nnoremap <leader>tstop $F-C- c:<ESC>"=strftime("%H%M")<CR>p<ESC>:w<CR>
-" go currently executing line
-nmap <leader>tnow G?-\s*$A
 " indent
 nmap <leader>t< 0:s/^\([TGEQ]\)\( \.\)/\1<CR>
 nmap <leader>t> 0:s/^\([TGEQ]\)/\1 .<CR>
@@ -296,6 +296,13 @@ nmap <leader>tcg yyp:s/^\([TGEQ]\)\([ \.]*\).*$/G .\2A
 nmap <leader>tcq yyp:s/^\([TGEQ]\)\([ \.]*\).*$/Q .\2A
 nmap <leader>tce yyp:s/^\([TGEQ]\)\([ \.]*\).*$/E .\2[·30] f[a
 
+" e(x)ecuting line
+" t=go, r=reset, n=note
+" executing line is defined as - with 0+ notes and white space after it
+nmap <leader>tgt G?-\(\s*(\|.*\|)\)*\s*$<CR>$
+nmap <leader>tgr G?-\(\s*(\|.*\|)\)*\s*$<CR>0s/\s*[D
+nmap <leader>tgn G?-\(\s*(\|.*\|)\)*\s*$<CR>:s/\s*$//<CR>A (\|<ESC>"=strftime("%H%M")<CR>pA:<Space><Space><BAR>)<esc>2hi
+
 " s(ibling) t=task, g=goal, q=question, e=event
 nmap <leader>tst yyp:s/^\([TGEQ]\)\([ \.]*\).*$/T\2A
 nmap <leader>tsg yyp:s/^\([TGEQ]\)\([ \.]*\).*$/G\2A
@@ -309,7 +316,7 @@ nmap <leader>tnq G?>>TODO(()OQ
 nmap <leader>tnE G?>>TODO(()OE [·30] <ESC>F[a
 nmap <leader>tne G?>>TODO(()OE [·30] <ESC>F[a?<ESC>A
 
-" f(inish) c=complete, a=abandoned, s=suspended.  
+" f(inish) c=complete, a=abandoned, s=suspended
 nmap <leader>tfc G?-\s*$Ac:<ESC>"=strftime("%H%M")<CR>p:w<CR>
 nmap <leader>tfa G?-\s*$Aa:<ESC>"=strftime("%H%M")<CR>p:w<CR>F-a<SPACE>(<BAR><SPACE><BAR>)<SPACE><ESC>2F<BAR>a<SPACE>
 nmap <leader>tfs G?-\s*$As:<ESC>"=strftime("%H%M")<CR>p:w<CR>F-a<SPACE>(<BAR><SPACE><BAR>)<SPACE><ESC>2F<BAR>a<SPACE>
