@@ -264,15 +264,6 @@ imap <leader>tin <ESC>:s/\s*$/ /<CR>A(<BAR><Space><Space><BAR>)<esc>2hi
 nmap <leader>tin :s/\s*$/ /<CR>A(<BAR><Space><Space><BAR>)<esc>2hi
 nmap <leader>ton <ESC>o(<BAR><CR><CR><BAR>)<esc>ki
 nmap <leader>tnew G?>>TODOs(()mm?^201.-..-..V'mk"aygvo:.!now -DA (:r!date "+\%A"kJA - <ESC>"=strftime("%H%M")<CR>pA aim=6hrs, break=1.5hrs - break=0; - )"apdd
-" test as in t-est as in task estimation (note the dot is a 'middle dot' diagraph .M)
-inoremap <leader>test []<ESC>F[a·
-nnoremap <leader>test A<SPACE>[]<ESC>F[a·
-" start right now (with estimate)
-inoremap <leader>tgo [] - <ESC>F]"=strftime("%H%M")<CR>P:w<CR>a·
-nnoremap <leader>tgo A<SPACE>[] - <ESC>F]"=strftime("%H%M")<CR>P:w<CR>a·
-" start a task (will overwrite if already present)
-nnoremap <leader>tex $T["=strftime("%H%M")<CR>PA - <ESC>:w<CR>
-nnoremap <leader>tstop $F-C- c:<ESC>"=strftime("%H%M")<CR>p<ESC>:w<CR>
 " indent
 nmap <leader>t< 0:s/^\([TGEQ]\)\( \.\)/\1<CR>
 nmap <leader>t> 0:s/^\([TGEQ]\)/\1 .<CR>
@@ -287,7 +278,7 @@ nnoremap <leader>ta5 oT<SPACE><ESC>5a.<SPACE><ESC>A
 nnoremap <leader>ta6 oT<SPACE><ESC>6a.<SPACE><ESC>A
 
 " (b)reak s=start, f=finish
-nmap <leader>tbs mmG?-\s*$<CR>As:<ESC>"=strftime("%H%M")<CR>p:w<CR>F-a<SPACE>(<BAR><SPACE><BAR>)<SPACE><ESC>2F<BAR>a<SPACE>break<ESC>?^201.-..-.. (.*)<CR>0/break=0;\w*<CR>f i[<ESC>"=strftime("%H%M")<CR>pa-];<ESC>ms`m:w<CR>
+nmap <leader>tbs G?-\(\s*(\|.*\|)\)*\s*$<CR>:s/\s*$//<CR>A (\| break, comments: \|) s:<ESC>"=strftime("%H%M")<CR>p2F:mm?^201.-..-.. (.*)<CR>$F;a[<ESC>"=strftime("%H%M")<CR>pa-];<ESC>ms`m:w<CR>i  
 nmap <leader>tbf `s<ESC>F-"=strftime("%H%M")<CR>p`mA<SPACE>[] - <ESC>F]"=strftime("%H%M")<CR>P:w<CR>a·
 
 " (c)hild t=task, g=goal, q=question, e=event
@@ -301,8 +292,15 @@ nmap <leader>tce yyp:s/^\([TGEQ]\)\([ \.]*\).*$/E .\2[·30] f[a
 nmap <leader>tgt G?-\(\s*(\|.*\|)\)*\s*$<CR>$
 nmap <leader>tgn G?-\(\s*(\|.*\|)\)*\s*$<CR>:s/\s*$//<CR>A (\|<ESC>"=strftime("%H%M")<CR>pA:<Space><Space><BAR>)<esc>2hi
 
-" (l)ine r=reset
+" (l)ine r=reset, e=estimate, x=execute, g=go
+" (note the dot is a 'middle dot' diagraph .M) - was test
 nmap <leader>tlr A[]<ESC>0/\s*[<CR>D
+inoremap <leader>tle <ESC>:s/\s*$//<CR>A [·]<ESC>F·a
+nnoremap <leader>tle :s/\s*$//<CR>A [·]<ESC>F·a
+inoremap <leader>tlg <ESC>:s/\s*$//<CR>A [] - <ESC>F]"=strftime("%H%M")<CR>P:w<CR>a·
+nnoremap <leader>tlg :s/\s*$//<CR>A [] - <ESC>F]"=strftime("%H%M")<CR>P:w<CR>a·
+inoremap <leader>tls <ESC>$T["=strftime("%H%M")<CR>PA - <ESC>:w<CR>
+nnoremap <leader>tls $T["=strftime("%H%M")<CR>PA - <ESC>:w<CR>
 
 " (s)ibling t=task, g=goal, q=question, e=event
 nmap <leader>tst yyp:s/^\([TGEQ]\)\([ \.]*\).*$/T\2A
