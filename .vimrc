@@ -291,14 +291,14 @@ nmap <leader>tce yyp:s/^\([TGEQ]\)\([ \.]*\).*$/E .\2[·30] f[a
 nmap <leader>tds G?>>TODOs(()mm?^201.-..-..V'mk"aygvo:.!now -DA (:r!date "+\%A"kJA \| <ESC>"=strftime("%H%M")<CR>pA aim=6hrs, break=1.5hrs \| 0; \| )"apdd
 nmap <leader>tdf G?^201.-..-..<CR>$F\|a <ESC>"=strftime("%H%M")<CR>p:w<CR>
 
-" (g)o to now line (defined as - with 0+ notes and white space after it)
-" t=go, r=reset, n=note
-nmap <leader>tgt G?-\(\s*(\|.*\|)\)*\s*$<CR>$
-nmap <leader>tgn G?-\(\s*(\|.*\|)\)*\s*$<CR>:s/\s*$//<CR>A (\|<ESC>"=strftime("%H%M")<CR>pA:<Space><Space><BAR>)<esc>2hi
+" executing line (defined as - with 0+ notes and white space after it)
+" g=go, n=note
+nmap <leader>teg G?-\(\s*(\|.*\|)\)*\s*$<CR>$
+nmap <leader>ten G?-\(\s*(\|.*\|)\)*\s*$<CR>:s/\s*$//<CR>A (\|<ESC>"=strftime("%H%M")<CR>pA:<Space><Space><BAR>)<esc>2h:w<CR>i
 
 " (l)ine r=reset, e=estimate, x=execute, g=go
 " (note the dot is a 'middle dot' diagraph .M) - was test
-nmap <leader>tlr A[]<ESC>0/\s*[<CR>D
+nmap <leader>tlr A[]<ESC>0/\s*[<CR>D:w<CR>
 inoremap <leader>tle <ESC>:s/\s*$//<CR>A [·]<ESC>F·a
 nnoremap <leader>tle :s/\s*$//<CR>A [·]<ESC>F·a
 inoremap <leader>tlg <ESC>:s/\s*$//<CR>A [] - <ESC>F]"=strftime("%H%M")<CR>P:w<CR>a·
