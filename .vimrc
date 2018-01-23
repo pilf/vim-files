@@ -292,9 +292,15 @@ nmap <leader>tds G?>>TODOs(()mm?^201.-..-..V'mk"aygvo:.!now -DA (:r!date 
 nmap <leader>tdf G?^201.-..-..<CR>$F\|a <ESC>"=strftime("%H%M")<CR>p:w<CR>
 
 " executing line (defined as - with 0+ notes and white space after it)
-" g=go, n=note
+" g=go, n=note, c=complete, a=abandoned, s=suspended, ?=unknown complete
 nmap <leader>teg G?-\(\s*(\|.*\|)\)*\s*$<CR>$
 nmap <leader>ten G?-\(\s*(\|.*\|)\)*\s*$<CR>:s/\s*$//<CR>A (\|<ESC>"=strftime("%H%M")<CR>pA:<Space><Space><BAR>)<esc>2h:w<CR>i
+nmap <leader>tec G?-\(\s*(\|.*\|)\)*\s*$<CR>:s/\s*$//<CR>A c:<ESC>"=strftime("%H%M")<CR>p:w<CR>
+nmap <leader>tea G?-\(\s*(\|.*\|)\)*\s*$<CR>:s/\s*$//<CR>A (\| reason? \|) a:<ESC>"=strftime("%H%M")<CR>p:w<CR>?reason<CR>f<SPACE>i<SPACE>
+nmap <leader>tes G?-\(\s*(\|.*\|)\)*\s*$<CR>:s/\s*$//<CR>A (\| because? \|) s:<ESC>"=strftime("%H%M")<CR>p:w<CR>?because<CR>f<SPACE>i<SPACE>
+" (?)unknown teme c=complete
+nmap <leader>te? $DA - c:?<ESC>:w<CR>
+" t?a TBC
 
 " (l)ine r=reset, e=estimate, x=execute, g=go
 " (note the dot is a 'middle dot' diagraph .M) - was test
@@ -320,12 +326,6 @@ nmap <leader>tnE G?>>TODO(()OE [·30] <ESC>F[a
 nmap <leader>tne G?>>TODO(()OE [·30] <ESC>F[a?<ESC>A
 
 " (f)inish c=complete, a=abandoned, s=suspended
-nmap <leader>tfc G?-\(\s*(\|.*\|)\)*\s*$<CR>:s/\s*$//<CR>A c:<ESC>"=strftime("%H%M")<CR>p:w<CR>
-nmap <leader>tfa G?-\(\s*(\|.*\|)\)*\s*$<CR>:s/\s*$//<CR>A (\| reason? \|) a:<ESC>"=strftime("%H%M")<CR>p:w<CR>?reason<CR>f<SPACE>i<SPACE>
-nmap <leader>tfs G?-\(\s*(\|.*\|)\)*\s*$<CR>:s/\s*$//<CR>A (\| because? \|) s:<ESC>"=strftime("%H%M")<CR>p:w<CR>?because<CR>f<SPACE>i<SPACE>
-" (?)unknown time c=complete
-nmap <leader>t?c $DA - c:?<ESC>:w<CR>
-" t?a TBC
 
 " (s)uspend t=task, g=goal, q=question, e=event
 "nmap <leader>tst yyp:s/^\([TGEQ]\)\([ \.]*\).*$/T\2A
