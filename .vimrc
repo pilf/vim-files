@@ -302,15 +302,20 @@ nmap <leader>tes G?-\(\s*(\|.*\|)\)*\s*$<CR>:s/\s*$//<CR>A (\| because? \|) s:<E
 nmap <leader>te? $DA - c:?<ESC>:w<CR>
 " t?a TBC
 
-" (l)ine r=reset, e=estimate, x=execute, g=go
+" (l)ine r=reset, e=estimate, s=start, g=go, a=abandon
 " (note the dot is a 'middle dot' diagraph .M) - was test
 nmap <leader>tlr A[]<ESC>0/\s*[<CR>D:w<CR>
-inoremap <leader>tle <ESC>:s/\s*$//<CR>A [·]<ESC>F·a
-nnoremap <leader>tle :s/\s*$//<CR>A [·]<ESC>F·a
-inoremap <leader>tlg <ESC>:s/\s*$//<CR>A [] - <ESC>F]"=strftime("%H%M")<CR>P:w<CR>a·
-nnoremap <leader>tlg :s/\s*$//<CR>A [] - <ESC>F]"=strftime("%H%M")<CR>P:w<CR>a·
-inoremap <leader>tls <ESC>$T["=strftime("%H%M")<CR>PA - <ESC>:w<CR>
-nnoremap <leader>tls $T["=strftime("%H%M")<CR>PA - <ESC>:w<CR>
+imap <leader>tle <ESC>:s/\s*$//<CR>A [·]<ESC>F·a
+nmap <leader>tle :s/\s*$//<CR>A [·]<ESC>F·a
+imap <leader>tlg <ESC>:s/\s*$//<CR>A [] - <ESC>F]"=strftime("%H%M")<CR>P:w<CR>a·
+nmap <leader>tlg :s/\s*$//<CR>A [] - <ESC>F]"=strftime("%H%M")<CR>P:w<CR>a·
+imap <leader>tls <ESC>$T["=strftime("%H%M")<CR>PA - <ESC>:w<CR>
+nmap <leader>tls $T["=strftime("%H%M")<CR>PA - <ESC>:w<CR>
+imap <leader>tla <ESC>$T["=strftime("%H%M")<CR>PA - <ESC>:w<CR>
+nmap <leader>tla :s/\s*$//<CR>A - (\| reason? \|) a:<ESC>"=strftime("%H%M")<CR>p:w<CR>?reason<CR>f<SPACE>i<SPACE>
+imap <leader>tla <ESC>:s/\s*$//<CR>A - (\| reason? \|) a:<ESC>"=strftime("%H%M")<CR>p:w<CR>?reason<CR>f<SPACE>i<SPACE>
+nmap <leader>tlc :s/\s*$//<CR>A - (\| comments: \|) c:<ESC>"=strftime("%H%M")<CR>p:w<CR>?comments<CR>f<SPACE>i<SPACE>
+nmap <leader>tlc <ESC>:s/\s*$//<CR>A - (\| comments: \|) c:<ESC>"=strftime("%H%M")<CR>p:w<CR>?comments<CR>f<SPACE>i<SPACE>
 
 " (s)ibling t=task, g=goal, q=question, e=event
 nmap <leader>tst yyp:s/^\([TGEQ]\)\([ \.]*\).*$/T\2A
@@ -409,14 +414,15 @@ nmap <leader>wh <C-W>t<C-W>H
 nmap <leader>wj <C-W>t<C-W>J
 nmap <leader>wk <C-W>t<C-W>K
 
-nmap <leader>brsp :botright sp<CR>
-nmap <leader>brvsp :botright vsp<CR>
-nmap <leader>brnew :botright new<CR>
-nmap <leader>brvnew :botright vnew<CR>
-nmap <leader>tlsp :topleft sp<CR>
-nmap <leader>tlvsp :topleft vsp<CR>
-nmap <leader>tlnew :topleft new<CR>
-nmap <leader>tlvnew :topleft vnew<CR>
+" Yeah, these are more useful as example TBH, too complex to remember
+nmap <leader>spbh  :botright sp<CR>
+nmap <leader>spbv  :botright vsp<CR>
+nmap <leader>spbnh :botright new<CR>
+nmap <leader>spbnv :botright vnew<CR>
+nmap <leader>spth :topleft sp<CR>
+nmap <leader>sptv :topleft vsp<CR>
+nmap <leader>sptnh :topleft new<CR>
+nmap <leader>sptnv :topleft vnew<CR>
 
 set spell spelllang=en_gb
 nnoremap <leader>sp :set spell!<CR>
