@@ -309,8 +309,7 @@ imap <leader>tle <ESC>:s/\s*$//<CR>A [·]<ESC>F·a
 nmap <leader>tle :s/\s*$//<CR>A [·]<ESC>F·a
 imap <leader>tlg <ESC>:s/\s*$//<CR>A [] - <ESC>F]"=strftime("%H%M")<CR>P:w<CR>a·
 nmap <leader>tlg :s/\s*$//<CR>A [] - <ESC>F]"=strftime("%H%M")<CR>P:w<CR>a·
-imap <leader>tls <ESC>$T["=strftime("%H%M")<CR>PA - <ESC>:w<CR>
-nmap <leader>tls $T["=strftime("%H%M")<CR>PA - <ESC>:w<CR>
+nmap <leader>tls :s/\s*$//<CR>A s:<ESC>"=strftime("%H%M")<CR>p
 imap <leader>tla <ESC>$T["=strftime("%H%M")<CR>PA - <ESC>:w<CR>
 nmap <leader>tla :s/\s*$//<CR>A - (\| reason? \|) a:<ESC>"=strftime("%H%M")<CR>p:w<CR>?reason<CR>f<SPACE>i<SPACE>
 imap <leader>tla <ESC>:s/\s*$//<CR>A - (\| reason? \|) a:<ESC>"=strftime("%H%M")<CR>p:w<CR>?reason<CR>f<SPACE>i<SPACE>
