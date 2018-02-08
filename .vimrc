@@ -90,8 +90,8 @@ set et
 set autoindent
 nnoremap <leader>tt :set noet<CR>:retab!<CR>
 
-nnoremap <leader>tnx :set noet
-nnoremap <leader>tx :set et
+"nnoremap <leader>tnx :set noet
+"nnoremap <leader>tx :set et
 nnoremap <leader>t2 :set shiftwidth=2<CR>:set tabstop=2<CR>:set sts=2<CR>
 nnoremap <leader>t4 :set shiftwidth=4<CR>:set tabstop=4<CR>:set sts=4<CR>
 
@@ -293,22 +293,24 @@ nmap <leader>tdf G?^201.-..-..<CR>$F\|a <ESC>"=strftime("%H%M")<CR>p:w<CR>
 
 " executing line (defined as - with 0+ notes and white space after it)
 " g=go, n=note, c=complete, a=abandoned, s=suspended, ?=unknown complete
-nmap <leader>teg G?-\(\s*(\|.*\|)\)*\s*$<CR>$
-nmap <leader>ten G?-\(\s*(\|.*\|)\)*\s*$<CR>:s/\s*$//<CR>A (\|<ESC>"=strftime("%H%M")<CR>pA:<Space><Space><BAR>)<esc>2h:w<CR>i
-nmap <leader>tec G?-\(\s*(\|.*\|)\)*\s*$<CR>:s/\s*$//<CR>A c:<ESC>"=strftime("%H%M")<CR>p:w<CR>
-nmap <leader>tea G?-\(\s*(\|.*\|)\)*\s*$<CR>:s/\s*$//<CR>A (\| reason? \|) a:<ESC>"=strftime("%H%M")<CR>p:w<CR>?reason<CR>f<SPACE>i<SPACE>
-nmap <leader>tes G?-\(\s*(\|.*\|)\)*\s*$<CR>:s/\s*$//<CR>A (\| because? \|) s:<ESC>"=strftime("%H%M")<CR>p:w<CR>?because<CR>f<SPACE>i<SPACE>
-" (?)unknown teme c=complete
-nmap <leader>te? $DA - c:?<ESC>:w<CR>
+nmap <leader>txg G?-\(\s*(\|.*\|)\)*\s*$<CR>$
+nmap <leader>txn G?-\(\s*(\|.*\|)\)*\s*$<CR>:s/\s*$//<CR>A (\|<ESC>"=strftime("%H%M")<CR>pA:<Space><Space><BAR>)<esc>2h:w<CR>i
+nmap <leader>txc G?-\(\s*(\|.*\|)\)*\s*$<CR>:s/\s*$//<CR>A c:<ESC>"=strftime("%H%M")<CR>p:w<CR>
+nmap <leader>txa G?-\(\s*(\|.*\|)\)*\s*$<CR>:s/\s*$//<CR>A (\| reason? \|) a:<ESC>"=strftime("%H%M")<CR>p:w<CR>?reason<CR>f<SPACE>i<SPACE>
+nmap <leader>txs G?-\(\s*(\|.*\|)\)*\s*$<CR>:s/\s*$//<CR>A (\| because? \|) s:<ESC>"=strftime("%H%M")<CR>p:w<CR>?because<CR>f<SPACE>i<SPACE>
+" (?)unknown time c=complete
+nmap <leader>tx? $DA - c:?<ESC>:w<CR>
 " t?a TBC
 
-" (l)ine r=reset, e=estimate, s=start, g=go, a=abandon
+" (l)ine r=reset, e=estimate, x=execute, s=suspend, g=go, G=go (no estimate), a=abandon
 " (note the dot is a 'middle dot' diagraph .M) - was test
 nmap <leader>tlr A[]<ESC>0/\s*[<CR>D:w<CR>
 imap <leader>tle <ESC>:s/\s*$//<CR>A [·]<ESC>F·a
 nmap <leader>tle :s/\s*$//<CR>A [·]<ESC>F·a
 imap <leader>tlg <ESC>:s/\s*$//<CR>A [] - <ESC>F]"=strftime("%H%M")<CR>P:w<CR>a·
 nmap <leader>tlg :s/\s*$//<CR>A [] - <ESC>F]"=strftime("%H%M")<CR>P:w<CR>a·
+nmap <leader>tlG :s/\s*$//<CR>A [] - <ESC>F]"=strftime("%H%M")<CR>P:w<CR>a·<ESC>
+nmap <leader>tlx $F·"=strftime("%H%M")<CR>P:s/\s*$//<CR>A - <ESC>:w<CR>
 nmap <leader>tls :s/\s*$//<CR>A s:<ESC>"=strftime("%H%M")<CR>p
 imap <leader>tla <ESC>$T["=strftime("%H%M")<CR>PA - <ESC>:w<CR>
 nmap <leader>tla :s/\s*$//<CR>A - (\| reason? \|) a:<ESC>"=strftime("%H%M")<CR>p:w<CR>?reason<CR>f<SPACE>i<SPACE>
