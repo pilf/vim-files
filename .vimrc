@@ -278,8 +278,8 @@ nnoremap <leader>ta5 oT<SPACE><ESC>5a.<SPACE><ESC>A
 nnoremap <leader>ta6 oT<SPACE><ESC>6a.<SPACE><ESC>A
 
 " (b)reak s=start, f=finish
-nmap <leader>tbs G?-\(\s*(\|.*\|)\)*\s*$<CR>:s/\s*$//<CR>A (\| break, comments: \|) s:<ESC>"=strftime("%H%M")<CR>p2F:mm?^201.-..-.. (.*)<CR>$F;a[<ESC>"=strftime("%H%M")<CR>pa-];<ESC>ms`m:w<CR>a 
-nmap <leader>tbf `s<ESC>F-"=strftime("%H%M")<CR>p`mA<SPACE>[] - <ESC>F]"=strftime("%H%M")<CR>P:w<CR>a·
+nmap <leader>tbs mmG?^201.-..-.. (.*)<CR>$F;a[<ESC>"=strftime("%H%M")<CR>pa-];<ESC>F-mzf]a(\|<SPACE>\|)<ESC>:w<CR>F<SPACE>i<SPACE>
+nmap <leader>tbf `z<ESC>"=strftime("%H%M")<CR>p`m:w<CR>
 
 " (c)hild t=task, g=goal, q=question, e=event
 nmap <leader>tct yyp:s/^\([TGEQ]\)\([ \.]*\).*$/T .\2A
@@ -292,12 +292,13 @@ nmap <leader>tds G?>>TODOs(()mm?^201.-..-..V'mk"aygvo:.!now -DA (:r!date 
 nmap <leader>tdf G?^201.-..-..<CR>$F\|a <ESC>"=strftime("%H%M")<CR>p:w<CR>
 
 " executing line (defined as - with 0+ notes and white space after it)
-" g=go, n=note, c=complete, a=abandoned, s=suspended, ?=unknown complete
+" g=go, n=note, c=complete, a=abandoned, s=suspended, r=reestimate, ?=unknown complete
 nmap <leader>txg G?-\(\s*(\|.*\|)\)*\s*$<CR>$
 nmap <leader>txn G?-\(\s*(\|.*\|)\)*\s*$<CR>:s/\s*$//<CR>A (\|<ESC>"=strftime("%H%M")<CR>pA:<Space><Space><BAR>)<esc>2h:w<CR>i
 nmap <leader>txc G?-\(\s*(\|.*\|)\)*\s*$<CR>:s/\s*$//<CR>A c:<ESC>"=strftime("%H%M")<CR>p:w<CR>
 nmap <leader>txa G?-\(\s*(\|.*\|)\)*\s*$<CR>:s/\s*$//<CR>A (\| reason? \|) a:<ESC>"=strftime("%H%M")<CR>p:w<CR>?reason<CR>f<SPACE>i<SPACE>
 nmap <leader>txs G?-\(\s*(\|.*\|)\)*\s*$<CR>:s/\s*$//<CR>A (\| because? \|) s:<ESC>"=strftime("%H%M")<CR>p:w<CR>?because<CR>f<SPACE>i<SPACE>
+nmap <leader>txr G?-\(\s*(\|.*\|)\)*\s*$<CR>:s/\s*$//<CR>A [] - (\| reestimate \|) <ESC>F]"=strftime("%H%M")<CR>P:w<CR>a·
 " (?)unknown time c=complete
 nmap <leader>tx? $DA - c:?<ESC>:w<CR>
 " t?a TBC
@@ -311,7 +312,7 @@ imap <leader>tlg <ESC>:s/\s*$//<CR>A [] - <ESC>F]"=strftime("%H%M")<CR>P:w<CR>a�
 nmap <leader>tlg :s/\s*$//<CR>A [] - <ESC>F]"=strftime("%H%M")<CR>P:w<CR>a·
 nmap <leader>tlG :s/\s*$//<CR>A [] - <ESC>F]"=strftime("%H%M")<CR>P:w<CR>a·<ESC>
 nmap <leader>tlx $F·"=strftime("%H%M")<CR>P:s/\s*$//<CR>A - <ESC>:w<CR>
-nmap <leader>tls :s/\s*$//<CR>A s:<ESC>"=strftime("%H%M")<CR>p
+nmap <leader>tls :s/\s*$//<CR>A (\| because? \|) s:<ESC>"=strftime("%H%M")<CR>p:w<CR>?because<CR>f<SPACE>i<SPACE>
 imap <leader>tla <ESC>$T["=strftime("%H%M")<CR>PA - <ESC>:w<CR>
 nmap <leader>tla :s/\s*$//<CR>A - (\| reason? \|) a:<ESC>"=strftime("%H%M")<CR>p:w<CR>?reason<CR>f<SPACE>i<SPACE>
 imap <leader>tla <ESC>:s/\s*$//<CR>A - (\| reason? \|) a:<ESC>"=strftime("%H%M")<CR>p:w<CR>?reason<CR>f<SPACE>i<SPACE>

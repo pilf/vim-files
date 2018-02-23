@@ -17,7 +17,7 @@ syn region tqNoteEx matchgroup=TExSnip start=/(|ex\s*$/ end=/|)/ contains=@ELIXI
 syn region tqNoteSh matchgroup=TShSnip start=/(|sh\s*$/ end=/|)/ contains=sh
 syn region tqNoteRs matchgroup=TRustSnip start=/(|rs\s*$/ end=/|)/ contains=@RUST
 
-syn region tqNote start=/(|\s*$/ end=/|)/ 
+syn region tqNote start=/(|[^a-z]\s*/ end=/|)/ 
 
 syn match tqComplete /^[TQGE].*-\s*\((|.*|)\)\?\s*[ca]:\(?\|\~\?[0-9]\{1,4}\)s*$/ 
 syn match tqImportant /\[!\].*$/
