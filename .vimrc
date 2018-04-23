@@ -164,11 +164,13 @@ map Y y$
 noremap <leader>p :let @p=@*<CR>
 
 " alternative for newlining
-noremap <leader>o myo<ESC>`y
-noremap <leader>O myO<ESC>`y
+map <leader>o myo<ESC>`y
+map <leader>O myO<ESC>`y
+inoremap <leader>o <ESC>myo<ESC>`ya
+inoremap <leader>O <ESC>myO<ESC>`ya
 
-noremap <leader>hs :set list!<CR>
-noremap <leader>s :w<CR>
+map <leader>hs :set list!<CR>
+map <leader>s :w<CR>
 "visually select last match
 noremap <leader>v v//e<CR> 
 noremap <leader>b :ls<CR>:buffer<Space>
@@ -449,9 +451,9 @@ imap <leader>NOw <ESC>"=strftime("%F - %R")<CR>pa
 imap <leader>NOW <ESC>"=strftime("%A %F - %R")<CR>pa
 " recommend <leader>dl (this is more internal)
 nmap <leader>later o<ESC>i<CR><ESC>"=". . . " . strftime("%R") . " . . ."<CR>pA<CR><CR><ESC>
-nmap <leader>dnew /EOF<CR>(()o<CR><ESC><leader>soc<leader>md=o<CR>
-nmap <leader>dnow /EOF<CR>(()o
-nmap <leader>dl /EOF<CR>(()k<leader>latera
+nmap <leader>dnew G/^EOF.<CR>(()o<CR><ESC><leader>soc<leader>md=o<CR>
+nmap <leader>dnow G/^EOF.<CR>((
+nmap <leader>dl G/^EOF.<CR>(()k<leader>latera
 nmap <leader>dday :new `now -d`.md<CR>10i<CR><ESC>oEOF.<ESC>gg<leader>soc<leader>md=o<CR>
 
 let g:session_autoload = 'no'
