@@ -294,13 +294,13 @@ nmap <leader>tds G?>>TODOs(()mm?^201.-..-..V'mk"aygvo:.!now -DA (:r!date 
 nmap <leader>tdf G?^201.-..-..<CR>$F\|a <ESC>"=strftime("%H%M")<CR>p:w<CR>
 
 " executing line (defined as - with 0+ notes and white space after it)
-" g=go, n=note, c=complete, a=abandoned, s=suspended, r=reestimate, ?=unknown complete
+" g=go, n=note, c=complete, a=abandoned, s=suspended, e=reestimate, ?=unknown complete
 nmap <leader>txg G?-\(\s*(\|.*\|)\)*\s*$<CR>$
 nmap <leader>txn G?-\(\s*(\|.*\|)\)*\s*$<CR>:s/\s*$//<CR>A (\|<ESC>"=strftime("%H%M")<CR>pA:<Space><Space><BAR>)<esc>2h:w<CR>i
 nmap <leader>txc G?-\(\s*(\|.*\|)\)*\s*$<CR>:s/\s*$//<CR>A c:<ESC>"=strftime("%H%M")<CR>p:w<CR>
 nmap <leader>txa G?-\(\s*(\|.*\|)\)*\s*$<CR>:s/\s*$//<CR>A (\| reason? \|) a:<ESC>"=strftime("%H%M")<CR>p:w<CR>?reason<CR>f<SPACE>i<SPACE>
 nmap <leader>txs G?-\(\s*(\|.*\|)\)*\s*$<CR>:s/\s*$//<CR>A (\| because? \|) s:<ESC>"=strftime("%H%M")<CR>p:w<CR>?because<CR>f<SPACE>i<SPACE>
-nmap <leader>txr G?-\(\s*(\|.*\|)\)*\s*$<CR>:s/\s*$//<CR>A [] - (\| reestimate \|) <ESC>F]"=strftime("%H%M")<CR>P:w<CR>a·
+nmap <leader>txe G?-\(\s*(\|.*\|)\)*\s*$<CR>:s/\s*$//<CR>A (\| reestimate \|) [] - <ESC>F]"=strftime("%H%M")<CR>P:w<CR>a·
 " (?)unknown time c=complete
 nmap <leader>tx? $DA - c:?<ESC>:w<CR>
 " t?a TBC
@@ -451,9 +451,9 @@ imap <leader>NOw <ESC>"=strftime("%F - %R")<CR>pa
 imap <leader>NOW <ESC>"=strftime("%A %F - %R")<CR>pa
 " recommend <leader>dl (this is more internal)
 nmap <leader>later o<ESC>i<CR><ESC>"=". . . " . strftime("%R") . " . . ."<CR>pA<CR><CR><ESC>
-nmap <leader>dnew G/^EOF.<CR>(()o<CR><ESC><leader>soc<leader>md=o<CR>
-nmap <leader>dnow G/^EOF.<CR>((
-nmap <leader>dl G/^EOF.<CR>(()k<leader>latera
+nmap <leader>dnew G?^EOF.<CR>(()o<CR><ESC><leader>soc<leader>md=o<CR>
+nmap <leader>dnow G?^EOF.<CR>((
+nmap <leader>dl G?^EOF.<CR>(()k<leader>latera
 nmap <leader>dday :new `now -d`.md<CR>10i<CR><ESC>oEOF.<ESC>gg<leader>soc<leader>md=o<CR>
 
 let g:session_autoload = 'no'
