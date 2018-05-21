@@ -47,11 +47,11 @@ if has("win32")
     set shellredir=>
     
     try
-        "VsVIM ill use VS defaults (see: https://github.com/jaredpar/VsVim/wiki/Defaults-for-Settings)
+        "VsVIM will use VS defaults (see: https://github.com/jaredpar/VsVim/wiki/Defaults-for-Settings)
         set vsvim_useeditordefaults
     catch
     endtry
-    let mapleader="\\"
+    let mapleader="§"
 else
     if $living_room
         if $living_room_mac_override!=""
