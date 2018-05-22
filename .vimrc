@@ -289,9 +289,10 @@ nmap <leader>tcg yyp:s/^\([TGEQ]\)\([ \.]*\).*$/G .\2A
 nmap <leader>tcq yyp:s/^\([TGEQ]\)\([ \.]*\).*$/Q .\2A
 nmap <leader>tce yyp:s/^\([TGEQ]\)\([ \.]*\).*$/E .\2[·30] f[a
 
-" (d)ay s=start, f=finished
+" (d)ay s=start, f=finished, g=go
 nmap <leader>tds G?>>TODOs(()mm?^201.-..-..V'mk"aygvo:.!now -DA (:r!date "+\%A"kJA \| <ESC>"=strftime("%H%M")<CR>pA aim=6hrs, break=1.5hrs \| 0; \| )"apdd
 nmap <leader>tdf G?^201.-..-..<CR>$F\|a <ESC>"=strftime("%H%M")<CR>p:w<CR>
+nmap <leader>tdg G?^201.-..-..<CR>zz
 
 " executing line (defined as - with 0+ notes and white space after it)
 " g=go, n=note, c=complete, a=abandoned, s=suspended, e=reestimate, ?=unknown complete
