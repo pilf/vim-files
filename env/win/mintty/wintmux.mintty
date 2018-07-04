@@ -1,6 +1,5 @@
 Scrollbar=none
 Window=full
-Title=WinTmux
 Icon=/Cygwin-Terminal.ico
 Term=xterm-256color
 BackgroundColour=23,5,53

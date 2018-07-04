@@ -147,4 +147,12 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 # mintty
 alias mintty-grasslands="bash -lc '. \$HOME/.bashrc && sh \$(g vf)/env/win/mintty/grasslands-theme.sh && ssh-tmux philip@grasslands'"
 
+# Alas this doesn't work within tmux, but nice to have maybe.  Solved with tmux option set-title(-string)
+settitle ()
+{
+   echo -ne "\e]2;$@\a\e]1;$@\a";
+}
+
+tmux-color.sh
+
 set +x
