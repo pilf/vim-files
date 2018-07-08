@@ -458,13 +458,13 @@ nmap <leader>dl G?^EOF.<CR>(()k<leader>latera
 nmap <leader>dday :new `now -d`.md<CR>10i<CR><ESC>oEOF.<ESC>gg<leader>soc<leader>md=o<CR>
 " footnotes (btw digraph 1S=¹, 2S=², etc.)
 imap <leader>fn1 <ESC>mqa¹<ESC>o<CR>[¹: footnote ]<ESC>`qla
-nmap <leader>fn1 mqa¹<ESC>o<CR>[¹: footnote ]<ESC>`ql
+nmap <leader>fn1 mqa¹<ESC>o<CR>[¹: footnote ]<ESC>Ffcw
 imap <leader>fn2 <ESC>mqa²<ESC>o<CR>[²: footnote ]<ESC>`qla
-nmap <leader>fn2 mqa²<ESC>o<CR>[²: footnote ]<ESC>`ql
+nmap <leader>fn2 mqa²<ESC>o<CR>[²: footnote ]<ESC>Ffcw
 imap <leader>fn3 <ESC>mqa³<ESC>o<CR>[³: footnote ]<ESC>`qla
-nmap <leader>fn3 mqa³<ESC>o<CR>[³: footnote ]<ESC>`ql
+nmap <leader>fn3 mqa³<ESC>o<CR>[³: footnote ]<ESC>Ffcw
 imap <leader>fn4 <ESC>mqa⁴<ESC>o<CR>[⁴: footnote ]<ESC>`qla
-nmap <leader>fn4 mqa⁴<ESC>o<CR>[⁴: footnote ]<ESC>`ql
+nmap <leader>fn4 mqa⁴<ESC>o<CR>[⁴: footnote ]<ESC>Ffcw
 
 let g:session_autoload = 'no'
 let g:session_autosave = 'no' 

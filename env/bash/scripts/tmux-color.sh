@@ -5,7 +5,7 @@ name=${1:-$defaultname}
 bg="#2C3230"
 case $name in
 "general")
-   bg="#191120"
+   bg="#001943"
    ;;
 "today")
    bg="#4B4C4E"
