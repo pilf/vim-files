@@ -378,9 +378,26 @@ vmap <D-c> :w !pbcopy<CR><CR>
 " wow, it took a long time to find the -n option, all the above didn't work for me :(
 vmap <leader>: y:exec("! clear && echo -n " . shellescape(@0) . " \| pbcopy")<CR><CR>
 
+" CtrlP setup
+"
+" for dotfiles and such
+let g:ctrlp_show_hidden = 1 
+" use regex by default (can switch using <Ctrl+R> (also note <Ctrl-D> for
+" switching file/path)
+let g:ctrlp_regexp = 1
+" see:
+" https://github.com/kien/ctrlp.vim/blob/564176f01d7f3f7f8ab452ff4e1f5314de7b0981/doc/ctrlp.txt#L439
+" makes so spaces become .*
+let g:ctrlp_abbrev = {
+    \ 'gmode': 't',
+    \ 'abbrevs': [
+        \ { 'pattern': ' ', 'expanded': '.*', 'mode': 'pfr', } 
+    \ ]
+\ } 
 " Fuzzy finding short cuts
 nmap <leader>f. :CtrlPCurFile<CR>
-nmap <leader>ff :CtrlPFile
+nmap <leader>f~ :CtrlP ~<CR>
+nmap <leader>fd :CtrlP 
 nmap <leader>f/ :CtrlPCurWD<CR>
 nmap <leader>fb :CtrlPBuffer<CR>
 
