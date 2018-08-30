@@ -7,6 +7,7 @@ ln -s "$basedir/.vim" $HOME
 ln -s "$basedir/.tmux.conf" $HOME
 ln -s "$basedir/.tmux-osx.conf" $HOME
 ln -s "$basedir/.tmux-linux.conf" $HOME
+ln -s "$basedir/.tmux-cygwin.conf" $HOME
 ln -s "$basedir/.editrc" $HOME
 ln -s "$basedir/.inputrc" $HOME
 ln -s "$basedir/.iex.exs" $HOME
