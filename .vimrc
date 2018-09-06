@@ -289,7 +289,11 @@ nmap <leader>tcg yyp:s/^\([TGEQ]\)\([ \.]*\).*$/G .\2A
 nmap <leader>tcq yyp:s/^\([TGEQ]\)\([ \.]*\).*$/Q .\2A
 nmap <leader>tce yyp:s/^\([TGEQ]\)\([ \.]*\).*$/E .\2[·30] f[a
 
-" (d)ay s=start, f=finished, g=go
+" defer: o=todo, t=today
+nmap <leader>tdo :execute ":!toneq -f % defer " . line('.') . " todo"<CR>:redraw!<CR>
+nmap <leader>tdt :execute ":!toneq -f % defer " . line('.') . " " . strftime("%Y-%m-%d")<CR>:redraw!<CR>
+
+" s=start, f=finished, g=go to (d)ay
 nmap <leader>tsd G?>>TODO<CR>(()mm?^201.-..-..V'mk"aygvo:.!now -DA (:r!date "+\%A"kJA \| <ESC>"=strftime("%H%M")<CR>pA aim=6hrs, break=1.5hrs \| 0; \| )"apdd
 nmap <leader>tfd G?^201.-..-..<CR>$F\|a <ESC>"=strftime("%H%M")<CR>p:w<CR>
 nmap <leader>tgd G?^201.-..-..<CR>zz
