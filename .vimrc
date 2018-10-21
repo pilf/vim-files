@@ -264,7 +264,8 @@ nmap <leader>elc mm?###::SECTION/###::OUTPUTjV/###::ENDkd'm
 nmap <leader>tsx :set syntax=toneq<CR>
 imap <leader>tin <ESC>:s/\s*$/ /<CR>A(<BAR><Space><Space><BAR>)<esc>2hi
 nmap <leader>tin :s/\s*$/ /<CR>A(<BAR><Space><Space><BAR>)<esc>2hi
-nmap <leader>ton <ESC>o(<BAR><CR><CR><BAR>)<esc>ki
+nmap <leader>ton o(<BAR><CR><CR><BAR>)<esc>ki
+imap <leader>ton <ESC>o(<BAR><CR><CR><BAR>)<esc>ki
 "nmap <leader>tnew G?>>TODOs(()mm?^201.-..-..V'mk"aygvo:.!now -DA (:r!date "+\%A"kJA \| <ESC>"=strftime("%H%M")<CR>pA aim=6hrs, break=1.5hrs \| 0; \| )"apdd
 " indent
 nmap <leader>t< 0:s/^\([TGEQ]\)\( \.\)/\1<CR>
@@ -280,7 +281,7 @@ nnoremap <leader>ta5 oT<SPACE><ESC>5a.<SPACE><ESC>A
 nnoremap <leader>ta6 oT<SPACE><ESC>6a.<SPACE><ESC>A
 
 " (b)reak s=start, f=finish
-nmap <leader>tsb mmG?^201.-..-.. (.*)<CR>$F;a[<ESC>"=strftime("%H%M")<CR>pa-];<ESC>F-mzf]a(\|<SPACE>\|)<ESC>:w<CR>F<SPACE>i<SPACE>
+nmap <leader>tsb mmG?^201.-..-.. (.*)<CR>$F\|i[<ESC>"=strftime("%H%M")<CR>pa-];<ESC>F-mzf]a(\|<SPACE>\|)<ESC>:w<CR>F<SPACE>i<SPACE>
 nmap <leader>tfb `z<ESC>"=strftime("%H%M")<CR>p`m:w<CR>
 
 " (c)hild t=task, g=goal, q=question, e=event
