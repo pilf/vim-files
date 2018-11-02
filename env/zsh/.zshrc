@@ -42,3 +42,5 @@ fi
 
 source "/Users/philipcox/code/vim-files/env/bash/bashrc-std.sh.inc"
 source "/Users/philipcox/code/vim-files/env/bash/x.sh.inc"
+source "/vim-files/env/bash/bashrc-std.sh.inc"
+source "/vim-files/env/bash/x.sh.inc"

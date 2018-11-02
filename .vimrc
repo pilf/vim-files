@@ -47,11 +47,11 @@ if has("win32")
     set shellredir=>
     
     try
-        "VsVIM ill use VS defaults (see: https://github.com/jaredpar/VsVim/wiki/Defaults-for-Settings)
+        "VsVIM will use VS defaults (see: https://github.com/jaredpar/VsVim/wiki/Defaults-for-Settings)
         set vsvim_useeditordefaults
     catch
     endtry
-    let mapleader="\\"
+    let mapleader="§"
 else
     if $living_room
         if $living_room_mac_override!=""
@@ -90,8 +90,8 @@ set et
 set autoindent
 nnoremap <leader>tt :set noet<CR>:retab!<CR>
 
-nnoremap <leader>tnx :set noet
-nnoremap <leader>tx :set et
+"nnoremap <leader>tnx :set noet
+"nnoremap <leader>tx :set et
 nnoremap <leader>t2 :set shiftwidth=2<CR>:set tabstop=2<CR>:set sts=2<CR>
 nnoremap <leader>t4 :set shiftwidth=4<CR>:set tabstop=4<CR>:set sts=4<CR>
 
@@ -164,11 +164,13 @@ map Y y$
 noremap <leader>p :let @p=@*<CR>
 
 " alternative for newlining
-noremap <leader>o myo<ESC>`y
-noremap <leader>O myO<ESC>`y
+map <leader>o myo<ESC>`y
+map <leader>O myO<ESC>`y
+inoremap <leader>o <ESC>myo<ESC>`ya
+inoremap <leader>O <ESC>myO<ESC>`ya
 
-noremap <leader>hs :set list!<CR>
-noremap <leader>s :w<CR>
+map <leader>hs :set list!<CR>
+map <leader>s :w<CR>
 "visually select last match
 noremap <leader>v v//e<CR> 
 noremap <leader>b :ls<CR>:buffer<Space>
@@ -177,6 +179,7 @@ noremap <leader>lr :set relativenumber!<CR>
 "(note) To insert the elipsis, press ctrl-vu followed by the numeric code for elipsis: 2026
 noremap <leader>sb :set showbreak=…<CR>
 nnoremap <leader>wso :w \| so %<CR>
+nnoremap <leader>ws. :w \| so $HOME/.vimrc<CR>\| e
 "http://stackoverflow.com/questions/2600783/how-does-the-vim-write-with-sudo-trick-work
 nnoremap <leader>wsudo mm:w !sudo tee %<CR><CR>L`m
 
@@ -212,6 +215,9 @@ autocmd BufNewFile,BufRead *.sh.inc set syntax=sh
 autocmd BufNewFile,BufRead *.toneq set syntax=toneq
 autocmd BufNewFile,BufRead *.tl set syntax=timeline
 autocmd BufNewFile,BufRead *.js set tabstop=2 | set sts=2 | set shiftwidth=2
+
+syntax region toneqMdSnip matchgroup=TMdSnip start="(|" end="|)" 
+hi link TMdSnip Markdown
 
 " export feature files to HTML
 nnoremap <leader>rfhtml :TO<CR>:w<CR>:!open -a Safari %<CR><CR>
@@ -251,21 +257,21 @@ nmap <leader>elm <leader>el_getready<leader>el_mixscriptcmd<leader>el_render
 " elixir clear
 nmap <leader>elc mm?###::SECTION/###::OUTPUTjV/###::ENDkd'm
 
-" Toneq stuff
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Toneq START
+
+"" IRREGULAR
 nmap <leader>tsx :set syntax=toneq<CR>
-imap <leader>tin <ESC>A<Space>(<BAR><Space><Space><BAR>)<esc>2hi
-nmap <leader>ton <ESC>o(<BAR><CR><CR><BAR>)<esc>ki
-"nmap <leader>tnew G?>>TODOs?201.-..-..$V/^$k"aygvo:.!now -Di (:r!date "+%A""apdd
-nmap <leader>tnew G?>>TODOs(()mm?^201.-..-..V'mk"aygvo:.!now -DA (:r!date "+\%A"kJxA)"apdd
-" test as in t-est as in task estimation (note the dot is a 'middle dot' diagraph .M)
-inoremap <leader>test []<ESC>F[a·
-nnoremap <leader>test A<SPACE>[]<ESC>F[a·
-" start right now (with estimate)
-inoremap <leader>tgo [] - <ESC>F]"=strftime("%H%M")<CR>P:w<CR>a·
-nnoremap <leader>tgo A<SPACE>[] - <ESC>F]"=strftime("%H%M")<CR>P:w<CR>a·
-" start a task (will overwrite if already present)
-nnoremap <leader>tex $T["=strftime("%H%M")<CR>PA - <ESC>:w<CR>
-nnoremap <leader>tstop $F-C- c:<ESC>"=strftime("%H%M")<CR>p<ESC>:w<CR>
+imap <leader>tin <ESC>:s/\s*$/ /<CR>A(<BAR><Space><Space><BAR>)<esc>2hi
+nmap <leader>tin :s/\s*$/ /<CR>A(<BAR><Space><Space><BAR>)<esc>2hi
+nmap <leader>ton o(<BAR><CR><CR><BAR>)<esc>ki
+imap <leader>ton <ESC>o(<BAR><CR><CR><BAR>)<esc>ki
+"nmap <leader>tnew G?>>TODOs(()mm?^201.-..-..V'mk"aygvo:.!now -DA (:r!date "+\%A"kJA \| <ESC>"=strftime("%H%M")<CR>pA aim=6hrs, break=1.5hrs \| 0; \| )"apdd
+" indent
+nmap <leader>t< 0:s/^\([TGEQ]\)\( \.\)/\1<CR>
+nmap <leader>t> 0:s/^\([TGEQ]\)/\1 .<CR>
+
+"" a(ppend?) -- why is this used?
 nnoremap <leader>ta oT<SPACE> 
 nnoremap <leader>ta1 oT<SPACE><ESC>1a.<SPACE><ESC>A
 nnoremap <leader>ta2 oT<SPACE><ESC>2a.<SPACE><ESC>A
@@ -273,28 +279,81 @@ nnoremap <leader>ta3 oT<SPACE><ESC>3a.<SPACE><ESC>A
 nnoremap <leader>ta4 oT<SPACE><ESC>4a.<SPACE><ESC>A
 nnoremap <leader>ta5 oT<SPACE><ESC>5a.<SPACE><ESC>A
 nnoremap <leader>ta6 oT<SPACE><ESC>6a.<SPACE><ESC>A
-nmap <leader>tcn G?-\s*$Ac:<ESC>"=strftime("%H%M")<CR>p:w<CR>
-nmap <leader>tan G?-\s*$Aa:<ESC>"=strftime("%H%M")<CR>p:w<CR>F-a<SPACE>(<BAR><SPACE><BAR>)<ESC>2F<BAR>a<SPACE>
-nmap <leader>tsn G?-\s*$As:<ESC>"=strftime("%H%M")<CR>p:w<CR>F-a<SPACE>(<BAR><SPACE><BAR>)<ESC>2F<BAR>a<SPACE>
-nmap <leader>tnow G?-\s*$A
-nmap <leader>t< 0:s/^\([TGEQ]\)\( \.\)/\1
-nmap <leader>t> 0:s/^\([TGEQ]\)/\1 .
-" a million and one ways to make tasks/goals/questions/events
-" tn? = Toneq new, ts? = Toneq (new) sibling, tc? = Toneq (new) child
-nmap <leader>tnt G?>>TODO(()OT 
-nmap <leader>tng G?>>TODO(()OG 
-nmap <leader>tnq G?>>TODO(()OQ 
-nmap <leader>tne G?>>TODO(()OE [·30] F[a
-" variant; quicker since doesin't have to see if <leader>tnew
-nmap <leader>tnE G?>>TODO(()OE [·30] F[a
-nmap <leader>tst yyp:s/^\([TGEQ]\)\([ \.]*\).*$/T\2A
-nmap <leader>tsg yyp:s/^\([TGEQ]\)\([ \.]*\).*$/G\2A
-nmap <leader>tsq yyp:s/^\([TGEQ]\)\([ \.]*\).*$/Q\2A
-nmap <leader>tse yyp:s/^\([TGEQ]\)\([ \.]*\).*$/E\2[·30] f[a
+
+" (b)reak s=start, f=finish
+nmap <leader>tsb mmG?^201.-..-.. (.*)<CR>$F\|i[<ESC>"=strftime("%H%M")<CR>pa-];<ESC>F-mzf]a(\|<SPACE>\|)<ESC>:w<CR>F<SPACE>i<SPACE>
+nmap <leader>tfb `z<ESC>"=strftime("%H%M")<CR>p`m:w<CR>
+
+" (c)hild t=task, g=goal, q=question, e=event
 nmap <leader>tct yyp:s/^\([TGEQ]\)\([ \.]*\).*$/T .\2A
 nmap <leader>tcg yyp:s/^\([TGEQ]\)\([ \.]*\).*$/G .\2A
 nmap <leader>tcq yyp:s/^\([TGEQ]\)\([ \.]*\).*$/Q .\2A
 nmap <leader>tce yyp:s/^\([TGEQ]\)\([ \.]*\).*$/E .\2[·30] f[a
+
+" defer: o=todo, t=today
+nmap <leader>tdo :w<CR>:execute ":!toneq -f % defer " . line('.') . " todo"<CR>:redraw!<CR>
+nmap <leader>tdt :w<CR>:execute ":!toneq -f % defer " . line('.') . " " . strftime("%Y-%m-%d")<CR>:redraw!<CR>
+
+" s=start, f=finished, g=go to (d)ay
+nmap <leader>tsd G?>>TODO<CR>(()mm?^201.-..-..V'mk"aygvo:.!now -DA (:r!date "+\%A"kJA \| <ESC>"=strftime("%H%M")<CR>pA aim=6hrs, break=1.5hrs \| 0; \| )"apdd
+nmap <leader>tfd G?^201.-..-..<CR>$F\|a <ESC>"=strftime("%H%M")<CR>p:w<CR>
+nmap <leader>tgd G?^201.-..-..<CR>zz
+
+" executing line (defined as - with 0+ notes and white space after it)
+" g=go, n=note, c=complete, a=abandoned, s=suspended, e=reestimate, ?=unknown complete
+nmap <leader>tgx G?-\(\s*(\|.*\|)\)*\s*$<CR>$
+nmap <leader>tnx G?-\(\s*(\|.*\|)\)*\s*$<CR>:s/\s*$//<CR>A (\|<ESC>"=strftime("%H%M")<CR>pA:<Space><Space><BAR>)<esc>2h:w<CR>i
+nmap <leader>tcx G?-\(\s*(\|.*\|)\)*\s*$<CR>:s/\s*$//<CR>A c:<ESC>"=strftime("%H%M")<CR>p:w<CR>
+nmap <leader>tax G?-\(\s*(\|.*\|)\)*\s*$<CR>:s/\s*$//<CR>A (\| reason? \|) a:<ESC>"=strftime("%H%M")<CR>p:w<CR>?reason<CR>f<SPACE>i<SPACE>
+nmap <leader>tsx G?-\(\s*(\|.*\|)\)*\s*$<CR>:s/\s*$//<CR>A (\| because? \|) s:<ESC>"=strftime("%H%M")<CR>p:w<CR>?because<CR>f<SPACE>i<SPACE>
+nmap <leader>tex G?-\(\s*(\|.*\|)\)*\s*$<CR>:s/\s*$//<CR>A (\| reestimate \|) [] - <ESC>F]"=strftime("%H%M")<CR>P:w<CR>a·
+" (?)unknown time c=complete
+nmap <leader>tx? $DA - c:?<ESC>:w<CR>
+" t?a TBC
+
+" (l)ine r=reset, e=estimate, x=execute, s=suspend, g=go, G=go (no estimate), a=abandon
+" (note the dot is a 'middle dot' diagraph .M) - was test
+nmap <leader>trl A[]<ESC>0/\s*[<CR>D:w<CR>
+imap <leader>tel <ESC>:s/\s*$//<CR>A [·]<ESC>F·a
+nmap <leader>tel :s/\s*$//<CR>A [·]<ESC>F·a
+imap <leader>tgl <ESC>:s/\s*$//<CR>A [] - <ESC>F]"=strftime("%H%M")<CR>P:w<CR>a·
+nmap <leader>tgl :s/\s*$//<CR>A [] - <ESC>F]"=strftime("%H%M")<CR>P:w<CR>a·
+nmap <leader>tGl :s/\s*$//<CR>A [] - <ESC>F]"=strftime("%H%M")<CR>P:w<CR>a·<ESC>
+nmap <leader>txl $F·"=strftime("%H%M")<CR>P:s/\s*$//<CR>A - <ESC>:w<CR>
+nmap <leader>tsl :s/\s*$//<CR>A (\| because? \|) s:<ESC>"=strftime("%H%M")<CR>p:w<CR>?because<CR>f<SPACE>i<SPACE>
+imap <leader>tal <ESC>$T["=strftime("%H%M")<CR>PA - <ESC>:w<CR>
+nmap <leader>tal :s/\s*$//<CR>A - (\| reason? \|) a:<ESC>"=strftime("%H%M")<CR>p:w<CR>?reason<CR>f<SPACE>i<SPACE>
+imap <leader>tal <ESC>:s/\s*$//<CR>A - (\| reason? \|) a:<ESC>"=strftime("%H%M")<CR>p:w<CR>?reason<CR>f<SPACE>i<SPACE>
+nmap <leader>tcl :s/\s*$//<CR>A - (\| comments: \|) c:<ESC>"=strftime("%H%M")<CR>p:w<CR>?comments<CR>f<SPACE>i<SPACE>
+nmap <leader>tcl <ESC>:s/\s*$//<CR>A - (\| comments: \|) c:<ESC>"=strftime("%H%M")<CR>p:w<CR>?comments<CR>f<SPACE>i<SPACE>
+
+" (s)ibling t=task, g=goal, q=question, e=event
+nmap <leader>tst yyp:s/^\([TGEQ]\)\([ \.]*\).*$/T\2A
+nmap <leader>tsg yyp:s/^\([TGEQ]\)\([ \.]*\).*$/G\2A
+nmap <leader>tsq yyp:s/^\([TGEQ]\)\([ \.]*\).*$/Q\2A
+nmap <leader>tse yyp:s/^\([TGEQ]\)\([ \.]*\).*$/E\2[·30] f[a
+
+" (n)ew t=task, g=goal, q=question, E=event(known start time), e=event(unknown start time)
+nmap <leader>tnt G?>>TODO(()OT 
+nmap <leader>tng G?>>TODO(()OG 
+nmap <leader>tnq G?>>TODO(()OQ 
+nmap <leader>tnE G?>>TODO(()OE [·30] <ESC>F[a
+nmap <leader>tne G?>>TODO(()OE [·30] <ESC>F[a?<ESC>A
+
+" (f)inish c=complete, a=abandoned, s=suspended
+
+" (s)uspend t=task, g=goal, q=question, e=event
+"nmap <leader>tst yyp:s/^\([TGEQ]\)\([ \.]*\).*$/T\2A
+"nmap <leader>tsg yyp:s/^\([TGEQ]\)\([ \.]*\).*$/G\2A
+"nmap <leader>tsq yyp:s/^\([TGEQ]\)\([ \.]*\).*$/Q\2A
+"nmap <leader>tse yyp:s/^\([TGEQ]\)\([ \.]*\).*$/E\2[·30] f[a
+
+" (z) f=fold
+nmap <leader>tzf mz$?^(\|<CR>v/^\|)<CR>$zf
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" Toneq END
 
 " gf (goto file) such that it will create a new file if it doesn't exist... (http://stackoverflow.com/questions/1050745/unable-to-create-a-file-from-a-path-in-vim)
 nmap gf :e <cfile><CR>
@@ -324,9 +383,26 @@ vmap <D-c> :w !pbcopy<CR><CR>
 " wow, it took a long time to find the -n option, all the above didn't work for me :(
 vmap <leader>: y:exec("! clear && echo -n " . shellescape(@0) . " \| pbcopy")<CR><CR>
 
+" CtrlP setup
+"
+" for dotfiles and such
+let g:ctrlp_show_hidden = 1 
+" use regex by default (can switch using <Ctrl+R> (also note <Ctrl-D> for
+" switching file/path)
+let g:ctrlp_regexp = 1
+" see:
+" https://github.com/kien/ctrlp.vim/blob/564176f01d7f3f7f8ab452ff4e1f5314de7b0981/doc/ctrlp.txt#L439
+" makes so spaces become .*
+let g:ctrlp_abbrev = {
+    \ 'gmode': 't',
+    \ 'abbrevs': [
+        \ { 'pattern': ' ', 'expanded': '.*', 'mode': 'pfr', } 
+    \ ]
+\ } 
 " Fuzzy finding short cuts
 nmap <leader>f. :CtrlPCurFile<CR>
-nmap <leader>ff :CtrlPFile
+nmap <leader>f~ :CtrlP ~<CR>
+nmap <leader>fd :CtrlP 
 nmap <leader>f/ :CtrlPCurWD<CR>
 nmap <leader>fb :CtrlPBuffer<CR>
 
@@ -365,14 +441,15 @@ nmap <leader>wh <C-W>t<C-W>H
 nmap <leader>wj <C-W>t<C-W>J
 nmap <leader>wk <C-W>t<C-W>K
 
-nmap <leader>brsp :botright sp<CR>
-nmap <leader>brvsp :botright vsp<CR>
-nmap <leader>brnew :botright new<CR>
-nmap <leader>brvnew :botright vnew<CR>
-nmap <leader>tlsp :topleft sp<CR>
-nmap <leader>tlvsp :topleft vsp<CR>
-nmap <leader>tlnew :topleft new<CR>
-nmap <leader>tlvnew :topleft vnew<CR>
+" Yeah, these are more useful as example TBH, too complex to remember
+nmap <leader>spbh  :botright sp<CR>
+nmap <leader>spbv  :botright vsp<CR>
+nmap <leader>spbnh :botright new<CR>
+nmap <leader>spbnv :botright vnew<CR>
+nmap <leader>spth :topleft sp<CR>
+nmap <leader>sptv :topleft vsp<CR>
+nmap <leader>sptnh :topleft new<CR>
+nmap <leader>sptnv :topleft vnew<CR>
 
 set spell spelllang=en_gb
 nnoremap <leader>sp :set spell!<CR>
@@ -391,15 +468,25 @@ nmap <leader>soc <ESC>"=strftime("%A %F - %R")<CR>p
 nnoremap <leader>scr :r !today<CR><ESC>A/scratch.md<ESC>
 nnoremap <leader>today o<ESC>"=strftime("%F")<CR>p
 inoremap <leader>today <ESC>"=strftime("%F")<CR>pa
-nmap <leader>later o<ESC>i<CR><ESC>"=". . . " . strftime("%R") . " . . ."<CR>pA<CR><CR><ESC>
 imap <leader>now <ESC>"=strftime("%H%M")<CR>pa
 imap <leader>Now <ESC>"=strftime("%R")<CR>pa
 imap <leader>NOw <ESC>"=strftime("%F - %R")<CR>pa
 imap <leader>NOW <ESC>"=strftime("%A %F - %R")<CR>pa
-nmap <leader>dnew /EOF<CR>(()o<CR><ESC><leader>soc<leader>md=o<CR>
-nmap <leader>dnow /EOF<CR>(()o
-nmap <leader>dl /EOF<CR>(()k<leader>latera
+" recommend <leader>dl (this is more internal)
+nmap <leader>later o<ESC>i<CR><ESC>"=". . . " . strftime("%R") . " . . ."<CR>pA<CR><CR><ESC>
+nmap <leader>dnew G?^EOF.<CR>(()o<CR><ESC><leader>soc<leader>md=o<CR>
+nmap <leader>dnow G?^EOF.<CR>((
+nmap <leader>dl G?^EOF.<CR>(()k<leader>latera
 nmap <leader>dday :new `now -d`.md<CR>10i<CR><ESC>oEOF.<ESC>gg<leader>soc<leader>md=o<CR>
+" footnotes (btw digraph 1S=¹, 2S=², etc.)
+imap <leader>fn1 <ESC>mqa¹<ESC>o<CR>[¹: footnote ]<ESC>`qla
+nmap <leader>fn1 mqa¹<ESC>o<CR>[¹: footnote ]<ESC>Ffcw
+imap <leader>fn2 <ESC>mqa²<ESC>o<CR>[²: footnote ]<ESC>`qla
+nmap <leader>fn2 mqa²<ESC>o<CR>[²: footnote ]<ESC>Ffcw
+imap <leader>fn3 <ESC>mqa³<ESC>o<CR>[³: footnote ]<ESC>`qla
+nmap <leader>fn3 mqa³<ESC>o<CR>[³: footnote ]<ESC>Ffcw
+imap <leader>fn4 <ESC>mqa⁴<ESC>o<CR>[⁴: footnote ]<ESC>`qla
+nmap <leader>fn4 mqa⁴<ESC>o<CR>[⁴: footnote ]<ESC>Ffcw
 
 let g:session_autoload = 'no'
 let g:session_autosave = 'no' 

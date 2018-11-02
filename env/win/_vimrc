@@ -1,0 +1,2 @@
+set runtimepath+=c:/cygwin64/vim-files/.vim
+source c:/cygwin64/vim-files/.vimrc
