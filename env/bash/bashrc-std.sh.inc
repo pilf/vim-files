@@ -101,6 +101,7 @@ alias hog="tree --du -h | egrep -v '[0-9]K?\]'"
 #alias vims="vim -c \"let g:session_directory = '$(g vim-sessions 2>/dev/null || printf $HOME)'|let g:session_autoload = 'yes'|let g:session_autosave = 'yes'|let g:session_autosave_periodic = 1\""
 alias lynx="lynx -vikeys"
 alias careful='clear && echo Careful | figlet -f starwars '
+alias host_here="python3 -m http.server"
 
 # vim-itis
 alias ":q"=exit
