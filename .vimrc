@@ -16,6 +16,9 @@ filetype plugin indent on
 set t_Co=256
 set background=dark
 
+" sets the visual highlighting to work well on terminals
+hi Visual term=reverse cterm=reverse guibg=Grey
+
 " http://archive09.linux.com/feature/120126
 " set statusline=%F%m%r%h%w\ %=[FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
 set statusline=%F\ %m%r%h%w\ %=F:%{&ff}\ T:%Y\ [\%03.3b\ 0x\%02.2B]\ x=%04v\ y=%04l/%L\ (%p%%)
