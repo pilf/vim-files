@@ -186,7 +186,7 @@ nnoremap <leader>wsudo mm:w !sudo tee %<CR><CR>L`m
 " copying my path seems to be something I do quite a bit so here's
 " two handy commands, the first echo the current file whilst in insert mode
 " old way (inserts new line) inoremap <leader>cp <ESC>:put =expand('%:p')<CR>
-inoremap <leader>cp <C-r>=expand('%:p')<CR>
+"inoremap <leader>cp <C-r>=expand('%:p')<CR>
 " in normal mode this copies it into the "p register
 nnoremap <leader>cpp "=expand("%:p")<CR>:let @p=@%<CR>
 nnoremap <leader>cp: "=expand("%:p")<CR>:exec("! clear && echo -n " . shellescape(expand("%:p")) . " \| pbcopy")<CR><CR>
