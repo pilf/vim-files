@@ -130,7 +130,7 @@ alias docker-go="'/Applications/Docker/Docker Quickstart Terminal.app/Contents/R
 alias gitdiff="GIT_PAGER='vim -R -' git diff --no-color"
 
 # Tmux specific
-alias ppid='ps ppid= -p'
+alias ppid='ps -p'
 alias tmux-tree="pstree $(ppid $$)"
 
 # Node

@@ -362,9 +362,11 @@ nmap <leader>tzf mz$?^(\|<CR>v/^\|)<CR>$zf
 nmap gf :e <cfile><CR>
 nmap gff :e! <cfile><CR>
 nmap gfw :w<CR>:e <cfile><CR>
-"nmap gfm :w<CR>:e <cfile><CR>mF<C-o>0v$h"fygv§:
+" goto file and re(m)ember ('F goes to file)
 nmap gfm mMyyp:s/^\s*\([^\s].*\)$/\1/e<CR>:s/ /\\ /ge<CR>0"aDdd:w<CR>:e <C-r>a<CR>mF`M:let @f=@a<CR>
+" goto file and open in new tab
 nmap gft mMyyp:s/^\s*\([^\s].*\)$/\1/e<CR>:s/ /\\ /ge<CR>0"aDdd:w<CR>:e <C-r>a<CR>mF`M:tabnew<CR>'F:let @f=@a<CR>
+
 nmap g% :e %:p:h/<cfile><CR>
 
 " new files
@@ -463,12 +465,15 @@ command! Copyfile let @*=substitute(expand("%:p"), '/', '\', 'g')
 nnoremap <Leader>cf :Copyfile<CR>
 
 " Markdown helpers
-nmap <leader>md= yypv$hr=
-nmap <leader>md- yypv$hr-
+nmap <leader>_trim_end_ :s/\s\+$//e<CR>
+nmap <leader>md= <LEADER>_trim_end_yypv$hr=
+nmap <leader>md- <LEADER>_trim_end_yypv$hr-
 nmap <leader>mdshow :silent exe "!md-chrome.sh %"<CR>:redraw!<CR>
+imap <leader>md= <ESC><LEADER>md=
+imap <leader>md- <ESC><LEADER>md-
 
 nmap <leader>soc <ESC>"=strftime("%A %F - %R")<CR>p
-nnoremap <leader>scr :r !today<CR><ESC>A/scratch.md<ESC>
+nnoremap <leader>scr :r !today<CR>A/scratch.md<ESC>
 nnoremap <leader>today o<ESC>"=strftime("%F")<CR>p
 inoremap <leader>today <ESC>"=strftime("%F")<CR>pa
 imap <leader>now <ESC>"=strftime("%H%M")<CR>pa
