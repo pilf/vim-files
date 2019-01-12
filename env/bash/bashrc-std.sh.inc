@@ -77,7 +77,7 @@ fi
 bashversion="${BASH_VERSION:0:1}"
 zshversion="${ZSH_VERSION:0:1}"
 
-if [ "$bashversion" -eq "4" ] || [ -n "$zshversion" ]; then
+if [ "$bashversion" -eq "4" ] || [ "$bashversion" -eq "5" ] || [ -n "$zshversion" ]; then
     export GIT_PS1_SHOWCOLORHINTS=1
     export GIT_PS1_SHOWDIRTYSTATE=1
     user=$(whoami)
