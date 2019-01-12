@@ -293,9 +293,17 @@ nmap <leader>tcg yyp:s/^\([TGEQ]\)\([ \.]*\).*$/G .\2A
 nmap <leader>tcq yyp:s/^\([TGEQ]\)\([ \.]*\).*$/Q .\2A
 nmap <leader>tce yyp:s/^\([TGEQ]\)\([ \.]*\).*$/E .\2[·30] f[a
 
-" defer: o=todo, t=today
+" defer: o=t(o)do, t=(t)oday, m=to(m)orrow
 nmap <leader>tdo :w<CR>:execute ":!toneq -f % defer " . line('.') . " todo"<CR>:redraw!<CR>
 nmap <leader>tdt :w<CR>:execute ":!toneq -f % defer " . line('.') . " " . strftime("%Y-%m-%d")<CR>:redraw!<CR>
+nmap <leader>tdm :w<CR>:execute ":!toneq -f % defer " . line('.') . ' $(date -d "tomorrow" "+\%Y-\%m-\%d")'<CR>:redraw!<CR>
+nmap <leader>td<SPACE>mon :w<CR>:execute ":!toneq -f % defer " . line('.') . ' $(date -d "next mon" "+\%Y-\%m-\%d")'<CR>:redraw!<CR>
+nmap <leader>td<SPACE>tue :w<CR>:execute ":!toneq -f % defer " . line('.') . ' $(date -d "next tue" "+\%Y-\%m-\%d")'<CR>:redraw!<CR>
+nmap <leader>td<SPACE>wed :w<CR>:execute ":!toneq -f % defer " . line('.') . ' $(date -d "next wed" "+\%Y-\%m-\%d")'<CR>:redraw!<CR>
+nmap <leader>td<SPACE>thu :w<CR>:execute ":!toneq -f % defer " . line('.') . ' $(date -d "next thu" "+\%Y-\%m-\%d")'<CR>:redraw!<CR>
+nmap <leader>td<SPACE>fri :w<CR>:execute ":!toneq -f % defer " . line('.') . ' $(date -d "next fri" "+\%Y-\%m-\%d")'<CR>:redraw!<CR>
+nmap <leader>td<SPACE>sat :w<CR>:execute ":!toneq -f % defer " . line('.') . ' $(date -d "next sat" "+\%Y-\%m-\%d")'<CR>:redraw!<CR>
+nmap <leader>td<SPACE>sun :w<CR>:execute ":!toneq -f % defer " . line('.') . ' $(date -d "next sun" "+\%Y-\%m-\%d")'<CR>:redraw!<CR>
 
 " s=start, f=finished, g=go to (d)ay
 nmap <leader>tsd G?>>TODO<CR>(()mm?^201.-..-..V'mk"aygvo:.!now -DA (:r!date "+\%A"kJA \| <ESC>"=strftime("%H%M")<CR>pA aim=6hrs, break=1.5hrs \| 0; \| )"apdd
