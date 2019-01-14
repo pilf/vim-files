@@ -309,7 +309,7 @@ nmap <leader>td<SPACE>sun :w<CR>:execute ":!toneq -f % defer " . line('.') . ' $
 
 " s=start, f=finished, g=go to (d)ay
 nmap <leader>tsd G?>>TODO<CR>(()mm?^201.-..-..V'mk"aygvo:.!now -DA (:r!date "+\%A"kJA \| <ESC>"=strftime("%H%M")<CR>pA aim=6hrs, break=1.5hrs \| 0; \| )"apdd
-nmap <leader>tfd G?^201.-..-..<CR>$F\|a <ESC>"=strftime("%H%M")<CR>p:w<CR>
+nmap <leader>tfd <leader>_gototoday$F\|a <ESC>"=strftime("%H%M")<CR>p:w<CR>
 nmap <leader>tgd G?^201.-..-..<CR>zz
 
 " executing line (defined as - with 0+ notes and white space after it)
