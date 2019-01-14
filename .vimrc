@@ -284,8 +284,10 @@ nnoremap <leader>ta5 oT<SPACE><ESC>5a.<SPACE><ESC>A
 nnoremap <leader>ta6 oT<SPACE><ESC>6a.<SPACE><ESC>A
 
 " (b)reak s=start, f=finish
-nmap <leader>tsb mmG?^201.-..-.. (.*)<CR>$F\|i[<ESC>"=strftime("%H%M")<CR>pa-];<ESC>F-mzf]a(\|<SPACE>\|)<ESC>:w<CR>F<SPACE>i<SPACE>
+nmap <leader>_gototoday G:exe '?^' . strftime('%Y-%m-%d')<CR>
+nmap <leader>tsb mm<leader>_gototoday$F\|i[<ESC>"=strftime("%H%M")<CR>pa-];<ESC>F-mzf]a(\|<SPACE>\|)<ESC>:w<CR>F<SPACE>i<SPACE>
 nmap <leader>tfb `z<ESC>"=strftime("%H%M")<CR>p`m:w<CR>
+nmap <leader>tfb <leader>_gototoday:exe 's/-]/-' . strftime('%H%M') . ']/' <CR>`m:w<CR>
 
 " (c)hild t=task, g=goal, q=question, e=event
 nmap <leader>tct yyp:s/^\([TGEQ]\)\([ \.]*\).*$/T .\2A
