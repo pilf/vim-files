@@ -367,7 +367,7 @@ nmap gfm mMyyp:s/^\s*\([^\s].*\)$/\1/e<CR>:s/ /\\ /ge<CR>0"aDdd:w<CR>:e <C-r>a<C
 " goto file and open in new tab
 nmap gft mMyyp:s/^\s*\([^\s].*\)$/\1/e<CR>:s/ /\\ /ge<CR>0"aDdd:w<CR>:e <C-r>a<CR>mF`M:tabnew<CR>'F:let @f=@a<CR>
 
-nmap g% :e %:p:h/<cfile><CR>
+nmap gf% :e %:p:h/<cfile><CR>
 
 " new files
 nmap <leader>n. :new %:p:h/
@@ -469,8 +469,11 @@ nmap <leader>_trim_end_ :s/\s\+$//e<CR>
 nmap <leader>md= <LEADER>_trim_end_yypv$hr=
 nmap <leader>md- <LEADER>_trim_end_yypv$hr-
 nmap <leader>mdshow :silent exe "!md-chrome.sh %"<CR>:redraw!<CR>
+vmap <leader>mdl "zdi[<C-r>z]()<ESC>i
+imap <leader>mdl <ESC>mz?\(^\\|http\\| \)<CR>v`z<LEADER>mdl
+nmap <leader>mdl /\([^ ]\\|$\)<CR>a<LEADER>mdl
 imap <leader>md= <ESC><LEADER>md=
-imap <leader>md- <ESC><LEADER>md-
+imap <leader>md- <ESC><LEADER>md- 
 
 nmap <leader>soc <ESC>"=strftime("%A %F - %R")<CR>p
 nnoremap <leader>scr :r !today<CR>A/scratch.md<ESC>
