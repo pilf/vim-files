@@ -1,13 +1,13 @@
 #!/bin/bash
-
 input="$1"
-theme="${2:-plain}" 
+theme="${2:-witex}" 
 prefix="${3:-tmpmdfile}"
 
 if [ -z "$input" ] || [ ! -f "$input" ]; then
     cat <<EOF 1>&2
 *** Error: Must provide a MD file
 Usage: $0 <md file> [theme]
+$(generate-md --input "$input" --layouts)
 EOF
     exit 1
 fi
@@ -25,7 +25,10 @@ fi
 tmpname="$(mktemp -dt "$prefix")"
 mv "$tmpname" "$tmpname.html"
 
-generate-md --input "$input" --layout "$theme" --output "$tmpname/" 
+generate-md --input "$input" --layout "$theme" --output "$tmpname/" 2> /dev/null || cat <<EOF 1>&2
+There was an error processing.  Theme used: $theme
+$(generate-md --input "$input" --layouts)
+EOF
 htmlfile="$tmpname/$(basename "$input" | cut -f1 -d'.').html"
 
 if [ "$(uname -s)" == "Darwin" ]; then
