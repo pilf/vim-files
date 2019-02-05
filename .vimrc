@@ -375,9 +375,9 @@ nmap gfw :w<CR>:e <cfile><CR>
 " goto file and re(m)ember ('F goes to file)
 nmap gfm mMyyp:s/^\s*\([^\s].*\)$/\1/e<CR>:s/ /\\ /ge<CR>0"aDdd:w<CR>:e <C-r>a<CR>mF`M:let @f=@a<CR>
 " goto file and open in new tab
-nmap gft mMyyp:s/^\s*\([^\s].*\)$/\1/e<CR>:s/ /\\ /ge<CR>0"aDdd:w<CR>:e <C-r>a<CR>mF`M:tabnew<CR>'F:let @f=@a<CR>
-
-nmap gf% :e %:p:h/<cfile><CR>
+nmap gft mMyyp:s/^\s*\([^\s].*\)$/\1/e<CR>:s/ /\\ /ge<CR>0"aDdd:w<CR>:e <C-r>a<CR>mF`M:tabnew<CR>'F:let @f=@a<CR> 
+" goto file in current directory (must save file first)
+nmap gf. :e %:p:h/<cfile><CR>
 
 " new files
 nmap <leader>n. :new %:p:h/
