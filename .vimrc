@@ -16,6 +16,10 @@ filetype plugin indent on
 set t_Co=256
 set background=dark
 
+nmap <leader>bg :hi Normal ctermbg=none \| hi NonText ctermbg=none<CR>
+
+colorscheme jellybeans
+
 " sets the visual highlighting to work well on terminals
 hi Visual term=reverse cterm=reverse guibg=Grey
 
@@ -24,7 +28,6 @@ hi Visual term=reverse cterm=reverse guibg=Grey
 set statusline=%F\ %m%r%h%w\ %=F:%{&ff}\ T:%Y\ [\%03.3b\ 0x\%02.2B]\ x=%04v\ y=%04l/%L\ (%p%%)
 set laststatus=2
 
-colorscheme jellybeans
 
 if has("gui_running")
     " Note: if you want to test environment variables make sure they're either
