@@ -16,7 +16,14 @@ filetype plugin indent on
 set t_Co=256
 set background=dark
 
-nmap <leader>bg :hi Normal ctermbg=none \| hi NonText ctermbg=none<CR>
+" change background to default for current shell
+nmap <leader>hix :hi Normal ctermbg=none \| hi NonText ctermbg=none<CR>
+" force black background
+nmap <leader>hib :hi Normal ctermbg=black \| hi NonText ctermbg=black<CR>
+" set a light colorscheme
+nmap <leader>hil :colorscheme morning<CR>
+" set a dark colorscheme
+nmap <leader>hid :colorscheme jellybeans<CR>
 
 colorscheme jellybeans
 
@@ -301,14 +308,15 @@ nmap <leader>tce yyp:s/^\([TGEQ]\)\([ \.]*\).*$/E .\2[·30] f[a
 " defer: o=t(o)do, t=(t)oday, m=to(m)orrow
 nmap <leader>tdo :w<CR>:execute ":!toneq -f % defer " . line('.') . " todo"<CR>:redraw!<CR>
 nmap <leader>tdt :w<CR>:execute ":!toneq -f % defer " . line('.') . " " . strftime("%Y-%m-%d")<CR>:redraw!<CR>
-nmap <leader>tdm :w<CR>:execute ":!toneq -f % defer " . line('.') . ' $(date -d "tomorrow" "+\%Y-\%m-\%d")'<CR>:redraw!<CR>
-nmap <leader>td<SPACE>mon :w<CR>:execute ":!toneq -f % defer " . line('.') . ' $(date -d "next mon" "+\%Y-\%m-\%d")'<CR>:redraw!<CR>
-nmap <leader>td<SPACE>tue :w<CR>:execute ":!toneq -f % defer " . line('.') . ' $(date -d "next tue" "+\%Y-\%m-\%d")'<CR>:redraw!<CR>
-nmap <leader>td<SPACE>wed :w<CR>:execute ":!toneq -f % defer " . line('.') . ' $(date -d "next wed" "+\%Y-\%m-\%d")'<CR>:redraw!<CR>
-nmap <leader>td<SPACE>thu :w<CR>:execute ":!toneq -f % defer " . line('.') . ' $(date -d "next thu" "+\%Y-\%m-\%d")'<CR>:redraw!<CR>
-nmap <leader>td<SPACE>fri :w<CR>:execute ":!toneq -f % defer " . line('.') . ' $(date -d "next fri" "+\%Y-\%m-\%d")'<CR>:redraw!<CR>
-nmap <leader>td<SPACE>sat :w<CR>:execute ":!toneq -f % defer " . line('.') . ' $(date -d "next sat" "+\%Y-\%m-\%d")'<CR>:redraw!<CR>
-nmap <leader>td<SPACE>sun :w<CR>:execute ":!toneq -f % defer " . line('.') . ' $(date -d "next sun" "+\%Y-\%m-\%d")'<CR>:redraw!<CR>
+"nmap <leader>tdm :w<CR>:execute ":!toneq -f % defer " . line('.') . ' $(date -d "tomorrow" "+\%Y-\%m-\%d")'<CR>:redraw!<CR>
+nmap <leader>tdm :w<CR>:execute ":!toneq-run.sh % defer " . line('.') . "tomorrow"<CR>:redraw!<CR>
+nmap <leader>td<SPACE>mon :w<CR>:execute ":!toneq-run.sh  % defer " . line('.') . ' "next mon"'<CR>:redraw!<CR>
+nmap <leader>td<SPACE>tue :w<CR>:execute ":!toneq-run.sh  % defer " . line('.') . ' "next tue"'<CR>:redraw!<CR>
+nmap <leader>td<SPACE>wed :w<CR>:execute ":!toneq-run.sh  % defer " . line('.') . ' "next wed"'<CR>:redraw!<CR>
+nmap <leader>td<SPACE>thu :w<CR>:execute ":!toneq-run.sh  % defer " . line('.') . ' "next thu"'<CR>:redraw!<CR>
+nmap <leader>td<SPACE>fri :w<CR>:execute ":!toneq-run.sh  % defer " . line('.') . ' "next fri"'<CR>:redraw!<CR>
+nmap <leader>td<SPACE>sat :w<CR>:execute ":!toneq-run.sh  % defer " . line('.') . ' "next sat"'<CR>:redraw!<CR>
+nmap <leader>td<SPACE>sun :w<CR>:execute ":!toneq-run.sh  % defer " . line('.') . ' "next sun"'<CR>:redraw!<CR>
 
 " s=start, f=finished, g=go to (d)ay
 nmap <leader>tsd G?>>TODO<CR>(()mm?^201.-..-..V'mk"aygvo:.!now -DA (:r!date "+\%A"kJA \| <ESC>"=strftime("%H%M")<CR>pA aim=6hrs, break=1.5hrs \| 0; \| )"apdd
