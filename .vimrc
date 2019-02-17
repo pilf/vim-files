@@ -309,7 +309,7 @@ nmap <leader>tce yyp:s/^\([TGEQ]\)\([ \.]*\).*$/E .\2[·30] f[a
 nmap <leader>tdo :w<CR>:execute ":!toneq -f % defer " . line('.') . " todo"<CR>:redraw!<CR>
 nmap <leader>tdt :w<CR>:execute ":!toneq -f % defer " . line('.') . " " . strftime("%Y-%m-%d")<CR>:redraw!<CR>
 "nmap <leader>tdm :w<CR>:execute ":!toneq -f % defer " . line('.') . ' $(date -d "tomorrow" "+\%Y-\%m-\%d")'<CR>:redraw!<CR>
-nmap <leader>tdm :w<CR>:execute ":!toneq-run.sh % defer " . line('.') . "tomorrow"<CR>:redraw!<CR>
+nmap <leader>tdm :w<CR>:execute ":!toneq-run.sh % defer " . line('.') . " tomorrow"<CR>:redraw!<CR>
 nmap <leader>td<SPACE>mon :w<CR>:execute ":!toneq-run.sh  % defer " . line('.') . ' "next mon"'<CR>:redraw!<CR>
 nmap <leader>td<SPACE>tue :w<CR>:execute ":!toneq-run.sh  % defer " . line('.') . ' "next tue"'<CR>:redraw!<CR>
 nmap <leader>td<SPACE>wed :w<CR>:execute ":!toneq-run.sh  % defer " . line('.') . ' "next wed"'<CR>:redraw!<CR>
