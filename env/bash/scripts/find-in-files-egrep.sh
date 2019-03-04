@@ -1,8 +1,8 @@
 #!/bin/bash
 
 function usage {
-cat << EOF
-Usage: find-in-files-egrep.sh <regex> [ <file-pattern> [ <search-path> ] ]" >&2
+cat >&2 << EOF
+Usage: find-in-files-egrep.sh <regex> [ <file-pattern> [ <search-path> ] ]" 
   File pattern defaults to '*'
   Search path defaults to '.'
 Example:
@@ -18,6 +18,6 @@ fi
 
 regex="$1"
 namepattern="${2:-*}"
-path="${3:-.}"
+path="${3:-$(pwd)}"
 
-find $path -type f -name "$namepattern" -print0 | xargs -0 egrep "$regex"
+find $path -type f -iname "$namepattern" -print0 | xargs -0 egrep "$regex"
