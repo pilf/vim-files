@@ -25,15 +25,29 @@ nmap <leader>hil :colorscheme morning<CR>
 " set a dark colorscheme
 nmap <leader>hid :colorscheme jellybeans<CR>
 
+" set line highlight to red
+nmap <leader>hilr :hi CursorLine   cterm=NONE ctermbg=darkred guibg=darkred<CR>
+" set line highlight to blue
+nmap <leader>hilu :hi CursorLine   cterm=NONE ctermbg=darkblue guibg=darkblue<CR>
+
+
 colorscheme jellybeans
 
 " sets the visual highlighting to work well on terminals
 hi Visual term=reverse cterm=reverse guibg=Grey
+" use blue for default
+hi CursorLine   cterm=NONE ctermbg=darkblue guibg=darkblue
 
 " http://archive09.linux.com/feature/120126
 " set statusline=%F%m%r%h%w\ %=[FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
 set statusline=%F\ %m%r%h%w\ %=F:%{&ff}\ T:%Y\ [\%03.3b\ 0x\%02.2B]\ x=%04v\ y=%04l/%L\ (%p%%)
 set laststatus=2
+highlight Cursor ctermfg=black ctermbg=white guifg=white guibg=black
+highlight iCursor ctermfg=white ctermbg=darkblue guifg=white guibg=darkblue
+set guicursor=n-v-c:block-Cursor
+set guicursor+=i:ver100-iCursor
+set guicursor+=n-v-c:blinkon0
+set guicursor+=i:blinkwait10
 
 
 if has("gui_running")
@@ -91,7 +105,9 @@ com! CdToThis call CdToThis()
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 " tab rename (taboo plugin)
-nmap <leader>trn :TabooRename 
+nmap <leader>brn :TabooRename 
+" create tab and ask for name
+nmap <leader>bn :tabnew<CR>:TabooRename 
 
 set viminfo='1000,f1,<500,s10,h,!
 
