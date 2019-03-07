@@ -8,3 +8,4 @@ ForegroundColour=177,216,202
 CursorColour=247,253,250
 BoldAsFont=-1
 Transparency=off
+CursorType=block
