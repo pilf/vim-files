@@ -1,0 +1,6 @@
+mversion (v. 1.0) for Launchy
+by Bilgin Ozkan - 15 July 2017
+
+Minimalist dark skin designed for high DPI devices like the Surface Pro.
+
+You can contact me at mversion@gmail.com
