@@ -11,45 +11,6 @@ endif
 " not if you get a CONVERSION ERROR on :w try :w ++enc=utf-8
 scriptencoding utf-8
 
-syntax on
-filetype plugin indent on
-set t_Co=256
-set background=dark
-
-" change background to default for current shell
-nmap <leader>hix :hi Normal ctermbg=none \| hi NonText ctermbg=none<CR>
-" force black background
-nmap <leader>hib :hi Normal ctermbg=black \| hi NonText ctermbg=black<CR>
-" set a light colorscheme
-nmap <leader>hil :colorscheme morning<CR>
-" set a dark colorscheme
-nmap <leader>hid :colorscheme jellybeans<CR>
-
-" set line highlight to red
-nmap <leader>hilr :hi CursorLine   cterm=NONE ctermbg=darkred guibg=darkred<CR>
-" set line highlight to blue
-nmap <leader>hilu :hi CursorLine   cterm=NONE ctermbg=darkblue guibg=darkblue<CR>
-
-
-colorscheme jellybeans
-
-" sets the visual highlighting to work well on terminals
-hi Visual term=reverse cterm=reverse guibg=Grey
-" use blue for default
-hi CursorLine   cterm=NONE ctermbg=darkblue guibg=darkblue
-
-" http://archive09.linux.com/feature/120126
-" set statusline=%F%m%r%h%w\ %=[FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
-set statusline=%F\ %m%r%h%w\ %=F:%{&ff}\ T:%Y\ [\%03.3b\ 0x\%02.2B]\ x=%04v\ y=%04l/%L\ (%p%%)
-set laststatus=2
-highlight Cursor ctermfg=black ctermbg=white guifg=white guibg=black
-highlight iCursor ctermfg=white ctermbg=darkblue guifg=white guibg=darkblue
-set guicursor=n-v-c:block-Cursor
-set guicursor+=i:ver100-iCursor
-set guicursor+=n-v-c:blinkon0
-set guicursor+=i:blinkwait10
-
-
 if has("gui_running")
     " Note: if you want to test environment variables make sure they're either
     " exported in your .bashrc, or .bash_profile; see:
@@ -94,6 +55,49 @@ else
     endif
 endif
 
+
+
+syntax on
+filetype plugin indent on
+set t_Co=256
+set background=dark
+
+colorscheme jellybeans
+
+" sets the visual highlighting to work well on terminals
+hi Visual term=reverse cterm=reverse guibg=Grey
+" use blue for default
+hi CursorLine   cterm=NONE ctermbg=darkblue guibg=darkblue
+
+" change background to default for current shell
+nmap <leader>hibx :hi Normal ctermbg=none \| hi NonText ctermbg=none<CR>
+" force black background
+nmap <leader>hibb :hi Normal ctermbg=black \| hi NonText ctermbg=black<CR>
+" force light grey background
+nmap <leader>hibg :hi Normal ctermbg=lightgreen \| hi NonText ctermbg=lightgreen<CR>
+" set a light colorscheme
+nmap <leader>hil :colorscheme morning<CR>
+" set a dark colorscheme
+nmap <leader>hid :colorscheme jellybeans<CR>
+
+" set line highlight to red
+nmap <leader>hicr :hi CursorLine   cterm=NONE ctermbg=darkred guibg=darkred<CR>
+" set line highlight to blue
+nmap <leader>hicu :hi CursorLine   cterm=NONE ctermbg=darkblue guibg=darkblue<CR>
+
+
+
+" http://archive09.linux.com/feature/120126
+" set statusline=%F%m%r%h%w\ %=[FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
+set statusline=%F\ %m%r%h%w\ %=F:%{&ff}\ T:%Y\ [\%03.3b\ 0x\%02.2B]\ x=%04v\ y=%04l/%L\ (%p%%)
+set laststatus=2
+highlight Cursor ctermfg=black ctermbg=white guifg=white guibg=black
+highlight iCursor ctermfg=white ctermbg=darkblue guifg=white guibg=darkblue
+set guicursor=n-v-c:block-Cursor
+set guicursor+=i:ver100-iCursor
+set guicursor+=n-v-c:blinkon0
+set guicursor+=i:blinkwait10
+
 " cd to this
 nmap <leader>cd :exe ":cd %:p:h"<CR>
 function! CdToThis()
@@ -101,6 +105,9 @@ function! CdToThis()
 endfunction
 com! CdToThis call CdToThis()
 
+" visually select lines, run and put in place; also put a copy of command
+" before sandwiched with seperator lines
+vmap <leader>bash "yymz"ygv:!bash<CR>'zO<ESC>80a-<ESC>yy"yp'zP
 
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 
