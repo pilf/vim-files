@@ -512,7 +512,8 @@ nnoremap <Leader>cf :Copyfile<CR>
 nmap <leader>_trim_end_ :s/\s\+$//e<CR>
 nmap <leader>md= <LEADER>_trim_end_yypv$hr=
 nmap <leader>md- <LEADER>_trim_end_yypv$hr-
-nmap <leader>mdshow :silent exe "!md-chrome.sh %"<CR>:redraw!<CR>
+nmap <leader>mds :silent exe "!md-chrome.sh %"<CR>:redraw!<CR>
+nmap <leader>mdsgit :silent exe "!md-chrome.sh % github"<CR>:redraw!<CR>
 vmap <leader>mdl "zdi[<C-r>z]()<ESC>i
 imap <leader>mdl <ESC>mz?\(^\\|http\\| \)<CR>v`z<LEADER>mdl
 nmap <leader>mdl /\([^ ]\\|$\)<CR>a<LEADER>mdl
