@@ -209,7 +209,6 @@ map <leader>hs :set list!<CR>
 map <leader>s :w<CR>
 "visually select last match
 noremap <leader>v v//e<CR> 
-noremap <leader>b :ls<CR>:buffer<Space>
 noremap <leader>ln :set nu!<CR>
 noremap <leader>lr :set relativenumber!<CR>
 "(note) To insert the elipsis, press ctrl-vu followed by the numeric code for elipsis: 2026
