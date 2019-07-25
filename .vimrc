@@ -20,12 +20,15 @@ if has("gui_running")
     elseif $macbook=="true"
         set guifont=Menlo\ Regular:h12
     else
-        set guifont=Lucida_Console:h14
+        set guifont=Menlo:h18
     endif
     colorscheme evening
-    set guifont=Lucida_Console:h14
+    " set guifont=Lucida_Console:h14
     set lines=999 columns=999
     set guioptions-=T "remove toolbar
+
+    hi iCursor guifg=white guibg=yellow
+    hi Cursor guifg=white guibg=green
 endif
 
 if has("win32")
@@ -91,8 +94,8 @@ nmap <leader>hicu :hi CursorLine   cterm=NONE ctermbg=darkblue guibg=darkblue<CR
 " set statusline=%F%m%r%h%w\ %=[FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
 set statusline=%F\ %m%r%h%w\ %=F:%{&ff}\ T:%Y\ [\%03.3b\ 0x\%02.2B]\ x=%04v\ y=%04l/%L\ (%p%%)
 set laststatus=2
-highlight Cursor ctermfg=black ctermbg=white guifg=white guibg=black
-highlight iCursor ctermfg=white ctermbg=darkblue guifg=white guibg=darkblue
+highlight Cursor ctermfg=green ctermbg=white guifg=white guibg=green
+highlight iCursor ctermfg=white ctermbg=red guifg=white guibg=red
 set guicursor=n-v-c:block-Cursor
 set guicursor+=i:ver100-iCursor
 set guicursor+=n-v-c:blinkon0

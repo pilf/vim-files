@@ -2,10 +2,11 @@
 
 defaultname=$(tmux display-message -p "#S")
 name=${1:-$defaultname}
+stripped_name="$(printf $name | sed -n 's/^.*-\(.*\)$/\1/p')" 
 
 bg="#2C3230"
 fg="#FFFFFF"
-case $name in
+case $stripped_name in
 "general")
    bg="#001943"
    ;;
@@ -15,10 +16,17 @@ case $name in
 "toneq")
    bg="#231A21"
    ;;
+"dark")
+   bg="#231A21"
+   ;;
 "scripts")
    bg="#1D1F1C"
    ;;
 "careful")
+    bg="#FFCCD1"
+    fg="#4d4a4b"
+    ;;
+"red")
     bg="#FFCCD1"
     fg="#4d4a4b"
     ;;
