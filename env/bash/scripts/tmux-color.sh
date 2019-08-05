@@ -4,9 +4,18 @@ defaultname=$(tmux display-message -p "#S")
 name=${1:-$defaultname}
 stripped_name="$(printf $name | sed -n 's/^.*-\(.*\)$/\1/p')" 
 
+search="$stripped_name"
+if [ -z "$search" ]; then
+    search="$name"
+fi
+
+
 bg="#2C3230"
 fg="#FFFFFF"
-case $stripped_name in
+
+#printf "Searching for name %s" "$stripped_name"
+
+case $search in
 "general")
    bg="#001943"
    ;;
