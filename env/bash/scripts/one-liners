@@ -40,3 +40,22 @@ ssh -D 12345 philip@grasslands.no-ip.org
 # osx
 # mount dmg: 
 hdiutil attach <path to dmg>
+
+
+# git
+
+# take a file from another branch and put it in the one you're working in
+cd <targetbranch>/path/to/file
+git checkout <otherbranch> file.txt
+
+# checkout branch from remote
+# see https://stackoverflow.com/questions/1783405/how-do-i-check-out-a-remote-git-branch
+# assuming only one remote you can (git >=1.6.6)
+git fetch
+git checkout <the-remote-branch>
+# longhand (or for multiple remotes)
+git checkout -b <local-branch> <remote>/<the-remote-branch>
+# assuming yhou just want the local branch to be the same name, more simply:
+git checkout -t <remote>/<the-remote-branch>
+
+
