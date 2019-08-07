@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6a08e597-59fc-4af4-9ee2-46d9f6357a8f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../.vim/after/syntax/haml.vim" beforeDir="false" afterPath="$PROJECT_DIR$/../../.vim/after/syntax/haml.vim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.vim/after/syntax/html.vim" beforeDir="false" afterPath="$PROJECT_DIR$/../../.vim/after/syntax/html.vim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.vim/compiler/coffee.vim" beforeDir="false" afterPath="$PROJECT_DIR$/../../.vim/compiler/coffee.vim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.vim/ftdetect/coffee.vim" beforeDir="false" afterPath="$PROJECT_DIR$/../../.vim/ftdetect/coffee.vim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.vim/ftdetect/eco.vim" beforeDir="false" afterPath="$PROJECT_DIR$/../../.vim/ftdetect/eco.vim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.vim/ftplugin/coffee.vim" beforeDir="false" afterPath="$PROJECT_DIR$/../../.vim/ftplugin/coffee.vim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.vim/indent/coffee.vim" beforeDir="false" afterPath="$PROJECT_DIR$/../../.vim/indent/coffee.vim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.vim/syntax/coffee.vim" beforeDir="false" afterPath="$PROJECT_DIR$/../../.vim/syntax/coffee.vim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.vim/syntax/eco.vim" beforeDir="false" afterPath="$PROJECT_DIR$/../../.vim/syntax/eco.vim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.vim/vimfiles" beforeDir="false" afterPath="$PROJECT_DIR$/../../.vim/vimfiles" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/install.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/install.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/abspath" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/abspath" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/batt" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/batt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/cat-which" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/cat-which" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/clone-all.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/clone-all.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/cloudshare" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/cloudshare" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/container-named.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/container-named.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/cygsudo" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/cygsudo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/diary" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/diary" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/docker-exec.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/docker-exec.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/docker-expose-port.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/docker-expose-port.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/docker-image-grep.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/docker-image-grep.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/docker-image-one.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/docker-image-one.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/docker-rm-all-stopped-contains.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/docker-rm-all-stopped-contains.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/docker-rm-image-none.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/docker-rm-image-none.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/docker-rm-image-regex.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/docker-rm-image-regex.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/ellipsisify" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/ellipsisify" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/epoch-for-date.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/epoch-for-date.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/find-in-files-egrep.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/find-in-files-egrep.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/for-all" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/for-all" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/fullpath.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/fullpath.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/g" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/g" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/git-prompt.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/git-prompt.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/json-show" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/json-show" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/md-chrome.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/md-chrome.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/md-show" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/md-show" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/mix-run.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/mix-run.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/mkv" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/mkv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/now" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/now" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/now-task.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/now-task.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/nowfile" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/nowfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/osx/shutdown-now.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/osx/shutdown-now.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/osx/sleep-now.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/osx/sleep-now.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/osx/spotify-current.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/osx/spotify-current.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/ping_until" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/ping_until" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/prompt.zsh" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/prompt.zsh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/render-md-in-chrome.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/render-md-in-chrome.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/sha1-base64.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/sha1-base64.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/sha1-clipboard-swap.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/sha1-clipboard-swap.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/spacemuffin-mail-ec2" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/spacemuffin-mail-ec2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/spotify" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/spotify" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/ssh-keygen-rsa" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/ssh-keygen-rsa" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/ssh-pem-tmux" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/ssh-pem-tmux" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/ssh-register" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/ssh-register" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/ssh-tmux" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/ssh-tmux" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/ssh-tmux-docker" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/ssh-tmux-docker" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/start-ssh-session" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/start-ssh-session" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/tmux-color.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/tmux-color.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/tmux-colors" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/tmux-colors" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/tmux-ns.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/tmux-ns.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/tmux-simple" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/tmux-simple" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/today" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/today" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/update-hostfile" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/update-hostfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/urlencoder.js" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/urlencoder.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/vims" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/vims" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/vlc-find.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/vlc-find.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/vlc.mac" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/vlc.mac" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash/scripts/win2nixpath.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../bash/scripts/win2nixpath.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../osx/install.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../osx/install.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/launchy/skins/mversion-hdpi/author.txt" beforeDir="false" afterPath="$PROJECT_DIR$/launchy/skins/mversion-hdpi/author.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/launchy/skins/mversion-hdpi/frame.png" beforeDir="false" afterPath="$PROJECT_DIR$/launchy/skins/mversion-hdpi/frame.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/launchy/skins/mversion-hdpi/scrollBack.png" beforeDir="false" afterPath="$PROJECT_DIR$/launchy/skins/mversion-hdpi/scrollBack.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/launchy/skins/mversion-hdpi/scrollDown.png" beforeDir="false" afterPath="$PROJECT_DIR$/launchy/skins/mversion-hdpi/scrollDown.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/launchy/skins/mversion-hdpi/scrollUp.png" beforeDir="false" afterPath="$PROJECT_DIR$/launchy/skins/mversion-hdpi/scrollUp.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/launchy/skins/mversion-hdpi/spinner.mng" beforeDir="false" afterPath="$PROJECT_DIR$/launchy/skins/mversion-hdpi/spinner.mng" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/launchy/skins/mversion-hdpi/style.qss" beforeDir="false" afterPath="$PROJECT_DIR$/launchy/skins/mversion-hdpi/style.qss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/macee2.zip" beforeDir="false" afterPath="$PROJECT_DIR$/macee2.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/macee2/macee2.klc" beforeDir="false" afterPath="$PROJECT_DIR$/macee2/macee2.klc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/macee2/macee2/amd64/macee2.dll" beforeDir="false" afterPath="$PROJECT_DIR$/macee2/macee2/amd64/macee2.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/macee2/macee2/i386/macee2.dll" beforeDir="false" afterPath="$PROJECT_DIR$/macee2/macee2/i386/macee2.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/macee2/macee2/ia64/macee2.dll" beforeDir="false" afterPath="$PROJECT_DIR$/macee2/macee2/ia64/macee2.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/macee2/macee2/macee2_amd64.msi" beforeDir="false" afterPath="$PROJECT_DIR$/macee2/macee2/macee2_amd64.msi" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/macee2/macee2/macee2_i386.msi" beforeDir="false" afterPath="$PROJECT_DIR$/macee2/macee2/macee2_i386.msi" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/macee2/macee2/macee2_ia64.msi" beforeDir="false" afterPath="$PROJECT_DIR$/macee2/macee2/macee2_ia64.msi" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/macee2/macee2/setup.exe" beforeDir="false" afterPath="$PROJECT_DIR$/macee2/macee2/setup.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/macee2/macee2/wow64/macee2.dll" beforeDir="false" afterPath="$PROJECT_DIR$/macee2/macee2/wow64/macee2.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mintty/Grasslands.lnk" beforeDir="false" afterPath="$PROJECT_DIR$/mintty/Grasslands.lnk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mintty/RemoteGrasslands.lnk" beforeDir="false" afterPath="$PROJECT_DIR$/mintty/RemoteGrasslands.lnk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mintty/WinTmux.lnk" beforeDir="false" afterPath="$PROJECT_DIR$/mintty/WinTmux.lnk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mintty/mintty-apply.sh" beforeDir="false" afterPath="$PROJECT_DIR$/mintty/mintty-apply.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quiet_beep.wav" beforeDir="false" afterPath="$PROJECT_DIR$/quiet_beep.wav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vs/Exported-2018-01-17.vssettings" beforeDir="false" afterPath="$PROJECT_DIR$/vs/Exported-2018-01-17.vssettings" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vs/resharper-settings-20180316.DotSettings" beforeDir="false" afterPath="$PROJECT_DIR$/vs/resharper-settings-20180316.DotSettings" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vs/resharper-settings.DotSettings" beforeDir="false" afterPath="$PROJECT_DIR$/vs/resharper-settings.DotSettings" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../qutebrowser/autoconfig.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../../qutebrowser/autoconfig.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../qutebrowser/words" beforeDir="false" afterPath="$PROJECT_DIR$/../../qutebrowser/words" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/AutoHotkey.ahk">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="RQGrbTAy" />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="520" />
+    <option name="y" value="80" />
+    <option name="width" value="2800" />
+    <option name="height" value="2000" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator currentView="FileSystemExplorer" proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="FileSystemExplorer" />
+      <pane id="AssemblyExplorer" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Rider.DefaultBreakpoints.AreToggled" value="true" />
+    <property name="Rider.ProjectViewActivator.IsNotFirstRun" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6a08e597-59fc-4af4-9ee2-46d9f6357a8f" name="Default Changelist" comment="" />
+      <created>1565013364853</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1565013364853</updated>
+      <workItem from="1565013373114" duration="37000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="37000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-6" y="-6" width="2573" height="1453" extended-state="6" />
+    <layout>
+      <window_info id="Favorites" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="NuGet" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Unit Tests" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Performance Profiler" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Cargo" />
+      <window_info anchor="right" id="Errors In Solution" />
+      <window_info anchor="right" id="Database" />
+      <window_info anchor="right" id="Unit Tests Coverage" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="null" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" suspend="NONE" type="DotNet Exception Breakpoints">
+          <properties exception="System.Threading.ThreadAbortException" displayValue="System.Threading.ThreadAbortException" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/AutoHotkey.ahk">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+  </component>
+</project>

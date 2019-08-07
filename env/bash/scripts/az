@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cd '/cygdrive/c/Program Files (x86)/Microsoft SDKs/Azure/CLI2/wbin/'
+cmd.exe /c az.cmd $@
+
+

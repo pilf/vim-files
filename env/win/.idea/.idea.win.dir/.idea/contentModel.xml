@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\cygwin64\home\coxp\vim-files\env\win" t="IncludeFlat" />
+    <e p="C:\Users\coxp\.Rider2019.1\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\coxp\.Rider2019.1\system\resharper-host\local\Transient\ReSharperHost\v191\SolutionCaches\_.19.00" t="ExcludeRecursive" />
+    <e p="C:\Users\coxp\.Rider2019.1\system\rust_expanded_macros\RQGrbTAy\expansions" t="IncludeRecursive" />
+  </component>
+</project>
