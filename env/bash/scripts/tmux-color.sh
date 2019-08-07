@@ -26,6 +26,10 @@ case $name in
     bg="#f1ebeb"
     fg="#24c0eb"
     ;;
+"dark")
+    bg="#0D0F0C"
+    fg="#FFFFFF"
+    ;;
 *)
     bg="#DAFBF8"
     fg="#002222"
