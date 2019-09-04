@@ -1,0 +1,6 @@
+keycode  11 = 2 at 2 at twosuperior oneeighth twosuperior
+keycode  12 = 3 numbersign 3 numbersign threesuperior sterling threesuperior
+keycode  48 = apostrophe quotedbl apostrophe quotedbl dead_circumflex dead_caron dead_circumflex
+keycode  49 = grave asciitilde grave asciitilde notsign bar bar
+keycode  51 = backslash bar backslash bar dead_grave dead_breve dead_grave
+keycode  94 = section backslash section backslash bar brokenbar bar
