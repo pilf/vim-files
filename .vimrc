@@ -79,7 +79,7 @@ nmap <leader>hibb :hi Normal ctermbg=black \| hi NonText ctermbg=black<CR>
 " force light grey background
 nmap <leader>hibg :hi Normal ctermbg=lightgreen \| hi NonText ctermbg=lightgreen<CR>
 " set a light colorscheme
-nmap <leader>hil :colorscheme morning
+nmap <leader>hil :colorscheme morning<CR>
 " set a dark colorscheme
 nmap <leader>hid :colorscheme jellybeans<CR><leader>hibb
 

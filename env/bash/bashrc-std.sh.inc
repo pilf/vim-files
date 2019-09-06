@@ -40,7 +40,7 @@ function kill-by-pattern {
 
 function pathadd() {
     if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
-	PATH="${PATH:+"$PATH:"}$1"
+	export PATH="${PATH:+"$PATH:"}$1"
     fi
 }
 
