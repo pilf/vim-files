@@ -19,6 +19,9 @@ case $search in
 "general")
    bg="#001943"
    ;;
+"blue")
+   bg="#001943"
+   ;;
 "today")
    bg="#4B4C4E"
    ;;
