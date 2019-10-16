@@ -1,0 +1,18 @@
+keycode  11 = 2 at 2 at twosuperior oneeighth twosuperior
+keycode  12 = 3 numbersign 3 numbersign threesuperior sterling threesuperior
+keycode  48 = apostrophe quotedbl apostrophe quotedbl dead_circumflex dead_caron dead_circumflex
+keycode  49 = grave asciitilde grave asciitilde notsign bar bar
+keycode  51 = backslash bar backslash bar dead_grave dead_breve dead_grave
+keycode  94 = section backslash section backslash bar brokenbar bar
+
+!https://superuser.com/questions/213051/remap-arrow-keys-to-winijkl-on-linux#228548
+keycode 66 = Mode_switch
+keysym h = h H Left 
+keysym j = j J Down
+keysym k = k K Up
+keysym l = l L Right
+
+!other things tried
+!https://superuser.com/questions/96299/mapping-superhjkl-to-arrow-keys-under-x#111968
+!also have a look at Xbindkeys (I think this more akin to autohotkey etc.)
+!https://wiki.archlinux.org/index.php/Xbindkeys

@@ -81,7 +81,7 @@ nmap <leader>hibg :hi Normal ctermbg=lightgreen \| hi NonText ctermbg=lightgreen
 " set a light colorscheme
 nmap <leader>hil :colorscheme morning<CR>
 " set a dark colorscheme
-nmap <leader>hid :colorscheme jellybeans<CR>
+nmap <leader>hid :colorscheme jellybeans<CR><leader>hibb
 
 " set line highlight to red
 nmap <leader>hicr :hi CursorLine   cterm=NONE ctermbg=darkred guibg=darkred<CR>
