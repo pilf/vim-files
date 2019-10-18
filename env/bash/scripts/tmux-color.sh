@@ -1,8 +1,8 @@
 #!/bin/sh
 
-defaultname=$(tmux display-message -p "#S")
+defaultname=$(tmux display-message -p "#S" 2>/dev/null)
 name=${1:-$defaultname}
-stripped_name="$(printf $name | sed -n 's/^.*-\(.*\)$/\1/p')" 
+stripped_name="$(printf "$name" | sed -n 's/^.*-\(.*\)$/\1/p')" 
 
 search="$stripped_name"
 if [ -z "$search" ]; then
@@ -52,4 +52,4 @@ case $search in
     fg="#002222"
 esac
 
-tmux select-pane -t:. -P "bg=$bg,fg=$fg"
+tmux select-pane -t:. -P "bg=$bg,fg=$fg" 2>/dev/null
