@@ -20,7 +20,7 @@ if has("gui_running")
     elseif $macbook=="true"
         set guifont=Menlo\ Regular:h12
     else
-        set guifont=Menlo:h18
+        set guifont=set guifont=DejaVu\ Sans\ Mono\ Bold\ 18
     endif
     colorscheme evening
     " set guifont=Lucida_Console:h14
