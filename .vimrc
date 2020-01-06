@@ -344,7 +344,7 @@ nmap <leader>td<SPACE>sat :w<CR>:execute ":!toneq-run.sh  % defer " . line('.') 
 nmap <leader>td<SPACE>sun :w<CR>:execute ":!toneq-run.sh  % defer " . line('.') . ' "next sun"'<CR>:redraw!<CR>
 
 " s=start, f=finished, g=go to (d)ay
-nmap <leader>tsd G?>>TODO<CR>(()mm?^201.-..-..V'mk"aygvo:.!now -DA (:r!date "+\%A"kJA \| <ESC>"=strftime("%H%M")<CR>pA aim=6hrs, break=1.5hrs \| 0; \| )"apdd
+nmap <leader>tsd G?>>TODO<CR>(()mm?^20[12].-..-..V'mk"aygvo:.!now -DA (:r!date "+\%A"kJA \| <ESC>"=strftime("%H%M")<CR>pA aim=6hrs, break=1.5hrs \| 0; \| )"apdd
 nmap <leader>tfd <leader>_gototoday$F\|a <ESC>"=strftime("%H%M")<CR>p:w<CR>
 nmap <leader>tgd G?^201.-..-..<CR>zz
 
