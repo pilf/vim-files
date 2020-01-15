@@ -12,6 +12,7 @@ ln -s "$basedir/.editrc" $HOME
 ln -s "$basedir/.inputrc" $HOME
 ln -s "$basedir/.iex.exs" $HOME
 ln -s "$basedir/.irssi" $HOME
+ln -s "$basedir/.ideavimrc" $HOME
 
 ln -s "$basedir/env/zsh/.zshrc" $HOME
 

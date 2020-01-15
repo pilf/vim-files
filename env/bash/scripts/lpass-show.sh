@@ -1,4 +1,8 @@
 #!/bin/sh
 
 search="$1"
-lpass ls | grep "$search" | grep -Po '(?<=id: )[0-9]+' | xargs lpass show
+
+grepcmd="$(which ggrep >> /dev/null && printf 'ggrep' || printf 'grep')"
+#echo "Using grep cmd '$grepcmd'"
+
+lpass ls | $grepcmd "$search" | $grepcmd -Po '(?<=id: )[0-9]+' | xargs lpass show

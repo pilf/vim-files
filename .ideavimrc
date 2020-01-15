@@ -1,0 +1,13 @@
+set surround
+set multiple-cursors
+imap jk <ESC>
+
+let mapleader="§"
+
+map <leader>on :action VimWindowOnly<CR>
+map <leader>q :action VimWindowClose<CR>
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+

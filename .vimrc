@@ -304,7 +304,7 @@ imap <leader>tin <ESC>:s/\s*$/ /<CR>A(<BAR><Space><Space><BAR>)<esc>2hi
 nmap <leader>tin :s/\s*$/ /<CR>A(<BAR><Space><Space><BAR>)<esc>2hi
 nmap <leader>ton o(<BAR><CR><CR><BAR>)<esc>ki
 imap <leader>ton <ESC>o(<BAR><CR><CR><BAR>)<esc>ki
-"nmap <leader>tnew G?>>TODOs(()mm?^201.-..-..V'mk"aygvo:.!now -DA (:r!date "+\%A"kJA \| <ESC>"=strftime("%H%M")<CR>pA aim=6hrs, break=1.5hrs \| 0; \| )"apdd
+"nmap <leader>tnew G?>>TODOs(()mm?^20[12].-..-..V'mk"aygvo:.!now -DA (:r!date "+\%A"kJA \| <ESC>"=strftime("%H%M")<CR>pA aim=6hrs, break=1.5hrs \| 0; \| )"apdd
 " indent
 nmap <leader>t< 0:s/^\([TGEQ]\)\( \.\)/\1<CR>
 nmap <leader>t> 0:s/^\([TGEQ]\)/\1 .<CR>
@@ -346,7 +346,7 @@ nmap <leader>td<SPACE>sun :w<CR>:execute ":!toneq-run.sh  % defer " . line('.') 
 " s=start, f=finished, g=go to (d)ay
 nmap <leader>tsd G?>>TODO<CR>(()mm?^20[12].-..-..V'mk"aygvo:.!now -DA (:r!date "+\%A"kJA \| <ESC>"=strftime("%H%M")<CR>pA aim=6hrs, break=1.5hrs \| 0; \| )"apdd
 nmap <leader>tfd <leader>_gototoday$F\|a <ESC>"=strftime("%H%M")<CR>p:w<CR>
-nmap <leader>tgd G?^201.-..-..<CR>zz
+nmap <leader>tgd G?^20[12].-..-..<CR>zz
 
 " executing line (defined as - with 0+ notes and white space after it)
 " g=go, n=note, c=complete, a=abandoned, s=suspended, e=reestimate, ?=unknown complete
