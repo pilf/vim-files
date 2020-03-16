@@ -70,7 +70,8 @@ colorscheme jellybeans
 " sets the visual highlighting to work well on terminals
 hi Visual term=reverse cterm=reverse guibg=Grey
 " use blue for default
-hi CursorLine   cterm=NONE ctermbg=darkblue guibg=darkblue
+"hi CursorLine   cterm=NONE ctermbg=darkblue guibg=darkblue
+hi CursorLine ctermfg=NONE ctermbg=NONE cterm=inverse guifg=NONE guibg=NONE gui=inverse
 
 " change background to default for current shell
 nmap <leader>hibx :hi Normal ctermbg=none \| hi NonText ctermbg=none<CR>
