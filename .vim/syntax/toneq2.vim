@@ -7,8 +7,9 @@ syn include @MD syntax/markdown.vim
 
 
 syn match tqDaySep /^\d\d\d\d-\d\d-\d\d/
-syn match tqTask /^[TQG][ .]*/
-syn match tqEvent /^E[ .]*\[[0-9·:]*\]/
+" {-} is non-greedy *
+syn match tqLine /^[TONEQ][ .]*\s*\(\[.\{-}\]\)\?/
+"syn match tqEvent /^E[ .]*\[[0-9·:]*\]/
 syn match tqSet /^S[ .]*\[[0-9:]*\]/
 
 syn region tqNoteMd matchgroup=TMdSnip start=/(|md\s*$/ end=/|)/ contains=@MD
@@ -24,8 +25,8 @@ syn match tqImportant /\[!\].*$/
 syn match tqInProgress /∷.*-\s*$/
 
 hi def link tqDaySep Statement
-hi def link tqTask Operator 
-hi def link tqEvent Operator 
+hi def link tqLine Operator 
+"hi def link tqEvent Operator 
 hi def link tqSet Operator 
 hi def link tqNote Comment
 hi def link tqComplete Comment
