@@ -82,7 +82,7 @@ nmap <leader>hibg :hi Normal ctermbg=lightgreen \| hi NonText ctermbg=lightgreen
 " set a light colorscheme
 nmap <leader>hil :colorscheme morning<CR>
 " set a dark colorscheme
-nmap <leader>hid :colorscheme jellybeans<CR><leader>hibb
+nmap <leader>hid :colorscheme jellybeans<CR><leader>hibx
 
 " set line highlight to red
 nmap <leader>hicr :hi CursorLine   cterm=NONE ctermbg=darkred guibg=darkred<CR>
@@ -550,6 +550,14 @@ nmap <leader>fn4 mqa⁴<ESC>o<CR>[⁴: footnote ]<ESC>Ffcw
 let g:session_autoload = 'no'
 let g:session_autosave = 'no' 
 let g:session_autosave_periodic = 0
+
+" Easy Align
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
 
 "source: http://vim.wikia.com/wiki/Identify_the_syntax_highlighting_group_used_at_the_cursor
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
