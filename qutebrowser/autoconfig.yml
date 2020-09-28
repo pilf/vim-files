@@ -47,5 +47,8 @@ settings:
   url.searchengines:
     global:
       DEFAULT: https://google.com/search?q={}
+      d: https://duckduckgo.com/?q={}
+      a: https://www.amazon.co.uk/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords={}
+      g: https://www.google.co.uk/search?q={}
   zoom.default:
     global: 175%
