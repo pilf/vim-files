@@ -25,6 +25,8 @@ syn match tqSuspended /∷.*s:\s*\~\?\s*\([0-9]\{4,4}\(\s*[ٍ±‥+-]\s*[0-9]\{1
 syn match tqImportant /\[!\].*$/
 syn match tqInProgress /∷.*-\s*$/
 syn match tqLineNote /^[|¦][^)].*$/
+syn match tqLineNoteRs /^¦rs|.*$/ contains=@RUST keepend
+syn match tqLineNoteMd /^¦md|.*$/ contains=@MD keepend
 "syn match tqTest /^|.*/
 
 hi def link tqDaySep Statement
@@ -44,8 +46,3 @@ hi def link tqImportant Underlined
 hi def link tqInProgress Underlined
 hi def link tqSuspended Error
 hi def link tqActiveLine Constant
-
-"hi def link TExSnip elixir
-"hi def link TRustSnip rust
-"hi def link TShSnip sh
-"hi def link TMdSnip markdown
