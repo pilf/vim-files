@@ -1,9 +1,9 @@
 
 " there is some trouble with the order these are introduced.  Not sure exactly
 " reason but if you only have 1 of the following it will work
-"syn include @SH syntax/sh.vim
-"syn include @RUST syntax/rust.vim
+syn include @RUST syntax/rust.vim
 syn include @MD syntax/markdown.vim
+"syn include @SH syntax/sh.vim
 
 
 syn match tqDaySep /^\d\d\d\d-\d\d-\d\d/
@@ -11,12 +11,14 @@ syn match tqDaySep /^\d\d\d\d-\d\d-\d\d/
 syn match tqLine /^[ONG][ .]*\s*\(\[.\{-}\]\)\?/
 syn match tqActiveLine /^[TEQ][ .]*\s*\(\[.\{-}\]\)\?/
 
-"syn region tqNoteMd matchgroup=TMdSnip start=/(|md\s*$/ end=/|)/ contains=@MD
 "syn region tqNoteEx matchgroup=TExSnip start=/(|ex\s*$/ end=/|)/ contains=@ELIXIR
 "syn region tqNoteSh matchgroup=TShSnip start=/(|sh\s*$/ end=/|)/ contains=sh
 "syn region tqNoteRs matchgroup=TRustSnip start=/(|rs\s*$/ end=/|)/ contains=@RUST
 
-syn region tqNote start=/^(|/ end=/^|)/ 
+syn region tqNote start=/^(.*|/ end=/^|)/ 
+syn region tqNoteMd matchgroup=TMdSnip start=/^(\s*md\s*|/ end=/|)/ contains=@MD keepend
+syn region tqNoteRs matchgroup=TRustSnip start=/^(\s*\(rs\|rust\)\s*|/ end=/|)/ contains=@RUST keepend
+"syn region tqNoteSh matchgroup=TShSnip start=/^(\s*sh\s*|/ end=/|)/ contains=@SH keepend
 
 syn match tqComplete /^[TONEQG].*∷.*[ca]:\s*\~\?\s*\([0-9]\{4,4}\(\s*[ٍ±‥+-]\s*[0-9]\{1,4}\)\?\)\?\((.*)\)\?\(?\s*".*"\)\?\s*$/
 syn match tqSuspended /∷.*s:\s*\~\?\s*\([0-9]\{4,4}\(\s*[ٍ±‥+-]\s*[0-9]\{1,4}\)\?\)\?\((.*)\)\?\(\s*·[^?]*\)\?\(?\s*".*"\)\?\s*$/
