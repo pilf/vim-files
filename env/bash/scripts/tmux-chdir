@@ -44,12 +44,14 @@ if [ "${1}" == '-h' ] || [ "${1}" == '--help' ]; then
   fail_help
 fi
 
+grep_cmd=$(test "$(uname -s)" = Darwin && echo ggrep || grep)
+
 ######
 # Deps
 ######
 command -v bash >/dev/null || fail_help
 command -v bc >/dev/null || fail_help
-command -v grep >/dev/null || fail_help
+command -v $grep_cmd >/dev/null || fail_help
 command -v tmux >/dev/null || fail_help
 command -v wc >/dev/null || fail_help
 
@@ -83,7 +85,7 @@ session_client_count () {
 if [ -z "${TMUX}" ]; then
   exit 1
 fi
-vers=$(tmux -V | grep -Po '[0-9\.]*')
+vers=$(tmux -V | $grep_cmd -Po '[0-9\.]*')
 
 curr_session=$(tmux display -p '#S')
 
