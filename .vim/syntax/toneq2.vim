@@ -3,7 +3,8 @@
 " reason but if you only have 1 of the following it will work
 syn include @RUST syntax/rust.vim
 syn include @MD syntax/markdown.vim
-"syn include @SH syntax/sh.vim
+syn include @SH $VIMRUNTIME/syntax/sh.vim
+syn include @JS $VIMRUNTIME/syntax/javascript.vim
 
 
 syn match tqDaySep /^\d\d\d\d-\d\d-\d\d/
@@ -18,7 +19,8 @@ syn match tqActiveLine /^[TEQ][ .]*\s*\(\[.\{-}\]\)\?/
 syn region tqNote start=/^(.*|/ end=/^|)/ 
 syn region tqNoteMd matchgroup=TMdSnip start=/^(\s*md\s*|/ end=/|)/ contains=@MD keepend
 syn region tqNoteRs matchgroup=TRustSnip start=/^(\s*\(rs\|rust\)\s*|/ end=/|)/ contains=@RUST keepend
-"syn region tqNoteSh matchgroup=TShSnip start=/^(\s*sh\s*|/ end=/|)/ contains=@SH keepend
+syn region tqNoteSh matchgroup=TShSnip start=/^(\s*sh\s*|/ end=/|)/ contains=@SH keepend
+syn region tqNoteSh matchgroup=TShSnip start=/^(\s*json\s*|/ end=/|)/ contains=@JS fold keepend 
 
 syn match tqComplete /^[TONEQG].*∷.*[ca]:\s*\~\?\s*\([0-9]\{4,4}\(\s*[ٍ±‥+-]\s*[0-9]\{1,4}\)\?\)\?\((.*)\)\?\(?\s*".*"\)\?\s*$/
 syn match tqSuspended /∷.*s:\s*\~\?\s*\([0-9]\{4,4}\(\s*[ٍ±‥+-]\s*[0-9]\{1,4}\)\?\)\?\((.*)\)\?\(\s*·[^?]*\)\?\(?\s*".*"\)\?\s*$/

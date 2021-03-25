@@ -252,11 +252,12 @@ autocmd BufNewFile,BufRead *.eex set syntax=html
 autocmd BufNewFile,BufRead *.md set syntax=markdown
 autocmd BufNewFile,BufRead *.sh.inc set syntax=sh
 autocmd BufNewFile,BufRead *.toneq set syntax=toneq
+autocmd BufNewFile,BufRead *.toneq2 so `g toneq`/scripts/*.vim | set syntax=toneq2
 autocmd BufNewFile,BufRead *.tl set syntax=timeline
 autocmd BufNewFile,BufRead *.js set tabstop=2 | set sts=2 | set shiftwidth=2
 
-syntax region toneqMdSnip matchgroup=TMdSnip start="(|" end="|)" 
-hi link TMdSnip Markdown
+" syntax region toneqMdSnip matchgroup=TMdSnip start="(|" end="|)" 
+" hi link TMdSnip Markdown
 
 " export feature files to HTML
 nnoremap <leader>rfhtml :TO<CR>:w<CR>:!open -a Safari %<CR><CR>
