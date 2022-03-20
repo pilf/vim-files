@@ -12,3 +12,5 @@ map <C-k> <C-w>k
 map <C-l> <C-w>l
 
 map zR :action ExpandAllRegions<CR>:action ExpandAllRegions<CR>
+
+map <leader><space>h :'<,'>!toneq-dev hash
