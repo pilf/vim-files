@@ -227,7 +227,7 @@ nnoremap <leader>wsudo mm:w !sudo tee %<CR><CR>L`m
 " old way (inserts new line) inoremap <leader>cp <ESC>:put =expand('%:p')<CR>
 "inoremap <leader>cp <C-r>=expand('%:p')<CR>
 " in normal mode this copies it into the "p register
-nnoremap <leader>cpp "=expand("%:p")<CR>:let @p=@%<CR>
+nnoremap <leader>cpp "=expand("%:p")<CR>:let @p=@*<CR>
 nnoremap <leader>cp: "=expand("%:p")<CR>:exec("! clear && echo -n " . shellescape(expand("%:p")) . " \| pbcopy")<CR><CR>
 nnoremap <leader>ep :echo expand("%:p")<CR>
 
@@ -240,6 +240,12 @@ nnoremap <leader>rcs :w<CR>:Shell cat % \| coffee -s<CR>
 nnoremap <leader>rrb :w<CR>:Shell ruby %<CR>
 nnoremap <leader>rsh :w<CR>:Shell cat % \| /bin/sh -s<CR>
 nmap <leader>mg :w<CR>:Shell cat % \| mongo<CR>:set syntax=javascript<CR>
+nmap <leader>tsqlj :w<CR>:Shell cat % \| run-sql.sh<CR>:set syntax=javascript<CR>
+nmap <leader>tsqlr :w<CR>:Shell cat % \| run-sql.sh raw<CR>
+nmap <leader>tsqlf :w<CR>:Shell cat % \| run-sql.sh fixed<CR>
+nmap <leader>tsql<space>new :new<CR>:w `nowfile`.sql<CR>
+vmap <leader>tsql<space>new "zy:new<CR>"zp:w `nowfile`.sql<CR>
+
 
 " rust
 nmap <leader>rt :w<CR>:Shell rustc --test % & ./`echo % \| sed s/\\.[^\\.]*$//`<CR>
