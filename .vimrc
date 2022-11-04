@@ -82,7 +82,7 @@ nmap <leader>hibg :hi Normal ctermbg=lightgreen \| hi NonText ctermbg=lightgreen
 " set a light colorscheme
 nmap <leader>hil :colorscheme morning<CR>
 " set a dark colorscheme
-nmap <leader>hid :colorscheme jellybeans<CR><leader>hibb
+nmap <leader>hid :colorscheme jellybeans<CR><leader>hibx
 
 " set line highlight to red
 nmap <leader>hicr :hi CursorLine   cterm=NONE ctermbg=darkred guibg=darkred<CR>
@@ -227,7 +227,7 @@ nnoremap <leader>wsudo mm:w !sudo tee %<CR><CR>L`m
 " old way (inserts new line) inoremap <leader>cp <ESC>:put =expand('%:p')<CR>
 "inoremap <leader>cp <C-r>=expand('%:p')<CR>
 " in normal mode this copies it into the "p register
-nnoremap <leader>cpp "=expand("%:p")<CR>:let @p=@%<CR>
+nnoremap <leader>cpp "=expand("%:p")<CR>:let @p=@*<CR>
 nnoremap <leader>cp: "=expand("%:p")<CR>:exec("! clear && echo -n " . shellescape(expand("%:p")) . " \| pbcopy")<CR><CR>
 nnoremap <leader>ep :echo expand("%:p")<CR>
 
@@ -240,6 +240,12 @@ nnoremap <leader>rcs :w<CR>:Shell cat % \| coffee -s<CR>
 nnoremap <leader>rrb :w<CR>:Shell ruby %<CR>
 nnoremap <leader>rsh :w<CR>:Shell cat % \| /bin/sh -s<CR>
 nmap <leader>mg :w<CR>:Shell cat % \| mongo<CR>:set syntax=javascript<CR>
+nmap <leader>tsqlj :w<CR>:Shell cat % \| run-sql.sh<CR>:set syntax=javascript<CR>
+nmap <leader>tsqlr :w<CR>:Shell cat % \| run-sql.sh raw<CR>
+nmap <leader>tsqlf :w<CR>:Shell cat % \| run-sql.sh fixed<CR>
+nmap <leader>tsql<space>new :new<CR>:w `nowfile`.sql<CR>
+vmap <leader>tsql<space>new "zy:new<CR>"zp:w `nowfile`.sql<CR>
+
 
 " rust
 nmap <leader>rt :w<CR>:Shell rustc --test % & ./`echo % \| sed s/\\.[^\\.]*$//`<CR>
@@ -252,11 +258,12 @@ autocmd BufNewFile,BufRead *.eex set syntax=html
 autocmd BufNewFile,BufRead *.md set syntax=markdown
 autocmd BufNewFile,BufRead *.sh.inc set syntax=sh
 autocmd BufNewFile,BufRead *.toneq set syntax=toneq
+autocmd BufNewFile,BufRead *.toneq2 so `g toneq`/scripts/*.vim | set syntax=toneq2
 autocmd BufNewFile,BufRead *.tl set syntax=timeline
 autocmd BufNewFile,BufRead *.js set tabstop=2 | set sts=2 | set shiftwidth=2
 
-syntax region toneqMdSnip matchgroup=TMdSnip start="(|" end="|)" 
-hi link TMdSnip Markdown
+" syntax region toneqMdSnip matchgroup=TMdSnip start="(|" end="|)" 
+" hi link TMdSnip Markdown
 
 " export feature files to HTML
 nnoremap <leader>rfhtml :TO<CR>:w<CR>:!open -a Safari %<CR><CR>
@@ -550,6 +557,14 @@ nmap <leader>fn4 mqa⁴<ESC>o<CR>[⁴: footnote ]<ESC>Ffcw
 let g:session_autoload = 'no'
 let g:session_autosave = 'no' 
 let g:session_autosave_periodic = 0
+
+" Easy Align
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
 
 "source: http://vim.wikia.com/wiki/Identify_the_syntax_highlighting_group_used_at_the_cursor
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
