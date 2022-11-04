@@ -84,7 +84,7 @@ if [ "$bashversion" -eq "4" ] || [ "$bashversion" -eq "5" ] || [ -n "$zshversion
     short_user=$(ellipsisify $user 7 left)
 
     source git-prompt.sh 
-    git_prompt_setup "$short_user"
+    # git_prompt_setup "$short_user"
 else
     echo "Using bash binary at $tmux_shell"
     echo "Info: Bashversion != 4 ($bashversion) || -n zshversion ($zshversion)" 1>&2
@@ -144,7 +144,7 @@ export HISTCONTROL=ignoredups:erasedups
 # append history entries..
 shopt -s histappend
 # After each command, save and reload history
-export PROMPT_COMMAND="history -a; history -c; history -r; tmux-color.sh; $PROMPT_COMMAND"
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 
 # mintty
