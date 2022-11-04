@@ -314,8 +314,8 @@ nmap <leader>ton o(<BAR><CR><CR><BAR>)<esc>ki
 imap <leader>ton <ESC>o(<BAR><CR><CR><BAR>)<esc>ki
 "nmap <leader>tnew G?>>TODOs(()mm?^20[12].-..-..V'mk"aygvo:.!now -DA (:r!date "+\%A"kJA \| <ESC>"=strftime("%H%M")<CR>pA aim=6hrs, break=1.5hrs \| 0; \| )"apdd
 " indent
-nmap <leader>t< 0:s/^\([TGEQ]\)\( \.\)/\1<CR>
-nmap <leader>t> 0:s/^\([TGEQ]\)/\1 .<CR>
+nmap <leader>t< 0:s/^\([TONEQG]\)\( \.\)/\1<CR>
+nmap <leader>t> 0:s/^\([TONEQG]\)/\1 .<CR>
 
 "" a(ppend?) -- why is this used?
 nnoremap <leader>ta oT<SPACE> 
@@ -333,10 +333,10 @@ nmap <leader>tfb `z<ESC>"=strftime("%H%M")<CR>p`m:w<CR>
 nmap <leader>tfb <leader>_gototoday:exe 's/-]/-' . strftime('%H%M') . ']/' <CR>`m:w<CR>
 
 " (c)hild t=task, g=goal, q=question, e=event
-nmap <leader>tct yyp:s/^\([TGEQ]\)\([ \.]*\).*$/T .\2A
-nmap <leader>tcg yyp:s/^\([TGEQ]\)\([ \.]*\).*$/G .\2A
-nmap <leader>tcq yyp:s/^\([TGEQ]\)\([ \.]*\).*$/Q .\2A
-nmap <leader>tce yyp:s/^\([TGEQ]\)\([ \.]*\).*$/E .\2[·30] f[a
+nmap <leader>tct yyp:s/^\([TONEQG]\)\([ \.]*\).*$/T .\2A
+nmap <leader>tcg yyp:s/^\([TONEQG]\)\([ \.]*\).*$/G .\2A
+nmap <leader>tcq yyp:s/^\([TONEQG]\)\([ \.]*\).*$/Q .\2A
+nmap <leader>tce yyp:s/^\([TONEQG]\)\([ \.]*\).*$/E .\2[·30] f[a
 
 " defer: o=t(o)do, t=(t)oday, m=to(m)orrow
 nmap <leader>tdo :w<CR>:execute ":!toneq -f % defer " . line('.') . " todo"<CR>:redraw!<CR>
@@ -385,10 +385,10 @@ nmap <leader>tcl :s/\s*$//<CR>A - (\| comments: \|) c:<ESC>"=strftime("%H%M")<CR
 nmap <leader>tcl <ESC>:s/\s*$//<CR>A - (\| comments: \|) c:<ESC>"=strftime("%H%M")<CR>p:w<CR>?comments<CR>f<SPACE>i<SPACE>
 
 " (s)ibling t=task, g=goal, q=question, e=event
-nmap <leader>tst yyp:s/^\([TGEQ]\)\([ \.]*\).*$/T\2A
-nmap <leader>tsg yyp:s/^\([TGEQ]\)\([ \.]*\).*$/G\2A
-nmap <leader>tsq yyp:s/^\([TGEQ]\)\([ \.]*\).*$/Q\2A
-nmap <leader>tse yyp:s/^\([TGEQ]\)\([ \.]*\).*$/E\2[·30] f[a
+nmap <leader>tst yyp:s/^\([TONEQG]\)\([ \.]*\).*$/T\2A
+nmap <leader>tsg yyp:s/^\([TONEQG]\)\([ \.]*\).*$/G\2A
+nmap <leader>tsq yyp:s/^\([TONEQG]\)\([ \.]*\).*$/Q\2A
+nmap <leader>tse yyp:s/^\([TONEQG]\)\([ \.]*\).*$/E\2[·30] f[a
 
 " (n)ew t=task, g=goal, q=question, E=event(known start time), e=event(unknown start time)
 nmap <leader>tnt G?>>TODO(()OT 
@@ -400,10 +400,10 @@ nmap <leader>tne G?>>TODO(()OE [·30] <ESC>F[a?<ESC>A
 " (f)inish c=complete, a=abandoned, s=suspended
 
 " (s)uspend t=task, g=goal, q=question, e=event
-"nmap <leader>tst yyp:s/^\([TGEQ]\)\([ \.]*\).*$/T\2A
-"nmap <leader>tsg yyp:s/^\([TGEQ]\)\([ \.]*\).*$/G\2A
-"nmap <leader>tsq yyp:s/^\([TGEQ]\)\([ \.]*\).*$/Q\2A
-"nmap <leader>tse yyp:s/^\([TGEQ]\)\([ \.]*\).*$/E\2[·30] f[a
+"nmap <leader>tst yyp:s/^\([TONEQG]\)\([ \.]*\).*$/T\2A
+"nmap <leader>tsg yyp:s/^\([TONEQG]\)\([ \.]*\).*$/G\2A
+"nmap <leader>tsq yyp:s/^\([TONEQG]\)\([ \.]*\).*$/Q\2A
+"nmap <leader>tse yyp:s/^\([TONEQG]\)\([ \.]*\).*$/E\2[·30] f[a
 
 " (z) f=fold
 nmap <leader>tzf mz$?^(\|<CR>v/^\|)<CR>$zf

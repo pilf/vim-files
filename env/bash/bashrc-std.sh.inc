@@ -55,7 +55,7 @@ function short_pwd {
 function git_prompt_setup {
     short_user="$1"
     short_host=$(ellipsisify $HOSTNAME 12 left)
-    export PROMPT_COMMAND='__posh_git_ps1 "\[\033[1;30m\]$short_user@$short_host\[\033[0m\]:\[\033[0;33m\]$(short_pwd 25)\[\033[0m\]" "\\\$ "'
+    #export PROMPT_COMMAND='__posh_git_ps1 "\[\033[1;30m\]$short_user@$short_host\[\033[0m\]:\[\033[0;33m\]$(short_pwd 25)\[\033[0m\]" "\\\$ "'
 }
 
 pathadd $HOME/bin
@@ -144,7 +144,8 @@ export HISTCONTROL=ignoredups:erasedups
 # append history entries..
 shopt -s histappend
 # After each command, save and reload history
-export PROMPT_COMMAND="history -a; history -c; history -r; tmux-color.sh; $PROMPT_COMMAND"
+##PC:2022-06-15 -- why?
+###export PROMPT_COMMAND="history -a; history -c; history -r; tmux-color.sh; $PROMPT_COMMAND"
 
 
 # mintty
