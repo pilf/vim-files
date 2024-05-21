@@ -391,6 +391,7 @@ c.colors.webpage.bg = 'black'
 # selective inversion of everything": Combines the two variants   above.
 # Type: Bool
 c.colors.webpage.darkmode.enabled = True
+c.colors.webpage.darkmode.policy.images = 'never'
 
 # Font used in the completion widget.
 # Type: Font

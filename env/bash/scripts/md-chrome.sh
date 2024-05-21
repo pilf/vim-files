@@ -41,7 +41,7 @@ EOF
 fi
 
 set -x
-tmpname="$(mktemp -dt "$prefix")"
+tmpname="$(mktemp -d "$prefix.XXXX")"
 
 # this shouldn't really be needed, but adding "---\n\n" to top of md file 
 # forces correct rendering for me (without this it cuts off top)

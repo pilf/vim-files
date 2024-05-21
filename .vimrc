@@ -811,3 +811,5 @@ function! WatchForChanges(bufname, ...)
   echo msg
   let @"=reg_saved
 endfunction
+
+let g:sparkupNextMapping = '<leader>x'

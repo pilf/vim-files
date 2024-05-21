@@ -27,7 +27,9 @@ syn match tqComplete /^[TONEQG].*∷.*[cam]:\s*\~\?\s*\([0-9]\{4,4}\(\s*[ٍ±‥
 syn match tqSuspended /∷.*s:\s*\~\?\s*\([0-9]\{4,4}\(\s*[ٍ±‥+-]\s*[0-9]\{1,4}\)\?\)\?\((.*)\)\?\(\s*·[^?]*\)\?\(?\s*".*"\)\?\s*$/
 syn match tqImportant /\[!\].*$/
 syn match tqInProgress /∷.*-\s*$/
-syn match tqLineNote /^[|¦][^)].*$/
+"syn region tqLineNote start=/^[|¦]/ end=/.$/ keepend fold
+" alas I don't think it's possible to syntax match/fold https://stackoverflow.com/questions/8693721/vim-how-do-i-start-a-syntax-fold-on-the-line-after-a-regexp-match-python-func 
+syn match tqLineNote /^[|¦].*$/ keepend fold
 syn match tqLineNoteRs /^¦rs|.*$/ contains=@RUST keepend
 syn match tqLineNoteMd /^¦md|.*$/ contains=@MD keepend
 "syn match tqTest /^|.*/
