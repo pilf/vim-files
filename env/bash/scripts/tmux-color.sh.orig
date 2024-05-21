@@ -23,7 +23,11 @@ case $search in
    bg="#001943"
    ;;
 "today")
+<<<<<<< HEAD
+   bg="#2B2C2E"
+=======
    bg="#221C35"
+>>>>>>> aaf7e788622d697aa432245b9ec2be4f8de34c65
    ;;
 "toneq")
    bg="#231A21"
