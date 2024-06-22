@@ -2,234 +2,274 @@
 
 ; Change the focused window, Alt + Vim direction keys
 !h::
-Run, komorebic.exe focus left, , Hide
-return
+{
+	RunWait "komorebic.exe focus left", ,"Hide"
+}
 
 !j::
-Run, komorebic.exe focus down, , Hide
-return
+{
+	RunWait "komorebic.exe focus down", , "Hide"
+}
 
 !k::
-Run, komorebic.exe focus up, , Hide
-return
+{
+	RunWait "komorebic.exe focus up", , "Hide"
+}
 
 !l::
-Run, komorebic.exe focus right, , Hide
-return
+{
+	RunWait "komorebic.exe focus right", , "Hide"
+}
 
 ; Move the focused window in a given direction, Alt + Shift + Vim direction keys
 !+h::
-Run, komorebic.exe move left, , Hide
-return
+{
+	RunWait "komorebic.exe move left", , "Hide"
+}
 
 !+j::
-Run, komorebic.exe move down, , Hide
-return
+{
+	RunWait "komorebic.exe move down", , "Hide"
+}
 
 !+k::
-Run, komorebic.exe move up, , Hide
-return
+{
+	RunWait "komorebic.exe move up", , "Hide"
+}
 
 !+l::
-Run, komorebic.exe move right, , Hide
-return
+{
+	RunWait "komorebic.exe move right", , "Hide"
+}
 
 ; Stack the focused window in a given direction, Alt + Shift + direction keys
 !+Left::
-Run, komorebic.exe stack left, , Hide
-return
+{
+	RunWait "komorebic.exe stack left", , "Hide"
+}
 
 !+Down::
-Run, komorebic.exe stack down, , Hide
-return
+{
+	RunWait "komorebic.exe stack down", , "Hide"
+}
 
 !+Up::
-Run, komorebic.exe stack up, , Hide
-return
+{
+	RunWait "komorebic.exe stack up", , "Hide"
+}
 
 !+Right::
-Run, komorebic.exe stack right, , Hide
-return
+{
+	RunWait "komorebic.exe stack right", , "Hide"
+}
 
 !]::
-Run, komorebic.exe cycle-stack next, , Hide
-return
+{
+	RunWait "komorebic.exe cycle-stack next", , "Hide"
+}
 
 ![::
-Run, komorebic.exe cycle-stack previous, , Hide
-return
+{
+	RunWait "komorebic.exe cycle-stack previous", , "Hide"
+}
 
 ; Unstack the focused window, Alt + Shift + D
 !+d::
-Run, komorebic.exe unstack, , Hide
-return
+{
+	RunWait "komorebic.exe unstack", , "Hide"
+}
 
 ; Promote the focused window to the top of the tree, Alt + Shift + Enter
 !+Enter::
-Run, komorebic.exe promote, , Hide
-return
+{
+	RunWait "komorebic.exe promote", , "Hide"
+}
 
 ; Switch to an equal-width, max-height column layout on the main workspace, Alt + Shift + C
 !+c::
-Run, komorebic.exe workspace-layout 0 0 columns, , Hide
-return
+{
+	RunWait "komorebic.exe workspace-layout 0 0 columns", , "Hide"
+}
 
 ; Switch to the default bsp tiling layout on the main workspace, Alt + Shift + T
 !+t::
-Run, komorebic.exe workspace-layout 0 0 bsp, , Hide
-return
+{
+	RunWait "komorebic.exe workspace-layout 0 0 bsp", , "Hide"
+}
 
 ; Toggle the Monocle layout for the focused window, Alt + Shift + F
 !+f::
-Run, komorebic.exe toggle-monocle, , Hide
-return
+{
+	RunWait "komorebic.exe toggle-monocle", , "Hide"
+}
 
 ; Toggle native maximize for the focused window, Alt + Shift + =
 !+=::
-Run, komorebic.exe toggle-maximize, , Hide
-return
+{
+	RunWait "komorebic.exe toggle-maximize", , "Hide"
+}
 
 ; Flip horizontally, Alt + X
 !x::
-Run, komorebic.exe flip-layout horizontal, , Hide
-return
+{
+	RunWait "komorebic.exe flip-layout horizontal", , "Hide"
+}
 
 ; Flip vertically, Alt + Y
 !y::
-Run, komorebic.exe flip-layout vertical, , Hide
-return
+{
+	RunWait "komorebic.exe flip-layout vertical", , "Hide"
+}
 
 ; Force a retile if things get janky, Alt + Shift + R
 !+r::
-Run, komorebic.exe retile, , Hide
-return
+{
+	RunWait "komorebic.exe retile", , "Hide"
+}
 
 ; Float the focused window, Alt + F
 !f::
-Run, komorebic.exe toggle-float, , Hide
-return
+{
+	RunWait "komorebic.exe toggle-float", , "Hide"
+}
 
-; Reload ~/komorebi.ahk, Alt + O
-!o::
-Run, komorebic.exe reload-configuration, , Hide
-return
+; Reload ~/komorebi.ahk, Alt + Shift + O
+!+o::
+{
+	RunWait "komorebic.exe reload-configuration", , "Hide"
+}
 
 ; Pause responding to any window events or komorebic commands, Alt + P
 ;!p::
-;Run, komorebic.exe toggle-pause, , Hide
+;RunWait "komorebic.exe toggle-pause", , "Hide"
 ;return
 
 ; Switch to workspace
 !1::
-Send !
-Run, komorebic.exe focus-workspace 0, , Hide
-return
+{
+	RunWait "komorebic.exe focus-workspace 0", , "Hide"
+}
 
 !2::
-Send !
-Run, komorebic.exe focus-workspace 1, , Hide
-return
+{
+	RunWait "komorebic.exe focus-workspace 1", , "Hide"
+}
 
 !3::
-Send !
-Run, komorebic.exe focus-workspace 2, , Hide
-return
+{
+	RunWait "komorebic.exe focus-workspace 2", , "Hide"
+}
 
 !4::
-Send !
-Run, komorebic.exe focus-workspace 3, , Hide
-return
+{
+	RunWait "komorebic.exe focus-workspace 3", , "Hide"
+}
 
 !5::
-Send !
-Run, komorebic.exe focus-workspace 4, , Hide
-return
+{
+	RunWait "komorebic.exe focus-workspace 4", , "Hide"
+}
 
 !6::
-Send !
-Run, komorebic.exe focus-workspace 5, , Hide
-return
+{
+	RunWait "komorebic.exe focus-workspace 5", , "Hide"
+}
 
 !7::
-Send !
-Run, komorebic.exe focus-workspace 6, , Hide
-return
+{
+	RunWait "komorebic.exe focus-workspace 6", , "Hide"
+}
 
 !8::
-Send !
-Run, komorebic.exe focus-workspace 7, , Hide
-return
+{
+	RunWait "komorebic.exe focus-workspace 7", , "Hide"
+}
 
 !9::
-Send !
-Run, komorebic.exe focus-workspace 8, , Hide
-return
+{
+	RunWait "komorebic.exe focus-workspace 8", , "Hide"
+}
 
 !0::
-Send !
-Run, komorebic.exe focus-workspace 9, , Hide
-return
+{
+	RunWait "komorebic.exe focus-workspace 9", , "Hide"
+}
 
 ; Move window to workspace
 !+1::
-Run, komorebic.exe move-to-workspace 0, , Hide
-return
+{
+	RunWait "komorebic.exe move-to-workspace 0", , "Hide"
+}
 
 !+2::
-Run, komorebic.exe move-to-workspace 1, , Hide
-return
+{
+	RunWait "komorebic.exe move-to-workspace 1", , "Hide"
+}
 
 !+3::
-Run, komorebic.exe move-to-workspace 2, , Hide
-return
+{
+	RunWait "komorebic.exe move-to-workspace 2", , "Hide"
+}
 
 !+4::
-Run, komorebic.exe move-to-workspace 3, , Hide
-return
+{
+	RunWait "komorebic.exe move-to-workspace 3", , "Hide"
+}
 
 !+5::
-Run, komorebic.exe move-to-workspace 4, , Hide
-return
+{
+	RunWait "komorebic.exe move-to-workspace 4", , "Hide"
+}
 
 !+6::
-Run, komorebic.exe move-to-workspace 5, , Hide
-return
+{
+	RunWait "komorebic.exe move-to-workspace 5", , "Hide"
+}
 
 !+7::
-Run, komorebic.exe move-to-workspace 6, , Hide
-return
+{
+	RunWait "komorebic.exe move-to-workspace 6", , "Hide"
+}
 
 !+8::
-Run, komorebic.exe move-to-workspace 7, , Hide
-return
+{
+	RunWait "komorebic.exe move-to-workspace 7", , "Hide"
+}
 
 !+9::
-Run, komorebic.exe move-to-workspace 8, , Hide
-return
+{
+	RunWait "komorebic.exe move-to-workspace 8", , "Hide"
+}
 
 !+0::
-Run, komorebic.exe move-to-workspace 9, , Hide
-return
+{
+	RunWait "komorebic.exe move-to-workspace 9", , "Hide"
+}
 
 !e::
-Run, komorebic.exe focus-monitor 0, , Hide
-return
+{
+	RunWait "komorebic.exe focus-monitor 0", , "Hide"
+}
 
 !+e::
-Run, komorebic.exe move-to-monitor 0, , Hide
-return
+{
+	RunWait "komorebic.exe move-to-monitor 0", , "Hide"
+}
 
 !w::
-Run, komorebic.exe focus-monitor 1, , Hide
-return
+{
+	RunWait "komorebic.exe focus-monitor 1", , "Hide"
+}
 
 !+w::
-Run, komorebic.exe move-to-monitor 1, , Hide
-return
+{
+	RunWait "komorebic.exe move-to-monitor 1", , "Hide"
+}
 
 !m::
-Run, komorebic.exe manage, , Hide
-return
+{
+	RunWait "komorebic.exe manage", , "Hide"
+}
 
 
 
