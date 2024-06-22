@@ -1,4 +1,5 @@
-﻿; ahk-vim-navigation.ahk
+
+; ahk-vim-navigation.ahk
 ; Written by Jongbin Jung
 ;
 ; Incorporated some script from Model_Vim.ahk
@@ -11,45 +12,54 @@
 ; (see, http://www.autohotkey.com/board/topic/83755
 ; -using-an-arbitrary-key-as-a-modifier-without-sacrificing-it/)
 
-#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
-SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
-SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
+; REMOVED: #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
+SendMode("Input")  ; Recommended for new scripts due to its superior speed and reliability.
+SetWorkingDir(A_ScriptDir)  ; Ensures a consistent starting directory.
 
 ; Global variables
 inputNumber := " "
+global oGui90
 
 ; Notification GUI {{{
-notify(text, time = 2000)
+notify(text, time := 2000)
 {
-    #IfWinExist VIM-Mode commands
+    if WinExist("VIM-Mode commands") {
         resetGUI()
-    #IfWinExist
+    }
     ; Set the flags for OSD
-    Gui, 90:+AlwaysOnTop -Caption +ToolWindow +Disabled -SysMenu +Owner
+    global oGui90 := Gui()
+    oGui90.Opt("+AlwaysOnTop -Caption +ToolWindow +Disabled -SysMenu +Owner")
     ; Add and set the OSD Text
-    Gui, 90:Font, s10 bold
-    Gui, 90:Add, Text, cAA0000, %text%
+    oGui90.SetFont("s10 bold")
+    oGui90.Add("Text", "cAA0000", text)
     ; OSD Background Color (Black)
-    Gui, 90:Color, 000000
-    Gui, 90:Show,NoActivate xCenter yCenter, VIM-Mode commands
-    Sleep, %time%
-    Gui, 90:Destroy
+    oGui90.BackColor := "000000"
+    oGui90.Title := "VIM-Mode commands"
+    oGui90.Show("NoActivate xCenter yCenter")
+    Sleep(time)
+    oGui90.Destroy()
     return
 } ;}}}
 
 ; HotKey to Initiate VI-mode with Double-tap of Esc {{{
 CapsLock::
         ; Set the flags for OSD
-        Gui, 99:+AlwaysOnTop -Caption +ToolWindow +Disabled -SysMenu +Owner
+{ ; V1toV2: Added bracket
+global ; V1toV2: Made function global
+        oGui99 := Gui()
+        oGui99.Opt("+AlwaysOnTop -Caption +ToolWindow +Disabled -SysMenu +Owner")
         ; Add and set the OSD Text
-        Gui, 99:Font, s15 bold
-        Gui, 99:Add, Text, cAA0000, VI-Mode Activated (Esc to Exit)
+        oGui99.SetFont("s15 bold")
+        oGui99.Add("Text", "cAA0000", "VI-Mode Activated (Esc to Exit)")
         ; OSD Background Color (Black)
-        Gui, 99:Color, 000000
-        Gui, 99:Show,NoActivate x0 y10, VIM-Mode Activated
-Return ; }}}
+        oGui99.BackColor := "000000"
+        oGui99.Title := "VIM-Mode Activated"
+        oGui99.Show("NoActivate x0 y10")
+	HotIfWinExist "VIM-Mode Activated"
+	Return ; }}}
+} ; V1toV2: Added bracket in the end
 
-#IfWinExist VIM-Mode Activated ; {{{
+#HotIf WinExist("VIM-Mode Activated") ; {{{
 
     ; ESC ends VIM-mode
     CapsLock:: 
@@ -76,19 +86,19 @@ Return ; }}}
     ; Other input modes ...
     +i:: 
     {
-        SendInput {Home}
+        SendInput("{Home}")
         endVIM()
         return
     }
     a::
     {
-        SendInput {Right}
+        SendInput("{Right}")
         endVIM()
         return
     }
     +a::
     {
-        SendInput {End}
+        SendInput("{End}")
         endVIM()
         return
     }
@@ -96,25 +106,25 @@ Return ; }}}
     ; cursor movements
     h:: 
     {
-        SendInput {Left %inputNumber%}
+        SendInput("{Left" . RTrim(inputNumber) . "}")
         resetInputNumber()
         return
     }
     j:: 
     {
-        SendInput {Down %inputNumber%}
+        SendInput("{Down" . RTrim(inputNumber) . "}")
         resetInputNumber()
         return
     }
     k:: 
     {
-        SendInput {Up %inputNumber%}
+        SendInput("{Up" . RTrim(inputNumber) . "}")
         resetInputNumber()
         return
     }
     l:: 
     {
-        SendInput {Right %inputNumber%}
+        SendInput("{Right" . RTrim(inputNumber) . "}")
         resetInputNumber()
         return
     }
@@ -122,47 +132,48 @@ Return ; }}}
     ; page movements
     w:: 
     {
-        SendInput ^{Right %inputNumber%}
+        SendInput("^{Right" . RTrim(inputNumber) . "}")
         resetInputNumber()
         return
     }
     b:: 
     {
-        SendInput ^{Left %inputNumber%}
+        SendInput("^{Left" . RTrim(inputNumber) . "}")
         resetInputNumber()
         return
     }
     x:: 
     {
-        SendInput {Delete %inputNumber%}
+        SendInput("{Delete" . RTrim(inputNumber) . "}")
         resetInputNumber()
         return
     }
     0:: ; Add to the inputNumber if inputNumber != null, otherwise HOME
     {
+    	global inputNumber
         if (inputNumber != " ")
         {
-            inputNumber = %inputNumber%0
+            inputNumber := inputNumber . "0"
             normalize(0)
             notify(inputNumber)
             return
         }
         else
         {
-            SendInput {Home}
+            SendInput("{Home}")
             resetInputNumber()
             return
         }
     }
     -:: 
     {
-        SendInput {End}
+        SendInput("{End}")
         resetInputNumber()
         return
     }
     $:: 
     {
-        SendInput {End}
+        SendInput("{End}")
         resetInputNumber()
         return
     }
@@ -170,55 +181,55 @@ Return ; }}}
     ; selection movements with Shift
     +h:: 
     {
-        SendInput +{Left %inputNumber%}
+        SendInput("+{Left" . RTrim(inputNumber) . "}")
         resetInputNumber()
         return
     }
     +j:: 
     {
-        SendInput +{Down %inputNumber%}
+        SendInput("+{Down" . RTrim(inputNumber) . "}")
         resetInputNumber()
         return
     }
     +k:: 
     {
-        SendInput +{Up %inputNumber%}
+        SendInput("+{Up" . RTrim(inputNumber) . "}")
         resetInputNumber()
         return
     }
     +l::
     {
-        SendInput +{Right %inputNumber%}
+        SendInput("+{Right" . RTrim(inputNumber) . "}")
         resetInputNumber()
         return
     }
     +w:: 
     {
-        SendInput +^{Right %inputNumber%}
+        SendInput("+^{Right" . RTrim(inputNumber) . "}")
         resetInputNumber()
         return
     }
     +b:: 
     {
-        SendInput +^{Left %inputNumber%}
+        SendInput("+^{Left" . RTrim(inputNumber) . "}")
         resetInputNumber()
         return
     }
     +x:: 
     {
-        SendInput +{Delete}
+        SendInput("+{Delete}")
         resetInputNumber()
         return
     }
     ):: 
     {
-        SendInput +{Home}
+        SendInput("+{Home}")
         resetInputNumber()
         return
     }
     _:: 
     {
-        SendInput +{End}
+        SendInput("+{End}")
         resetInputNumber()
         return
     }
@@ -226,19 +237,19 @@ Return ; }}}
     ; Copy (Yank) / Cut (Delete) / Paste (Put)
     y:: 
     {
-        SendInput ^c
+        SendInput("^c")
         resetInputNumber()
         return
     }
     p:: 
     {
-        SendInput ^v
+        SendInput("^v")
         resetInputNumber()
         return
     }
     d:: 
     {
-        SendInput ^x
+        SendInput("^x")
         resetInputNumber()
         return
     }
@@ -246,7 +257,7 @@ Return ; }}}
     ; Search with /
     /::
     {
-        SendInput ^f
+        SendInput("^f")
         resetInputNumber()
         return
     }
@@ -254,7 +265,7 @@ Return ; }}}
     ; HotKey to VIM maps
     u:: 
     {
-        SendInput ^z
+        SendInput("^z")
         resetInputNumber()
         return
     }
@@ -262,7 +273,7 @@ Return ; }}}
     ; Catch numbers to repeat commands
     $1::
     {
-       inputNumber = %inputNumber%1
+       global inputNumber := inputNumber . "1"
        normalize(1)
        notify(inputNumber)
        return
@@ -270,7 +281,7 @@ Return ; }}}
 
     $2::
     {
-       inputNumber = %inputNumber%2
+       global inputNumber := inputNumber . "2"
        normalize(2)
        notify(inputNumber)
        return
@@ -278,7 +289,7 @@ Return ; }}}
 
     $3::
     {
-       inputNumber = %inputNumber%3
+       global inputNumber := inputNumber . "3"
        normalize(3)
        notify(inputNumber)
        return
@@ -286,7 +297,7 @@ Return ; }}}
 
     $4::
     {
-       inputNumber = %inputNumber%4
+       global inputNumber := inputNumber . "4"
        normalize(4)
        notify(inputNumber)
        return
@@ -294,7 +305,7 @@ Return ; }}}
 
     $5::
     {
-       inputNumber = %inputNumber%5
+       global inputNumber := inputNumber . "5"
        normalize(5)
        notify(inputNumber)
        return
@@ -302,7 +313,7 @@ Return ; }}}
 
     $6::
     {
-       inputNumber = %inputNumber%6
+       global inputNumber := inputNumber . "6"
        normalize(6)
        notify(inputNumber)
        return
@@ -310,7 +321,7 @@ Return ; }}}
 
     $7::
     {
-       inputNumber = %inputNumber%7
+       global inputNumber := inputNumber . "7"
        normalize(7)
        notify(inputNumber)
        return
@@ -318,7 +329,7 @@ Return ; }}}
 
     $8::
     {
-       inputNumber = %inputNumber%8
+       global inputNumber := inputNumber . "8"
        normalize(8)
        notify(inputNumber)
        return
@@ -326,13 +337,13 @@ Return ; }}}
 
     $9::
     {
-       inputNumber = %inputNumber%9
+       global inputNumber := inputNumber . "9"
        normalize(9)
        notify(inputNumber)
        return
     }
         
-#IfWinExist ;}}}
+#HotIf
 
 
 ; Validate the inputNumber and make sure that it's less than 500 {{{
@@ -356,12 +367,15 @@ resetInputNumber()
 
 resetGUI()
 {
-    Gui, 90:Destroy
+    global oGui90
+    if isSet(oGui90) {
+        oGui90.Destroy()
+    }
     return
 }
 endVIM()
 {
-    Gui, 99:Destroy
+    oGui99.Destroy()
     resetInputNumber()
     return
 }
