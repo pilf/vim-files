@@ -1,6 +1,6 @@
 #SingleInstance Force
 
-#Include %A_ScriptDir% "/ViNavigation.ahk"
+#Include %A_ScriptDir%\ViNavigation.ahk
 
 ^[::
 {
