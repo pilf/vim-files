@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # The process of making a pre exisitng git repo into a bare one is common
 # enough I want to encode it in a script somehow.  This has not yet been done.
 echo "not yet finished"

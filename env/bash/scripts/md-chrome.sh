@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 input="$1"
 # possible themes: 
 # - bootstrap3 (looks ok, but has "Project name" and other options at top -- which are generic "Project name", "Link" etc.)

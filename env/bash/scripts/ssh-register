@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Usage: $ register-ssh username@server
 # Assumes a ~/.ssh/id_rsa.pub
 # And*/or a ~/.ssh/id_dsa.pub

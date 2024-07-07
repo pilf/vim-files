@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 if [ -z "$1" ]; then
 cat <<EOF
 usage: ellipsisify(input, [max-size=10, [,position='middle' [, ellipsis-string='…']]])

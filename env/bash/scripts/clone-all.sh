@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Usage: clone-all.sh [target_dir]
 # Note: Will use $(g $DEFAULT_SRC_SHORT_NAME) if available and no target_dir provided
 

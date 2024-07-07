@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # See: https://github.com/boot2docker/boot2docker/blob/master/doc/WORKAROUNDS.md
 port="$1"
 if [ -z "$port" ]; then
