@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 mdfile="$1"
 theme="${2:-github}"

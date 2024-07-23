@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 for i in {0..31} ; do
     for n in {0..7} ; do
