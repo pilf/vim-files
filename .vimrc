@@ -16,11 +16,12 @@ if has("gui_running")
     " exported in your .bashrc, or .bash_profile; see:
     " http://stackoverflow.com/questions/882658/how-to-get-environment-variables-from-within-gvim
     if $living_room!=""
-        set guifont=DejaVu\ Sans\ Mono\ 18  
+        set guifont=DejaVu-Sans-Mono:18  
     elseif $macbook=="true"
-        set guifont=Menlo\ Regular:h12
+        set guifont=Menlo-Regular:h26
     else
-        set guifont=set guifont=DejaVu\ Sans\ Mono\ Bold\ 18
+        "set guifont=DejaVu-Sans-Mono-Bold:18
+        set guifont=Menlo-Regular:h26
     endif
     colorscheme evening
     " set guifont=Lucida_Console:h14
