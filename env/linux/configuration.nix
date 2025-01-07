@@ -13,6 +13,11 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.supportedFilesystems = [ "ntfs" ];
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -23,6 +28,24 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+
+  # setup nvidia
+  # https://nixos.wiki/wiki/Nvidia
+  #hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+  hardware.opengl = {
+    enable = true;
+  };
+  services.xserver.videoDrivers = [ "nvidia" ];
+
+  hardware.nvidia = {
+    modesetting.enable = true;
+    powerManagement.enable = false;
+    powerManagement.finegrained = false;
+    open = false;
+    nvidiaSettings = true;
+    package = config.boot.kernelPackages.nvidiaPackages.production;
+    # forceFullCompositionPipeline = true;
+  };
 
   systemd.sleep.extraConfig = ''
   AllowSuspend=no
@@ -66,15 +89,13 @@
   };
 
 
-
   # Configure keymap in X11
   services.xserver = {
     xkb.layout = "gb";
     xkb.variant = "extd";
   };
 
-  #experimental-features = [ "nix-command" "flakes" ];
-
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Configure console keymap
   console.keyMap = "uk";
@@ -109,11 +130,12 @@
     packages = with pkgs; [
     #  thunderbird
 	steam
-	rustup
-	jetbrains-toolbox
+    	xclip
+	#rustup
+	#jetbrains-toolbox
+    jetbrains.rust-rover
     ];
   };
-
 
   users.users.alt = {
     isNormalUser = true;
@@ -131,8 +153,12 @@
   programs.firefox.enable = true;
   programs.steam.enable = true;
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  # Install Thunar
+  programs.thunar.enable = true;
+  programs.thunar.plugins = with pkgs.xfce; [
+    thunar-archive-plugin
+    thunar-volman
+  ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -148,6 +174,7 @@
     vlc
     xorg.xmodmap
     python3
+    i3lock
   ];
 
  # bigger tty fonts
