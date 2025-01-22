@@ -13,4 +13,4 @@ if [ -z "$1" ]; then
 fi
 
 # alt: cat ~/.ssh/id_???.pub | ssh $1 "if [ ! -d ~/.ssh ]; then mkdir ~/.ssh; fi;cat >> ~/.ssh/authorized_keys"
-cat ~/.ssh/id_???.pub | ssh $1 "mkdir -p ~/.ssh;cat >> ~/.ssh/authorized_keys"
+cat ~/.ssh/id_???.pub | ssh $@ "mkdir -p ~/.ssh;cat >> ~/.ssh/authorized_keys"
