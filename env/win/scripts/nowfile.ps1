@@ -4,7 +4,7 @@ param(
 )
 
 # Call "today.ps1" to get today's directory
-$todayDir = & .\today.ps1
+$todayDir = & today.ps1
 
 # Get the current timestamp in the desired format
 $timestamp = (Get-Date).ToString("yyyyMMddHHmmss")
