@@ -284,7 +284,7 @@ c.hints.auto_follow_timeout = 300
 
 # Dictionary file to be used by the word hints.
 # Type: File
-c.hints.dictionary = '/Users/coxp/words'
+c.hints.dictionary = '$HOME/.qutebrowser/words'
 
 # Mode to use for hints.
 # Type: String
@@ -326,7 +326,7 @@ c.statusbar.show = 'never'
 #   - startpage: Load the start page.
 #   - default-page: Load the default page.
 #   - close: Close the window.
-c.tabs.last_close = 'close'
+c.tabs.last_close = 'blank'
 
 # When to show the tab bar.
 # Type: String
@@ -356,7 +356,7 @@ c.tabs.show = 'switching'
 # the search engine name to the search term, e.g. `:open google
 # qutebrowser`.
 # Type: Dict
-c.url.searchengines = {'DEFAULT': 'https://google.com/search?q={}', 'd': 'https://duckduckgo.com/?q={}', 'a': 'https://www.amazon.co.uk/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords={}', 'imdb': 'https://www.imdb.com/find?q={}', 'g': 'https://www.google.co.uk/search?q={}'}
+c.url.searchengines = {'DEFAULT': 'https://google.com/search?q={}', 'd': 'https://duckduckgo.com/?q={}', 'a': 'https://www.amazon.co.uk/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords={}', 'imdb': 'https://www.imdb.com/find?q={}', 'g': 'https://www.google.co.uk/search?q={}', 'story': 'https://dev.azure.com/guestlinelabs/Rezlynx/_workitems/edit/{}', 'youtube': 'https://www.youtube.com/results?search_query={}' }
 
 # Default zoom level.
 # Type: Perc
@@ -414,3 +414,5 @@ config.bind('<Ctrl+w>', 'rl-backward-kill-word')
 
 # Bindings for command mode
 config.bind('<Ctrl+w>', 'rl-backward-kill-word', mode='command')
+
+c.content.javascript.clipboard = 'access'

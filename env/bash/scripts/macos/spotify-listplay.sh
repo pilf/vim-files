@@ -5,7 +5,7 @@ pattern="$1"
 
 if [ -z "$pattern" ]; then
     echo "----------------------------------------"
-    cat $savefile | sed 's/spotify:\([^:]*\).*\|\(.*\)/[\1] \2/'
+    cat $savefile | sed 's/spotify:\([^:]*\).*\|\(.*\)/[\1] \2/' | sort
     echo "----------------------------------------"
     exit 0
 fi
