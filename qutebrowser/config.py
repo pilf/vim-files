@@ -10,6 +10,10 @@
 #   qute://help/configuring.html
 #   qute://help/settings.html
 
+import os
+
+config_dir = os.path.dirname(os.path.abspath(__file__))
+
 # Change the argument to True to still load settings configured via autoconfig.yml
 config.load_autoconfig(False)
 
@@ -284,7 +288,8 @@ c.hints.auto_follow_timeout = 300
 
 # Dictionary file to be used by the word hints.
 # Type: File
-c.hints.dictionary = '$HOME/.qutebrowser/words'
+
+c.hints.dictionary = os.path.join(config_dir, "words")
 
 # Mode to use for hints.
 # Type: String
@@ -414,5 +419,7 @@ config.bind('<Ctrl+w>', 'rl-backward-kill-word')
 
 # Bindings for command mode
 config.bind('<Ctrl+w>', 'rl-backward-kill-word', mode='command')
+
+config.set("content.user_stylesheets", "custom_scrollbar.css")
 
 c.content.javascript.clipboard = 'access'
