@@ -279,7 +279,8 @@ c.completion.use_best_match = True
 # `{line0}`: Same as `{line}`, but starting from index 0. * `{column0}`:
 # Same as `{column}`, but starting from index 0.
 # Type: ShellCommand
-c.editor.command = ['/Applications/MacVim.app/Contents/bin/gvim', '-g', '-f', '{file}', '-c', 'normal {line}G{column0}l']
+# c.editor.command = ['/Applications/MacVim.app/Contents/bin/gvim', '-g', '-f', '{file}', '-c', 'normal {line}G{column0}l']
+c.editor.command = ['/opt/homebrew/bin/mvim', '-f', '{file}', '-c', 'normal {line}G{column0}l']
 
 # Duration (in milliseconds) to ignore normal-mode key bindings after a
 # successful auto-follow.
@@ -423,3 +424,7 @@ config.bind('<Ctrl+w>', 'rl-backward-kill-word', mode='command')
 config.set("content.user_stylesheets", "custom_scrollbar.css")
 
 c.content.javascript.clipboard = 'access'
+
+config.bind('<Ctrl-E>', 'hint inputs ;; edit-text', mode='normal')
+config.bind('<Ctrl-E>', 'edit-text', mode='insert')
+#config.bind('<Ctrl-E>', 'hint inputs,contenteditable --first ;; edit-text', mode='normal')
