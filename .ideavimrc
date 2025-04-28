@@ -1,11 +1,15 @@
 set surround
 set multiple-cursors
+
 imap jk <ESC>
 
 let mapleader="§"
 
+
+nmap ,, :set nu! \| set relativenumber!<CR>
 map <leader>on :action VimWindowOnly<CR>
 map <leader>q :action VimWindowClose<CR>
+
 map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
@@ -14,3 +18,5 @@ map <C-l> <C-w>l
 map zR :action ExpandAllRegions<CR>:action ExpandAllRegions<CR>
 
 map <leader><space>h :'<,'>!toneq-dev hash
+
+
