@@ -11,29 +11,31 @@ Set-PSReadLineKeyHandler -Chord 'v' -ViMode Command -ScriptBlock {
     $null = [Microsoft.PowerShell.PSConsoleReadLine]::GetBufferState([ref]$currentCommand, [ref]$cursorPos)
 
     $tempFile = [System.IO.Path]::GetTempFileName()
-    
+
     # Save current command to the temp file for editing
     Set-Content -Path $tempFile -Value $currentCommand
 
-    # Open Vim in a visible interactive console
-    cmd /c start /wait nvim $tempFile
+    # Open Vim in a visible interactive console and capture exit code
+    $vimProcess = Start-Process -NoNewWindow -Wait -PassThru -FilePath "cmd.exe" -ArgumentList "/c start /wait nvim $tempFile"
 
-    # Read the edited content and paste it into the prompt
-    if (Test-Path $tempFile) {
+    # Only proceed if Vim exited successfully
+    if ($vimProcess.ExitCode -eq 0 -and (Test-Path $tempFile)) {
         $newCommand = Get-Content -Path $tempFile -Raw
         if ($newCommand -match '\S') {  # Ensure it's not empty
             Add-Type -AssemblyName System.Windows.Forms
             [System.Windows.Forms.Clipboard]::SetText($newCommand.TrimEnd())
             # Simulate Vi mode: Clear current line, enter insert mode, and paste
-            Start-Sleep -Milliseconds 100  # Small delay to ensure mode switch
+            Start-Sleep -Milliseconds 100 
             [System.Windows.Forms.SendKeys]::SendWait("cc")  # Delete the line and enter insert mode
-            Start-Sleep -Milliseconds 100  # Small delay to ensure mode switch
-            [System.Windows.Forms.SendKeys]::SendWait("^v")   # Simulate Ctrl+V
-            [System.Windows.Forms.SendKeys]::SendWait("{END}")  # Move cursor right to exit insert mode
-            [System.Windows.Forms.SendKeys]::SendWait("{ESC}")  # Move cursor right to exit insert mode
+            Start-Sleep -Milliseconds 100
+            [System.Windows.Forms.SendKeys]::SendWait("^v")
+            [System.Windows.Forms.SendKeys]::SendWait("{END}")
+            [System.Windows.Forms.SendKeys]::SendWait("{ESC}")
         }
-        Remove-Item $tempFile
     }
+
+    # Clean up temp file
+    Remove-Item $tempFile -ErrorAction Ignore
 }
 
 $env:Path += ";$HOME\scripts;$HOME\scripts\vf"
