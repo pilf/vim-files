@@ -216,6 +216,7 @@ map <leader>s :w<CR>
 noremap <leader>v v//e<CR> 
 noremap <leader>ln :set nu!<CR>
 noremap <leader>lr :set relativenumber!<CR>
+nmap ,, :set nu! relativenumber!<CR>
 "(note) To insert the elipsis, press ctrl-vu followed by the numeric code for elipsis: 2026
 noremap <leader>sb :set showbreak=…<CR>
 nnoremap <leader>wso :w \| so %<CR>
