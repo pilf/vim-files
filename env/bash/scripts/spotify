@@ -10,6 +10,8 @@ osascript -e "tell application \"Spotify\" to $cmd"
 #   spotify set output to id of current track > /tmp/great-song
 #           ... later ...
 #   spotify play track \"$(cat /tmp/great-song)\"
+#   spotify next track
+#   spotify set sound volume to 50
 
 
 

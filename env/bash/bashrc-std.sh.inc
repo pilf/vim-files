@@ -60,8 +60,9 @@ function git_prompt_setup {
 
 pathadd $HOME/bin
 pathadd $HOME/bin/scripts
-# Should be conditinally included of course
-pathadd $HOME/bin/scripts/osx
+if [ $macbook ]; then
+    pathadd $HOME/bin/scripts/macos
+fi
 
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion

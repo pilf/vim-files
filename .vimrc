@@ -228,7 +228,7 @@ nnoremap <leader>wsudo mm:w !sudo tee %<CR><CR>L`m
 " old way (inserts new line) inoremap <leader>cp <ESC>:put =expand('%:p')<CR>
 "inoremap <leader>cp <C-r>=expand('%:p')<CR>
 " in normal mode this copies it into the "p register
-nnoremap <leader>cpp "=expand("%:p")<CR>:let @p=@*<CR>
+nnoremap <leader>cpp "=expand("%:p")<CR>:let @p=@% \| echo @p<CR>
 nnoremap <leader>cp: "=expand("%:p")<CR>:exec("! clear && echo -n " . shellescape(expand("%:p")) . " \| pbcopy")<CR><CR>
 nnoremap <leader>ep :echo expand("%:p")<CR>
 
@@ -254,7 +254,7 @@ nmap <leader>rt :w<CR>:Shell rustc --test % & ./`echo % \| sed s/\\.[^\\.]*$//`<
 " syntax association
 " (Note if, when opening -- vimgrep etc. -- and syntax not applied reload with :e
 autocmd BufNewFile,BufRead *.pp set syntax=ruby
-autocmd BufNewFile,BufRead *.json set syntax=javascript
+autocmd BufNewFile,BufRead *.json set syntax=json | set foldmethod=syntax
 autocmd BufNewFile,BufRead *.eex set syntax=html
 autocmd BufNewFile,BufRead *.md set syntax=markdown
 autocmd BufNewFile,BufRead *.sh.inc set syntax=sh
