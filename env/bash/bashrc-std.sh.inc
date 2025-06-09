@@ -108,17 +108,6 @@ alias host_here="python3 -m http.server"
 # vim-itis
 alias ":q"=exit
 
-# Grasslands specific
-alias gllex="ssh-tmux philip@elixir-erl17"
-alias glrex="ssh philip@grasslands.no-ip.org -t bash -c \"'bin/scripts/ssh-tmux philip@elixir-erl17'\""
-alias gll="ssh-tmux philip@grasslands"
-alias glr="ssh-tmux philip@grasslands.no-ip.org" 
-alias glld="ssh-tmux-docker philip@grasslands"
-alias glrd="ssh-tmux-docker philip@grasslands.no-ip.org" 
-
-# EC2 specific
-alias ec2="ssh-pem-tmux ubuntu@ec2-52-19-100-128.eu-west-1.compute.amazonaws.com keys/motheralianpair.pem"
-
 # OS X specific
 alias boot2docker-start='eval $(/usr/local/bin/boot2docker shellinit) && $(/usr/local/bin/boot2docker up)'
 
@@ -138,7 +127,6 @@ alias tmux-tree="pstree $(ppid $$)"
 # Node
 alias vnode='rlwrap -a -c -H "~/.node_history" -r node' 
 
-
 # http://askubuntu.com/questions/339546/how-do-i-see-the-history-of-the-commands-i-have-run-in-tmux
 # avoid duplicates..
 export HISTCONTROL=ignoredups:erasedups
@@ -146,10 +134,6 @@ export HISTCONTROL=ignoredups:erasedups
 shopt -s histappend
 # After each command, save and reload history
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
-
-
-# mintty
-alias mintty-grasslands="bash -lc '. \$HOME/.bashrc && sh \$(g vf)/env/win/mintty/grasslands-theme.sh && ssh-tmux philip@grasslands'"
 
 # Alas this doesn't work within tmux, but nice to have maybe.  Solved with tmux option set-title(-string)
 settitle ()
