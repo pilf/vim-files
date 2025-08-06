@@ -1,7 +1,43 @@
 #!/usr/bin/env bash
+location="."  # default location
+gloc=""
+
+# --- Parse options ---
+while getopts "l:g:" opt; do
+    case "$opt" in
+        l) location="$OPTARG" ;;
+        g) location="$(g $OPTARG)" ;;  # adjust as needed — unclear what 'g' is for
+        *) echo "Usage: $0 [-l location | -g group] session_name [command ...]"; exit 1 ;;
+    esac
+done
+shift $((OPTIND - 1))
+
+# --- Positional args ---
 if [ -z "$1" ]; then
+    echo "Usage: $0 [-l location | -g group] session_name [command ...]"
     tmux ls
-else
-    session_name=$1
-    tmux -2 new-session -s $session_name 2> /dev/null || tmux -2 attach -t $session_name
+    exit 1
+fi
+
+session_name="$1"
+shift
+cmd="$@"
+
+# --- Change to target directory ---
+cd "$location" || { echo "Failed to cd into '$location'"; exit 1; }
+
+echo "trying..."
+if ! tmux -2 new-session -s "$session_name" $cmd 2>/dev/null; then
+    echo "Session already exists."
+
+    if [ -z "$cmd" ]; then
+        echo "No command provided."
+        read -p "Press enter to attach..."
+        tmux -2 attach -t "$session_name"
+    else
+        echo "Command provided: $cmd"
+        read -p "Press enter to open new window..."
+        tmux new-window -t "$session_name" -n newwindow "$cmd"
+        tmux -2 attach -t "$session_name"
+    fi
 fi
