@@ -31,12 +31,10 @@ if ! tmux -2 new-session -s "$session_name" $cmd 2>/dev/null; then
     echo "Session already exists."
 
     if [ -z "$cmd" ]; then
-        echo "No command provided."
-        read -p "Press enter to attach..."
+        echo "No command provided (attaching...)"
         tmux -2 attach -t "$session_name"
     else
-        echo "Command provided: $cmd"
-        read -p "Press enter to open new window..."
+        echo "Command provided $cmd (in new window...)"
         tmux new-window -t "$session_name" -n newwindow "$cmd"
         tmux -2 attach -t "$session_name"
     fi
