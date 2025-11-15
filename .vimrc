@@ -18,7 +18,7 @@ if has("gui_running")
     if $living_room!=""
         set guifont=DejaVu-Sans-Mono:18  
     elseif $macbook=="true"
-        set guifont=Menlo-Regular:h26
+        set guifont=Menlo-Regular:h20
     else
         "set guifont=DejaVu-Sans-Mono-Bold:18
         set guifont=Menlo-Regular:h26
