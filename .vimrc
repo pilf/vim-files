@@ -541,10 +541,10 @@ imap <leader>Now <ESC>"=strftime("%R")<CR>pa
 imap <leader>NOw <ESC>"=strftime("%F - %R")<CR>pa
 imap <leader>NOW <ESC>"=strftime("%A %F - %R")<CR>pa
 " recommend <leader>dl (this is more internal)
-nmap <leader>later o<ESC>i<CR><ESC>"=". . . " . strftime("%R") . " . . ."<CR>pA<CR><CR><ESC>
+"nmap <leader>later o<ESC>i<CR><ESC>"=". . . " . strftime("%R") . " . . ."<CR>pA<CR><CR><ESC>
 nmap <leader>dnew G?^EOF.<CR>(()o<CR><ESC><leader>soc<leader>md=o<CR>
 nmap <leader>dnow G?^EOF.<CR>((
-nmap <leader>dl G?^EOF.<CR>(()k<leader>latera
+"nmap <leader>dl G?^EOF.<CR>(()k<leader>latera
 nmap <leader>dday :new `now -d`.md<CR>10i<CR><ESC>oEOF.<ESC>gg<leader>soc<leader>md=o<CR>
 " footnotes (btw digraph 1S=¹, 2S=², etc.)
 imap <leader>fn1 <ESC>mqa¹<ESC>o<CR>[¹: footnote ]<ESC>`qla
@@ -555,6 +555,34 @@ imap <leader>fn3 <ESC>mqa³<ESC>o<CR>[³: footnote ]<ESC>`qla
 nmap <leader>fn3 mqa³<ESC>o<CR>[³: footnote ]<ESC>Ffcw
 imap <leader>fn4 <ESC>mqa⁴<ESC>o<CR>[⁴: footnote ]<ESC>`qla
 nmap <leader>fn4 mqa⁴<ESC>o<CR>[⁴: footnote ]<ESC>Ffcw
+
+" --- Normal mode mapping ---
+" Go to end of file, trim trailing whitespace across the file (without errors),
+" then open 2 new lines, insert the literal text "... later ...", escape, and open 2 more lines.
+"nnoremap <leader>later :let _s=@/ \| %substitute#\($\n\)\+##e \| let @/=_s<CR>Go<CR>... later ...<CR><CR>
+"let _s=@/ | %substitute#\($\n\)\+##e | let @/=_s
+nnoremap <leader>later G:call TrimEOFBlankLikes()<CR>o<CR>. . .  <C-R>=strftime('%R')<CR> . . .<CR><ESC>o
+inoremap <leader>later <ESC>G:call TrimEOFBlankLines()<CR>o<CR>. . . <C-R>=strftime('%R')<CR> . . .
+
+function! TrimEOFBlankLikes()
+  " Preserve last search pattern
+  let s:save_search = @/
+
+  " Find last non-blank line
+  let l:last = prevnonblank(line('$'))
+
+  if l:last == 0
+    " Entire buffer is blank → delete all into the black-hole register
+    %delete _
+  elseif l:last < line('$')
+    " Only delete if there are actually blank lines to delete
+    execute (l:last + 1) . ',$delete _'
+  endif
+endfunction
+
+" --- Insert mode mapping ---
+" Exit insert mode, do the same sequence, then you'll be back in normal mode.
+"inoremap <leader>later <Esc>G:let _s=@/ \| keeppatterns %s/\s\+$//e \| let @/=_s<CR>2o... later ...<Esc>2o
 
 let g:session_autoload = 'no'
 let g:session_autosave = 'no' 
@@ -815,3 +843,12 @@ function! WatchForChanges(bufname, ...)
 endfunction
 
 let g:sparkupNextMapping = '<leader>x'
+
+
+
+
+    
+
+
+    
+

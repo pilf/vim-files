@@ -19,4 +19,7 @@ map zR :action ExpandAllRegions<CR>:action ExpandAllRegions<CR>
 
 map <leader><space>h :'<,'>!toneq-dev hash
 
-
+" suppresses bell (and visual flash not enabled/implemented in ideavim)
+" really used to stop annoying beeps when using global marks
+set visualbell
+set ideamarks
