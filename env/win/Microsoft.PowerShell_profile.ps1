@@ -4,6 +4,7 @@ function __ex{exit}
 Set-PSReadLineOption -EditMode Vi
 Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete
 
+Set-PSReadLineKeyHandler -Chord Ctrl+w -Function BackwardKillWord
 Set-PSReadLineKeyHandler -Chord 'v' -ViMode Command -ScriptBlock {
     # Retrieve current command from PSReadLine buffer
     $currentCommand = ""
