@@ -13,7 +13,11 @@ batt_timeleft=$(echo $batt_status | sed -En 's/.*[^0-9]([0-9]+:[0-9]*) .*/\1/p')
 batt_percent=$(echo $batt_status | sed -En 's/.*[^0-9]([0-9]+%).*/\1/p')
 
 if [ $(echo $batt_status | grep -c "AC Power") -eq 1 ]; then
-    echo "⚡ $batt_percent ($batt_timeleft)"
+    if [ "$batt_percent" = "100%" ]; then
+        echo "⚡ $batt_percent"
+    else
+        echo "⚡ $batt_percent ($batt_timeleft)"
+    fi
 else
     echo "🔋 $batt_percent (${batt_timeleft:-no estimate})"
 fi

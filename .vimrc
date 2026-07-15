@@ -121,6 +121,33 @@ nmap <leader>brn :TabooRename
 " create tab and ask for name
 nmap <leader>bn :tabnew<CR>:TabooRename 
 
+" Ctrl-w T = open this buffer in new tab (closing where you came from)
+" this is same but uses :tab split to open duplicate buffer in new tab
+nmap <leader>T :tab split<CR>
+
+nmap <leader>w :q<CR>
+
+
+"" helper to close all splits left/right/up/down of current split
+"function! CloseDir(cmd)
+"  try
+"    while 1
+"      execute a:cmd
+"      close
+"    endwhile
+"  catch
+"  endtry
+"endfunction
+"
+"nnoremap <leader>wh :call CloseDir('wincmd h')<CR>
+"nnoremap <leader>wl :call CloseDir('wincmd l')<CR>
+"nnoremap <leader>wk :call CloseDir('wincmd k')<CR>
+"nnoremap <leader>wj :call CloseDir('wincmd j')<CR>
+
+"also failed
+"nnoremap <leader>wh <Cmd>while winnr() > 1 \| wincmd h \| close \| endwhile<CR>
+"nnoremap <leader>wl <Cmd>while winnr() < winnr('$') \| wincmd l \| close \| endwhile<CR>
+
 set viminfo='1000,f1,<500,s10,h,!
 
 " Tabs etc
@@ -209,6 +236,9 @@ map <leader>o myo<ESC>`y
 map <leader>O myO<ESC>`y
 inoremap <leader>o <ESC>myo<ESC>`ya
 inoremap <leader>O <ESC>myO<ESC>`ya
+
+nmap <leader>U :earlier<CR>
+nmap <leader>R :later<CR>
 
 map <leader>hs :set list!<CR>
 map <leader>s :w<CR>
@@ -488,12 +518,16 @@ nmap <D-4> g$
 nmap <D-6> g^
 nmap <D-0> g^
 
+" window and splits commands
+nmap <leader><CR> <C-w>_<C-w>\|
+
 " moving about splits... doesn't work, don't know why :(
 " nmap <leader>test <C-w><C-l>
 "nnoremap <C-H> <C-W><C-H>
 "nnoremap <C-J> <C-W><C-J>
 "nnoremap <C-K> <C-W><C-K>
 "nnoremap <C-L> <C-W><C-L>
+
 
 " Based on following, kinda works
 " http://stackoverflow.com/questions/1269603/to-switch-from-vertical-split-to-horizontal-split-fast-in-vim
@@ -541,7 +575,7 @@ imap <leader>Now <ESC>"=strftime("%R")<CR>pa
 imap <leader>NOw <ESC>"=strftime("%F - %R")<CR>pa
 imap <leader>NOW <ESC>"=strftime("%A %F - %R")<CR>pa
 " recommend <leader>dl (this is more internal)
-"nmap <leader>later o<ESC>i<CR><ESC>"=". . . " . strftime("%R") . " . . ."<CR>pA<CR><CR><ESC>
+"nmap <leader>later o<ESC>i<CR><ESC>0D"=". . . " . strftime("%R") . " . . ."<CR>pA<CR><CR><ESC>
 nmap <leader>dnew G?^EOF.<CR>(()o<CR><ESC><leader>soc<leader>md=o<CR>
 nmap <leader>dnow G?^EOF.<CR>((
 "nmap <leader>dl G?^EOF.<CR>(()k<leader>latera
@@ -561,8 +595,8 @@ nmap <leader>fn4 mqa⁴<ESC>o<CR>[⁴: footnote ]<ESC>Ffcw
 " then open 2 new lines, insert the literal text "... later ...", escape, and open 2 more lines.
 "nnoremap <leader>later :let _s=@/ \| %substitute#\($\n\)\+##e \| let @/=_s<CR>Go<CR>... later ...<CR><CR>
 "let _s=@/ | %substitute#\($\n\)\+##e | let @/=_s
-nnoremap <leader>later G:call TrimEOFBlankLikes()<CR>o<CR>. . .  <C-R>=strftime('%R')<CR> . . .<CR><ESC>o
-inoremap <leader>later <ESC>G:call TrimEOFBlankLines()<CR>o<CR>. . . <C-R>=strftime('%R')<CR> . . .
+nnoremap <leader>later G:call TrimEOFBlankLikes()<CR>o<CR><C-D>. . .  <C-R>=strftime('%R')<CR> . . .<CR><ESC>o
+inoremap <leader>later <ESC>G:call TrimEOFBlankLines()<CR>o<CR><C-D>. . . <C-R>=strftime('%R')<CR> . . .
 
 function! TrimEOFBlankLikes()
   " Preserve last search pattern
@@ -841,14 +875,28 @@ function! WatchForChanges(bufname, ...)
   echo msg
   let @"=reg_saved
 endfunction
+function! CloseRightWindows()
+  let l:orig = win_getid()
+
+  while 1
+    wincmd l
+
+    if win_getid() == l:orig
+      break
+    endif
+
+    let l:cur = win_getid()
+    close
+
+    " If close failed, we're still in the same window → stop
+    if win_getid() == l:cur
+      break
+    endif
+  endwhile
+endfunction
+nmap <leader>ql :call CloseRightWindows()<CR>
 
 let g:sparkupNextMapping = '<leader>x'
 
-
-
-
-    
-
-
-    
+command! DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
 

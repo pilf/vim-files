@@ -18,8 +18,8 @@ input="$1"
 # - thomasf-solarizedcssdark (kind of ugly, but wide and dark)
 # - thomasf-solarizedcsslight (wide and colourful, and ugly again but this time with a peachy-yellow background)
 # - witex (ok, justified text, quite attractive)
-theme="${2:-mixu-radar}" 
-prefix="${3:-tmpmdfile}"
+theme="${2:-github}" 
+prefix="${3:-}"
 
 if [ -z "$input" ] || [ ! -f "$input" ]; then
     cat <<EOF 1>&2
