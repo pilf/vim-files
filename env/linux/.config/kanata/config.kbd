@@ -1,0 +1,24 @@
+(defcfg
+  process-unmapped-keys yes
+)
+
+;; Ensure all keys you use in deflayer are listed here in order
+(defsrc
+  caps j k l h [
+)
+
+(defalias
+  nav (layer-toggle navigation)
+  ;; Define a macro that sends escape only one Ctrl + [
+  ce (macro C-[) ;;//ce esc
+)
+
+(deflayer base
+  (tap-hold 200 200 caps @nav) j k l h @ce
+)
+  
+(deflayer navigation
+  caps down up right left _
+)
+
+
