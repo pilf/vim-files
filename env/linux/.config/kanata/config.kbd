@@ -2,15 +2,16 @@
   process-unmapped-keys yes
 )
 
-;; Ensure all keys you use in deflayer are listed here in order
+;; defsrc remains exactly the same
 (defsrc
   caps j k l h [
 )
 
 (defalias
   nav (layer-toggle navigation)
-  ;; Define a macro that sends escape only one Ctrl + [
-  ce (macro C-[) ;;//ce esc
+  
+  ;; (fork <default-action> <action-if-modifier-held> (<modifiers-to-check>))
+  ce (fork [ esc (lctl rctl))
 )
 
 (deflayer base
@@ -20,5 +21,3 @@
 (deflayer navigation
   caps down up right left _
 )
-
-
