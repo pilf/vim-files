@@ -5,8 +5,7 @@ imap jk <ESC>
 
 let mapleader="§"
 
-
-nmap ,, :set nu! \| set relativenumber!<CR>
+nmap <leader>, :set nu! \| set relativenumber!<CR>
 map <leader>on :action VimWindowOnly<CR>
 map <leader>q :action VimWindowClose<CR>
 
