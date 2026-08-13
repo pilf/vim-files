@@ -108,14 +108,10 @@ alias host_here="python3 -m http.server"
 # vim-itis
 alias ":q"=exit
 
-# OS X specific
-alias boot2docker-start='eval $(/usr/local/bin/boot2docker shellinit) && $(/usr/local/bin/boot2docker up)'
-
 # Docker specific
 alias dcn=container-named.sh
 alias din=docker-image-one.sh
 alias de=docker-exec.sh
-alias docker-go="'/Applications/Docker/Docker Quickstart Terminal.app/Contents/Resources/Scripts/start.sh'"
 
 # Git specific
 alias gitdiff="GIT_PAGER='vim -R -' git diff --no-color"
@@ -138,12 +134,6 @@ export HISTCONTROL=ignoredups:erasedups
 shopt -s histappend
 # After each command, save and reload history
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
-
-# Alas this doesn't work within tmux, but nice to have maybe.  Solved with tmux option set-title(-string)
-settitle ()
-{
-   echo -ne "\e]2;$@\a\e]1;$@\a";
-}
 
 tmux-color.sh
 

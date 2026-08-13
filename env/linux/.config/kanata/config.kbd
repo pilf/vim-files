@@ -1,0 +1,23 @@
+(defcfg
+  process-unmapped-keys no
+)
+
+;; defsrc remains exactly the same
+(defsrc
+  caps j k l h [
+)
+
+(defalias
+  nav (layer-toggle navigation)
+  
+  ;; (fork <default-action> <action-if-modifier-held> (<modifiers-to-check>))
+  ce (fork [ esc (lctl rctl))
+)
+
+(deflayer base
+  (tap-hold 200 200 caps @nav) j k l h @ce
+)
+  
+(deflayer navigation
+  caps down up right left _
+)
