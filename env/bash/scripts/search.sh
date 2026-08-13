@@ -22,7 +22,7 @@ fzf --layout=default \
   --delimiter ':' \
   --bind "start:reload:rg --sortr=modified --hidden --line-number --no-heading --color=always $exclude_rg '' $search_targets" \
   --bind "change:reload:rg --sortr=modified --ignore-case --hidden --line-number --no-heading --color=always $exclude_rg {q} $search_targets" \
-  --bind 'enter:execute(${EDITOR:-vim} {1} +{2})' \
+  --bind 'enter:execute(${EDITOR:-vim} -R {1} +{2})' \
   --preview 'bat --style=numbers,changes --theme=Dracula --color=always --highlight-line {2} --line-range {2}: {1}' \
   --preview-window 'up,60%,border-bottom'
 

@@ -124,6 +124,10 @@ alias gitdiff="GIT_PAGER='vim -R -' git diff --no-color"
 alias ppid='ps -p'
 alias tmux-tree="pstree $(ppid $$)"
 
+function tmux-home {
+    cd "$(tmux display-message -p '#{session_path}')"
+}
+
 # Node
 alias vnode='rlwrap -a -c -H "~/.node_history" -r node' 
 
