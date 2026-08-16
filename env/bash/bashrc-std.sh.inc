@@ -71,7 +71,7 @@ fi
 if [ -n "$shell_override" ]; then 
     export tmux_shell="$shell_override"
 else
-    export tmux_shell='/usr/bin/env bash'
+    export tmux_shell=$(command -v bash 2>/dev/null || echo /bin/bash)
 fi
 
 # zsh seems to need explict start (0)

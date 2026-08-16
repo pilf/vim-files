@@ -401,19 +401,19 @@ c.colors.webpage.darkmode.policy.images = 'never'
 
 # Font used in the completion widget.
 # Type: Font
-c.fonts.completion.entry = '16pt default_family'
+c.fonts.completion.entry = '12pt default_family'
 
 # Font used in the completion categories.
 # Type: Font
-c.fonts.completion.category = 'bold 16pt default_family'
+c.fonts.completion.category = 'bold 12pt default_family'
 
 # Font used for the hints.
 # Type: Font
-c.fonts.hints = 'bold 18pt default_family'
+c.fonts.hints = 'bold 14pt default_family'
 
 # Font used in the keyhint widget.
 # Type: Font
-c.fonts.keyhint = '16pt default_family'
+c.fonts.keyhint = '12pt default_family'
 
 # Bindings for normal mode
 config.bind('<Ctrl+w>', 'rl-backward-kill-word')

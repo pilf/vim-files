@@ -289,8 +289,7 @@ autocmd BufNewFile,BufRead *.json set syntax=json | set foldmethod=syntax
 autocmd BufNewFile,BufRead *.eex set syntax=html
 autocmd BufNewFile,BufRead *.md set syntax=markdown
 autocmd BufNewFile,BufRead *.sh.inc set syntax=sh
-autocmd BufNewFile,BufRead *.toneq set syntax=toneq
-autocmd BufNewFile,BufRead *.toneq2 so `g toneq`/scripts/*.vim | set syntax=toneq2
+autocmd BufNewFile,BufRead *.toneq so `g toneq`/scripts/*.vim | set syntax=toneq2
 autocmd BufNewFile,BufRead *.tl set syntax=timeline
 autocmd BufNewFile,BufRead *.js set tabstop=2 | set sts=2 | set shiftwidth=2
 
@@ -463,7 +462,7 @@ nmap <leader>scl :set cursorline!<CR>
 nmap <leader>scc :set cursorcolumn!<CR>
 nmap <leader>sw :set wrap!<CR>
 
-set clipboard=unnamed
+set clipboard=unnamedplus
 " uisng pbcopy, from: http://stackoverflow.com/questions/677986/vim-copy-selection-to-os-x-clipboard
 vmap <D-x> :!pbcopy<CR>  
 vmap <D-c> :w !pbcopy<CR><CR>
