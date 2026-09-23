@@ -260,7 +260,7 @@ nnoremap <leader>wsudo mm:w !sudo tee %<CR><CR>L`m
 "inoremap <leader>cp <C-r>=expand('%:p')<CR>
 " in normal mode this copies it into the "p register
 nnoremap <leader>cpp "=expand("%:p")<CR>:let @p=@% \| echo @p<CR>
-nnoremap <leader>cp: "=expand("%:p")<CR>:exec("! clear && echo -n " . shellescape(expand("%:p")) . " \| pbcopy")<CR><CR>
+nnoremap <leader>cp* "=expand("%:p")<CR>:exec("! clear && echo -n " . shellescape(expand("%:p")) . " \| pbcopy")<CR><CR>
 nnoremap <leader>ep :echo expand("%:p")<CR>
 
 " nopaste / paste toggle (and then display new toggle value: "paste" or "nopaste")
